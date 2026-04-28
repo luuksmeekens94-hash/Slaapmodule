@@ -1,0 +1,22 @@
+# Zip exports
+*.zip
+
+# Debug screenshots (maar niet logo.png)
+*-check.png
+*-desktop-check.png
+*-mobile-check.png
+amateur-fix-*.png
+module-*.png
+premium-*.png
+svg-assets-*.png
+
+# Node / dev tools
+node_modules/
+tools/
+
+# Memory / session files
+memory/
+
+# OS
+.DS_Store
+Thumbs.db

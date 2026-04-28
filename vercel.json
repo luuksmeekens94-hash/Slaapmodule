@@ -1,0 +1,14 @@
+{
+  "outputDirectory": "prototype",
+  "buildCommand": "",
+  "installCommand": "",
+  "framework": null,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
+}
