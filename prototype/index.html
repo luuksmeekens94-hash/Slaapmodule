@@ -961,41 +961,47 @@ input[type=range].fysio-range::-moz-range-thumb {
 .motion-svg[data-motion="breathe"] .m-breathe-phase { opacity: 0; transform-origin: center; transform-box: fill-box; }
 
 .motion-svg[data-motion="cycles"] .m-cycles-line { stroke-dasharray: 1200; stroke-dashoffset: 1200; }
-.motion-svg[data-motion="cycles"] .m-cycles-marker { opacity: 0; }
 .motion-svg[data-motion="cycles"] .m-cycles-wake { opacity: 0; transform-origin: center; transform-box: fill-box; }
+.motion-svg[data-motion="cycles"] .m-cycles-stars circle { transform-origin: center; transform-box: fill-box; }
 
-.motion-svg[data-motion="night"] .m-night-walker { offset-path: path('M 188 168 C 236 168 232 116 280 116 C 336 116 336 168 384 168 C 436 168 432 116 480 116'); offset-distance: 0%; }
-.motion-svg[data-motion="night"] .m-night-chip { opacity: 0; transform-origin: center; transform-box: fill-box; }
+/* Breathe = liquid orb */
+.motion-svg[data-motion="breathe"] .m-breathe-orb,
+.motion-svg[data-motion="breathe"] .m-breathe-glow { transform-origin: 280px 130px; transform-box: view-box; }
+.motion-svg[data-motion="breathe"] .m-breathe-ring { transform-origin: 280px 130px; transform-box: view-box; opacity: 0; }
+.motion-svg[data-motion="breathe"] .m-breathe-particles circle { transform-origin: center; transform-box: fill-box; }
+.motion-svg[data-motion="breathe"] .m-breathe-phase-dot { transform-box: fill-box; }
+
+/* Night = quiet path */
+.motion-svg[data-motion="night"] .m-night-walker { transform-box: fill-box; }
+.motion-svg[data-motion="night"] .m-night-trail circle { transform-origin: center; transform-box: fill-box; opacity: 0; }
 .motion-svg[data-motion="night"] .m-night-stars circle { transform-origin: center; transform-box: fill-box; }
+.motion-svg[data-motion="night"] .m-night-lamp-glow { opacity: 0; transform-box: fill-box; }
 
-/* Clock = bedroom-dawn scene */
-.motion-svg[data-motion="clock"] .m-bd-pane-day { opacity: 0; }
-.motion-svg[data-motion="clock"] .m-bd-rays { opacity: 0; }
-.motion-svg[data-motion="clock"] .m-bd-stars { opacity: 1; }
-.motion-svg[data-motion="clock"] .m-bd-anchor { opacity: 0; transform-origin: center; transform-box: fill-box; }
-.motion-svg[data-motion="clock"] .m-bd-lamp-glow { opacity: 0; transform-origin: center; transform-box: fill-box; }
-.motion-svg[data-motion="clock"] .m-bd-hour,
-.motion-svg[data-motion="clock"] .m-bd-minute { transform-origin: 0 0; transform-box: fill-box; }
-.motion-svg[data-motion="clock"] .m-bd-blanket { transform-origin: 134px 26px; transform-box: view-box; }
-.motion-svg[data-motion="clock"] .m-bd-head { transform-origin: 50px 2px; transform-box: view-box; }
-.motion-svg[data-motion="clock"] .m-bd-time-pill { transform-origin: center; transform-box: fill-box; }
+/* Clock = 7-day anchor */
+.motion-svg[data-motion="clock"] .m-clock-anchor { stroke-dasharray: 380; stroke-dashoffset: 380; }
+.motion-svg[data-motion="clock"] .m-clock-sun,
+.motion-svg[data-motion="clock"] .m-clock-sun-glow { transform-origin: center; transform-box: fill-box; opacity: 0; }
+.motion-svg[data-motion="clock"] .m-clock-caption { opacity: 0; transform-origin: center; transform-box: fill-box; }
+.motion-svg[data-motion="clock"] .m-clock-time { transform-origin: center; transform-box: fill-box; }
 
-/* Sun = window + curtains scene */
-.motion-svg[data-motion="sun"] .m-sun-sky-day { opacity: 0; }
-.motion-svg[data-motion="sun"] .m-sun-curtain-l { transform-origin: 70px 130px; transform-box: view-box; }
-.motion-svg[data-motion="sun"] .m-sun-curtain-r { transform-origin: 490px 130px; transform-box: view-box; }
-.motion-svg[data-motion="sun"] .m-sun-card { opacity: 0; transform-origin: center; transform-box: fill-box; }
-.motion-svg[data-motion="sun"] .m-sun-disc { transform-origin: 280px 240px; transform-box: view-box; }
+/* Sun = dawn window */
+.motion-svg[data-motion="sun"] .m-sun-pane-dawn,
+.motion-svg[data-motion="sun"] .m-sun-pane-day { opacity: 0; }
+.motion-svg[data-motion="sun"] .m-sun-disc,
+.motion-svg[data-motion="sun"] .m-sun-disc-glow { transform-box: fill-box; }
 .motion-svg[data-motion="sun"] .m-sun-beam { opacity: 0; }
+.motion-svg[data-motion="sun"] .m-sun-leaf-l,
+.motion-svg[data-motion="sun"] .m-sun-leaf-r { transform-box: fill-box; }
+.motion-svg[data-motion="sun"] .m-sun-caption { opacity: 0; transform-origin: center; transform-box: fill-box; }
 
-/* Rhythm = night-strip scene */
-.motion-svg[data-motion="rhythm"] .m-rh-sleep { transform-origin: left center; }
-.motion-svg[data-motion="rhythm"] .m-rh-wake { transform-origin: center; transform-box: fill-box; }
+/* Rhythm = two-bar slaapvenster */
 .motion-svg[data-motion="rhythm"] .m-rh-phase { transform-origin: center; transform-box: fill-box; }
-.motion-svg[data-motion="rhythm"] .m-rh-label { transform-origin: center; transform-box: fill-box; opacity: 0; }
 
-.motion-svg[data-motion="pressure"] .m-pressure-final { opacity: 0; transform-origin: center; transform-box: fill-box; }
-.motion-svg[data-motion="pressure"] .m-pressure-dutje { opacity: 0; transform-origin: center; transform-box: fill-box; }
+/* Pressure = beaker */
+.motion-svg[data-motion="pressure"] .m-press-final { opacity: 0; transform-origin: center; transform-box: fill-box; }
+.motion-svg[data-motion="pressure"] .m-press-dutje { opacity: 0; transform-origin: center; transform-box: fill-box; }
+.motion-svg[data-motion="pressure"] .m-press-sun,
+.motion-svg[data-motion="pressure"] .m-press-moon { transform-box: fill-box; }
 
 .motion-svg[data-motion="thought"] .m-thought-good { opacity: 0; transform-origin: 412px 138px; transform-box: view-box; transform: translateX(20px) scale(.92); }
 .motion-svg[data-motion="thought"] .m-thought-question { opacity: 0; transform-origin: 280px 138px; transform-box: view-box; }
@@ -2584,330 +2590,393 @@ function slaapModule() {
             </g>
           </svg>`,
         breathe: `
-          <svg class="asset-svg motion-svg" data-motion="breathe" viewBox="0 0 560 300" aria-hidden="true">${defs}${panel}
-            <!-- Outer rings -->
-            <circle class="m-breathe-ring" data-i="2" cx="280" cy="132" r="118" fill="none" stroke="#A0E8ED" stroke-width="1.6" opacity=".22"/>
-            <circle class="m-breathe-ring" data-i="1" cx="280" cy="132" r="86"  fill="none" stroke="#30B5BE" stroke-width="1.8" opacity=".42"/>
-            <circle class="m-breathe-ring" data-i="0" cx="280" cy="132" r="58"  fill="none" stroke="#1B56B8" stroke-width="2"  opacity=".55"/>
+          <svg class="asset-svg motion-svg" data-motion="breathe" viewBox="0 0 560 300" aria-hidden="true">
+            <defs>
+              <radialGradient id="breatheCore" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".95"/>
+                <stop offset="35%" stop-color="#A0E8ED" stop-opacity=".85"/>
+                <stop offset="70%" stop-color="#30B5BE" stop-opacity=".55"/>
+                <stop offset="100%" stop-color="#1840A0" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="breatheBg" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%"  stop-color="#0E1C38"/>
+                <stop offset="100%" stop-color="#1B3470"/>
+              </linearGradient>
+              <filter id="breatheBlur" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="8"/>
+              </filter>
+            </defs>
+            <rect x="18" y="24" width="524" height="214" rx="24" fill="url(#breatheBg)"/>
+            <!-- Ambient particles -->
+            <g class="m-breathe-particles">
+              <circle data-i="0" cx="120" cy="80"  r="2"   fill="#A0E8ED" opacity=".55"/>
+              <circle data-i="1" cx="180" cy="200" r="1.5" fill="#A0E8ED" opacity=".45"/>
+              <circle data-i="2" cx="380" cy="70"  r="2"   fill="#A0E8ED" opacity=".55"/>
+              <circle data-i="3" cx="450" cy="180" r="1.5" fill="#A0E8ED" opacity=".45"/>
+              <circle data-i="4" cx="80"  cy="160" r="1.5" fill="#A0E8ED" opacity=".4"/>
+              <circle data-i="5" cx="500" cy="120" r="2"   fill="#A0E8ED" opacity=".55"/>
+            </g>
+            <!-- Expanding rings -->
+            <circle class="m-breathe-ring" data-i="2" cx="280" cy="130" r="100" fill="none" stroke="#A0E8ED" stroke-width="1.4" opacity="0"/>
+            <circle class="m-breathe-ring" data-i="1" cx="280" cy="130" r="78"  fill="none" stroke="#7AD8DD" stroke-width="1.6" opacity="0"/>
+            <circle class="m-breathe-ring" data-i="0" cx="280" cy="130" r="58"  fill="none" stroke="#30B5BE" stroke-width="1.8" opacity="0"/>
+            <!-- Soft glow halo -->
+            <circle class="m-breathe-glow" cx="280" cy="130" r="60" fill="url(#breatheCore)" filter="url(#breatheBlur)" opacity=".7"/>
             <!-- Center orb -->
-            <circle class="m-breathe-orb" cx="280" cy="132" r="42" fill="url(#orbGrad)"/>
-            <circle class="m-breathe-orb-core" cx="280" cy="132" r="26" fill="#fff" opacity=".22"/>
-            <!-- Phase labels -->
-            <g class="m-breathe-phase" data-phase="in" transform="translate(80 70)">
-              <rect width="116" height="40" rx="20" fill="#fff" stroke="#CDE1F4" stroke-width="1.4" filter="url(#softShadow)"/>
-              <text x="58" y="26" font-family="Plus Jakarta Sans" font-size="14" font-weight="800" fill="#1840A0" text-anchor="middle">inademen 4s</text>
-            </g>
-            <g class="m-breathe-phase" data-phase="hold" transform="translate(384 70)">
-              <rect width="106" height="40" rx="20" fill="#fff" stroke="#CDE1F4" stroke-width="1.4" filter="url(#softShadow)"/>
-              <text x="53" y="26" font-family="Plus Jakarta Sans" font-size="14" font-weight="800" fill="#155C39" text-anchor="middle">uitademen 6s</text>
-            </g>
-            <!-- Cycle dots -->
-            <g class="m-breathe-cycles" transform="translate(228 232)">
-              <circle data-i="0" cx="0"  cy="0" r="4" fill="#1840A0" opacity=".25"/>
-              <circle data-i="1" cx="22" cy="0" r="4" fill="#1840A0" opacity=".25"/>
-              <circle data-i="2" cx="44" cy="0" r="4" fill="#1840A0" opacity=".25"/>
-              <circle data-i="3" cx="66" cy="0" r="4" fill="#1840A0" opacity=".25"/>
-              <circle data-i="4" cx="88" cy="0" r="4" fill="#1840A0" opacity=".25"/>
-            </g>
+            <circle class="m-breathe-orb" cx="280" cy="130" r="38" fill="url(#breatheCore)"/>
+            <!-- Phase track at bottom -->
+            <line x1="180" y1="248" x2="380" y2="248" stroke="#3B5489" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+            <circle class="m-breathe-phase-dot" cx="180" cy="248" r="5" fill="#FFFFFF"/>
+            <text x="280" y="274" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" fill="#A0E8ED" letter-spacing="3">IN — UIT</text>
           </svg>`,
         cycles: `
-          <svg class="asset-svg motion-svg" data-motion="cycles" viewBox="0 0 560 300" aria-hidden="true">${defs}${panel}
-            <!-- Depth labels -->
-            <g class="asset-depth-labels" font-family="DM Sans" font-size="10" font-weight="700" fill="#8A9AB8">
-              <text x="40" y="64">wakker</text>
-              <text x="40" y="100">licht</text>
-              <text x="40" y="142">REM</text>
-              <text x="40" y="186">N2</text>
-              <text x="40" y="220">diep</text>
+          <svg class="asset-svg motion-svg" data-motion="cycles" viewBox="0 0 560 300" aria-hidden="true">
+            <defs>
+              <linearGradient id="cycleSky" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%"  stop-color="#0E1C38"/>
+                <stop offset="60%" stop-color="#1B3470"/>
+                <stop offset="100%" stop-color="#3B5489"/>
+              </linearGradient>
+              <linearGradient id="cyclePathGrad" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%"  stop-color="#A0E8ED"/>
+                <stop offset="50%" stop-color="#30B5BE"/>
+                <stop offset="100%" stop-color="#1B56B8"/>
+              </linearGradient>
+              <radialGradient id="cycleMoon" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#FFFFFF"/>
+                <stop offset="55%" stop-color="#A0E8ED"/>
+                <stop offset="100%" stop-color="#30B5BE" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect x="18" y="24" width="524" height="214" rx="24" fill="url(#cycleSky)"/>
+            <!-- Stars -->
+            <g class="m-cycles-stars" opacity=".7">
+              <circle cx="80"  cy="58" r="1.2" fill="#fff"/>
+              <circle cx="160" cy="48" r="1.4" fill="#A0E8ED"/>
+              <circle cx="220" cy="62" r="1"   fill="#fff"/>
+              <circle cx="320" cy="50" r="1.4" fill="#A0E8ED"/>
+              <circle cx="400" cy="58" r="1.2" fill="#fff"/>
+              <circle cx="480" cy="46" r="1.4" fill="#A0E8ED"/>
             </g>
-            <!-- Hour ticks -->
-            <g class="asset-hour-ticks" stroke="#E1E8F2" stroke-width="1">
-              <line x1="100"  y1="58" x2="100"  y2="226"/>
-              <line x1="186"  y1="58" x2="186"  y2="226"/>
-              <line x1="272"  y1="58" x2="272"  y2="226"/>
-              <line x1="358"  y1="58" x2="358"  y2="226"/>
-              <line x1="444"  y1="58" x2="444"  y2="226"/>
+            <!-- Depth zone bands (subtle, no chart grid) -->
+            <rect x="40" y="86"  width="480" height="34" fill="#FFFFFF" opacity=".035" rx="2"/>
+            <rect x="40" y="120" width="480" height="34" fill="#FFFFFF" opacity=".06" rx="2"/>
+            <rect x="40" y="154" width="480" height="34" fill="#FFFFFF" opacity=".09" rx="2"/>
+            <rect x="40" y="188" width="480" height="34" fill="#FFFFFF" opacity=".13" rx="2"/>
+            <!-- Zone labels -->
+            <g font-family="DM Sans" font-size="9" font-weight="700" fill="#A0E8ED" opacity=".6">
+              <text x="48" y="100">licht</text>
+              <text x="48" y="134">REM</text>
+              <text x="48" y="168">middel</text>
+              <text x="48" y="202">diep</text>
             </g>
-            <g class="asset-hour-text" font-family="DM Sans" font-size="9" font-weight="700" fill="#8A9AB8">
-              <text x="100" y="244" text-anchor="middle">00</text>
-              <text x="186" y="244" text-anchor="middle">02</text>
-              <text x="272" y="244" text-anchor="middle">04</text>
-              <text x="358" y="244" text-anchor="middle">06</text>
-              <text x="444" y="244" text-anchor="middle">08</text>
-            </g>
-            <!-- Soft shadow trace -->
-            <path class="m-cycles-shadow" d="M72 70 C100 70 110 200 158 200 C200 200 200 110 248 110 C290 110 296 220 348 220 C400 220 400 130 444 130 C486 130 488 200 510 200" fill="none" stroke="#D8E7F3" stroke-width="3" opacity=".7"/>
-            <!-- Main wave -->
-            <path class="m-cycles-line" d="M72 70 C100 70 110 200 158 200 C200 200 200 110 248 110 C290 110 296 220 348 220 C400 220 400 130 444 130 C486 130 488 200 510 200" fill="none" stroke="url(#assetStroke)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Marker dot -->
-            <circle class="m-cycles-marker" cx="72" cy="70" r="9" fill="#fff" stroke="#1840A0" stroke-width="3.5"/>
-            <!-- Wakker markers between cycles -->
-            <g class="m-cycles-wake" data-i="0" transform="translate(158 36)">
-              <rect x="-44" y="0" width="88" height="22" rx="11" fill="#FFF" stroke="#F3C5C5" stroke-width="1.2"/>
-              <text x="0" y="15" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="800" fill="#7A2828">kort wakker</text>
-            </g>
-            <g class="m-cycles-wake" data-i="1" transform="translate(348 36)">
-              <rect x="-44" y="0" width="88" height="22" rx="11" fill="#FFF" stroke="#F3C5C5" stroke-width="1.2"/>
-              <text x="0" y="15" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="800" fill="#7A2828">kort wakker</text>
+            <!-- Shadow trace -->
+            <path class="m-cycles-shadow" d="M64 92 C100 92 116 200 168 200 C220 200 224 110 268 110 C312 110 318 218 368 218 C418 218 420 124 458 124 C490 124 500 198 516 198" fill="none" stroke="#3B5489" stroke-width="2.5" opacity=".55"/>
+            <!-- Glowing wave -->
+            <path class="m-cycles-line" d="M64 92 C100 92 116 200 168 200 C220 200 224 110 268 110 C312 110 318 218 368 218 C418 218 420 124 458 124 C490 124 500 198 516 198" fill="none" stroke="url(#cyclePathGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Wake-moment soft pulses (cyan, no scary red) -->
+            <circle class="m-cycles-wake" data-i="0" cx="168" cy="92" r="6" fill="#A0E8ED" opacity="0"/>
+            <circle class="m-cycles-wake" data-i="1" cx="368" cy="92" r="6" fill="#A0E8ED" opacity="0"/>
+            <!-- Moon orb traveling -->
+            <circle class="m-cycles-glow" cx="64" cy="92" r="22" fill="url(#cycleMoon)" opacity=".7"/>
+            <circle class="m-cycles-marker" cx="64" cy="92" r="8" fill="#FFFFFF"/>
+            <!-- Time labels -->
+            <g font-family="DM Sans" font-size="9" font-weight="700" fill="#A0E8ED" opacity=".7">
+              <text x="64"  y="244" text-anchor="middle">23:00</text>
+              <text x="168" y="244" text-anchor="middle">01:00</text>
+              <text x="268" y="244" text-anchor="middle">03:00</text>
+              <text x="368" y="244" text-anchor="middle">05:00</text>
+              <text x="458" y="244" text-anchor="middle">07:00</text>
             </g>
           </svg>`,
         night: `
-          <svg class="asset-svg motion-svg" data-motion="night" viewBox="0 0 560 300" aria-hidden="true">${defs}${panel}
+          <svg class="asset-svg motion-svg" data-motion="night" viewBox="0 0 560 300" aria-hidden="true">
+            <defs>
+              <linearGradient id="nightRoom" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%"  stop-color="#1B3470"/>
+                <stop offset="100%" stop-color="#0E1C38"/>
+              </linearGradient>
+              <radialGradient id="nightLamp" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#FBD06A" stop-opacity=".85"/>
+                <stop offset="55%" stop-color="#F08A4B" stop-opacity=".30"/>
+                <stop offset="100%" stop-color="#F08A4B" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="nightMoon" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#FFFFFF"/>
+                <stop offset="55%" stop-color="#A0E8ED" stop-opacity=".7"/>
+                <stop offset="100%" stop-color="#A0E8ED" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect x="18" y="24" width="524" height="214" rx="24" fill="url(#nightRoom)"/>
             <!-- Stars -->
-            <g class="m-night-stars">
-              <circle cx="80"  cy="64"  r="1.5" fill="#A0E8ED"/>
-              <circle cx="180" cy="48"  r="1.5" fill="#fff"/>
-              <circle cx="280" cy="60"  r="1.5" fill="#A0E8ED"/>
-              <circle cx="430" cy="52"  r="1.5" fill="#fff"/>
-              <circle cx="500" cy="76"  r="1.5" fill="#A0E8ED"/>
+            <g class="m-night-stars" opacity=".7">
+              <circle cx="200" cy="62" r="1.2" fill="#fff"/>
+              <circle cx="280" cy="48" r="1.4" fill="#A0E8ED"/>
+              <circle cx="350" cy="58" r="1.2" fill="#fff"/>
+              <circle cx="430" cy="54" r="1.4" fill="#A0E8ED"/>
             </g>
-            <!-- Bed left -->
-            <g transform="translate(56 130)">
-              <rect class="asset-bed-frame" x="0" y="36" width="120" height="46" rx="10" fill="#DDE9F7" stroke="#BFD0E8" stroke-width="1.4"/>
-              <rect class="asset-bed-pillow" x="10" y="20" width="38" height="22" rx="8" fill="#fff" stroke="#BFD0E8" stroke-width="1.2"/>
-              <rect x="48" y="44" width="64" height="16" rx="8" fill="#C7D6EC"/>
-              <text x="60" y="100" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="800" fill="#4A5878">BED</text>
+            <!-- Window with moon (top-left) -->
+            <g transform="translate(56 64)">
+              <rect x="0" y="0" width="80" height="76" rx="4" fill="#0E1C38" stroke="#3B5489" stroke-width="1.4"/>
+              <line x1="40" y1="0" x2="40" y2="76" stroke="#3B5489" stroke-width="1.2"/>
+              <line x1="0" y1="38" x2="80" y2="38" stroke="#3B5489" stroke-width="1.2"/>
+              <circle cx="56" cy="26" r="28" fill="url(#nightMoon)" opacity=".55"/>
+              <circle cx="56" cy="26" r="11" fill="#F4F8FE"/>
             </g>
-            <!-- Path -->
-            <path class="m-night-path" d="M188 168 C236 168 232 116 280 116 C336 116 336 168 384 168 C436 168 432 116 480 116" fill="none" stroke="#CFDBF3" stroke-width="3" stroke-dasharray="4 6" opacity=".7"/>
-            <!-- Walking person dot -->
-            <circle class="m-night-walker" cx="188" cy="168" r="9" fill="#fff" stroke="#1840A0" stroke-width="3.5"/>
-            <!-- Reading chair right -->
-            <g transform="translate(384 130)">
-              <rect class="m-night-chair" x="0" y="32" width="86" height="50" rx="14" fill="#E2F5F6" stroke="#BFE0E3" stroke-width="1.4"/>
-              <rect x="14" y="14" width="58" height="22" rx="8" fill="#fff" stroke="#BFE0E3" stroke-width="1.2"/>
-              <text x="43" y="100" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="800" fill="#155C39">RUSTIG</text>
+            <!-- Time pill (bottom-left) -->
+            <g class="m-night-time" transform="translate(56 244)">
+              <rect width="86" height="28" rx="14" fill="#3B5489" stroke="#A0E8ED" stroke-width="1.2" opacity=".75"/>
+              <text x="43" y="19" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" fill="#FFFFFF">03:14</text>
             </g>
-            <!-- Action chip (appears at apex) -->
-            <g class="m-night-chip">
-              <rect x="244" y="68" width="116" height="32" rx="16" fill="#fff" stroke="#BFE8D1" stroke-width="1.4"/>
-              <text x="302" y="89" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#155C39">uit bed, klein</text>
+            <!-- Bed silhouette -->
+            <g transform="translate(170 156)">
+              <rect x="0" y="20" width="130" height="38" rx="8" fill="#3B5489" stroke="#5A7BB0" stroke-width="1.2"/>
+              <rect x="6"  y="2"  width="40" height="22" rx="6" fill="#5A7BB0"/>
+              <rect x="48" y="32" width="74" height="14" rx="6" fill="#2A4475"/>
+            </g>
+            <!-- Firefly trail -->
+            <g class="m-night-trail">
+              <circle data-i="0" cx="320" cy="174" r="3"   fill="#FBD06A" opacity="0"/>
+              <circle data-i="1" cx="350" cy="160" r="2.5" fill="#FBD06A" opacity="0"/>
+              <circle data-i="2" cx="380" cy="150" r="3"   fill="#FBD06A" opacity="0"/>
+              <circle data-i="3" cx="410" cy="142" r="2.5" fill="#FBD06A" opacity="0"/>
+              <circle data-i="4" cx="438" cy="138" r="3"   fill="#FBD06A" opacity="0"/>
+            </g>
+            <!-- Walker dot -->
+            <circle class="m-night-walker" cx="296" cy="178" r="6" fill="#FFFFFF" opacity="0"/>
+            <!-- Reading nook (right) -->
+            <g transform="translate(456 124)">
+              <circle class="m-night-lamp-glow" cx="0" cy="-4" r="62" fill="url(#nightLamp)" opacity="0"/>
+              <line x1="0" y1="-32" x2="0" y2="-12" stroke="#A8927A" stroke-width="2"/>
+              <path d="M-18 -32 L18 -32 L14 -52 L-14 -52 Z" fill="#FBD06A" stroke="#E0B055" stroke-width="1.2"/>
+              <rect x="-30" y="0" width="60" height="50" rx="10" fill="#5A7BB0" stroke="#7295C8" stroke-width="1.2"/>
+              <rect x="-22" y="-10" width="44" height="14" rx="4" fill="#7295C8"/>
             </g>
           </svg>`,
         clock: `
-          <svg class="asset-svg motion-svg" data-motion="clock" viewBox="0 0 560 300" aria-hidden="true">${defs}
-            <!-- Wall + floor backdrop -->
+          <svg class="asset-svg motion-svg" data-motion="clock" viewBox="0 0 560 300" aria-hidden="true">
             <defs>
-              <linearGradient id="wallGrad" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stop-color="#F4F8FE"/>
-                <stop offset="100%" stop-color="#E5EDF7"/>
+              <linearGradient id="clockSky" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%"  stop-color="#1B3470"/>
+                <stop offset="55%" stop-color="#7295C8"/>
+                <stop offset="100%" stop-color="#FCF1D2"/>
               </linearGradient>
-              <linearGradient id="winNight" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stop-color="#0E1C38"/>
-                <stop offset="100%" stop-color="#1B3470"/>
-              </linearGradient>
-              <linearGradient id="winDay" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stop-color="#FBE4A8"/>
-                <stop offset="60%" stop-color="#FCF1D2"/>
-                <stop offset="100%" stop-color="#E2F5F6"/>
-              </linearGradient>
-              <linearGradient id="rayGrad" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#FBD06A" stop-opacity=".55"/>
+              <radialGradient id="clockSun" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#FFFFFF"/>
+                <stop offset="40%" stop-color="#FBD06A"/>
                 <stop offset="100%" stop-color="#FBD06A" stop-opacity="0"/>
-              </linearGradient>
+              </radialGradient>
             </defs>
-            <rect x="18" y="24" width="524" height="214" rx="24" fill="url(#wallGrad)" stroke="#D9E4F3" stroke-width="1.2"/>
-            <!-- Floor -->
-            <line x1="38" y1="218" x2="522" y2="218" stroke="#C3D2E8" stroke-width="1.4"/>
-            <!-- Window (right) -->
-            <g class="m-bd-window">
-              <rect class="m-bd-pane-night" x="350" y="58" width="170" height="160" rx="6" fill="url(#winNight)"/>
-              <rect class="m-bd-pane-day"   x="350" y="58" width="170" height="160" rx="6" fill="url(#winDay)" opacity="0"/>
-              <!-- Frame & mullions -->
-              <rect x="350" y="58" width="170" height="160" rx="6" fill="none" stroke="#8FA5C7" stroke-width="2.2"/>
-              <line x1="350" y1="138" x2="520" y2="138" stroke="#8FA5C7" stroke-width="2"/>
-              <line x1="435" y1="58"  x2="435" y2="218" stroke="#8FA5C7" stroke-width="2"/>
-              <!-- Stars (visible only at night) -->
-              <g class="m-bd-stars">
-                <circle cx="378" cy="92"  r="1.5" fill="#A0E8ED"/>
-                <circle cx="412" cy="76"  r="1.4" fill="#fff"/>
-                <circle cx="468" cy="98"  r="1.5" fill="#A0E8ED"/>
-                <circle cx="494" cy="80"  r="1.3" fill="#fff"/>
-              </g>
-              <!-- Light rays through window -->
-              <g class="m-bd-rays" opacity="0">
-                <polygon points="350,58 350,218 280,300 220,300" fill="url(#rayGrad)"/>
-                <polygon points="435,58 435,218 380,300 320,300" fill="url(#rayGrad)" opacity=".5"/>
-              </g>
+            <rect x="18" y="24" width="524" height="214" rx="24" fill="url(#clockSky)"/>
+            <!-- Anchor line — horizontal across all days -->
+            <line class="m-clock-anchor" x1="120" y1="138" x2="500" y2="138" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 6"/>
+            <!-- Anchor time pill -->
+            <g class="m-clock-time" transform="translate(40 122)">
+              <rect width="64" height="34" rx="8" fill="#FFFFFF" stroke="#1840A0" stroke-width="1.6"/>
+              <text x="32" y="22" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" fill="#1840A0">07:00</text>
             </g>
-            <!-- Bed (center-left) -->
-            <g transform="translate(96 152)">
-              <!-- Headboard -->
-              <rect x="0" y="-12" width="14" height="78" rx="4" fill="#A8B9D4"/>
-              <!-- Bed frame -->
-              <rect x="14" y="36" width="178" height="34" rx="6" fill="#C7D6EC" stroke="#9DB3D2" stroke-width="1.4"/>
-              <!-- Mattress -->
-              <rect x="14" y="14" width="178" height="26" rx="6" fill="#fff" stroke="#9DB3D2" stroke-width="1.3"/>
-              <!-- Pillow -->
-              <rect x="22" y="-2" width="56" height="22" rx="8" fill="#fff" stroke="#BFD0E8" stroke-width="1.2"/>
-              <!-- Blanket (sleeping curve → sitting up) -->
-              <path class="m-bd-blanket" d="M 80 14 C 105 8 140 6 188 12 L 188 38 L 80 38 Z" fill="#7795C7" stroke="#5C7CB0" stroke-width="1.2"/>
-              <!-- Person head silhouette -->
-              <circle class="m-bd-head" cx="50" cy="2" r="11" fill="#D9C2A4" stroke="#B89F7E" stroke-width="1.2"/>
-            </g>
-            <!-- Bedside table + clock + lamp -->
-            <g transform="translate(280 158)">
-              <!-- Table -->
-              <rect x="0" y="40" width="56" height="50" rx="3" fill="#D6BFA0" stroke="#B89F7E" stroke-width="1.3"/>
-              <line x1="0" y1="48" x2="56" y2="48" stroke="#B89F7E" stroke-width="1"/>
-              <!-- Lamp -->
-              <line x1="28" y1="30" x2="28" y2="40" stroke="#A8927A" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M16 30 L40 30 L36 12 L20 12 Z" fill="#FBD06A" stroke="#E0B055" stroke-width="1.2"/>
-              <circle class="m-bd-lamp-glow" cx="28" cy="22" r="22" fill="#FBD06A" opacity="0"/>
-              <!-- Clock face -->
-              <g transform="translate(28 64)">
-                <circle r="14" fill="#fff" stroke="#9DB3D2" stroke-width="1.6"/>
-                <circle r="11" fill="#F7FAFE"/>
-                <line class="m-bd-hour"   x1="0" y1="0" x2="0" y2="-7" stroke="#1840A0" stroke-width="2.2" stroke-linecap="round"/>
-                <line class="m-bd-minute" x1="0" y1="0" x2="0" y2="-9" stroke="#1840A0" stroke-width="1.6" stroke-linecap="round"/>
-                <circle r="1.4" fill="#1840A0"/>
+            <!-- 7 day columns (M D W D V Z Z) -->
+            <g class="m-clock-days">
+              <g class="m-clock-day" data-i="0" transform="translate(140 0)">
+                <line x1="0" y1="60" x2="0" y2="218" stroke="#FFFFFF" stroke-width="1" opacity=".25"/>
+                <text x="0" y="234" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">ma</text>
+                <circle class="m-clock-sun-glow" cx="0" cy="220" r="22" fill="url(#clockSun)" opacity="0"/>
+                <circle class="m-clock-sun" cx="0" cy="220" r="8" fill="#FBD06A" stroke="#E0B055" stroke-width="1.4" opacity="0"/>
+              </g>
+              <g class="m-clock-day" data-i="1" transform="translate(196 0)">
+                <line x1="0" y1="60" x2="0" y2="218" stroke="#FFFFFF" stroke-width="1" opacity=".25"/>
+                <text x="0" y="234" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">di</text>
+                <circle class="m-clock-sun-glow" cx="0" cy="220" r="22" fill="url(#clockSun)" opacity="0"/>
+                <circle class="m-clock-sun" cx="0" cy="220" r="8" fill="#FBD06A" stroke="#E0B055" stroke-width="1.4" opacity="0"/>
+              </g>
+              <g class="m-clock-day" data-i="2" transform="translate(252 0)">
+                <line x1="0" y1="60" x2="0" y2="218" stroke="#FFFFFF" stroke-width="1" opacity=".25"/>
+                <text x="0" y="234" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">wo</text>
+                <circle class="m-clock-sun-glow" cx="0" cy="220" r="22" fill="url(#clockSun)" opacity="0"/>
+                <circle class="m-clock-sun" cx="0" cy="220" r="8" fill="#FBD06A" stroke="#E0B055" stroke-width="1.4" opacity="0"/>
+              </g>
+              <g class="m-clock-day" data-i="3" transform="translate(308 0)">
+                <line x1="0" y1="60" x2="0" y2="218" stroke="#FFFFFF" stroke-width="1" opacity=".25"/>
+                <text x="0" y="234" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">do</text>
+                <circle class="m-clock-sun-glow" cx="0" cy="220" r="22" fill="url(#clockSun)" opacity="0"/>
+                <circle class="m-clock-sun" cx="0" cy="220" r="8" fill="#FBD06A" stroke="#E0B055" stroke-width="1.4" opacity="0"/>
+              </g>
+              <g class="m-clock-day" data-i="4" transform="translate(364 0)">
+                <line x1="0" y1="60" x2="0" y2="218" stroke="#FFFFFF" stroke-width="1" opacity=".25"/>
+                <text x="0" y="234" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">vr</text>
+                <circle class="m-clock-sun-glow" cx="0" cy="220" r="22" fill="url(#clockSun)" opacity="0"/>
+                <circle class="m-clock-sun" cx="0" cy="220" r="8" fill="#FBD06A" stroke="#E0B055" stroke-width="1.4" opacity="0"/>
+              </g>
+              <g class="m-clock-day" data-i="5" transform="translate(420 0)">
+                <line x1="0" y1="60" x2="0" y2="218" stroke="#FFFFFF" stroke-width="1" opacity=".25"/>
+                <text x="0" y="234" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">za</text>
+                <circle class="m-clock-sun-glow" cx="0" cy="220" r="22" fill="url(#clockSun)" opacity="0"/>
+                <circle class="m-clock-sun" cx="0" cy="220" r="8" fill="#FBD06A" stroke="#E0B055" stroke-width="1.4" opacity="0"/>
+              </g>
+              <g class="m-clock-day" data-i="6" transform="translate(476 0)">
+                <line x1="0" y1="60" x2="0" y2="218" stroke="#FFFFFF" stroke-width="1" opacity=".25"/>
+                <text x="0" y="234" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">zo</text>
+                <circle class="m-clock-sun-glow" cx="0" cy="220" r="22" fill="url(#clockSun)" opacity="0"/>
+                <circle class="m-clock-sun" cx="0" cy="220" r="8" fill="#FBD06A" stroke="#E0B055" stroke-width="1.4" opacity="0"/>
               </g>
             </g>
-            <!-- Time readout -->
-            <g class="m-bd-time-pill" transform="translate(40 42)">
-              <rect width="86" height="28" rx="14" fill="#fff" stroke="#CDE1F4" stroke-width="1.3"/>
-              <text class="m-bd-time-text" x="43" y="19" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" fill="#1840A0">05:00</text>
-            </g>
-            <!-- Anchor badge -->
-            <g class="m-bd-anchor" transform="translate(170 252)">
-              <rect width="220" height="34" rx="17" fill="#fff" stroke="#BFE8D1" stroke-width="1.4" filter="url(#softShadow)"/>
-              <text x="110" y="22" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" fill="#155C39">vaste opsta-tijd = anker</text>
+            <!-- Caption -->
+            <g class="m-clock-caption" transform="translate(180 252)">
+              <rect width="200" height="30" rx="15" fill="#FFFFFF" stroke="#CDE1F4" stroke-width="1.4"/>
+              <text x="100" y="20" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">vaste opsta-tijd = anker</text>
             </g>
           </svg>`,
         rhythm: `
-          <svg class="asset-svg motion-svg" data-motion="rhythm" viewBox="0 0 560 300" aria-hidden="true">${defs}${panel}
-            <!-- Title -->
-            <text x="280" y="56" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" fill="#4A5878" letter-spacing="1.4">EEN NACHT IN BED</text>
-            <!-- Hour scale -->
-            <g class="rhythm-hours" font-family="DM Sans" font-size="10" font-weight="800" fill="#8A9AB8">
-              <text x="80"  y="222" text-anchor="middle">22</text>
-              <text x="148" y="222" text-anchor="middle">00</text>
-              <text x="216" y="222" text-anchor="middle">02</text>
-              <text x="284" y="222" text-anchor="middle">04</text>
-              <text x="352" y="222" text-anchor="middle">06</text>
-              <text x="420" y="222" text-anchor="middle">08</text>
-              <text x="488" y="222" text-anchor="middle">10</text>
-            </g>
-            <!-- Hour tick lines -->
-            <g stroke="#E1E8F2" stroke-width="1">
-              <line x1="80"  y1="100" x2="80"  y2="200"/>
-              <line x1="148" y1="100" x2="148" y2="200"/>
-              <line x1="216" y1="100" x2="216" y2="200"/>
-              <line x1="284" y1="100" x2="284" y2="200"/>
-              <line x1="352" y1="100" x2="352" y2="200"/>
-              <line x1="420" y1="100" x2="420" y2="200"/>
-              <line x1="488" y1="100" x2="488" y2="200"/>
-            </g>
-            <!-- Tijd in bed (gray strip) -->
-            <rect class="m-rh-bed" x="80" y="120" width="408" height="56" rx="12" fill="#E5EAF4" stroke="#D3DDEA" stroke-width="1.2"/>
-            <!-- Slaap (blue strip) — fills inside the gray -->
-            <rect class="m-rh-sleep" x="80" y="120" width="0" height="56" rx="12" fill="url(#assetGrad)"/>
-            <!-- Wakker patches (only shown initially when in bed but not sleeping) -->
-            <g class="m-rh-wake-patches">
-              <rect class="m-rh-wake" data-i="0" x="100" y="124" width="40" height="48" rx="8" fill="#FFE9D6" opacity="0"/>
-              <rect class="m-rh-wake" data-i="1" x="220" y="124" width="60" height="48" rx="8" fill="#FFE9D6" opacity="0"/>
-              <rect class="m-rh-wake" data-i="2" x="380" y="124" width="50" height="48" rx="8" fill="#FFE9D6" opacity="0"/>
-            </g>
-            <!-- Labels -->
-            <g class="m-rh-label" data-name="bed">
-              <rect x="80"  y="86" width="80" height="22" rx="11" fill="#fff" stroke="#D3DDEA" stroke-width="1.2"/>
-              <text x="120" y="102" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="800" fill="#4A5878">naar bed</text>
-            </g>
-            <g class="m-rh-label" data-name="op">
-              <rect x="408" y="86" width="80" height="22" rx="11" fill="#fff" stroke="#D3DDEA" stroke-width="1.2"/>
-              <text x="448" y="102" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="800" fill="#4A5878">opstaan</text>
-            </g>
-            <!-- Phase chip -->
+          <svg class="asset-svg motion-svg" data-motion="rhythm" viewBox="0 0 560 300" aria-hidden="true">
+            <defs>
+              <linearGradient id="rhythmSleep" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%"  stop-color="#30B5BE"/>
+                <stop offset="100%" stop-color="#1840A0"/>
+              </linearGradient>
+            </defs>
+            <rect x="18" y="24" width="524" height="214" rx="24" fill="#F8FAFE" stroke="#D9E4F3" stroke-width="1.2"/>
+            <!-- Header label -->
+            <text x="280" y="56" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" fill="#8A9AB8" letter-spacing="3">SLAAPVENSTER AANPASSEN</text>
+            <!-- Bar 1: tijd in bed -->
+            <text x="60" y="100" font-family="DM Sans" font-size="11" font-weight="700" fill="#4A5878">tijd in bed</text>
+            <rect class="m-rh-bed" x="60" y="108" width="440" height="36" rx="8" fill="#E5EAF4" stroke="#D3DDEA" stroke-width="1.2"/>
+            <text class="m-rh-bed-label" x="280" y="131" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" fill="#4A5878">10u</text>
+            <!-- Bar 2: tijd dat je slaapt -->
+            <text x="60" y="172" font-family="DM Sans" font-size="11" font-weight="700" fill="#4A5878">tijd dat je slaapt</text>
+            <rect class="m-rh-sleep" x="60" y="180" width="252" height="36" rx="8" fill="url(#rhythmSleep)"/>
+            <text class="m-rh-sleep-label" x="186" y="203" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" fill="#FFFFFF">5u 45m</text>
+            <!-- Phase caption -->
             <g class="m-rh-phase" transform="translate(180 244)">
-              <rect width="200" height="34" rx="17" fill="#fff" stroke="#CDE1F4" stroke-width="1.4" filter="url(#softShadow)"/>
-              <text class="m-rh-phase-text" x="100" y="22" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">10u in bed · 6u slaap</text>
+              <rect width="200" height="30" rx="15" fill="#FFFFFF" stroke="#CDE1F4" stroke-width="1.4"/>
+              <text class="m-rh-phase-text" x="100" y="20" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#1840A0">veel tijd in bed, weinig slaap</text>
             </g>
           </svg>`,
         sun: `
-          <svg class="asset-svg motion-svg" data-motion="sun" viewBox="0 0 560 300" aria-hidden="true">${defs}
+          <svg class="asset-svg motion-svg" data-motion="sun" viewBox="0 0 560 300" aria-hidden="true">
             <defs>
-              <linearGradient id="sunSkyDawn" x1="0" x2="0" y1="0" y2="1">
+              <linearGradient id="sunSkyNight" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%"  stop-color="#1B3470"/>
-                <stop offset="55%" stop-color="#7295C8"/>
+                <stop offset="100%" stop-color="#3B5489"/>
+              </linearGradient>
+              <linearGradient id="sunSkyDawn" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%"  stop-color="#7295C8"/>
+                <stop offset="50%" stop-color="#F4B8B8"/>
                 <stop offset="100%" stop-color="#FBD06A"/>
               </linearGradient>
               <linearGradient id="sunSkyDay" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%"  stop-color="#A0E8ED"/>
-                <stop offset="60%" stop-color="#FCF1D2"/>
+                <stop offset="55%" stop-color="#FCF1D2"/>
                 <stop offset="100%" stop-color="#FBD06A"/>
               </linearGradient>
-              <linearGradient id="curtain" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0%"  stop-color="#D6BFA0"/>
-                <stop offset="50%" stop-color="#E5D0AE"/>
-                <stop offset="100%" stop-color="#C7AA88"/>
-              </linearGradient>
-              <linearGradient id="beamGrad" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%"  stop-color="#FBD06A" stop-opacity=".55"/>
+              <linearGradient id="sunBeam" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%"  stop-color="#FBD06A" stop-opacity=".7"/>
                 <stop offset="100%" stop-color="#FBD06A" stop-opacity="0"/>
               </linearGradient>
+              <radialGradient id="sunDisc" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#FFFFFF"/>
+                <stop offset="40%" stop-color="#FBD06A"/>
+                <stop offset="100%" stop-color="#F08A4B" stop-opacity="0"/>
+              </radialGradient>
             </defs>
-            <!-- Wall -->
             <rect x="18" y="24" width="524" height="214" rx="24" fill="#F4F8FE" stroke="#D9E4F3" stroke-width="1.2"/>
-            <!-- Floor line -->
+            <!-- Floor -->
             <line x1="38" y1="218" x2="522" y2="218" stroke="#C3D2E8" stroke-width="1.4"/>
-            <!-- Window pane: sky (animates from dawn to day) -->
-            <rect class="m-sun-sky-dawn" x="140" y="56" width="280" height="170" rx="6" fill="url(#sunSkyDawn)"/>
-            <rect class="m-sun-sky-day"  x="140" y="56" width="280" height="170" rx="6" fill="url(#sunSkyDay)" opacity="0"/>
-            <!-- Sun rises behind window -->
-            <g class="m-sun-disc">
-              <circle cx="280" cy="240" r="34" fill="url(#warmGrad)"/>
-              <circle cx="280" cy="240" r="50" fill="#FBD06A" opacity=".22"/>
+            <!-- Sky panes (cross-fade) -->
+            <rect class="m-sun-pane-night" x="100" y="44" width="360" height="180" rx="6" fill="url(#sunSkyNight)"/>
+            <rect class="m-sun-pane-dawn"  x="100" y="44" width="360" height="180" rx="6" fill="url(#sunSkyDawn)" opacity="0"/>
+            <rect class="m-sun-pane-day"   x="100" y="44" width="360" height="180" rx="6" fill="url(#sunSkyDay)"  opacity="0"/>
+            <!-- Stars -->
+            <g class="m-sun-stars">
+              <circle cx="140" cy="80" r="1.2" fill="#fff"/>
+              <circle cx="200" cy="62" r="1.4" fill="#A0E8ED"/>
+              <circle cx="290" cy="78" r="1.2" fill="#fff"/>
+              <circle cx="380" cy="60" r="1.4" fill="#A0E8ED"/>
+              <circle cx="430" cy="78" r="1.2" fill="#fff"/>
+            </g>
+            <!-- Sun disc (rises) -->
+            <g class="m-sun-disc-wrap">
+              <circle class="m-sun-disc-glow" cx="280" cy="240" r="62" fill="url(#sunDisc)" opacity=".35"/>
+              <circle class="m-sun-disc"      cx="280" cy="240" r="28" fill="#FBD06A" stroke="#E0B055" stroke-width="1.6"/>
             </g>
             <!-- Window mullions -->
-            <line x1="140" y1="140" x2="420" y2="140" stroke="#8FA5C7" stroke-width="2"/>
-            <line x1="280" y1="56"  x2="280" y2="226" stroke="#8FA5C7" stroke-width="2"/>
+            <line x1="100" y1="134" x2="460" y2="134" stroke="#8FA5C7" stroke-width="2"/>
+            <line x1="280" y1="44"  x2="280" y2="224" stroke="#8FA5C7" stroke-width="2"/>
             <!-- Window frame -->
-            <rect x="140" y="56" width="280" height="170" rx="6" fill="none" stroke="#8FA5C7" stroke-width="3"/>
+            <rect x="100" y="44" width="360" height="180" rx="6" fill="none" stroke="#8FA5C7" stroke-width="3"/>
             <!-- Window sill -->
-            <rect x="128" y="222" width="304" height="10" rx="3" fill="#D6BFA0" stroke="#B89F7E" stroke-width="1.2"/>
-            <!-- Curtains: drawn closed initially, pull aside on animate -->
-            <path class="m-sun-curtain-l" d="M58 56 Q 110 64 132 76 Q 138 130 132 200 Q 110 212 58 222 Z" fill="url(#curtain)" stroke="#A8927A" stroke-width="1.2"/>
-            <path class="m-sun-curtain-r" d="M502 56 Q 450 64 428 76 Q 422 130 428 200 Q 450 212 502 222 Z" fill="url(#curtain)" stroke="#A8927A" stroke-width="1.2"/>
-            <!-- Curtain rod -->
-            <rect x="44" y="44" width="472" height="6" rx="3" fill="#8E7A5C"/>
-            <circle cx="44"  cy="47" r="6" fill="#A8927A"/>
-            <circle cx="516" cy="47" r="6" fill="#A8927A"/>
-            <!-- Light beam coming into the room -->
-            <polygon class="m-sun-beam" points="280,142 200,300 360,300" fill="url(#beamGrad)" opacity="0"/>
-            <!-- Anchor card -->
-            <g class="m-sun-card">
-              <rect x="48" y="252" width="208" height="34" rx="17" fill="#fff" stroke="#F4DCB0" stroke-width="1.4" filter="url(#softShadow)"/>
-              <text x="152" y="274" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" fill="#915C1A">ochtendlicht = startsignaal</text>
+            <rect x="88" y="220" width="384" height="10" rx="3" fill="#D6BFA0" stroke="#B89F7E" stroke-width="1.2"/>
+            <!-- Plant on sill (leans toward light) -->
+            <g class="m-sun-plant" transform="translate(420 220)">
+              <rect x="-12" y="0" width="24" height="22" rx="2" fill="#A8927A"/>
+              <path class="m-sun-leaf-l" d="M0 0 Q-12 -16 -8 -32 Q-2 -22 0 0" fill="#5C9E6E" transform-origin="0 0"/>
+              <path class="m-sun-leaf-r" d="M0 0 Q12 -14 6 -28 Q-2 -18 0 0" fill="#7DBA8A" transform-origin="0 0"/>
+            </g>
+            <!-- Light beam onto floor -->
+            <polygon class="m-sun-beam" points="280,134 220,256 340,256" fill="url(#sunBeam)" opacity="0"/>
+            <!-- Caption -->
+            <g class="m-sun-caption" transform="translate(180 252)">
+              <rect width="200" height="30" rx="15" fill="#FFFFFF" stroke="#F4DCB0" stroke-width="1.4"/>
+              <text x="100" y="20" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#915C1A">ochtendlicht = startsignaal</text>
             </g>
           </svg>`,
         pressure: `
-          <svg class="asset-svg motion-svg" data-motion="pressure" viewBox="0 0 560 300" aria-hidden="true">${defs}${panel}${grid}
-            <!-- Background bars (target heights) -->
-            <rect x="100" y="60" width="56" height="158" rx="10" fill="#E5EAF4" opacity=".6"/>
-            <rect x="194" y="60" width="56" height="158" rx="10" fill="#E5EAF4" opacity=".6"/>
-            <rect x="288" y="60" width="56" height="158" rx="10" fill="#E5EAF4" opacity=".6"/>
-            <rect x="382" y="60" width="56" height="158" rx="10" fill="#E5EAF4" opacity=".6"/>
-            <!-- Animated bars (height grows) -->
-            <rect class="m-pressure-bar" data-i="0" x="100" y="218" width="56" height="0" rx="10" fill="url(#assetGrad)"/>
-            <rect class="m-pressure-bar" data-i="1" x="194" y="218" width="56" height="0" rx="10" fill="url(#assetGrad)"/>
-            <rect class="m-pressure-bar" data-i="2" x="288" y="218" width="56" height="0" rx="10" fill="url(#assetGrad)"/>
-            <rect class="m-pressure-bar" data-i="3" x="382" y="218" width="56" height="0" rx="10" fill="url(#assetGrad)"/>
-            <!-- Tick labels under bars -->
-            <g font-family="DM Sans" font-size="10" font-weight="800" fill="#8A9AB8">
-              <text x="128" y="240" text-anchor="middle">2u</text>
-              <text x="222" y="240" text-anchor="middle">6u</text>
-              <text x="316" y="240" text-anchor="middle">10u</text>
-              <text x="410" y="240" text-anchor="middle">14u</text>
+          <svg class="asset-svg motion-svg" data-motion="pressure" viewBox="0 0 560 300" aria-hidden="true">
+            <defs>
+              <linearGradient id="pressLiquid" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%"  stop-color="#A0E8ED"/>
+                <stop offset="50%" stop-color="#30B5BE"/>
+                <stop offset="100%" stop-color="#1840A0"/>
+              </linearGradient>
+              <linearGradient id="pressGlass" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%"  stop-color="#E5EAF4" stop-opacity=".75"/>
+                <stop offset="50%" stop-color="#F8FAFE" stop-opacity=".4"/>
+                <stop offset="100%" stop-color="#E5EAF4" stop-opacity=".75"/>
+              </linearGradient>
+              <radialGradient id="pressSun" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#FFFFFF"/>
+                <stop offset="40%" stop-color="#FBD06A"/>
+                <stop offset="100%" stop-color="#FBD06A" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="pressMoon" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#FFFFFF"/>
+                <stop offset="60%" stop-color="#A0E8ED"/>
+                <stop offset="100%" stop-color="#A0E8ED" stop-opacity="0"/>
+              </radialGradient>
+              <clipPath id="pressClip">
+                <rect x="234" y="74" width="92" height="160" rx="14"/>
+              </clipPath>
+            </defs>
+            <rect x="18" y="24" width="524" height="214" rx="24" fill="#F8FAFE" stroke="#D9E4F3" stroke-width="1.2"/>
+            <!-- Day arc -->
+            <path class="m-press-arc" d="M80 84 Q 280 36 480 84" fill="none" stroke="#CDE1F4" stroke-width="2" stroke-dasharray="4 6"/>
+            <!-- Sun (travels along arc) -->
+            <g class="m-press-sun">
+              <circle class="m-press-sun-glow" cx="0" cy="0" r="22" fill="url(#pressSun)" opacity=".7"/>
+              <circle cx="0" cy="0" r="9" fill="#FBD06A" stroke="#E0B055" stroke-width="1.4"/>
             </g>
-            <!-- Dutje overlay -->
-            <g class="m-pressure-dutje">
-              <rect x="464" y="42" width="78" height="34" rx="17" fill="#FFF5F5" stroke="#F3C5C5" stroke-width="1.4"/>
-              <text x="503" y="64" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" fill="#7A2828">dutje?</text>
+            <!-- Moon (appears at end) -->
+            <g class="m-press-moon" transform="translate(480 84)" opacity="0">
+              <circle cx="0" cy="0" r="22" fill="url(#pressMoon)" opacity=".5"/>
+              <circle cx="0" cy="0" r="9" fill="#F4F8FE"/>
             </g>
-            <!-- Final reward chip -->
-            <g class="m-pressure-final">
-              <rect x="60" y="42" width="148" height="32" rx="16" fill="#fff" stroke="#BFE8D1" stroke-width="1.4"/>
-              <text x="134" y="62" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" fill="#155C39">slaapdruk klaar</text>
+            <!-- Glass beaker -->
+            <rect x="234" y="74" width="92" height="160" rx="14" fill="url(#pressGlass)" stroke="#8FA5C7" stroke-width="2"/>
+            <!-- Liquid (clipped to beaker) -->
+            <g clip-path="url(#pressClip)">
+              <rect class="m-press-liquid" x="234" y="234" width="92" height="0" fill="url(#pressLiquid)"/>
+              <ellipse class="m-press-surface" cx="280" cy="234" rx="44" ry="3" fill="#FFFFFF" opacity=".55"/>
+            </g>
+            <!-- Beaker label -->
+            <text x="280" y="60" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" fill="#4A5878" letter-spacing="3">SLAAPDRUK</text>
+            <!-- Dutje warning chip -->
+            <g class="m-press-dutje" transform="translate(424 138)">
+              <rect x="-44" y="-16" width="88" height="32" rx="16" fill="#FFF5F5" stroke="#F3C5C5" stroke-width="1.4"/>
+              <text x="0" y="5" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#7A2828">dutje?</text>
+            </g>
+            <!-- Final klaar caption -->
+            <g class="m-press-final" transform="translate(180 252)">
+              <rect width="200" height="30" rx="15" fill="#ECF8F1" stroke="#BFE8D1" stroke-width="1.4"/>
+              <text x="100" y="20" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="12" font-weight="800" fill="#155C39">klaar voor de nacht</text>
             </g>
           </svg>`,
         thought: `
@@ -3421,34 +3490,35 @@ window.SlaapMotion = (function () {
   const builders = {
     breathe(root, dur) {
       const orb = root.querySelector('.m-breathe-orb');
-      const core = root.querySelector('.m-breathe-orb-core');
+      const glow = root.querySelector('.m-breathe-glow');
       const rings = root.querySelectorAll('.m-breathe-ring');
-      const inLabel = root.querySelector('.m-breathe-phase[data-phase="in"]');
-      const outLabel = root.querySelector('.m-breathe-phase[data-phase="hold"]');
-      const dots = root.querySelectorAll('.m-breathe-cycles circle');
+      const particles = root.querySelectorAll('.m-breathe-particles circle');
+      const phaseDot = root.querySelector('.m-breathe-phase-dot');
       const cycles = 5;
       const cycleSec = dur / cycles;
       const inSec = cycleSec * 0.4, outSec = cycleSec * 0.6;
       const tl = gsap.timeline();
-      gsap.set([orb, core], { transformOrigin: '280px 132px' });
-      gsap.set(rings, { transformOrigin: '280px 132px', scale: .6, opacity: 0 });
-      gsap.set(orb, { scale: .85 });
-      gsap.set(core, { scale: .85, opacity: .22 });
+      gsap.set([orb, glow], { transformOrigin: '280px 130px', scale: .85 });
+      gsap.set(rings, { transformOrigin: '280px 130px', scale: .65, opacity: 0 });
+      gsap.set(phaseDot, { x: 0 });
+      // Floating particles (continuous)
+      particles.forEach((p, i) => {
+        gsap.to(p, { y: -10, duration: 2.2 + i * 0.3, ease: ease.soft, repeat: -1, yoyo: true });
+        gsap.to(p, { opacity: .85, duration: 1.4 + i * 0.2, ease: ease.soft, repeat: -1, yoyo: true, delay: i * 0.25 });
+      });
       for (let c = 0; c < cycles; c++) {
         const t0 = c * cycleSec;
-        // Inhale: scale up
+        // Inhale
         tl.to(orb,  { scale: 1.45, duration: inSec, ease: ease.soft }, t0)
-          .to(core, { scale: 1.55, opacity: .35, duration: inSec, ease: ease.soft }, t0)
-          .to(rings, { scale: 1.15, opacity: .55, duration: inSec, ease: ease.soft, stagger: .08 }, t0)
-          .to(inLabel, { opacity: 1, y: 0, duration: .35, ease: ease.snap }, t0)
-          .to(outLabel, { opacity: 0, duration: .35, ease: 'power2.in' }, t0)
+          .to(glow, { scale: 1.55, opacity: 1, duration: inSec, ease: ease.soft }, t0)
+          .to(rings, { scale: 1.25, opacity: .6, duration: inSec, ease: ease.soft, stagger: .08 }, t0)
+          .to(phaseDot, { x: 100, duration: inSec, ease: ease.soft }, t0)
           // Exhale
           .to(orb,  { scale: .85, duration: outSec, ease: ease.soft }, t0 + inSec)
-          .to(core, { scale: .85, opacity: .22, duration: outSec, ease: ease.soft }, t0 + inSec)
-          .to(rings, { scale: .6, opacity: 0, duration: outSec, ease: ease.soft, stagger: .08 }, t0 + inSec)
-          .to(outLabel, { opacity: 1, y: 0, duration: .35, ease: ease.snap }, t0 + inSec)
-          .to(inLabel, { opacity: 0, duration: .35, ease: 'power2.in' }, t0 + inSec)
-          .to(dots[c], { opacity: 1, scale: 1.5, fill: '#30B5BE', duration: .3, ease: ease.snap }, t0 + cycleSec - .35);
+          .to(glow, { scale: .85, opacity: .55, duration: outSec, ease: ease.soft }, t0 + inSec)
+          .to(rings, { scale: .65, opacity: 0, duration: outSec, ease: ease.soft, stagger: .08 }, t0 + inSec)
+          .to(phaseDot, { x: 200, duration: outSec, ease: ease.soft }, t0 + inSec)
+          .set(phaseDot, { x: 0 }, t0 + cycleSec - 0.01);
       }
       return tl;
     },
@@ -3482,215 +3552,242 @@ window.SlaapMotion = (function () {
     cycles(root, dur) {
       const line = root.querySelector('.m-cycles-line');
       const marker = root.querySelector('.m-cycles-marker');
+      const glow = root.querySelector('.m-cycles-glow');
       const wakes = root.querySelectorAll('.m-cycles-wake');
+      const stars = root.querySelectorAll('.m-cycles-stars circle');
       const tl = gsap.timeline();
       const length = (line.getTotalLength && line.getTotalLength()) || 1200;
       gsap.set(line, { strokeDasharray: length, strokeDashoffset: length });
-      gsap.set(marker, { opacity: 0 });
-      gsap.set(wakes, { opacity: 0, scale: .7, transformOrigin: 'center' });
-      // Draw the wave + marker travels along it
-      tl.to(marker, { opacity: 1, duration: .3 }, 0);
+      gsap.set([marker, glow], { opacity: 1 });
+      gsap.set(wakes, { opacity: 0, scale: .5, transformOrigin: 'center' });
+      // Twinkling stars (looped, independent)
+      gsap.to(stars, { opacity: 1, duration: 1.4, ease: ease.soft, stagger: .25, repeat: -1, yoyo: true });
+      // Draw the wave
       tl.to(line, { strokeDashoffset: 0, duration: dur * .92, ease: 'power1.inOut' }, 0);
-      // Marker follows the path (using motion path)
+      // Marker + halo travel along path
       if (window.MotionPathPlugin) gsap.registerPlugin(window.MotionPathPlugin);
-      tl.to(marker, {
+      tl.to([marker, glow], {
         motionPath: { path: line, align: line, alignOrigin: [0.5, 0.5], autoRotate: false },
         duration: dur * .92, ease: 'power1.inOut'
       }, 0);
-      // Wake markers appear at peaks
+      // Wake-pulse rings
       wakes.forEach((w, i) => {
-        const t = dur * (0.26 + i * 0.30);
-        tl.to(w, { opacity: 1, scale: 1, duration: .5, ease: ease.snap }, t)
-          .to(w, { y: -6, duration: 1.2, ease: ease.soft, repeat: 1, yoyo: true }, t + .3);
+        const t = dur * (0.26 + i * 0.32);
+        tl.to(w, { opacity: 1, scale: 1, duration: .4, ease: ease.snap }, t)
+          .to(w, { scale: 2.6, opacity: 0, duration: 1.4, ease: 'power2.out' }, t + .2);
       });
-      tl.to(marker, { scale: 1.4, duration: .6, ease: ease.settle }, dur * .92);
+      tl.to(glow, { scale: 1.4, duration: .8, ease: ease.settle }, dur * .92);
       return tl;
     },
 
     night(root, dur) {
       const walker = root.querySelector('.m-night-walker');
-      const chip = root.querySelector('.m-night-chip');
+      const trail = root.querySelectorAll('.m-night-trail circle');
+      const lampGlow = root.querySelector('.m-night-lamp-glow');
       const stars = root.querySelectorAll('.m-night-stars circle');
-      const chair = root.querySelector('.m-night-chair');
       const tl = gsap.timeline();
-      gsap.set(walker, { offsetDistance: '0%' });
-      gsap.set(chip, { opacity: 0, y: 6, scale: .9 });
-      gsap.set(stars, { opacity: .4 });
-      gsap.set(chair, { opacity: .55 });
-      // Stars twinkle continuously
-      tl.to(stars, { opacity: 1, duration: 1.4, ease: ease.soft, stagger: .25, repeat: -1, yoyo: true }, 0);
-      // Walker travels: bed → chair (forward), then back
-      const walkDur = dur * 0.42;
-      tl.to(chip, { opacity: 1, y: 0, scale: 1, duration: .6, ease: ease.snap }, dur * 0.06);
-      tl.to(walker, { offsetDistance: '50%', duration: walkDur, ease: 'power1.inOut' }, dur * 0.10);
-      tl.to(chair, { opacity: 1, duration: .8, ease: ease.snap }, dur * 0.45);
-      tl.to(walker, { offsetDistance: '100%', duration: walkDur * 0.6, ease: 'power1.in' }, dur * 0.55);
-      tl.to(walker, { offsetDistance: '0%', duration: walkDur * 0.7, ease: 'power1.inOut' }, dur * 0.78);
-      tl.to(chip, { opacity: 0, duration: .5, ease: 'power2.in' }, dur * 0.92);
+      gsap.set(walker, { x: 0, y: 0, opacity: 0 });
+      gsap.set(trail, { opacity: 0 });
+      gsap.set(lampGlow, { opacity: 0, scale: .65, transformOrigin: 'center' });
+      // Stars twinkle (independent loop)
+      gsap.to(stars, { opacity: 1, duration: 1.6, ease: ease.soft, stagger: .3, repeat: -1, yoyo: true });
+      // Trail dots fade in like fireflies
+      trail.forEach((t, i) => {
+        tl.to(t, { opacity: .8, duration: .6, ease: ease.soft }, dur * 0.10 + i * 0.4);
+        gsap.to(t, { opacity: .35, duration: 1.6, ease: ease.soft, repeat: -1, yoyo: true, delay: dur * 0.18 + i * 0.4 });
+      });
+      // Walker emerges from bed (originating around x=296,y=178)
+      tl.to(walker, { opacity: 1, duration: .5 }, dur * 0.20);
+      // Step along the trail (incremental waypoints)
+      const steps = [
+        { x: 24, y: -4 },
+        { x: 54, y: -18 },
+        { x: 84, y: -28 },
+        { x: 114, y: -36 },
+        { x: 142, y: -40 },
+        { x: 162, y: -54 },
+      ];
+      steps.forEach((s, i) => {
+        tl.to(walker, { x: s.x, y: s.y, duration: dur * 0.07, ease: 'power1.inOut' }, dur * 0.26 + i * (dur * 0.07));
+      });
+      // Lamp glows when walker arrives at chair
+      tl.to(lampGlow, { opacity: 1, scale: 1, duration: 1.4, ease: ease.soft }, dur * 0.62);
+      gsap.to(lampGlow, { scale: 1.06, duration: 1.8, ease: ease.soft, repeat: -1, yoyo: true, delay: dur * 0.72 });
+      // Walker fades into chair area
+      tl.to(walker, { opacity: 0, duration: .8, ease: 'power2.in' }, dur * 0.85);
       return tl;
     },
 
     clock(root, dur) {
-      // Bedroom-dawn scene: window glow, clock ticks 05:00 → 06:30, person sits up
-      const paneNight = root.querySelector('.m-bd-pane-night');
-      const paneDay = root.querySelector('.m-bd-pane-day');
-      const stars = root.querySelector('.m-bd-stars');
-      const rays = root.querySelector('.m-bd-rays');
-      const anchor = root.querySelector('.m-bd-anchor');
-      const lampGlow = root.querySelector('.m-bd-lamp-glow');
-      const hour = root.querySelector('.m-bd-hour');
-      const minute = root.querySelector('.m-bd-minute');
-      const blanket = root.querySelector('.m-bd-blanket');
-      const head = root.querySelector('.m-bd-head');
-      const timePill = root.querySelector('.m-bd-time-pill');
-      const timeText = root.querySelector('.m-bd-time-text');
+      // 7-day anchor scene: each day a sun rises at the same wake time
+      const anchor = root.querySelector('.m-clock-anchor');
+      const days = root.querySelectorAll('.m-clock-day');
+      const suns = root.querySelectorAll('.m-clock-sun');
+      const glows = root.querySelectorAll('.m-clock-sun-glow');
+      const caption = root.querySelector('.m-clock-caption');
+      const timePill = root.querySelector('.m-clock-time');
       const tl = gsap.timeline();
-      gsap.set(paneDay, { opacity: 0 });
-      gsap.set(rays, { opacity: 0 });
-      gsap.set(stars, { opacity: 1 });
-      gsap.set(anchor, { opacity: 0, y: 8, scale: .9 });
-      gsap.set(lampGlow, { opacity: 0, scale: .8 });
-      gsap.set(hour, { rotation: -30, transformOrigin: '0 0' });   // 05:00
-      gsap.set(minute, { rotation: 0, transformOrigin: '0 0' });
-      gsap.set(blanket, { rotation: 0, transformOrigin: '134px 26px' });
-      gsap.set(head, { x: 0, y: 0 });
-      gsap.set(timePill, { scale: 1 });
+      gsap.set(suns, { y: 0, opacity: 0, transformOrigin: 'center' });
+      gsap.set(glows, { y: 0, opacity: 0, scale: .55, transformOrigin: 'center' });
+      const anchorLen = 380;
+      gsap.set(anchor, { strokeDasharray: anchorLen, strokeDashoffset: anchorLen });
+      gsap.set(caption, { opacity: 0, y: 8, scale: .92, transformOrigin: 'center' });
+      gsap.set(timePill, { scale: 1, transformOrigin: 'center' });
 
-      // Phase 1 (0–25%): night, lamp on, time 05:00
-      tl.to(lampGlow, { opacity: .55, scale: 1, duration: 1.2, ease: ease.soft }, 0);
-      tl.to(timePill, { scale: 1.06, duration: .6, ease: ease.soft, yoyo: true, repeat: 1 }, 0);
-      // Phase 2 (25–55%): dawn — window goes from night to day, stars fade
-      tl.to(stars, { opacity: 0, duration: dur * 0.20, ease: 'power2.in' }, dur * 0.25);
-      tl.to(paneNight, { opacity: 0, duration: dur * 0.30, ease: ease.soft }, dur * 0.25);
-      tl.to(paneDay, { opacity: 1, duration: dur * 0.30, ease: ease.soft }, dur * 0.25);
-      tl.to(lampGlow, { opacity: 0, duration: dur * 0.20, ease: 'power2.in' }, dur * 0.40);
-      // Time ticks 05:00 → 05:30 → 06:00 → 06:30
-      tl.call(() => { if (timeText) timeText.textContent = '05:30'; }, [], dur * 0.30);
-      tl.to(hour, { rotation: -15, duration: dur * 0.10, ease: 'power1.inOut' }, dur * 0.30);
-      tl.to(minute, { rotation: 180, duration: dur * 0.10, ease: 'power1.inOut' }, dur * 0.30);
-      tl.call(() => { if (timeText) timeText.textContent = '06:00'; }, [], dur * 0.55);
-      tl.to(hour, { rotation: 0, duration: dur * 0.10, ease: 'power1.inOut' }, dur * 0.55);
-      tl.to(minute, { rotation: 360, duration: dur * 0.10, ease: 'power1.inOut' }, dur * 0.55);
-      // Phase 3 (55–80%): light fills room — rays appear, person sits up
-      tl.to(rays, { opacity: 1, duration: dur * 0.20, ease: 'power2.out' }, dur * 0.55);
-      tl.to(blanket, { rotation: -28, duration: 1.0, ease: 'power2.out' }, dur * 0.62);
-      tl.to(head, { y: -8, x: 4, duration: 1.0, ease: 'power2.out' }, dur * 0.62);
-      tl.call(() => { if (timeText) timeText.textContent = '06:30'; }, [], dur * 0.78);
-      tl.to(hour, { rotation: 15, duration: dur * 0.08, ease: 'power1.inOut' }, dur * 0.78);
-      tl.to(minute, { rotation: 540, duration: dur * 0.08, ease: 'power1.inOut' }, dur * 0.78);
-      // Phase 4 (80–100%): anchor badge appears
-      tl.to(anchor, { opacity: 1, y: 0, scale: 1, duration: .8, ease: ease.settle }, dur * 0.85);
-      tl.to(timePill, { scale: 1.10, duration: .6, ease: ease.soft, yoyo: true, repeat: 1 }, dur * 0.88);
+      // Phase 1: Time pill pulses to draw attention to the anchor time
+      tl.to(timePill, { scale: 1.08, duration: .6, ease: ease.soft, yoyo: true, repeat: 1 }, 0);
+
+      // Phase 2: Suns rise day by day to anchor line (y=138 from y=220 → -82)
+      const perDay = (dur * 0.74) / days.length;
+      days.forEach((d, i) => {
+        const t = dur * 0.10 + i * perDay;
+        tl.to(suns[i],  { y: -82, opacity: 1, duration: perDay * 0.7, ease: 'power2.out' }, t);
+        tl.to(glows[i], { y: -82, opacity: .85, scale: 1, duration: perDay * 0.7, ease: 'power2.out' }, t);
+        tl.to(glows[i], { scale: 1.18, duration: 1.2, ease: ease.soft, yoyo: true, repeat: 1 }, t + perDay * 0.55);
+      });
+
+      // Phase 3: Anchor line draws across all suns
+      tl.to(anchor, { strokeDashoffset: 0, duration: dur * 0.18, ease: 'power1.inOut' }, dur * 0.78);
+
+      // Phase 4: Caption + time-pill emphasis
+      tl.to(caption, { opacity: 1, y: 0, scale: 1, duration: .7, ease: ease.settle }, dur * 0.88);
+      tl.to(timePill, { scale: 1.10, duration: .6, ease: ease.soft, yoyo: true, repeat: 1 }, dur * 0.92);
       return tl;
     },
 
     sun(root, dur) {
-      // Window scene: curtains open, sun rises behind, daylight fills room
-      const skyDawn = root.querySelector('.m-sun-sky-dawn');
-      const skyDay = root.querySelector('.m-sun-sky-day');
+      // Dawn-window scene: night → dawn → day, sun rises, plant leans toward light
+      const paneNight = root.querySelector('.m-sun-pane-night');
+      const paneDawn = root.querySelector('.m-sun-pane-dawn');
+      const paneDay = root.querySelector('.m-sun-pane-day');
+      const stars = root.querySelector('.m-sun-stars');
       const disc = root.querySelector('.m-sun-disc');
-      const curtainL = root.querySelector('.m-sun-curtain-l');
-      const curtainR = root.querySelector('.m-sun-curtain-r');
+      const discGlow = root.querySelector('.m-sun-disc-glow');
       const beam = root.querySelector('.m-sun-beam');
-      const card = root.querySelector('.m-sun-card');
+      const caption = root.querySelector('.m-sun-caption');
+      const leafL = root.querySelector('.m-sun-leaf-l');
+      const leafR = root.querySelector('.m-sun-leaf-r');
       const tl = gsap.timeline();
-      gsap.set(skyDay, { opacity: 0 });
-      gsap.set(disc, { y: 80, scale: .8, transformOrigin: '280px 240px' });
-      gsap.set(curtainL, { x: 0, transformOrigin: '70px 130px' });
-      gsap.set(curtainR, { x: 0, transformOrigin: '490px 130px' });
+      gsap.set(paneDawn, { opacity: 0 });
+      gsap.set(paneDay, { opacity: 0 });
+      gsap.set(stars, { opacity: 1 });
+      gsap.set(disc, { y: 0, transformOrigin: 'center' });
+      gsap.set(discGlow, { y: 0, opacity: .35, transformOrigin: 'center' });
       gsap.set(beam, { opacity: 0 });
-      gsap.set(card, { opacity: 0, y: 8, scale: .92 });
+      gsap.set(caption, { opacity: 0, y: 8, scale: .92, transformOrigin: 'center' });
+      gsap.set([leafL, leafR], { rotation: 0 });
 
-      // Phase 1: dawn glow visible behind closed curtains (subtle)
-      tl.to(skyDawn, { opacity: 1, duration: 1, ease: ease.soft }, 0);
-      // Phase 2 (15–45%): curtains pull open
-      tl.to(curtainL, { x: -50, scaleX: .7, duration: dur * 0.30, ease: 'power2.inOut' }, dur * 0.15);
-      tl.to(curtainR, { x: 50,  scaleX: .7, duration: dur * 0.30, ease: 'power2.inOut' }, dur * 0.15);
-      // Phase 3 (40–75%): sun rises behind window, sky shifts to day
-      tl.to(disc, { y: -60, scale: 1, duration: dur * 0.40, ease: 'power2.out' }, dur * 0.40);
-      tl.to(skyDawn, { opacity: 0, duration: dur * 0.35, ease: ease.soft }, dur * 0.45);
-      tl.to(skyDay,  { opacity: 1, duration: dur * 0.35, ease: ease.soft }, dur * 0.45);
-      // Phase 4 (60–100%): light beam comes into the room, card appears
-      tl.to(beam, { opacity: 1, duration: dur * 0.30, ease: 'power2.out' }, dur * 0.60);
-      tl.to(card, { opacity: 1, y: 0, scale: 1, duration: .8, ease: ease.settle }, dur * 0.78);
+      // Phase 1 (0–25%): dark night persists with stars
+      // Phase 2 (15–45%): stars fade, sky shifts night → dawn
+      tl.to(stars, { opacity: 0, duration: dur * 0.18, ease: 'power2.in' }, dur * 0.15);
+      tl.to(paneNight, { opacity: 0, duration: dur * 0.30, ease: ease.soft }, dur * 0.18);
+      tl.to(paneDawn,  { opacity: 1, duration: dur * 0.30, ease: ease.soft }, dur * 0.18);
+      // Phase 3 (25–75%): sun rises behind window
+      tl.to(disc,     { y: -110, duration: dur * 0.55, ease: 'power2.out' }, dur * 0.25);
+      tl.to(discGlow, { y: -110, opacity: .85, duration: dur * 0.55, ease: 'power2.out' }, dur * 0.25);
+      // Phase 4 (50–80%): dawn → day
+      tl.to(paneDawn, { opacity: 0, duration: dur * 0.28, ease: ease.soft }, dur * 0.55);
+      tl.to(paneDay,  { opacity: 1, duration: dur * 0.28, ease: ease.soft }, dur * 0.55);
+      // Phase 5 (60–90%): light beam onto floor, plant leans
+      tl.to(beam, { opacity: 1, duration: dur * 0.22, ease: 'power2.out' }, dur * 0.62);
+      tl.to(leafL, { rotation: -10, duration: dur * 0.22, ease: ease.settle }, dur * 0.66);
+      tl.to(leafR, { rotation: -14, duration: dur * 0.22, ease: ease.settle }, dur * 0.70);
+      // Phase 6: caption
+      tl.to(caption, { opacity: 1, y: 0, scale: 1, duration: .8, ease: ease.settle }, dur * 0.85);
       return tl;
     },
 
     rhythm(root, dur) {
-      // Night-strip showing time in bed vs actual sleep — slaaprestrictie story
-      const bedRect = root.querySelector('.m-rh-bed');
-      const sleepRect = root.querySelector('.m-rh-sleep');
-      const wakes = root.querySelectorAll('.m-rh-wake');
-      const labels = root.querySelectorAll('.m-rh-label');
+      // Two-bar slaapvenster scene: bed shrinks to match sleep, then both grow
+      const bed = root.querySelector('.m-rh-bed');
+      const sleep = root.querySelector('.m-rh-sleep');
+      const bedLabel = root.querySelector('.m-rh-bed-label');
+      const sleepLabel = root.querySelector('.m-rh-sleep-label');
       const phase = root.querySelector('.m-rh-phase');
       const phaseText = root.querySelector('.m-rh-phase-text');
       const tl = gsap.timeline();
-      // Hour positions: 22→x=80, +34px per hour
-      const HOUR = 34;
-      const xAt = h => 80 + ((h - 22 + 24) % 24) * HOUR;
-      gsap.set(bedRect, { attr: { x: 80, width: 408 } });        // 22→08 = 10h * 34px = 340... but rect is 408 wide; recalc
-      // We'll recalc: viewbox is 560 wide, strip from x=80 to x=488 = 408 wide for 12h = 34 px/h
-      // Initial: 22:00→08:00 = 10h = 340 px starting at 80, ends at 420
-      gsap.set(bedRect, { attr: { x: 80, width: 340 } });
-      gsap.set(sleepRect, { attr: { x: 80, width: 0 } });
-      gsap.set(wakes, { opacity: 0 });
-      gsap.set(labels, { opacity: 0, y: 4 });
-      gsap.set(phase, { opacity: 0, y: 6, scale: .9 });
+      gsap.set(phase, { opacity: 0, y: 6, scale: .92, transformOrigin: 'center' });
 
-      // Phase 1 (0–22%): "10u in bed, 6u slaap" — show big bed + scattered sleep + wakker patches
-      tl.to(labels[0], { opacity: 1, y: 0, duration: .5, ease: ease.snap }, 0);
-      tl.to(labels[1], { opacity: 1, y: 0, duration: .5, ease: ease.snap }, .15);
+      // Phase 1 (0–25%): show initial mismatch (10u bed, 5u45 slaap)
       tl.to(phase, { opacity: 1, y: 0, scale: 1, duration: .6, ease: ease.settle }, 0);
-      // Animate sleep bar to fill scattered (will be revealed segment by segment)
-      tl.to(sleepRect, { attr: { width: 340 }, duration: dur * 0.18, ease: 'power2.inOut' }, dur * 0.04);
-      tl.to(wakes, { opacity: 1, duration: .5, ease: ease.snap, stagger: .12 }, dur * 0.08);
+      tl.to(sleep, { attr: { width: 252 }, duration: .4 }, 0); // ensure starting state
 
-      // Phase 2 (22–45%): shrink to slaapvenster (01:15 → 07:00 = 5h45m = 196px), starting at x = 80 + 3.25*34 ≈ 191
-      tl.call(() => { if (phaseText) phaseText.textContent = 'kleiner: slaapvenster 5u45'; }, [], dur * 0.22);
-      tl.to(bedRect, { attr: { x: 191, width: 196 }, duration: dur * 0.18, ease: 'power2.inOut' }, dur * 0.22);
-      tl.to(sleepRect, { attr: { x: 191, width: 196 }, duration: dur * 0.18, ease: 'power2.inOut' }, dur * 0.22);
-      tl.to(wakes, { opacity: 0, duration: dur * 0.10, ease: 'power2.in' }, dur * 0.22);
-      // Move labels to new positions
-      tl.to(labels[0], { x: 75, duration: dur * 0.18, ease: 'power2.inOut' }, dur * 0.22);
-      tl.to(labels[1], { x: -32, duration: dur * 0.18, ease: 'power2.inOut' }, dur * 0.22);
+      // Phase 2 (25–48%): bed shrinks to match sleep
+      tl.call(() => { if (phaseText) phaseText.textContent = 'bed = slaaptijd'; }, [], dur * 0.26);
+      tl.to(bed, { attr: { width: 252 }, duration: dur * 0.18, ease: 'power2.inOut' }, dur * 0.28);
+      tl.to(bedLabel, { attr: { x: 186 }, duration: dur * 0.18, ease: 'power2.inOut' }, dur * 0.28);
+      tl.call(() => { if (bedLabel) bedLabel.textContent = '5u 45m'; }, [], dur * 0.40);
 
-      // Phase 3 (45–70%): all sleep — pulse the bar to show "efficient slapen"
-      tl.call(() => { if (phaseText) phaseText.textContent = 'bijna alles slaap'; }, [], dur * 0.45);
-      tl.to(sleepRect, { attr: { height: 60 }, duration: .4, ease: ease.soft, yoyo: true, repeat: 1 }, dur * 0.46);
-      tl.to(bedRect, { attr: { height: 60 }, duration: .4, ease: ease.soft, yoyo: true, repeat: 1 }, dur * 0.46);
+      // Phase 3 (48–66%): efficient sleep — gentle pulse
+      tl.call(() => { if (phaseText) phaseText.textContent = 'bijna alles slaap'; }, [], dur * 0.50);
+      tl.to([bed, sleep], { y: '-=2', duration: .4, ease: ease.soft, yoyo: true, repeat: 1 }, dur * 0.52);
 
-      // Phase 4 (70–100%): grow back 15 min steps to ~6h30m (221px)
-      tl.call(() => { if (phaseText) phaseText.textContent = 'rustig uitbreiden +15 min'; }, [], dur * 0.72);
-      tl.to(bedRect, { attr: { x: 184, width: 221 }, duration: dur * 0.20, ease: 'power2.inOut' }, dur * 0.72);
-      tl.to(sleepRect, { attr: { x: 184, width: 221 }, duration: dur * 0.20, ease: 'power2.inOut' }, dur * 0.72);
-      tl.to(labels[0], { x: 68, duration: dur * 0.20, ease: 'power2.inOut' }, dur * 0.72);
-      tl.to(labels[1], { x: -25, duration: dur * 0.20, ease: 'power2.inOut' }, dur * 0.72);
+      // Phase 4 (66–84%): both grow +15 min → 6u
+      tl.call(() => { if (phaseText) phaseText.textContent = 'rustig uitbreiden +15 min'; }, [], dur * 0.66);
+      tl.to(bed,         { attr: { width: 280 }, duration: dur * 0.10, ease: 'power2.inOut' }, dur * 0.68);
+      tl.to(sleep,       { attr: { width: 280 }, duration: dur * 0.10, ease: 'power2.inOut' }, dur * 0.68);
+      tl.to(bedLabel,    { attr: { x: 200 }, duration: dur * 0.10, ease: 'power2.inOut' }, dur * 0.68);
+      tl.to(sleepLabel,  { attr: { x: 200 }, duration: dur * 0.10, ease: 'power2.inOut' }, dur * 0.68);
+      tl.call(() => {
+        if (bedLabel) bedLabel.textContent = '6u';
+        if (sleepLabel) sleepLabel.textContent = '6u';
+      }, [], dur * 0.78);
+
+      // Phase 5 (84–100%): another expansion → 6u 15m
+      tl.to(bed,        { attr: { width: 308 }, duration: dur * 0.08, ease: 'power2.inOut' }, dur * 0.84);
+      tl.to(sleep,      { attr: { width: 308 }, duration: dur * 0.08, ease: 'power2.inOut' }, dur * 0.84);
+      tl.to(bedLabel,   { attr: { x: 214 }, duration: dur * 0.08, ease: 'power2.inOut' }, dur * 0.84);
+      tl.to(sleepLabel, { attr: { x: 214 }, duration: dur * 0.08, ease: 'power2.inOut' }, dur * 0.84);
+      tl.call(() => {
+        if (bedLabel) bedLabel.textContent = '6u 15m';
+        if (sleepLabel) sleepLabel.textContent = '6u 15m';
+      }, [], dur * 0.94);
       tl.to(phase, { scale: 1.06, duration: .6, ease: ease.soft, yoyo: true, repeat: 1 }, dur * 0.92);
       return tl;
     },
 
     pressure(root, dur) {
-      const bars = root.querySelectorAll('.m-pressure-bar');
-      const dutje = root.querySelector('.m-pressure-dutje');
-      const final = root.querySelector('.m-pressure-final');
-      const targets = [98, 122, 138, 158]; // grow heights
+      // Beaker filling: liquid rises as sun travels arc, dutje causes leak, final klaar-state
+      const arc = root.querySelector('.m-press-arc');
+      const sun = root.querySelector('.m-press-sun');
+      const moon = root.querySelector('.m-press-moon');
+      const liquid = root.querySelector('.m-press-liquid');
+      const surface = root.querySelector('.m-press-surface');
+      const dutje = root.querySelector('.m-press-dutje');
+      const final = root.querySelector('.m-press-final');
       const tl = gsap.timeline();
-      gsap.set(dutje, { opacity: 0, y: -6, scale: .9 });
-      gsap.set(final, { opacity: 0, y: 6, scale: .9 });
-      // Phase 1: bars grow with stagger
-      bars.forEach((b, i) => {
-        const newY = 218 - targets[i];
-        tl.to(b, { attr: { height: targets[i], y: newY }, duration: 1.2, ease: 'power2.out' }, i * 0.6);
-      });
-      // Phase 2: dutje appears, bars shrink slightly
-      tl.to(dutje, { opacity: 1, y: 0, scale: 1, duration: .5, ease: ease.snap }, dur * 0.42);
-      tl.to(bars, { attr: { height: '-=24', y: '+=24' }, duration: .8, ease: 'power2.in' }, dur * 0.50);
-      tl.to(dutje, { opacity: .55, scale: .92, duration: .5, ease: 'power2.in' }, dur * 0.62);
-      // Phase 3: bars recover and grow further
-      bars.forEach((b, i) => {
-        tl.to(b, { attr: { height: targets[i] + 16, y: 218 - (targets[i] + 16) }, duration: 1.0, ease: ease.settle }, dur * 0.70 + i * 0.1);
-      });
-      tl.to(final, { opacity: 1, y: 0, scale: 1, duration: .6, ease: ease.settle }, dur * 0.85);
+      gsap.set(sun, { x: 0, y: 0, opacity: 1, transformOrigin: 'center' });
+      gsap.set(moon, { opacity: 0 });
+      gsap.set(liquid, { attr: { y: 234, height: 0 } });
+      gsap.set(surface, { attr: { cy: 234 } });
+      gsap.set(dutje, { opacity: 0, y: -6, scale: .9, transformOrigin: 'center' });
+      gsap.set(final, { opacity: 0, y: 6, scale: .92, transformOrigin: 'center' });
+
+      // Sun travels arc (0–78%)
+      if (window.MotionPathPlugin) gsap.registerPlugin(window.MotionPathPlugin);
+      if (arc) {
+        tl.to(sun, {
+          motionPath: { path: arc, align: arc, alignOrigin: [0.5, 0.5], autoRotate: false },
+          duration: dur * 0.78, ease: 'power1.inOut'
+        }, 0);
+      }
+      // Liquid rises 0 → 100 (over 0–42%)
+      tl.to(liquid, { attr: { y: 134, height: 100 }, duration: dur * 0.42, ease: 'power1.in' }, 0);
+      tl.to(surface, { attr: { cy: 134 }, duration: dur * 0.42, ease: 'power1.in' }, 0);
+      // Dutje warning at 45%, leak makes liquid drop
+      tl.to(dutje, { opacity: 1, y: 0, scale: 1, duration: .5, ease: ease.snap }, dur * 0.45);
+      tl.to(liquid, { attr: { y: 154, height: 80 }, duration: dur * 0.08, ease: 'power2.in' }, dur * 0.50);
+      tl.to(surface, { attr: { cy: 154 }, duration: dur * 0.08, ease: 'power2.in' }, dur * 0.50);
+      tl.to(dutje, { opacity: .35, scale: .9, duration: .6, ease: 'power2.in' }, dur * 0.60);
+      // Liquid recovers and fills to top (66–86%)
+      tl.to(liquid, { attr: { y: 84, height: 150 }, duration: dur * 0.20, ease: 'power2.out' }, dur * 0.66);
+      tl.to(surface, { attr: { cy: 84 }, duration: dur * 0.20, ease: 'power2.out' }, dur * 0.66);
+      // Sun fades, moon appears
+      tl.to(sun,  { opacity: 0, duration: dur * 0.10, ease: 'power2.in' }, dur * 0.78);
+      tl.to(moon, { opacity: 1, duration: dur * 0.10, ease: 'power2.out' }, dur * 0.80);
+      // Surface gentle highlight + final caption
+      tl.to(surface, { opacity: .9, attr: { ry: 5 }, duration: .8, ease: ease.soft, yoyo: true, repeat: 1 }, dur * 0.82);
+      tl.to(final, { opacity: 1, y: 0, scale: 1, duration: .7, ease: ease.settle }, dur * 0.86);
       return tl;
     },
 
