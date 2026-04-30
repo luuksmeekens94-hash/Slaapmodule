@@ -929,6 +929,8 @@ input[type=range].fysio-range::-moz-range-thumb {
 .asset-scene { position: absolute; inset: 14px 16px 18px; }
 .media-card.featured .asset-scene { inset: 22px 26px 24px; }
 .asset-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.asset-scene--video { border-radius: 18px; overflow: hidden; background: #0E1C38; }
+.asset-scene--video video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .motion-svg, .motion-svg * { transform-box: fill-box; }
 .asset-panel { fill: rgba(255,255,255,.78); stroke: #D9E4F3; stroke-width: 1.2; }
 .asset-grid { stroke: #E8EEF7; stroke-width: 1; }
@@ -2097,7 +2099,12 @@ input[type=range].fysio-range::-moz-range-thumb {
                       <span class="force-label calm">druk loslaten</span>
                     </div>
                   </template>
-                  <template x-if="media.visual !== 'force'">
+                  <template x-if="media.visual !== 'force' && hasVideo(media.visual)">
+                    <div class="asset-scene asset-scene--video">
+                      <video :src="videoUrl(media.visual)" autoplay muted loop playsinline preload="metadata"></video>
+                    </div>
+                  </template>
+                  <template x-if="media.visual !== 'force' && !hasVideo(media.visual)">
                     <div class="asset-scene" x-html="renderSceneSvg(media)"></div>
                   </template>
                   <div class="lesson-overlay">
@@ -2511,6 +2518,12 @@ function slaapModule() {
     toggleAudio() { this.audioPlaying = !this.audioPlaying; },
     mediaKey(media, i) {
       return `${this.currentTherapyModule.id}:${i}:${media.visual || media.title}`;
+    },
+    hasVideo(visual) {
+      return ['cycles','breathe','night','clock','sun','rhythm','pressure'].includes(visual);
+    },
+    videoUrl(visual) {
+      return `video/${visual}.mp4`;
     },
     renderSceneSvg(media) {
       const defs = `
@@ -3308,12 +3321,23 @@ function slaapModule() {
       this.activeMediaElapsed = 0;
       const lesson = this.mediaLesson(media);
       const visual = media.visual || 'breathe';
-      // GSAP-driven animation if available; fallback to plain timer for caption stepping
+      // For Remotion-rendered scenes, drive progress from <video> currentTime;
+      // otherwise use GSAP timeline; otherwise fall back to a plain timer.
       this.$nextTick(() => {
         const card = document.querySelector('.media-card.playing .media-visual');
-        const builder = window.SlaapMotion && window.SlaapMotion.builders[visual];
         let attached = false;
-        if (card && builder && window.gsap) {
+        if (this.hasVideo(visual)) {
+          const videoEl = card && card.querySelector('.asset-scene--video video');
+          if (videoEl) {
+            try { videoEl.currentTime = 0; videoEl.play(); } catch (_) {}
+            attached = true;
+            this.activeMediaTimer = setInterval(() => {
+              this.activeMediaElapsed = Math.min(lesson.duration, videoEl.currentTime || 0);
+            }, 120);
+          }
+        }
+        const builder = window.SlaapMotion && window.SlaapMotion.builders[visual];
+        if (!attached && card && builder && window.gsap) {
           const tl = window.SlaapMotion.attach(visual, card, lesson.duration, () => this.stopMedia());
           if (tl) {
             this._motionTimeline = tl;
@@ -3335,6 +3359,10 @@ function slaapModule() {
     stopMedia() {
       if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
       this.activeMediaTimer = null;
+      // Pause any playing Remotion video
+      document.querySelectorAll('.asset-scene--video video').forEach(v => {
+        try { v.pause(); v.currentTime = 0; } catch (_) {}
+      });
       this.activeMediaElapsed = 0;
       this.activeMediaId = null;
       if (window.SlaapMotion) window.SlaapMotion.detach();
