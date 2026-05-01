@@ -3,22 +3,23 @@ import { AbsoluteFill, useCurrentFrame, useVideoConfig, interpolate, Easing } fr
 import { COLORS, FONT, NIGHT_BG } from '../shared/tokens';
 import { Title, Caption, Vignette, Wordmark } from '../shared/Frame';
 
+// Particle positions as percentages so they adapt to any composition size
 const PARTICLES = [
-  { x: 200, y: 150, r: 3, p: 0.1 },
-  { x: 320, y: 380, r: 2.5, p: 1.2 },
-  { x: 720, y: 130, r: 3, p: 2.4 },
-  { x: 880, y: 350, r: 2.5, p: 0.7 },
-  { x: 140, y: 320, r: 2, p: 1.9 },
-  { x: 980, y: 220, r: 3, p: 3.1 },
-  { x: 240, y: 220, r: 2, p: 2.0 },
-  { x: 800, y: 240, r: 2, p: 0.4 },
-  { x: 380, y: 90,  r: 2, p: 1.5 },
-  { x: 660, y: 420, r: 2.5, p: 2.7 },
+  { xPct: 0.14, yPct: 0.14, r: 3,   p: 0.1 },
+  { xPct: 0.22, yPct: 0.35, r: 2.5, p: 1.2 },
+  { xPct: 0.50, yPct: 0.12, r: 3,   p: 2.4 },
+  { xPct: 0.61, yPct: 0.32, r: 2.5, p: 0.7 },
+  { xPct: 0.10, yPct: 0.30, r: 2,   p: 1.9 },
+  { xPct: 0.68, yPct: 0.20, r: 3,   p: 3.1 },
+  { xPct: 0.17, yPct: 0.20, r: 2,   p: 2.0 },
+  { xPct: 0.56, yPct: 0.22, r: 2,   p: 0.4 },
+  { xPct: 0.26, yPct: 0.08, r: 2,   p: 1.5 },
+  { xPct: 0.46, yPct: 0.39, r: 2.5, p: 2.7 },
 ];
 
 export const BreatheScene: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
+  const { fps, durationInFrames, width, height } = useVideoConfig();
 
   // 5 breathing cycles spread across the scene
   const cycles = 5;
@@ -49,9 +50,11 @@ export const BreatheScene: React.FC = () => {
   }
 
   // Phase indicator dot — moves left to right during inhale, right to left during exhale
-  // Track from x=760 to x=1160 (centered around 960)
-  const trackLeft = 760;
-  const trackRight = 1160;
+  // Track centered horizontally, ~22% of frame width wide
+  const trackWidth = width * 0.22;
+  const trackLeft = width / 2 - trackWidth / 2;
+  const trackRight = width / 2 + trackWidth / 2;
+  const trackY = height * 0.81;
   let dotX = trackLeft;
   if (frame >= cycleStart) {
     if (cycleT < inhaleEnd) {
@@ -94,7 +97,7 @@ export const BreatheScene: React.FC = () => {
       {PARTICLES.map((p, i) => (
         <div key={i} style={{
           position: 'absolute',
-          left: p.x, top: p.y + partY(p.p),
+          left: width * p.xPct, top: height * p.yPct + partY(p.p),
           width: p.r * 4, height: p.r * 4, borderRadius: '50%',
           background: COLORS.cyan, opacity: partOp(p.p),
           filter: 'blur(0.5px)',
@@ -133,19 +136,19 @@ export const BreatheScene: React.FC = () => {
       </AbsoluteFill>
       {/* Phase track */}
       <div style={{
-        position: 'absolute', left: trackLeft, top: 880,
+        position: 'absolute', left: trackLeft, top: trackY,
         width: trackRight - trackLeft, height: 4,
         borderRadius: 2,
         background: 'rgba(160,232,237,.3)',
       }} />
       <div style={{
-        position: 'absolute', left: dotX - 8, top: 872,
+        position: 'absolute', left: dotX - 8, top: trackY - 8,
         width: 20, height: 20, borderRadius: '50%',
         background: '#fff',
         boxShadow: '0 0 16px rgba(255,255,255,.7)',
       }} />
       <div style={{
-        position: 'absolute', top: 920, width: '100%', textAlign: 'center',
+        position: 'absolute', top: trackY + 40, width: '100%', textAlign: 'center',
         fontSize: 28, fontWeight: 800, letterSpacing: 8,
         color: COLORS.cyan, opacity: 0.85, fontFamily: FONT,
       }}>

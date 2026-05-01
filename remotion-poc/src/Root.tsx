@@ -11,7 +11,8 @@ import { PressureScene } from './scenes/PressureScene';
 const SHARED = {
   durationInFrames: 900, // 30s @ 30fps
   fps: 30,
-  width: 1920,
+  // 4:3 instead of 16:9 — better fit for the squarish featured-media card
+  width: 1440,
   height: 1080,
 } as const;
 

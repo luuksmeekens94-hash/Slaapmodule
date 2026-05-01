@@ -929,8 +929,9 @@ input[type=range].fysio-range::-moz-range-thumb {
 .asset-scene { position: absolute; inset: 14px 16px 18px; }
 .media-card.featured .asset-scene { inset: 22px 26px 24px; }
 .asset-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.asset-scene--video { border-radius: 18px; overflow: hidden; background: #0E1C38; }
-.asset-scene--video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.asset-scene--video { border-radius: 18px; overflow: hidden; background: #0E1C38; display: flex; align-items: center; justify-content: center; }
+.asset-scene--video video { width: 100%; height: 100%; object-fit: contain; display: block; }
+.asset-scene--video[data-tone="light"] { background: #F4F8FE; }
 .motion-svg, .motion-svg * { transform-box: fill-box; }
 .asset-panel { fill: rgba(255,255,255,.78); stroke: #D9E4F3; stroke-width: 1.2; }
 .asset-grid { stroke: #E8EEF7; stroke-width: 1; }
@@ -2100,7 +2101,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                     </div>
                   </template>
                   <template x-if="media.visual !== 'force' && hasVideo(media.visual)">
-                    <div class="asset-scene asset-scene--video">
+                    <div class="asset-scene asset-scene--video" :data-tone="videoTone(media.visual)">
                       <video :src="videoUrl(media.visual)" autoplay muted loop playsinline preload="metadata"></video>
                     </div>
                   </template>
@@ -2524,6 +2525,10 @@ function slaapModule() {
     },
     videoUrl(visual) {
       return `video/${visual}.mp4`;
+    },
+    videoTone(visual) {
+      // Light scenes have paper backgrounds; dark scenes have deep navy backgrounds.
+      return ['clock','sun','rhythm','pressure'].includes(visual) ? 'light' : 'dark';
     },
     renderSceneSvg(media) {
       const defs = `
