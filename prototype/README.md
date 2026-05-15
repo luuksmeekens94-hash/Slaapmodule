@@ -48,12 +48,13 @@ De app gebruikt lokale MP4's in `video/` voor de belangrijkste animaties:
 - `breathe.mp4`
 - `clock.mp4`
 - `cycles.mp4`
+- `force.mp4` met poster `force.png`
 - `night.mp4`
 - `pressure.mp4`
 - `rhythm.mp4`
 - `sun.mp4`
 
-De bronbestanden voor deze video's staan in `../remotion-poc/`.
+De meeste bronbestanden voor deze video's staan in `../remotion-poc/`. De pilotvideo `force.mp4` is gemaakt met de Claude Code video toolkit en staat als webklare MP4 in `video/`.
 
 De oude browserstem/voorleesfunctie is voorlopig uit de UI gehaald. Echte voice-over kan later weer worden toegevoegd als losse audio per media-item.
 

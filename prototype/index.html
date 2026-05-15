@@ -2079,33 +2079,12 @@ input[type=range].fysio-range::-moz-range-thumb {
                     :aria-label="isMediaPlaying(media, i) ? 'Pauzeer animatie' : 'Speel animatie af'">
                     <svg width="15" height="15"><use :href="isMediaPlaying(media, i) ? '#i-pause' : '#i-play'"/></svg>
                   </button>
-                  <template x-if="media.visual === 'force'">
-                    <div class="force-scene">
-                      <svg viewBox="0 0 560 300" aria-hidden="true">
-                        <rect class="force-panel" x="18" y="24" width="524" height="214" rx="24"/>
-                        <path class="force-grid" d="M70 66H506M70 112H506M70 158H506M70 204H506"/>
-                        <path class="force-axis" d="M70 224H506M70 48V224"/>
-                        <g transform="translate(96 152)">
-                          <rect class="force-bed" x="0" y="28" width="160" height="58" rx="16"/>
-                          <rect class="force-pillow" x="18" y="10" width="56" height="34" rx="12"/>
-                          <rect class="force-person" x="82" y="48" width="58" height="16" rx="8"/>
-                        </g>
-                        <path class="force-line-calm" d="M196 152 C238 150 260 144 286 134"/>
-                        <path class="force-line-alert" d="M196 152 C238 150 260 144 286 134 C330 116 358 72 410 56 C444 46 470 50 496 42"/>
-                        <g class="force-dot">
-                          <circle r="11"/>
-                        </g>
-                      </svg>
-                      <span class="force-label problem">moeten slapen</span>
-                      <span class="force-label calm">druk loslaten</span>
-                    </div>
-                  </template>
-                  <template x-if="media.visual !== 'force' && hasVideo(media.visual)">
+                  <template x-if="hasVideo(media.visual)">
                     <div class="asset-scene asset-scene--video" :data-tone="videoTone(media.visual)">
-                      <video :src="videoUrl(media.visual)" autoplay muted loop playsinline preload="metadata"></video>
+                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" autoplay muted loop playsinline preload="metadata"></video>
                     </div>
                   </template>
-                  <template x-if="media.visual !== 'force' && !hasVideo(media.visual)">
+                  <template x-if="!hasVideo(media.visual)">
                     <div class="asset-scene" x-html="renderSceneSvg(media)"></div>
                   </template>
                   <div class="lesson-overlay">
@@ -2517,10 +2496,13 @@ function slaapModule() {
       return `${this.currentTherapyModule.id}:${i}:${media.visual || media.title}`;
     },
     hasVideo(visual) {
-      return ['cycles','breathe','night','clock','sun','rhythm','pressure'].includes(visual);
+      return ['force','cycles','breathe','night','clock','sun','rhythm','pressure'].includes(visual);
     },
     videoUrl(visual) {
       return `video/${visual}.mp4`;
+    },
+    videoPosterUrl(visual) {
+      return visual === 'force' ? 'video/force.png' : '';
     },
     videoTone(visual) {
       // Light scenes have paper backgrounds; dark scenes have deep navy backgrounds.
@@ -3129,7 +3111,7 @@ function slaapModule() {
       };
       const lessons = {
         force: {
-          duration: 42,
+          duration: 30,
           scenes: [
             { caption: 'Je bent moe, maar je hoofd blijft aan.', voice: 'Eerst zie je de normale situatie: moe zijn is niet hetzelfde als slaperig zijn.' },
             { caption: 'Moeten slapen maakt je wakkerder.', voice: 'Als je slaap probeert af te dwingen, wordt je lichaam vaak juist wakkerder.' },
