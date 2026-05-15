@@ -445,7 +445,8 @@ main { min-width: 0; }
   position: absolute; transform: translate(-50%, -50%);
   background: var(--white); border: 1px solid #F4B8B8;
   color: #9B3333; font-family: var(--font-body); font-weight: 600; font-size: 12px;
-  padding: 8px 14px; border-radius: 100px; white-space: nowrap;
+  padding: 8px 14px; border-radius: 100px; white-space: normal;
+  max-width: 150px; min-width: 104px; line-height: 1.25; text-align: center;
   box-shadow: 0 2px 8px rgba(155,51,51,.1);
 }
 
@@ -561,12 +562,17 @@ main { min-width: 0; }
 
 /* ─── 24h CLOCK (circadian) ───────────────────────── */
 .clock-wrap { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; }
-.clock-svg { display: block; margin: 0 auto; }
+.clock-svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
 .clock-hand {
   stroke: var(--blue); stroke-width: 2; stroke-linecap: round;
   transform-origin: 150px 150px;
   animation: sweep 20s linear infinite;
 }
+.clock-marker {
+  stroke-width: 2.5; stroke-linecap: round;
+}
+.wake-marker { stroke: var(--teal); }
+.sleep-marker { stroke: var(--blue); }
 @keyframes sweep { to { transform: rotate(360deg); } }
 
 /* ─── ALERT BOX ───────────────────────────────────── */
@@ -1369,6 +1375,13 @@ input[type=range].fysio-range::-moz-range-thumb {
   .media-choice-row { grid-template-columns: 1fr; }
   .media-card.featured .media-title { font-size: 21px; }
   .mobile-chapters { margin: 0 -20px; padding-inline: 20px; }
+  .stages-wrap, .clock-wrap { padding: 24px 18px; }
+  .stage-row { display: grid; grid-template-columns: 1fr; gap: 6px; margin-bottom: 14px; }
+  .stage-label { width: auto; text-align: left; }
+  .stage-bar { max-width: 100%; min-height: 34px; height: auto; white-space: normal; line-height: 1.25; }
+  .stage-bar.n2, .stage-bar.n3, .stage-bar.rem { min-width: min(100%, 164px); }
+  .stage-scale { margin: 12px 0 0; }
+  .cycle-node { max-width: 128px; min-width: 96px; font-size: 11px; padding: 7px 10px; }
 }
 </style>
 
@@ -1558,9 +1571,9 @@ input[type=range].fysio-range::-moz-range-thumb {
       <section class="chapter" x-show="currentChapterIdx === 0" x-transition.opacity>
         <div class="hero section-block">
           <div class="hero-chip"><span class="live-dot"></span> Slaapstappen die bij jou passen</div>
-          <h1 class="h-hero">Slaap is <em>trainbaar.</em><br/>En je rug slaapt mee.</h1>
-          <p>Slecht slapen kan je zenuwen gevoeliger maken. Daardoor kan pijn sterker voelen.
-            In deze module leer je hoe je je lichaam meer rust en veiligheid geeft.</p>
+          <h1 class="h-hero">Slaap is <em>trainbaar.</em><br/>Je lichaam kan tot rust komen.</h1>
+          <p>Slecht slapen kan door je lichaam worden opgevat als een gevarensignaal. Daardoor kan lage rugpijn sterker aanvoelen.
+            In deze module leer je hoe slaap en rugpijn elkaar beinvloeden en krijg je praktische tips om je slaap te verbeteren.</p>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
             <button class="btn btn-white btn-lg" @click="goTo(1)">
               Doe de slaapcheck <svg width="16" height="16"><use href="#i-arrow-right"/></svg>
@@ -1618,21 +1631,6 @@ input[type=range].fysio-range::-moz-range-thumb {
             </div>
           </div>
         </div>
-
-        <!-- Audio intro -->
-        <div class="section-block">
-          <div class="audio-pill" :class="audioPlaying ? 'playing' : ''">
-            <button class="audio-btn" @click="toggleAudio()" aria-label="Afspelen">
-              <svg width="18" height="18" x-show="!audioPlaying"><use href="#i-play"/></svg>
-              <svg width="18" height="18" x-show="audioPlaying"><use href="#i-pause"/></svg>
-            </button>
-            <div>
-              <div class="audio-meta-title">Luister naar de intro</div>
-              <div class="audio-meta-sub">Optioneel audio-fragment · 1 min 40 sec</div>
-            </div>
-            <div class="audio-wave"><span></span><span></span><span></span><span></span></div>
-          </div>
-        </div>
       </section>
 
       <!-- ─ 1 · GEVARENSIGNAAL ─────────────────────── -->
@@ -1640,8 +1638,8 @@ input[type=range].fysio-range::-moz-range-thumb {
         <header class="chapter-head">
           <div class="eyebrow">Hoofdstuk 1</div>
           <h1 class="h-hero">Hoe slecht slapen bijdraagt aan <span class="grad-text">lage rugpijn</span></h1>
-          <p class="lead">Je brein werkt als een beschermingsmeter. Het beoordeelt voortdurend: is het veilig, of
-            moet ik beschermen? Slecht slapen is zo'n gevarensignaal.</p>
+          <p class="lead">Slecht slapen kan voor je brein voelen als een gevarensignaal. De beschermingsmeter gaat dan omhoog.
+            Daardoor kan je zenuwstelsel gevoeliger worden en kan rugpijn sterker aanvoelen.</p>
         </header>
 
         <!-- Pathway SVG animation (replaces 'video') -->
@@ -1692,8 +1690,8 @@ input[type=range].fysio-range::-moz-range-thumb {
               <text x="230" y="50" text-anchor="middle" font-size="10.5" fill="#9B3333" font-family="DM Sans" font-weight="600" letter-spacing="1.2">WAARSCHUWING</text>
             </svg>
             <p class="step-hint" style="text-align:center; margin-top:20px;">
-              Slechte slaap is een signaal voor je brein. Daardoor kunnen je zenuwen alerter worden.
-              Pijn kan dan sterker voelen.
+              Slecht slapen kan voor je brein voelen als een gevarensignaal. De beschermingsmeter gaat omhoog.
+              Je zenuwstelsel wordt gevoeliger en je brein kan meer pijnversterkende stoffen aanmaken. Daardoor kan rugpijn sterker aanvoelen.
             </p>
           </div>
         </div>
@@ -1705,16 +1703,16 @@ input[type=range].fysio-range::-moz-range-thumb {
               <span class="chip chip--amber" style="background:#FEE2E2; color:#9B3333; border-color:#F4B8B8;">Waarschuwingssignaal</span>
               <h3 class="h-card" style="margin-top:12px;">Je beschermingsmeter omhoog</h3>
               <p style="color:#7A2828; font-size:13.5px; line-height:1.65; margin-top:6px;">
-                Je lichaam staat meer op scherp. <b>Je rug is niet kapot</b>. Je zenuwen reageren alleen sneller.
-                Daardoor kan pijn sterker voelen.
+                Je lichaam staat meer op scherp. <b>Je rug is niet kapot</b>, maar je brein kan wel meer
+                pijnversterkende stoffen aanmaken. Daardoor kan jouw rugpijn sterker aanvoelen.
               </p>
             </div>
             <div class="compare-card pos">
               <span class="chip chip--teal">Veilig signaal</span>
               <h3 class="h-card" style="margin-top:12px;">Beter slapen keert het om</h3>
               <p style="color:#155C39; font-size:13.5px; line-height:1.65; margin-top:6px;">
-                Je lichaam komt meer tot rust. Je zenuwen worden rustiger. Je brein hoeft minder hard te waarschuwen.
-                <b>Daar gaan we aan werken.</b>
+                Je lichaam komt meer tot rust. Je brein kan nu meer pijndempende stoffen aanmaken.
+                Daardoor kan jouw rugpijn afnemen. <b>Hier gaan we aan werken.</b>
               </p>
             </div>
           </div>
@@ -1733,10 +1731,10 @@ input[type=range].fysio-range::-moz-range-thumb {
                   <use href="#i-refresh-cycle" x="-14" y="-14" width="28" height="28" color="#9B3333"/>
                 </g>
               </svg>
-              <div class="cycle-node" style="top:2%; left:50%;">Slecht slapen</div>
-              <div class="cycle-node" style="top:50%; left:98%;">Gevoeligere zenuwen</div>
-              <div class="cycle-node" style="top:98%; left:50%;">Meer pijn</div>
-              <div class="cycle-node" style="top:50%; left:2%;">Meer spanning</div>
+              <div class="cycle-node" style="top:2%; left:50%;">Slecht slapen = meer gevarensignalen</div>
+              <div class="cycle-node" style="top:50%; left:98%;">Beschermingsmeter van het brein omhoog</div>
+              <div class="cycle-node" style="top:98%; left:50%;">Meer pijnversterkende stoffen</div>
+              <div class="cycle-node" style="top:50%; left:2%;">Meer pijn en spanning in de rug</div>
             </div>
           </div>
         </div>
@@ -1761,7 +1759,7 @@ input[type=range].fysio-range::-moz-range-thumb {
       <!-- ─ 2 · SLAAPCHECK ─────────────────────────── -->
       <section class="chapter" x-show="currentChapterIdx === 1" x-transition.opacity>
         <header class="chapter-head">
-          <div class="eyebrow">Hoofdstuk 2 · Interactieve check</div>
+          <div class="eyebrow">Slaapcheck</div>
           <h1 class="h-hero">Ontdek waar jij de <span class="grad-text">meeste winst</span> kunt behalen</h1>
           <p class="lead">Niet iedereen slaapt om dezelfde reden slecht. Beantwoord de vragen over de afgelopen
             2 weken. Daarna zie je welk onderdeel nu het beste bij jou past.</p>
@@ -1846,10 +1844,10 @@ input[type=range].fysio-range::-moz-range-thumb {
         </div>
       </section>
 
-      <!-- ─ 3 · HOE SLAAP WERKT ────────────────────── -->
+      <!-- ─ 2 · HOE SLAAP WERKT ────────────────────── -->
       <section class="chapter" x-show="currentChapterIdx === 3" x-transition.opacity>
         <header class="chapter-head">
-          <div class="eyebrow">Hoofdstuk 3 · Uitleg over slaap</div>
+          <div class="eyebrow">Hoofdstuk 2 · Uitleg over slaap</div>
           <h1 class="h-hero">Slaap gaat op en neer — <span class="grad-text">dat is normaal</span></h1>
           <p class="lead">Je kunt alleen trainen wat je begrijpt. Als je weet hoe slaap werkt, word je minder
             overgeleverd aan een slechte nacht — en meer aan het roer.</p>
@@ -1944,8 +1942,9 @@ input[type=range].fysio-range::-moz-range-thumb {
               <path d="M 40 150 Q 150 310, 260 150" stroke="#1840A0" stroke-width="2" fill="none" stroke-dasharray="2 4" opacity=".4"/>
               <!-- cortisol arc (curve peaking around day top) -->
               <path d="M 40 150 Q 150 -10, 260 150" stroke="#30B5BE" stroke-width="2" fill="none" stroke-dasharray="2 4" opacity=".4"/>
-              <!-- hand -->
-              <line class="clock-hand" x1="150" y1="150" x2="150" y2="55"/>
+              <!-- 06:00 and 18:00 markers -->
+              <line class="clock-marker wake-marker" x1="150" y1="150" x2="56" y2="150"/>
+              <line class="clock-marker sleep-marker" x1="150" y1="150" x2="244" y2="150"/>
               <circle cx="150" cy="150" r="6" fill="#1840A0"/>
               <!-- tick labels -->
               <text x="150" y="32" text-anchor="middle" font-size="11" fill="#4A5878" font-family="DM Sans" font-weight="600">12:00</text>
@@ -1953,18 +1952,19 @@ input[type=range].fysio-range::-moz-range-thumb {
               <text x="24"  y="154" text-anchor="middle" font-size="11" fill="#4A5878" font-family="DM Sans" font-weight="600">06:00</text>
               <text x="280" y="154" text-anchor="middle" font-size="11" fill="#4A5878" font-family="DM Sans" font-weight="600">18:00</text>
               <!-- legend chips -->
-              <g transform="translate(150 100)">
+              <g transform="translate(88 126)">
                 <rect x="-40" y="-10" width="80" height="22" rx="11" fill="#fff" stroke="#DDE4F0"/>
                 <circle cx="-28" cy="1" r="4" fill="#30B5BE"/>
                 <text x="-18" y="5" font-size="11" font-family="DM Sans" font-weight="600" fill="#0E1C38">Wakker ↑</text>
               </g>
-              <g transform="translate(150 200)">
+              <g transform="translate(214 174)">
                 <rect x="-44" y="-10" width="88" height="22" rx="11" fill="#fff" stroke="#DDE4F0"/>
                 <circle cx="-32" cy="1" r="4" fill="#1840A0"/>
                 <text x="-22" y="5" font-size="11" font-family="DM Sans" font-weight="600" fill="#0E1C38">Slaperig ↑</text>
               </g>
             </svg>
             <p class="step-hint" style="text-align:center; margin-top:16px;">
+              Vanaf de ochtend word je wakkerder. Vanaf de avond neemt slaperigheid toe.
               Donker helpt je slaperig worden. Ochtendlicht helpt je wakker worden.
               Felle schermen in de avond kunnen dit verstoren.
             </p>
@@ -2138,14 +2138,10 @@ input[type=range].fysio-range::-moz-range-thumb {
                       <svg width="13" height="13"><use href="#i-arrow-right"/></svg>
                       Volgende stap
                     </button>
-                    <button type="button" class="media-control" @click="speakMedia(media, i)">
-                      <svg width="13" height="13"><use href="#i-play"/></svg>
-                      Lees voor
-                    </button>
                   </div>
                   <div class="media-voice">
                     <div class="media-voice-label">
-                      <span>Voice-over</span>
+                      <span>Uitleg in stappen</span>
                       <span x-text="`${mediaSceneIndex(media, i) + 1}/${mediaLesson(media).scenes.length}`"></span>
                     </div>
                     <p x-text="mediaScene(media, i).voice"></p>
@@ -2182,7 +2178,7 @@ input[type=range].fysio-range::-moz-range-thumb {
             <div class="plan-inner">
               <div class="plan-head">
                 <div>
-                  <div class="eyebrow">7-dagen actieplan</div>
+                  <div class="eyebrow">Oefenplan voor deze week</div>
                   <h3 class="h-block" style="margin-top:4px;">Deze week oefen je dit</h3>
                 </div>
                 <div style="text-align:right;">
@@ -2213,7 +2209,7 @@ input[type=range].fysio-range::-moz-range-thumb {
           <div class="eval-wrap">
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
               <svg width="18" height="18" style="color:var(--teal)"><use href="#i-chart"/></svg>
-              <div class="eyebrow" style="color:var(--teal)">Evaluatie na 7 dagen</div>
+              <div class="eyebrow" style="color:var(--teal)">Evaluatie na 2-3 weken</div>
             </div>
             <template x-for="(q, i) in currentTherapyModule.evaluation" :key="q">
               <div class="eval-q">
@@ -2226,7 +2222,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                 </div>
               </div>
             </template>
-            <p class="reflection-hint" style="margin-top:8px;">Ook kleine verbeteringen tellen — bespreek met je fysiotherapeut.</p>
+            <p class="reflection-hint" style="margin-top:8px;">Gebruik de eerste week vooral om te oefenen. Evalueer samen met je fysiotherapeut na 2-3 weken.</p>
           </div>
         </div>
 

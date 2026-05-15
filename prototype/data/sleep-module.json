@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-28T10:06:51.378Z",
+  "updatedAt": "2026-05-15T09:45:00.000Z",
   "chapters": [
     {
       "id": "intro",
@@ -12,7 +12,7 @@
       "id": "check",
       "icon": "i-clipboard",
       "title": "Slaapcheck",
-      "kicker": "Hoofdstuk 2 · interactief"
+      "kicker": "Interactieve check"
     },
     {
       "id": "gevaar",
@@ -24,7 +24,7 @@
       "id": "educatie",
       "icon": "i-brain",
       "title": "Hoe slaap werkt",
-      "kicker": "Hoofdstuk 3"
+      "kicker": "Hoofdstuk 2"
     },
     {
       "id": "moduleA",
@@ -443,23 +443,23 @@
       "keyPoints": [
         {
           "title": "Kijk eerst hoeveel je echt slaapt",
-          "body": "Gebruik 7 dagen een slaapdagboek. Je tijd in bed wordt nooit korter dan 5 uur."
+          "body": "Tel je echte slaapuren van de hele week op en deel dit door 7. Je tijd in bed wordt nooit korter dan 5 uur."
         },
         {
-          "title": "Kijk na 7 dagen hoe het gaat",
-          "body": "Slaap je het grootste deel van je tijd in bed? Dan mag je 15 minuten eerder naar bed. Lukt dat nog niet, dan hou je het nog even gelijk."
+          "title": "Check na 7 dagen of het haalbaar is",
+          "body": "De eerste week is vooral oefenen. De echte evaluatie doe je na 2 tot 3 weken samen met je fysiotherapeut."
         }
       ],
       "steps": [
         {
           "title": "Bereken hoeveel uur je gemiddeld slaapt",
           "hint": "Tel je slaapuren op en deel door 7",
-          "body": "<p>Gebruik je slaapdagboek. Kijk naar hoeveel je echt sliep, niet naar hoe lang je in bed lag.</p>"
+          "body": "<p>Gebruik je slaapdagboek van de hele week. Tel alle uren op die je echt sliep en deel dit door 7. Voorbeeld: je sliep samen 40 uur in 7 dagen. 40 gedeeld door 7 is ongeveer 5 uur en 45 minuten per nacht.</p>"
         },
         {
           "title": "Kies een vaste opsta-tijd",
           "hint": "Elke dag ongeveer hetzelfde",
-          "body": "<p>Je opsta-tijd blijft hetzelfde. Vanaf die tijd reken je terug naar je bedtijd.</p>"
+          "body": "<p>Kies een tijd die je ook in het weekend ongeveer kunt halen. Bijvoorbeeld: elke dag rond 07:00 opstaan. Vanaf die tijd reken je straks terug naar je bedtijd.</p>"
         },
         {
           "title": "Bereken je bedtijd",
@@ -469,12 +469,12 @@
         {
           "title": "Doe geen dutjes",
           "hint": "Zo bouw je slaapdruk op",
-          "body": "<p>Blijf overdag wakker en houd je nieuwe bedtijd 7 dagen vol, tenzij je therapeut iets anders adviseert.</p>"
+          "body": "<p>Blijf overdag wakker en houd je nieuwe bedtijd 7 dagen vol, tenzij je therapeut iets anders adviseert. Zo bouw je genoeg slaapdruk op voor de avond.</p>"
         },
         {
           "title": "Maak je bedtijd rustig weer ruimer",
           "hint": "Kleine stapjes van 15 minuten",
-          "body": "<p>Gaat het beter? Dan mag je na een week 15 minuten eerder naar bed. Zo bouw je rustig uit.</p>"
+          "body": "<p>Na 7 dagen kijk je kort: lukt het om dit vol te houden en slaap je een groter deel van je tijd in bed? Dan mag je 15 minuten eerder naar bed. Lukt dat nog niet, dan houd je het nog even gelijk. De echte evaluatie volgt na 2 tot 3 weken.</p>"
         }
       ],
       "media": [
