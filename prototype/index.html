@@ -832,6 +832,17 @@ input[type=range].fysio-range::-moz-range-thumb {
 .media-card.featured .media-play { width: 46px; height: 46px; right: 14px; top: 14px; }
 .media-card.featured .media-play svg { width: 21px; height: 21px; }
 .media-card:not(.featured) .media-play { display: none; }
+.media-open {
+  position: absolute; right: 14px; bottom: 14px; z-index: 5;
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 36px; padding: 8px 12px; border-radius: 999px;
+  border: 1px solid #C8D7EF; background: rgba(255,255,255,.94);
+  color: var(--blue); font-size: 12px; font-weight: 800;
+  box-shadow: 0 10px 24px rgba(14,28,56,.12);
+  transition: transform .18s, background .18s, color .18s;
+}
+.media-open:hover { transform: translateY(-1px); background: var(--blue); color: #fff; }
+.media-open svg { position: static; width: 15px; height: 15px; flex-shrink: 0; }
 .media-card.paused .media-meter span,
 .media-card.paused .media-bubble,
 .media-card.paused .media-clock::before,
@@ -936,6 +947,7 @@ input[type=range].fysio-range::-moz-range-thumb {
 .media-card.featured .asset-scene { inset: 22px 26px 24px; }
 .asset-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .asset-scene--video { border-radius: 18px; overflow: hidden; background: #0E1C38; display: flex; align-items: center; justify-content: center; }
+.asset-scene--video[role="button"] { cursor: zoom-in; }
 .asset-scene--video video { width: 100%; height: 100%; object-fit: contain; display: block; }
 .asset-scene--video[data-tone="light"] { background: #F4F8FE; }
 .motion-svg, .motion-svg * { transform-box: fill-box; }
@@ -1326,6 +1338,54 @@ input[type=range].fysio-range::-moz-range-thumb {
   padding-top: 40px; margin-top: 48px; border-top: 1px solid var(--border);
 }
 
+/* ─── LARGE VIDEO VIEW ────────────────────────────── */
+.media-lightbox {
+  position: fixed; inset: 0; z-index: 120;
+  display: grid; place-items: center; padding: 28px;
+  background: rgba(7,17,38,.76);
+  backdrop-filter: blur(12px);
+}
+.media-lightbox-panel {
+  width: min(1180px, calc(100vw - 56px));
+  max-height: calc(100vh - 56px);
+  display: grid; grid-template-rows: auto minmax(0, 1fr);
+  background: #fff; border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 28px 90px rgba(0,0,0,.35);
+}
+.media-lightbox-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 14px 16px 12px 18px; border-bottom: 1px solid #E1E8F3;
+  background: linear-gradient(135deg, #FBFDFF 0%, #ECF6F7 100%);
+}
+.media-lightbox-title { min-width: 0; }
+.media-lightbox-title span {
+  display: block; color: var(--teal); font-size: 11px; font-weight: 900;
+  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px;
+}
+.media-lightbox-title strong {
+  display: block; color: var(--ink); font-family: var(--font-head);
+  font-size: 18px; line-height: 1.15;
+}
+.media-lightbox-close {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  border-radius: 999px; border: 1px solid #C8D7EF; background: #fff;
+  color: var(--ink-muted); flex-shrink: 0;
+}
+.media-lightbox-close:hover { color: var(--blue); border-color: #9AB6E0; }
+.media-lightbox-close svg { width: 18px; height: 18px; }
+.media-lightbox-stage {
+  min-height: 0; display: grid; place-items: center;
+  background: #F4F8FE; padding: 18px;
+}
+.media-lightbox-video {
+  width: min(100%, calc((100vh - 160px) * 1.333));
+  max-height: calc(100vh - 160px);
+  aspect-ratio: 4 / 3; object-fit: contain;
+  border-radius: 10px; background: #fff;
+  box-shadow: 0 22px 54px rgba(14,28,56,.18);
+}
+
 /* ─── MOBILE STRIP ────────────────────────────────── */
 .mobile-chapters { display: none; }
 .mobile-chapter-btn {
@@ -1382,11 +1442,17 @@ input[type=range].fysio-range::-moz-range-thumb {
   .stage-bar.n2, .stage-bar.n3, .stage-bar.rem { min-width: min(100%, 164px); }
   .stage-scale { margin: 12px 0 0; }
   .cycle-node { max-width: 128px; min-width: 96px; font-size: 11px; padding: 7px 10px; }
+  .media-lightbox { padding: 12px; }
+  .media-lightbox-panel { width: calc(100vw - 24px); max-height: calc(100vh - 24px); }
+  .media-lightbox-head { padding: 12px; }
+  .media-lightbox-title strong { font-size: 15px; }
+  .media-lightbox-stage { padding: 10px; }
+  .media-lightbox-video { width: 100%; max-height: calc(100vh - 118px); }
 }
 </style>
 
 </head>
-<body x-data="slaapModule()" x-init="init()" x-cloak>
+<body x-data="slaapModule()" x-init="init()" @keydown.escape.window="closeMediaViewer()" x-cloak>
 
 <!-- ─── ICON SPRITE (inline SVG defs) ─────────────── -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1459,6 +1525,9 @@ input[type=range].fysio-range::-moz-range-thumb {
     </symbol>
     <symbol id="i-rotate" viewBox="0 0 24 24">
       <path d="M20 12a8 8 0 11-3-6.2M20 4v5h-5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24">
+      <path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5M4 4l6 6M20 4l-6 6M4 20l6-6M20 20l-6-6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
     <symbol id="i-reflect" viewBox="0 0 24 24">
       <path d="M5 12a7 7 0 0112-5l2-2v5h-5l2-2M19 12a7 7 0 01-12 5l-2 2v-5h5l-2 2" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2075,18 +2144,27 @@ input[type=range].fysio-range::-moz-range-thumb {
                 <div class="media-visual" x-show="isFeaturedMedia(i)" :class="`visual-${media.visual || 'breathe'}`" :data-scene="mediaSceneIndex(media, i)">
                   <button class="media-play"
                     type="button"
-                    @click="toggleMedia(media, i)"
+                    @click.stop="toggleMedia(media, i)"
                     :aria-label="isMediaPlaying(media, i) ? 'Pauzeer animatie' : 'Speel animatie af'">
                     <svg width="15" height="15"><use :href="isMediaPlaying(media, i) ? '#i-pause' : '#i-play'"/></svg>
                   </button>
                   <template x-if="hasVideo(media.visual)">
-                    <div class="asset-scene asset-scene--video" :data-tone="videoTone(media.visual)">
+                    <div class="asset-scene asset-scene--video" :data-tone="videoTone(media.visual)"
+                      role="button" tabindex="0"
+                      @click="openMediaViewer(media, i)"
+                      @keydown.enter.prevent="openMediaViewer(media, i)"
+                      @keydown.space.prevent="openMediaViewer(media, i)"
+                      :aria-label="`Bekijk ${media.title} groot`">
                       <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" autoplay muted loop playsinline preload="metadata"></video>
                     </div>
                   </template>
                   <template x-if="!hasVideo(media.visual)">
                     <div class="asset-scene" x-html="renderSceneSvg(media)"></div>
                   </template>
+                  <button type="button" class="media-open" x-show="hasVideo(media.visual)" @click.stop="openMediaViewer(media, i)" title="Bekijk groot">
+                    <svg width="15" height="15"><use href="#i-expand"/></svg>
+                    Vergroot
+                  </button>
                   <div class="lesson-overlay">
                     <div class="lesson-caption" x-text="mediaScene(media, i).caption"></div>
                     <div class="lesson-progress"><span :style="`width:${mediaProgress(media, i)}%`"></span></div>
@@ -2286,6 +2364,29 @@ input[type=range].fysio-range::-moz-range-thumb {
   </div>
 </div>
 
+<!-- ─── LARGE VIDEO OVERLAY ───────────────────────── -->
+<div class="media-lightbox" x-show="mediaViewer" x-transition.opacity @click.self="closeMediaViewer()" x-cloak>
+  <div class="media-lightbox-panel" role="dialog" aria-modal="true" :aria-label="mediaViewer?.title || 'Video groot bekijken'">
+    <div class="media-lightbox-head">
+      <div class="media-lightbox-title">
+        <span x-text="mediaViewer?.label || 'Video'"></span>
+        <strong x-text="mediaViewer?.title || ''"></strong>
+      </div>
+      <button type="button" class="media-lightbox-close" @click="closeMediaViewer()" aria-label="Sluit grote video">
+        <svg width="18" height="18"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="media-lightbox-stage">
+      <template x-if="mediaViewer">
+        <video class="media-lightbox-video"
+          :src="mediaViewer.src"
+          :poster="mediaViewer.poster"
+          autoplay muted loop controls playsinline></video>
+      </template>
+    </div>
+  </div>
+</div>
+
 <!-- ─── APP STATE ──────────────────────────────────── -->
 <script>
 function slaapModule() {
@@ -2312,6 +2413,7 @@ function slaapModule() {
     reflections: { h1: '' },
     moduleFeaturedIdx: {},
     audioElement: null,
+    mediaViewer: null,
 
     get quizTotal() {
       return this.quizGroups.reduce((s, g) => s + g.questions.length, 0);
@@ -2485,6 +2587,7 @@ function slaapModule() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       this.moduleOpenStep = 0;
       this.stopMedia();
+      this.closeMediaViewer();
       // Trigger stages animation when entering H3
       if (this.currentChapterIdx === 3) {
         this.stagesReady = false;
@@ -2503,6 +2606,36 @@ function slaapModule() {
     },
     videoPosterUrl(visual) {
       return visual === 'force' ? 'video/force.png' : '';
+    },
+    openMediaViewer(media, i) {
+      if (!this.hasVideo(media.visual)) return;
+      const key = this.mediaKey(media, i);
+      let startAt = 0;
+      const currentVideo = document.querySelector('.media-card.featured .asset-scene--video video');
+      if (this.activeMediaId === key && currentVideo && Number.isFinite(currentVideo.currentTime)) {
+        startAt = currentVideo.currentTime;
+      }
+      this.mediaViewer = {
+        title: media.title,
+        label: media.label,
+        src: this.videoUrl(media.visual),
+        poster: this.videoPosterUrl(media.visual),
+        startAt,
+      };
+      document.body.style.overflow = 'hidden';
+      this.$nextTick(() => {
+        const video = document.querySelector('.media-lightbox-video');
+        if (!video) return;
+        try {
+          video.currentTime = startAt;
+          video.play();
+        } catch (_) {}
+      });
+    },
+    closeMediaViewer() {
+      if (!this.mediaViewer) return;
+      this.mediaViewer = null;
+      document.body.style.overflow = '';
     },
     videoTone(visual) {
       // Light scenes have paper backgrounds; dark scenes have deep navy backgrounds.
