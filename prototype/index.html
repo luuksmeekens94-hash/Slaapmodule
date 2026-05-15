@@ -2708,13 +2708,13 @@ function slaapModule() {
       return `${this.currentTherapyModule.id}:${i}:${media.visual || media.title}`;
     },
     hasVideo(visual) {
-      return ['force','cycles','breathe','night','clock','sun','rhythm','pressure'].includes(visual);
+      return ['force','worry','thought','meter','cycles','breathe','night','clock','sun','rhythm','pressure'].includes(visual);
     },
     videoUrl(visual) {
       return `video/${visual}.mp4`;
     },
     videoPosterUrl(visual) {
-      return visual === 'force' ? 'video/force.png' : '';
+      return ['force','worry','thought','meter'].includes(visual) ? `video/${visual}.png` : '';
     },
     openMediaViewer(media, i) {
       if (!this.hasVideo(media.visual)) return;
@@ -3381,7 +3381,7 @@ function slaapModule() {
           ],
         },
         worry: {
-          duration: 38,
+          duration: 24,
           scenes: [
             { caption: 'Zorgen komen vaak terug in bed.', voice: 'Je hoofd probeert problemen op te lossen op het slechtste moment van de dag.' },
             { caption: 'Op papier zetten maakt het kleiner.', voice: 'Je drukt zorgen niet weg. Je geeft ze een vaste plek buiten bedtijd.' },
@@ -3437,7 +3437,7 @@ function slaapModule() {
           ],
         },
         thought: {
-          duration: 42,
+          duration: 19,
           scenes: [
             { caption: 'Een gedachte voelt soms als feit.', voice: 'Morgen wordt niks kan heel waar voelen, maar is vaak een voorspelling.' },
             { caption: 'Onderzoek: is dit zeker?', voice: 'Vraag jezelf af: weet ik dit zeker, of vult mijn brein iets in?' },
@@ -3445,7 +3445,7 @@ function slaapModule() {
           ],
         },
         meter: {
-          duration: 38,
+          duration: 27,
           scenes: [
             { caption: 'Dreiging zet je lichaam hoger.', voice: 'Bange gedachten kunnen je beschermingssysteem activeren.' },
             { caption: 'Veiligheidstaal laat het zakken.', voice: 'Een geloofwaardige rustige zin geeft je lichaam een ander signaal.' },

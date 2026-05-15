@@ -225,9 +225,9 @@
         },
         {
           "type": "video",
-          "label": "Voorbeeld · 2 min",
-          "title": "Piekermoment voordoen",
-          "desc": "Therapeut laat zien hoe je zorgen parkeert zonder ze weg te drukken.",
+          "label": "Animatie · 24 sec",
+          "title": "Piekeren parkeren",
+          "desc": "Je ziet hoe je zorgen uit bed haalt en op papier zet.",
           "visual": "worry",
           "script": "Piekeren hoort niet in bed. Zet je zorgen eerder op de dag op papier. Dan hoeft je hoofd ze in de nacht minder vast te houden."
         },
@@ -566,15 +566,15 @@
       "media": [
         {
           "type": "video",
-          "label": "Voorbeeld · 2 min",
-          "title": "Gedachte uitwerken",
-          "desc": "De fysio werkt één voorbeeld uit: van enge gedachte naar helpende zin.",
+          "label": "Animatie · 19 sec",
+          "title": "Van bange gedachte naar helpende zin",
+          "desc": "Je ziet hoe een strenge voorspelling een rustigere zin wordt.",
           "visual": "thought",
           "script": "Een gedachte is niet altijd een feit. Schrijf hem op en maak er een rustigere zin van. Niet mooier dan het is, wel eerlijker en helpender."
         },
         {
           "type": "animation",
-          "label": "Animatie · 60 sec",
+          "label": "Animatie · 27 sec",
           "title": "Beschermingsmeter",
           "desc": "Laat zien hoe bange gedachten je lichaam aanzetten en rustige gedachten helpen zakken.",
           "visual": "meter",
@@ -582,7 +582,7 @@
         },
         {
           "type": "animation",
-          "label": "Oefening · 2 min",
+          "label": "Animatie · 19 sec",
           "title": "Voorspelling of feit?",
           "desc": "Je oefent met het verschil tussen feit, voorspelling en helpende gedachte.",
           "visual": "thought",
