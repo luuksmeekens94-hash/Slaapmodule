@@ -1202,6 +1202,13 @@ input[type=range].fysio-range::-moz-range-thumb {
 }
 .media-control:hover { border-color: #C8D7EF; color: var(--blue); background: #F8FBFF; }
 .media-control.primary { color: #fff; background: var(--blue); border-color: var(--blue); }
+.media-control.expand {
+  color: #0E7480; background: #E9F9FA; border-color: #9BDDE2;
+  font-weight: 850;
+}
+.media-control.expand:hover {
+  color: #fff; background: var(--teal); border-color: var(--teal);
+}
 .media-voice {
   margin-top: 14px; border-radius: var(--radius); border: 1px solid #C8D7EF;
   background: linear-gradient(135deg, #F8FBFF 0%, #F2F8F9 100%);
@@ -2186,6 +2193,10 @@ input[type=range].fysio-range::-moz-range-thumb {
                     <button type="button" class="media-control primary" @click="toggleMedia(media, i)">
                       <svg width="13" height="13"><use :href="isMediaPlaying(media, i) ? '#i-pause' : '#i-play'"/></svg>
                       <span x-text="isMediaPlaying(media, i) ? 'Pauzeer' : 'Start uitleg'"></span>
+                    </button>
+                    <button type="button" class="media-control expand" x-show="hasVideo(media.visual)" @click="openMediaViewer(media, i)">
+                      <svg width="13" height="13"><use href="#i-expand"/></svg>
+                      Bekijk groot
                     </button>
                     <button type="button" class="media-control" @click="restartMedia(media, i)">
                       <svg width="13" height="13"><use href="#i-rotate"/></svg>
