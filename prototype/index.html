@@ -772,10 +772,18 @@ input[type=range].fysio-range::-moz-range-thumb {
 .media-card.featured.video-featured .media-controls {
   grid-column: 1;
 }
-.media-card.featured.video-featured .media-voice,
-.media-card.featured.video-featured .media-choices,
+.media-card.featured.video-featured .media-meta { grid-row: 1; }
+.media-card.featured.video-featured .media-title { grid-row: 2; }
+.media-card.featured.video-featured .media-desc { grid-row: 3; }
+.media-card.featured.video-featured .media-controls { grid-row: 4; }
+.media-card.featured.video-featured .media-voice {
+  grid-column: 2; grid-row: 1 / span 2; margin-top: 0;
+}
+.media-card.featured.video-featured .media-choices {
+  grid-column: 2; grid-row: 3 / span 2; margin-top: 0;
+}
 .media-card.featured.video-featured .media-script {
-  grid-column: 2;
+  grid-column: 2; grid-row: 5; margin-top: 0;
 }
 .media-card.preview {
   padding: 0; overflow: hidden;
@@ -1453,7 +1461,7 @@ input[type=range].fysio-range::-moz-range-thumb {
   .media-card.featured.video-featured .media-controls,
   .media-card.featured.video-featured .media-voice,
   .media-card.featured.video-featured .media-choices,
-  .media-card.featured.video-featured .media-script { grid-column: 1; }
+  .media-card.featured.video-featured .media-script { grid-column: 1; grid-row: auto; }
   .media-card.featured .media-visual { height: 300px; }
   .media-card.featured.video-featured .media-visual { height: auto; }
   .quiz-opts { grid-template-columns: repeat(4, 1fr); }
