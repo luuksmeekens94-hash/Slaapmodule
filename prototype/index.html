@@ -1418,6 +1418,17 @@ input[type=range].fysio-range::-moz-range-thumb {
 }
 .media-lightbox-close:hover { color: var(--blue); border-color: #9AB6E0; }
 .media-lightbox-close svg { width: 18px; height: 18px; }
+.media-lightbox-actions {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+}
+.media-lightbox-fullscreen {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 40px; padding: 9px 12px; border-radius: 999px;
+  border: 1px solid #9BDDE2; background: #E9F9FA;
+  color: #0E7480; font-size: 12px; font-weight: 850;
+}
+.media-lightbox-fullscreen:hover { color: #fff; background: var(--teal); border-color: var(--teal); }
+.media-lightbox-fullscreen svg { width: 15px; height: 15px; }
 .media-lightbox-stage {
   min-height: 0; display: grid; place-items: center;
   background: #F4F8FE; padding: 18px;
@@ -1428,6 +1439,12 @@ input[type=range].fysio-range::-moz-range-thumb {
   aspect-ratio: 4 / 3; object-fit: contain;
   border-radius: 10px; background: #fff;
   box-shadow: 0 22px 54px rgba(14,28,56,.18);
+}
+.media-lightbox-hint {
+  display: none;
+  color: rgba(255,255,255,.82); font-size: 12px; font-weight: 700;
+  text-align: center; padding: 8px 12px 12px;
+  background: #071126;
 }
 
 /* ─── MOBILE STRIP ────────────────────────────────── */
@@ -1497,12 +1514,38 @@ input[type=range].fysio-range::-moz-range-thumb {
   .stage-bar.n2, .stage-bar.n3, .stage-bar.rem { min-width: min(100%, 164px); }
   .stage-scale { margin: 12px 0 0; }
   .cycle-node { max-width: 128px; min-width: 96px; font-size: 11px; padding: 7px 10px; }
-  .media-lightbox { padding: 12px; }
-  .media-lightbox-panel { width: calc(100vw - 24px); max-height: calc(100vh - 24px); }
+  .media-lightbox { padding: 0; background: #071126; }
+  .media-lightbox-panel {
+    width: 100vw; height: 100dvh; max-height: none;
+    border-radius: 0; border: 0; grid-template-rows: auto minmax(0, 1fr) auto;
+  }
   .media-lightbox-head { padding: 12px; }
   .media-lightbox-title strong { font-size: 15px; }
-  .media-lightbox-stage { padding: 10px; }
-  .media-lightbox-video { width: 100%; max-height: calc(100vh - 118px); }
+  .media-lightbox-fullscreen { min-height: 36px; padding-inline: 10px; }
+  .media-lightbox-fullscreen span { display: none; }
+  .media-lightbox-close { width: 36px; height: 36px; }
+  .media-lightbox-stage { padding: 0 8px; background: #071126; }
+  .media-lightbox-video {
+    width: 100%;
+    max-height: calc(100dvh - 116px);
+    border-radius: 8px;
+    box-shadow: none;
+  }
+  .media-lightbox-hint { display: block; }
+}
+@media (max-width: 960px) and (orientation: landscape) {
+  .media-lightbox-head {
+    position: absolute; left: 8px; right: 8px; top: 8px; z-index: 2;
+    justify-content: flex-end; padding: 0; border: 0; background: transparent;
+  }
+  .media-lightbox-title { display: none; }
+  .media-lightbox-panel { position: relative; grid-template-rows: minmax(0, 1fr); }
+  .media-lightbox-stage { padding: 8px; }
+  .media-lightbox-video {
+    width: min(100vw - 16px, calc((100dvh - 16px) * 1.333));
+    max-height: calc(100dvh - 16px);
+  }
+  .media-lightbox-hint { display: none; }
 }
 </style>
 
@@ -2431,9 +2474,15 @@ input[type=range].fysio-range::-moz-range-thumb {
         <span x-text="mediaViewer?.label || 'Video'"></span>
         <strong x-text="mediaViewer?.title || ''"></strong>
       </div>
-      <button type="button" class="media-lightbox-close" @click="closeMediaViewer()" aria-label="Sluit grote video">
-        <svg width="18" height="18"><use href="#i-x"/></svg>
-      </button>
+      <div class="media-lightbox-actions">
+        <button type="button" class="media-lightbox-fullscreen" @click="enterMediaFullscreen()" aria-label="Open video volledig scherm">
+          <svg width="15" height="15"><use href="#i-expand"/></svg>
+          <span>Volledig scherm</span>
+        </button>
+        <button type="button" class="media-lightbox-close" @click="closeMediaViewer()" aria-label="Sluit grote video">
+          <svg width="18" height="18"><use href="#i-x"/></svg>
+        </button>
+      </div>
     </div>
     <div class="media-lightbox-stage">
       <template x-if="mediaViewer">
@@ -2443,6 +2492,7 @@ input[type=range].fysio-range::-moz-range-thumb {
           autoplay muted loop controls playsinline></video>
       </template>
     </div>
+    <div class="media-lightbox-hint">Draai je telefoon voor groter beeld.</div>
   </div>
 </div>
 
@@ -2689,7 +2739,27 @@ function slaapModule() {
           video.currentTime = startAt;
           video.play();
         } catch (_) {}
+        if (window.matchMedia && window.matchMedia('(max-width: 700px)').matches) {
+          this.enterMediaFullscreen(video);
+        }
       });
+    },
+    enterMediaFullscreen(videoEl) {
+      const video = videoEl || document.querySelector('.media-lightbox-video');
+      if (!video) return;
+      try {
+        if (video.webkitEnterFullscreen) {
+          video.webkitEnterFullscreen();
+          return;
+        }
+        if (video.requestFullscreen) {
+          video.requestFullscreen().catch(() => {});
+          return;
+        }
+        if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        }
+      } catch (_) {}
     },
     closeMediaViewer() {
       if (!this.mediaViewer) return;
