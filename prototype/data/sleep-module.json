@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-15T09:45:00.000Z",
+  "updatedAt": "2026-05-15T10:05:00.000Z",
   "chapters": [
     {
       "id": "intro",
@@ -103,7 +103,7 @@
         }
       ],
       "recommendsTitle": "Onderdeel A — Inslapen en spanning verminderen",
-      "recommendsBody": "Bed weer koppelen aan slapen, spanning verlagen vóór bed, stoppen met vechten.",
+      "recommendsBody": "Je bed weer leren koppelen aan slapen en minder strijd in bed.",
       "recommendModuleId": "moduleA"
     },
     {
@@ -121,7 +121,7 @@
         }
       ],
       "recommendsTitle": "Onderdeel B — Wakker worden in de nacht",
-      "recommendsBody": "Klok loslaten, opstaan bij wakker liggen, bed weer koppelen aan slapen.",
+      "recommendsBody": "Minder klok kijken, rustig uit bed gaan en terug bij slaperigheid.",
       "recommendModuleId": "moduleB"
     },
     {
@@ -135,7 +135,7 @@
         }
       ],
       "recommendsTitle": "Onderdeel C — Te vroeg wakker worden",
-      "recommendsBody": "Accepteren dat wakker worden kan, direct opstaan, slaapklok versterken.",
+      "recommendsBody": "Rustig omgaan met vroeg wakker zijn en je ritme sterker maken.",
       "recommendModuleId": "moduleC"
     },
     {
@@ -157,45 +157,45 @@
         }
       ],
       "recommendsTitle": "Onderdeel D — Je slaapritme herstellen",
-      "recommendsBody": "Je tijd in bed beter laten passen bij hoeveel je echt slaapt.",
+      "recommendsBody": "Je tijd in bed beter laten passen bij hoeveel je nu echt slaapt.",
       "recommendModuleId": "moduleD"
     }
   ],
   "therapyModules": [
     {
       "id": "moduleA",
-      "label": "Onderdeel A · Inslapen en spanning",
-      "title": "Moeite met inslapen &amp; <span class=\"grad-text\">spanning</span>",
-      "intro": "Je ligt in bed. Je bent moe. Maar je hoofd blijft aan. Hoe harder je probeert te slapen, hoe minder het lukt.",
+      "label": "Onderdeel A · Inslapen met minder spanning",
+      "title": "Inslapen met minder <span class=\"grad-text\">spanning</span>",
+      "intro": "Je ligt in bed. Je bent moe. Maar je hoofd blijft aan. Hard proberen helpt dan vaak niet.",
       "tags": [
         "7 dagen oefenen",
         "5 stappen",
-        "bewezen slaapstap"
+        "kleine slaapstap"
       ],
       "whyTitle": "Waarom harder je best doen niet werkt",
-      "whyBody": "Slapen gebeurt wanneer slaapdruk hoog genoeg is en je systeem zich veilig genoeg voelt om alertheid los te laten.",
+      "whyBody": "Je slaapt makkelijker als je lichaam moe genoeg is en zich veilig voelt. Hard proberen maakt je vaak juist wakkerder.",
       "keyPoints": [
         {
-          "title": "Slaapdruk",
+          "title": "Moe genoeg om te slapen",
           "body": "Ga pas naar bed bij echte slaperigheid: zware ogen, gapen, moeite om je aandacht vast te houden."
         },
         {
-          "title": "Veiligheid",
-          "body": "Verlaag spanning vóór bed en stop met vechten tegen wakker liggen."
+          "title": "Meer rust",
+          "body": "Maak je avond rustiger en stop met vechten tegen wakker liggen."
         }
       ],
       "steps": [
         {
           "title": "Ga alleen naar bed als je slaperig bent",
           "hint": "Slaperig is iets anders dan moe",
-          "body": "<p>Ga je te vroeg naar bed, dan is je slaapdruk nog niet hoog genoeg. Wachten op echte slaperigheid maakt de kans op inslapen groter.</p>",
+          "body": "<p>Ga je te vroeg naar bed, dan is je lichaam vaak nog niet klaar voor slaap. Wachten op echte slaperigheid maakt de kans op slapen groter.</p>",
           "action": "Ga pas naar bed als je zware ogen hebt of merkt dat je aandacht wegzakt."
         },
         {
           "title": "Sta op na 15-20 minuten wakker liggen",
           "hint": "Bed = slapen opnieuw trainen",
-          "body": "<p>Blijf niet vechten in bed. Ga naar een andere ruimte, doe iets rustigs in gedimd licht en keer terug als je weer slaperig bent.</p>",
-          "action": "Geen schermen, geen nieuws, geen probleemoplossing."
+          "body": "<p>Blijf niet vechten in bed. Ga naar een andere ruimte, doe iets rustigs met zacht licht en keer terug als je weer slaperig bent.</p>",
+          "action": "Geen schermen, geen nieuws, geen problemen oplossen."
         },
         {
           "title": "Plan een piekermoment",
@@ -206,12 +206,12 @@
         {
           "title": "Ontspan voor bedtijd",
           "hint": "Niet in bed, maar ervoor",
-          "body": "<p>Kies één rustige routine: buikademhaling, progressieve ontspanning, een warme douche of een korte wandeling.</p>"
+          "body": "<p>Kies één rustige routine: buikademhaling, je spieren aanspannen en ontspannen, een warme douche of een korte wandeling.</p>"
         },
         {
           "title": "Train helpende gedachten",
-          "hint": "Minder dreiging, minder alertheid",
-          "body": "<p>Vervang rampgedachten door realistische zinnen zoals: mijn lichaam kan omgaan met een mindere nacht, rust is ook herstel, dit is tijdelijk.</p>"
+          "hint": "Minder spanning, meer rust",
+          "body": "<p>Vervang enge gedachten door rustige zinnen. Bijvoorbeeld: mijn lichaam kan omgaan met een mindere nacht, rust is ook herstel, dit is tijdelijk.</p>"
         }
       ],
       "media": [
@@ -219,7 +219,7 @@
           "type": "animation",
           "label": "Animatie · 45 sec",
           "title": "Waarom forceren wakker maakt",
-          "desc": "Een korte animatie waarin de waakstand omhoog gaat zodra iemand slaap probeert af te dwingen.",
+          "desc": "Een korte animatie die laat zien dat hard proberen je juist wakkerder kan maken.",
           "visual": "force",
           "script": "Als je heel hard probeert te slapen, wordt je lichaam juist alerter. Je hoeft slaap niet te forceren. Wacht op echte slaperigheid en geef je lichaam een duidelijke plek: bed is voor slapen."
         },
@@ -251,52 +251,52 @@
         "Is mijn inslaaptijd korter geworden?",
         "Voel ik minder spanning in bed?",
         "Ben ik minder gefocust op moeten slapen?",
-        "Voel ik meer controle over mijn slaap?"
+        "Voel ik meer grip op mijn slaap?"
       ],
       "reflectionPrompt": "Wat merkte je deze week als je uit bed ging in plaats van bleef vechten?",
-      "extraHelp": "Bespreek dit met je fysiotherapeut als spanning extreem hoog blijft, je paniekaanvallen hebt of je na 3 weken geen enkele verbetering merkt."
+      "extraHelp": "Bespreek dit met je fysio als spanning erg hoog blijft, je paniek voelt of je na 3 weken geen verbetering merkt."
     },
     {
       "id": "moduleB",
       "label": "Onderdeel B · Wakker worden in de nacht",
-      "title": "Nachtelijk wakker worden zonder <span class=\"grad-text\">strijd</span>",
-      "intro": "Je valt redelijk in slaap, maar midden in de nacht word je wakker. De kunst is niet wakker worden voorkomen, maar de spanning eromheen verlagen.",
+      "title": "Wakker worden in de nacht en rustig <span class=\"grad-text\">blijven</span>",
+      "intro": "Je valt redelijk in slaap, maar wordt in de nacht wakker. Het doel is niet om nooit wakker te worden. Het doel is rustiger blijven.",
       "tags": [
         "klok loslaten",
-        "bed-associatie",
-        "nachtplan"
+        "bed = slapen",
+        "plan voor de nacht"
       ],
       "whyTitle": "Het probleem is niet wakker worden",
-      "whyBody": "Iedereen wordt meerdere keren per nacht kort wakker. Het probleem ontstaat wanneer rekenen, frustratie en moeten slapen je systeem activeren.",
+      "whyBody": "Iedereen wordt meerdere keren per nacht kort wakker. Het wordt lastiger als je gaat rekenen, balen of jezelf dwingt om te slapen.",
       "keyPoints": [
         {
-          "title": "gewoon maken",
+          "title": "Normaal maken",
           "body": "Kort wakker worden tussen slaapcycli is normaal en geen teken dat je slaap kapot is."
         },
         {
-          "title": "Klokstress verlagen",
-          "body": "De tijd weten helpt zelden. Het zet je brein juist aan het rekenen."
+          "title": "Minder klok kijken",
+          "body": "De tijd weten helpt meestal niet. Je hoofd gaat dan juist rekenen."
         }
       ],
       "steps": [
         {
           "title": "Draai de klok weg",
-          "hint": "Geen nachtelijk rekenwerk",
+          "hint": "Niet rekenen in de nacht",
           "body": "<p>Leg je telefoon buiten bereik en draai wekkers om. Je hoeft de tijd niet te weten om veilig te slapen.</p>"
         },
         {
-          "title": "Sta op bij langdurig wakker liggen",
+          "title": "Sta op als je lang wakker ligt",
           "hint": "15-20 minuten als richtlijn",
-          "body": "<p>Als je merkt dat je alert blijft, ga je rustig uit bed. Doe iets saais in gedimd licht en keer terug bij slaperigheid.</p>"
+          "body": "<p>Als je merkt dat je wakker blijft, ga je rustig uit bed. Doe iets saais met zacht licht en keer terug bij slaperigheid.</p>"
         },
         {
-          "title": "Gebruik een nachtelijke scriptszin",
+          "title": "Gebruik een rustzin",
           "hint": "Minder druk, meer veiligheid",
           "body": "<p>Kies één zin: wakker worden is normaal, mijn lichaam kan dit aan, rust is ook waardevol.</p>"
         },
         {
-          "title": "Hou de activiteit klein",
-          "hint": "Geen beloning voor wakker zijn",
+          "title": "Hou het klein en saai",
+          "hint": "Maak wakker zijn niet aantrekkelijk",
           "body": "<p>Kies lezen, rustige muziek of ademhaling. Vermijd eten, werk, nieuws of scrollen.</p>"
         }
       ],
@@ -313,15 +313,15 @@
           "type": "video",
           "label": "Voorbeeld · 90 sec",
           "title": "Wat doe ik om 03:00?",
-          "desc": "Een praktische nachtelijke routekaart: niet kijken, opstaan, terug bij slaperigheid.",
+          "desc": "Een praktisch stappenplan voor de nacht: niet kijken, opstaan, terug bij slaperigheid.",
           "visual": "night",
           "script": "Lig je lang wakker? Stap rustig uit bed. Doe iets saais in zacht licht. Ga pas terug als je weer slaperig wordt."
         },
         {
           "type": "animation",
           "label": "Oefening · 3 min",
-          "title": "Nachtelijke geruststelling",
-          "desc": "Korte audio met rustige scriptszinnen zonder slaap te forceren.",
+          "title": "Rustzin in de nacht",
+          "desc": "Korte oefening met rustige zinnen zonder slaap te forceren.",
           "visual": "breathe",
           "script": "Gebruik één rustige zin in de nacht: wakker worden is normaal, mijn lichaam kan dit aan. Zo haal je druk van de nacht af."
         }
@@ -340,7 +340,7 @@
         "Voelt bed weer meer als slaapplek?"
       ],
       "reflectionPrompt": "Welke nachtelijke gedachte maakte wakker liggen groter, en welke zin hielp juist?",
-      "extraHelp": "Neem contact op als nachtelijke angst sterk toeneemt, je extreem slaperig wordt overdag of wakker liggen na 2-3 weken niet verandert."
+      "extraHelp": "Neem contact op als angst in de nacht sterk toeneemt, je overdag extreem slaperig bent of wakker liggen na 2-3 weken niet verandert."
     },
     {
       "id": "moduleC",
@@ -348,20 +348,20 @@
       "title": "Te vroeg wakker worden en je <span class=\"grad-text\">ritme</span> herstellen",
       "intro": "In de tweede helft van de nacht slaap je lichter. Vroeg wakker worden wordt vooral lastig als je blijft liggen wachten op slaap.",
       "tags": [
-        "opsta-anker",
+        "vaste opsta-tijd",
         "ochtendlicht",
         "ritme"
       ],
-      "whyTitle": "Vroeg wakker worden is vaak ritme-informatie",
-      "whyBody": "Je slaapklok leert van duidelijkheid: vaste opsta-tijd, ochtendlicht en minder inhalen door uitslapen.",
+      "whyTitle": "Vroeg wakker worden zegt vaak iets over je ritme",
+      "whyBody": "Je slaapklok leert van duidelijke signalen: vaste opsta-tijd, ochtendlicht en niet te veel uitslapen.",
       "keyPoints": [
         {
           "title": "Duidelijkheid",
-          "body": "Als je klaarwakker bent, geeft opstaan je systeem meer helderheid dan blijven liggen."
+          "body": "Als je klaarwakker bent, helpt rustig opstaan vaak beter dan blijven liggen."
         },
         {
           "title": "Ochtendlicht",
-          "body": "Daglicht in de ochtend helpt je klok resetten en maakt slaperigheid in de avond makkelijker."
+          "body": "Daglicht in de ochtend helpt je slaapklok gelijk zetten. Daardoor word je in de avond vaak makkelijker slaperig."
         }
       ],
       "steps": [
@@ -377,13 +377,13 @@
         },
         {
           "title": "Gebruik een vaste opsta-tijd",
-          "hint": "Je klok heeft een anker nodig",
+          "hint": "Je slaapklok houdt van herhaling",
           "body": "<p>Sta rond dezelfde tijd op, ook na een mindere nacht. Uitslapen maakt de volgende nacht vaak lastiger.</p>"
         },
         {
           "title": "Zoek ochtendlicht",
           "hint": "Buiten is krachtiger dan binnen",
-          "body": "<p>Ga kort naar buiten of zoek veel daglicht. Dit signaal helpt je avondritme later op de dag.</p>"
+          "body": "<p>Ga kort naar buiten of zoek veel daglicht. Dit helpt je lichaam later op de dag weer slaperig te worden.</p>"
         }
       ],
       "media": [
@@ -391,7 +391,7 @@
           "type": "animation",
           "label": "Animatie · 45 sec",
           "title": "De slaapklok als anker",
-          "desc": "Toont hoe vaste opsta-tijd en licht de klok stabiliseren.",
+          "desc": "Laat zien hoe vaste opsta-tijd en licht je slaapklok rustiger maken.",
           "visual": "clock",
           "script": "Je slaapklok houdt van duidelijkheid. Sta zo veel mogelijk rond dezelfde tijd op. Dat helpt je lichaam de volgende avond weer slaperig worden."
         },
@@ -406,8 +406,8 @@
         {
           "type": "animation",
           "label": "Oefening · 1 min",
-          "title": "Lichtschuif",
-          "desc": "Patiënt schuift ochtendlicht/avondlicht en ziet effect op slaperigheid.",
+          "title": "Licht helpt je ritme",
+          "desc": "Je ziet hoe ochtendlicht en avondlicht invloed hebben op slaperigheid.",
           "visual": "sun",
           "script": "Ochtendlicht is een sterk signaal voor je lichaam. Het zegt: de dag is begonnen. Daardoor wordt slapen in de avond vaak makkelijker."
         }
@@ -417,16 +417,16 @@
         "Ik sta elke dag rond dezelfde tijd op",
         "Ik zoek ochtendlicht",
         "Ik vermijd uitslapen",
-        "Ik noteer of vroeg wakker worden minder dreigend voelt"
+        "Ik noteer of vroeg wakker worden minder spannend voelt"
       ],
       "evaluation": [
         "Blijf ik minder lang wakker in bed?",
         "Is mijn opsta-tijd stabieler?",
-        "Voel ik minder frustratie bij vroeg wakker worden?",
+        "Voel ik minder boosheid of spanning bij vroeg wakker worden?",
         "Helpt ochtendlicht mijn ritme?"
       ],
-      "reflectionPrompt": "Wat gebeurde er met je dag als je vroeg wakker worden niet als mislukking behandelde?",
-      "extraHelp": "Bespreek dit als vroeg wakker worden samengaat met duidelijke somberheid, piekeren in de vroege ochtend of aanhoudende uitputting."
+      "reflectionPrompt": "Wat gebeurde er met je dag als je vroeg wakker worden niet als mislukking zag?",
+      "extraHelp": "Bespreek dit als vroeg wakker worden samen gaat met somberheid, veel piekeren of lang aanhoudende uitputting."
     },
     {
       "id": "moduleD",
@@ -434,12 +434,12 @@
       "title": "Je <span class=\"grad-text\">slaapritme</span> verbeteren",
       "intro": "Lig je veel langer in bed dan je slaapt? Dan kan je lichaam leren dat bed ook wakker liggen betekent. In dit onderdeel maak je je bedtijd weer duidelijker.",
       "tags": [
-        "samen met je therapeut",
+        "samen met je fysio",
         "slaapdagboek",
         "7 dagen oefenen"
       ],
-      "whyTitle": "Soms helpt later naar bed gaan tijdelijk beter",
-      "whyBody": "Je gaat je tijd in bed beter laten passen bij hoeveel je nu echt slaapt. Daarna maak je die tijd stap voor stap weer langer.",
+      "whyTitle": "Soms helpt tijdelijk later naar bed gaan",
+      "whyBody": "Je laat je tijd in bed beter passen bij hoeveel je nu echt slaapt. Daarna maak je die tijd stap voor stap weer langer.",
       "keyPoints": [
         {
           "title": "Kijk eerst hoeveel je echt slaapt",
@@ -447,7 +447,7 @@
         },
         {
           "title": "Check na 7 dagen of het haalbaar is",
-          "body": "De eerste week is vooral oefenen. De echte evaluatie doe je na 2 tot 3 weken samen met je fysiotherapeut."
+          "body": "De eerste week is vooral oefenen. De echte evaluatie doe je na 2 tot 3 weken samen met je fysio."
         }
       ],
       "steps": [
@@ -459,7 +459,7 @@
         {
           "title": "Kies een vaste opsta-tijd",
           "hint": "Elke dag ongeveer hetzelfde",
-          "body": "<p>Kies een tijd die je ook in het weekend ongeveer kunt halen. Bijvoorbeeld: elke dag rond 07:00 opstaan. Vanaf die tijd reken je straks terug naar je bedtijd.</p>"
+          "body": "<p>Kies een tijd die je ook in het weekend ongeveer kunt halen. Bijvoorbeeld: elke dag rond 07:00 opstaan. Vanaf die tijd reken je terug naar je bedtijd.</p>"
         },
         {
           "title": "Bereken je bedtijd",
@@ -469,7 +469,7 @@
         {
           "title": "Doe geen dutjes",
           "hint": "Zo bouw je slaapdruk op",
-          "body": "<p>Blijf overdag wakker en houd je nieuwe bedtijd 7 dagen vol, tenzij je therapeut iets anders adviseert. Zo bouw je genoeg slaapdruk op voor de avond.</p>"
+          "body": "<p>Blijf overdag wakker en houd je nieuwe bedtijd 7 dagen vol, tenzij je fysio iets anders adviseert. Zo bouw je genoeg slaapdruk op voor de avond.</p>"
         },
         {
           "title": "Maak je bedtijd rustig weer ruimer",
@@ -481,8 +481,8 @@
         {
           "type": "animation",
           "label": "Animatie · 50 sec",
-          "title": "Slaapvenster: tijd in bed = tijd dat je slaapt",
-          "desc": "Toont hoe je tijd in bed afstemt op je werkelijke slaapuren en daarna stap voor stap uitbreidt.",
+          "title": "Tijd in bed beter passend maken",
+          "desc": "Laat zien hoe je tijd in bed past bij hoeveel je echt slaapt en daarna rustig uitbreidt.",
           "visual": "rhythm",
           "script": "Je tijd in bed wordt eerst korter, gelijk aan hoeveel je nu echt slaapt. Dat voelt streng, maar bouwt slaapdruk op. Daarna mag je rustig 15 minuten per keer uitbreiden."
         },
@@ -490,9 +490,9 @@
           "type": "video",
           "label": "Voorbeeld · 2 min",
           "title": "Waarom later naar bed veilig kan zijn",
-          "desc": "De therapeut legt rustig uit waarom dit tijdelijk kan helpen.",
+          "desc": "De fysio legt rustig uit waarom dit tijdelijk kan helpen.",
           "visual": "night",
-          "script": "Later naar bed gaan kan tijdelijk helpen. Je bouwt slaapdruk op. Doe dit samen met je fysiotherapeut, zodat het veilig en haalbaar blijft."
+          "script": "Later naar bed gaan kan tijdelijk helpen. Je bouwt slaapdruk op. Doe dit samen met je fysio, zodat het veilig en haalbaar blijft."
         },
         {
           "type": "animation",
@@ -500,7 +500,7 @@
           "title": "Slaapdruk opbouwen",
           "desc": "Je ziet hoe dutjes en lang wakker in bed liggen de slaapdruk lager maken.",
           "visual": "pressure",
-          "script": "Dutjes en lang wakker in bed liggen halen slaapdruk weg. Als slaapdruk oploopt, wordt inslapen vaak makkelijker."
+          "script": "Dutjes en lang wakker in bed liggen halen slaapdruk weg. Als slaapdruk oploopt, wordt slapen vaak makkelijker."
         }
       ],
       "actions": [
@@ -517,20 +517,20 @@
         "Voelt mijn bedtijd duidelijker?"
       ],
       "reflectionPrompt": "Wat vond je spannend aan je nieuwe bedtijd? Wat viel mee of tegen?",
-      "extraHelp": "Doe dit onderdeel samen met je fysiotherapeut. Neem contact op bij extreme vermoeidheid, duizeligheid, sterke angst of geen verbetering na 2-3 weken."
+      "extraHelp": "Doe dit onderdeel samen met je fysio. Neem contact op bij extreme vermoeidheid, duizeligheid, sterke angst of geen verbetering na 2-3 weken."
     },
     {
       "id": "moduleE",
-      "label": "Onderdeel E · Gedachten over slaap",
-      "title": "Gedachten omzetten naar <span class=\"grad-text\">veiligheid</span>",
+      "label": "Onderdeel E · Rustiger denken over slaap",
+      "title": "Gedachten omzetten naar meer <span class=\"grad-text\">rust</span>",
       "intro": "Gedachten als \"morgen wordt een ramp\" voelen logisch, maar geven vaak meer spanning. In dit onderdeel oefen je met gedachten die rustiger en realistischer zijn.",
       "tags": [
         "gedachten",
         "rust",
         "werkblad"
       ],
-      "whyTitle": "Gedachten sturen je zenuwen",
-      "whyBody": "Bange gedachten maken je lichaam alerter. Helpende gedachten kunnen je lichaam juist meer rust geven.",
+      "whyTitle": "Gedachten kunnen je lichaam wakkerder maken",
+      "whyBody": "Bange gedachten zetten je lichaam sneller aan. Helpende gedachten kunnen juist meer rust geven.",
       "keyPoints": [
         {
           "title": "Voorspelling of feit?",
@@ -543,17 +543,17 @@
       ],
       "steps": [
         {
-          "title": "Herken je automatische gedachte",
+          "title": "Herken je eerste gedachte",
           "hint": "Schrijf hem letterlijk op",
           "body": "<p>Bijvoorbeeld: als ik nu niet slaap, kan ik morgen niets.</p>"
         },
         {
-          "title": "Onderzoek de gedachte",
-          "hint": "100% zeker of voorspelling?",
+          "title": "Check de gedachte",
+          "hint": "Zeker waar of een voorspelling?",
           "body": "<p>Vraag: heb ik eerder minder geslapen en toch gefunctioneerd? Wordt mijn rug altijd erger?</p>"
         },
         {
-          "title": "Formuleer een helpende gedachte",
+          "title": "Maak een helpende gedachte",
           "hint": "Rustgevend en realistisch",
           "body": "<p>Bijvoorbeeld: mijn lichaam kan omgaan met een mindere nacht, of: dit is vervelend, maar tijdelijk.</p>"
         },
@@ -568,7 +568,7 @@
           "type": "video",
           "label": "Voorbeeld · 2 min",
           "title": "Gedachte uitwerken",
-          "desc": "Therapeut vult één voorbeeld hardop in van rampgedachte naar helpende zin.",
+          "desc": "De fysio werkt één voorbeeld uit: van enge gedachte naar helpende zin.",
           "visual": "thought",
           "script": "Een gedachte is niet altijd een feit. Schrijf hem op en maak er een rustigere zin van. Niet mooier dan het is, wel eerlijker en helpender."
         },
@@ -576,7 +576,7 @@
           "type": "animation",
           "label": "Animatie · 60 sec",
           "title": "Beschermingsmeter",
-          "desc": "Laat zien hoe dreigende gedachten de meter verhogen en veiligheid hem laat zakken.",
+          "desc": "Laat zien hoe bange gedachten je lichaam aanzetten en rustige gedachten helpen zakken.",
           "visual": "meter",
           "script": "Bange gedachten zetten je lichaam op scherp. Helpende gedachten geven meer rust. Daardoor kan slapen makkelijker worden."
         },
@@ -584,13 +584,13 @@
           "type": "animation",
           "label": "Oefening · 2 min",
           "title": "Voorspelling of feit?",
-          "desc": "Patiënt sleept slaapgedachten naar feit, voorspelling of helpende gedachte.",
+          "desc": "Je oefent met het verschil tussen feit, voorspelling en helpende gedachte.",
           "visual": "thought",
           "script": "Vraag jezelf af: is dit zeker waar, of is dit een voorspelling? Die vraag maakt ruimte voor een rustiger antwoord."
         }
       ],
       "actions": [
-        "Ik schrijf mijn automatische slaapgedachte op",
+        "Ik schrijf mijn eerste slaapgedachte op",
         "Ik onderzoek of het een feit of voorspelling is",
         "Ik maak één helpende gedachte",
         "Ik oefen die gedachte overdag",
@@ -603,27 +603,27 @@
         "Daalt mijn spanning hierdoor?"
       ],
       "reflectionPrompt": "Welke gedachte kwam het vaakst terug, en welke helpende zin geloofde je het meest?",
-      "extraHelp": "Schakel extra hulp in als gedachten extreem angstig blijven, paniek of somberheid toeneemt of je vastloopt in negatieve gedachten."
+      "extraHelp": "Schakel extra hulp in als gedachten erg angstig blijven, paniek of somberheid toeneemt of je vastloopt in negatieve gedachten."
     },
     {
       "id": "moduleF",
-      "label": "Onderdeel F · Terugval voorkomen",
-      "title": "Slechte nachten opvangen zonder <span class=\"grad-text\">terugval</span>",
+      "label": "Onderdeel F · Slechte nachten opvangen",
+      "title": "Slechte nachten opvangen zonder oude patronen <span class=\"grad-text\">terug</span>",
       "intro": "Iedereen slaapt soms slecht. Het verschil is dat je nu weet hoe je bijstuurt voordat oude patronen weer de leiding nemen.",
       "tags": [
         "vasthouden",
-        "waarschuwingssignalen",
+        "vroege signalen",
         "plan"
       ],
       "whyTitle": "Een slechte nacht is geen mislukking",
-      "whyBody": "Terugval begint meestal niet met één slechte nacht, maar met langdurig teruggaan naar blijven liggen, uitslapen, dutjes en paniekgedachten.",
+      "whyBody": "Eén slechte nacht is niet erg. Het wordt lastiger als je daarna lang blijft liggen, gaat uitslapen, dutjes doet of veel gaat piekeren.",
       "keyPoints": [
         {
-          "title": "Waarschuwingssignalen",
+          "title": "Vroege signalen",
           "body": "Rekenen, blijven liggen, uitslapen en meer spanning zijn signalen om terug naar de basis te gaan."
         },
         {
-          "title": "Basisprotocol",
+          "title": "Basisstappen",
           "body": "Vaste opsta-tijd, geen dutjes, opstaan bij wakker liggen en helpende gedachten."
         }
       ],
@@ -634,9 +634,9 @@
           "body": "<p>Noteer jouw top 3: langer wakker liggen, rekenen, spanning, dutjes of vermijden.</p>"
         },
         {
-          "title": "Kies je terug-naar-basis week",
-          "hint": "7 dagen consequent",
-          "body": "<p>Pak de basistechnieken één week strak op zonder alles tegelijk te willen fixen.</p>"
+          "title": "Kies je basisweek",
+          "hint": "7 dagen dezelfde stappen",
+          "body": "<p>Pak de basisstappen één week rustig op. Je hoeft niet alles tegelijk te willen oplossen.</p>"
         },
         {
           "title": "Maak je veiligheidstekst",
@@ -644,7 +644,7 @@
           "body": "<p>Bijvoorbeeld: één slechte nacht beschadigt mijn rug niet. Ik weet wat ik moet doen.</p>"
         },
         {
-          "title": "Bespreek tijdig met je fysiotherapeut",
+          "title": "Bespreek het op tijd met je fysio",
           "hint": "Niet wachten tot het groot is",
           "body": "<p>Plan contact als slechte slaap langer dan drie weken aanhoudt of angst sterk toeneemt.</p>"
         }
@@ -653,7 +653,7 @@
         {
           "type": "animation",
           "label": "Animatie · 60 sec",
-          "title": "Terugvalcurve",
+          "title": "Herstel gaat met ups en downs",
           "desc": "Laat zien dat herstel met ups en downs verloopt en bijsturen normaal is.",
           "visual": "curve",
           "script": "Herstel gaat niet in een rechte lijn. Een slechte nacht is geen mislukking. Je kunt terug naar de basis en opnieuw bijsturen."
@@ -661,8 +661,8 @@
         {
           "type": "video",
           "label": "Voorbeeld · 90 sec",
-          "title": "Mijn noodplan",
-          "desc": "Therapeut laat zien hoe je een persoonlijk terugvalplan invult.",
+          "title": "Mijn plan voor een slechte week",
+          "desc": "De fysio laat zien hoe je een eenvoudig plan invult.",
           "visual": "plan",
           "script": "Een goed plan is simpel. Sta op vaste tijd op, doe geen dutjes, stap uit bed bij lang wakker liggen en gebruik je rustzin."
         },
@@ -670,7 +670,7 @@
           "type": "animation",
           "label": "Oefening · 2 min",
           "title": "Signaal naar actie",
-          "desc": "Patiënt koppelt waarschuwingssignalen aan concrete acties.",
+          "desc": "Je koppelt vroege signalen aan concrete acties.",
           "visual": "plan",
           "script": "Koppel elk waarschuwingssignaal aan één actie. Zo hoef je in een slechte week niet opnieuw na te denken."
         }
@@ -683,7 +683,7 @@
         "Ik gebruik mijn veiligheidstekst"
       ],
       "evaluation": [
-        "Herken ik terugvalsignalen sneller?",
+        "Herken ik mijn vroege signalen sneller?",
         "Kom ik sneller terug bij de basis?",
         "Voelt een slechte nacht minder bedreigend?",
         "Weet ik wanneer ik hulp vraag?"

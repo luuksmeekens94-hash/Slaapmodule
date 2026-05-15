@@ -1536,7 +1536,7 @@ input[type=range].fysio-range::-moz-range-thumb {
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <div class="sidebar-title" x-text="pathReady ? 'Jouw persoonlijke pad' : 'Stap 1 — slaapcheck'"></div>
+      <div class="sidebar-title" x-text="pathReady ? 'Jouw stappen' : 'Eerst de slaapcheck'"></div>
       <template x-for="(ch, vi) in visibleChapters" :key="ch.id">
         <button class="side-item" :class="ch.id === currentChapterId ? 'active' : ''" @click="goToId(ch.id)">
           <svg width="18" height="18"><use :href="`#${ch.icon}`"/></svg>
@@ -1549,9 +1549,9 @@ input[type=range].fysio-range::-moz-range-thumb {
       <div x-show="pathReady && (chapters.length - visibleChapters.length) > 0" class="sidebar-locked">
         <div class="sidebar-locked-title">
           <svg width="14" height="14"><use href="#i-shield"/></svg>
-          Niet voor jou nodig nu
+          Nu niet nodig
         </div>
-        <p>De andere onderdelen heb je niet aangevinkt in je slaapcheck. Je therapeut kan deze later voor je openen.</p>
+        <p>Deze onderdelen passen nu niet bij je antwoorden. Je fysio kan ze later alsnog met je bekijken.</p>
       </div>
     </aside>
 
@@ -1572,8 +1572,8 @@ input[type=range].fysio-range::-moz-range-thumb {
         <div class="hero section-block">
           <div class="hero-chip"><span class="live-dot"></span> Slaapstappen die bij jou passen</div>
           <h1 class="h-hero">Slaap is <em>trainbaar.</em><br/>Je lichaam kan tot rust komen.</h1>
-          <p>Slecht slapen kan door je lichaam worden opgevat als een gevarensignaal. Daardoor kan lage rugpijn sterker aanvoelen.
-            In deze module leer je hoe slaap en rugpijn elkaar beinvloeden en krijg je praktische tips om je slaap te verbeteren.</p>
+          <p>Slecht slapen kan voor je lichaam voelen als een waarschuwing. Daardoor kan lage rugpijn sterker voelen.
+            Je krijgt korte uitleg en kleine stappen om je slaap te verbeteren.</p>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
             <button class="btn btn-white btn-lg" @click="goTo(1)">
               Doe de slaapcheck <svg width="16" height="16"><use href="#i-arrow-right"/></svg>
@@ -1638,8 +1638,8 @@ input[type=range].fysio-range::-moz-range-thumb {
         <header class="chapter-head">
           <div class="eyebrow">Hoofdstuk 1</div>
           <h1 class="h-hero">Hoe slecht slapen bijdraagt aan <span class="grad-text">lage rugpijn</span></h1>
-          <p class="lead">Slecht slapen kan voor je brein voelen als een gevarensignaal. De beschermingsmeter gaat dan omhoog.
-            Daardoor kan je zenuwstelsel gevoeliger worden en kan rugpijn sterker aanvoelen.</p>
+          <p class="lead">Slecht slapen kan voor je brein voelen als een waarschuwing. Je brein zet de bescherming dan harder aan.
+            Daardoor kan rugpijn sterker voelen.</p>
         </header>
 
         <!-- Pathway SVG animation (replaces 'video') -->
@@ -1690,8 +1690,8 @@ input[type=range].fysio-range::-moz-range-thumb {
               <text x="230" y="50" text-anchor="middle" font-size="10.5" fill="#9B3333" font-family="DM Sans" font-weight="600" letter-spacing="1.2">WAARSCHUWING</text>
             </svg>
             <p class="step-hint" style="text-align:center; margin-top:20px;">
-              Slecht slapen kan voor je brein voelen als een gevarensignaal. De beschermingsmeter gaat omhoog.
-              Je zenuwstelsel wordt gevoeliger en je brein kan meer pijnversterkende stoffen aanmaken. Daardoor kan rugpijn sterker aanvoelen.
+              Slecht slapen kan voor je brein voelen als een waarschuwing. Je brein zet de bescherming harder aan.
+              Je lichaam kan dan stoffen maken die pijn harder zetten. Daardoor kan rugpijn sterker voelen.
             </p>
           </div>
         </div>
@@ -1701,18 +1701,18 @@ input[type=range].fysio-range::-moz-range-thumb {
           <div class="compare-grid">
             <div class="compare-card neg">
               <span class="chip chip--amber" style="background:#FEE2E2; color:#9B3333; border-color:#F4B8B8;">Waarschuwingssignaal</span>
-              <h3 class="h-card" style="margin-top:12px;">Je beschermingsmeter omhoog</h3>
+              <h3 class="h-card" style="margin-top:12px;">Je brein beschermt harder</h3>
               <p style="color:#7A2828; font-size:13.5px; line-height:1.65; margin-top:6px;">
-                Je lichaam staat meer op scherp. <b>Je rug is niet kapot</b>, maar je brein kan wel meer
-                pijnversterkende stoffen aanmaken. Daardoor kan jouw rugpijn sterker aanvoelen.
+                Je lichaam staat meer op scherp. <b>Je rug is niet kapot</b>, maar je brein kan pijn wel harder zetten.
+                Daardoor kan jouw rugpijn sterker voelen.
               </p>
             </div>
             <div class="compare-card pos">
               <span class="chip chip--teal">Veilig signaal</span>
               <h3 class="h-card" style="margin-top:12px;">Beter slapen keert het om</h3>
               <p style="color:#155C39; font-size:13.5px; line-height:1.65; margin-top:6px;">
-                Je lichaam komt meer tot rust. Je brein kan nu meer pijndempende stoffen aanmaken.
-                Daardoor kan jouw rugpijn afnemen. <b>Hier gaan we aan werken.</b>
+                Je lichaam komt meer tot rust. Je brein kan pijn dan beter remmen.
+                Daardoor kan jouw rugpijn afnemen. <b>Hier werken we stap voor stap aan.</b>
               </p>
             </div>
           </div>
@@ -1731,9 +1731,9 @@ input[type=range].fysio-range::-moz-range-thumb {
                   <use href="#i-refresh-cycle" x="-14" y="-14" width="28" height="28" color="#9B3333"/>
                 </g>
               </svg>
-              <div class="cycle-node" style="top:2%; left:50%;">Slecht slapen = meer gevarensignalen</div>
-              <div class="cycle-node" style="top:50%; left:98%;">Beschermingsmeter van het brein omhoog</div>
-              <div class="cycle-node" style="top:98%; left:50%;">Meer pijnversterkende stoffen</div>
+              <div class="cycle-node" style="top:2%; left:50%;">Slecht slapen = meer waarschuwing</div>
+              <div class="cycle-node" style="top:50%; left:98%;">Je brein beschermt harder</div>
+              <div class="cycle-node" style="top:98%; left:50%;">Pijn wordt sneller harder gezet</div>
               <div class="cycle-node" style="top:50%; left:2%;">Meer pijn en spanning in de rug</div>
             </div>
           </div>
@@ -1751,7 +1751,7 @@ input[type=range].fysio-range::-moz-range-thumb {
               Is er verschil op dagen na een betere nacht?
             </p>
             <textarea x-model="reflections.h1" placeholder="Schrijf hier wat je merkt... (wordt alleen op dit apparaat opgeslagen)" rows="3"></textarea>
-            <p class="reflection-hint">Bespreek dit ook met je fysiotherapeut — inzicht is de eerste stap.</p>
+            <p class="reflection-hint">Bespreek dit met je fysio. Wat jij merkt is belangrijk.</p>
           </div>
         </div>
       </section>
@@ -1800,7 +1800,7 @@ input[type=range].fysio-range::-moz-range-thumb {
         <!-- Personal path summary -->
         <div class="path-summary" x-show="pathReady" x-transition>
           <div class="path-summary-head">
-            <div class="hero-chip" style="margin-bottom:0;"><span class="live-dot"></span> Persoonlijk pad samengesteld</div>
+            <div class="hero-chip" style="margin-bottom:0;"><span class="live-dot"></span> Jouw stappen staan klaar</div>
             <div class="path-summary-meta">
               <span>≈ <b x-text="Math.max(personalModules.length * 7, 7)"></b> dagen oefenen</span>
               <span>·</span>
@@ -1808,11 +1808,11 @@ input[type=range].fysio-range::-moz-range-thumb {
             </div>
           </div>
           <h2 class="h-section" style="color:#fff; margin:18px 0 8px;">
-            <span x-show="recommendedModuleIds.length > 0">Op basis van je antwoorden zijn dit jouw stappen.</span>
-            <span x-show="recommendedModuleIds.length === 0">Je antwoorden geven nu geen duidelijke slaapklacht. We laten je vooral de uitleg zien.</span>
+            <span x-show="recommendedModuleIds.length > 0">Dit past nu het best bij jouw antwoorden.</span>
+            <span x-show="recommendedModuleIds.length === 0">Je antwoorden laten nu geen duidelijke slaapklacht zien. Je krijgt vooral de uitleg.</span>
           </h2>
           <p style="color: rgba(255,255,255,.85); margin-bottom: 28px; max-width: 640px;">
-            Alleen wat voor jou nu echt relevant is — geen overload. Je therapeut kan later andere onderdelen erbij zetten.
+            Je krijgt alleen wat nu bij jou past. Zo blijft het overzichtelijk. Je fysio kan later extra stappen met je bekijken.
           </p>
 
           <ol class="path-steps">
@@ -1839,7 +1839,7 @@ input[type=range].fysio-range::-moz-range-thumb {
         </div>
 
         <div x-show="!pathReady" style="text-align:center; color:var(--ink-faint); font-size:13px; margin-top:24px;">
-          Beantwoord de meeste vragen voor je persoonlijke pad ·
+          Beantwoord de meeste vragen voor jouw stappen ·
           <span x-text="quizAnswered"></span> / <span x-text="quizTotal"></span> beantwoord
         </div>
       </section>
@@ -1849,8 +1849,8 @@ input[type=range].fysio-range::-moz-range-thumb {
         <header class="chapter-head">
           <div class="eyebrow">Hoofdstuk 2 · Uitleg over slaap</div>
           <h1 class="h-hero">Slaap gaat op en neer — <span class="grad-text">dat is normaal</span></h1>
-          <p class="lead">Je kunt alleen trainen wat je begrijpt. Als je weet hoe slaap werkt, word je minder
-            overgeleverd aan een slechte nacht — en meer aan het roer.</p>
+          <p class="lead">Als je weet hoe slaap werkt, voelt een slechte nacht minder eng.
+            Je weet dan beter welke kleine stap je kunt nemen.</p>
         </header>
 
         <!-- Sleep stages -->
@@ -2222,13 +2222,13 @@ input[type=range].fysio-range::-moz-range-thumb {
                 </div>
               </div>
             </template>
-            <p class="reflection-hint" style="margin-top:8px;">Gebruik de eerste week vooral om te oefenen. Evalueer samen met je fysiotherapeut na 2-3 weken.</p>
+            <p class="reflection-hint" style="margin-top:8px;">Gebruik de eerste week vooral om te oefenen. Kijk samen met je fysio na 2-3 weken hoe het gaat.</p>
           </div>
         </div>
 
         <div class="section-block">
           <div class="journal-box">
-            <div class="eyebrow">Reflectie voor je therapeut</div>
+            <div class="eyebrow">Notitie voor je afspraak</div>
             <textarea :placeholder="currentTherapyModule.reflectionPrompt" :value="getModuleNote()" @input="setModuleNote($event.target.value)"></textarea>
           </div>
         </div>
@@ -2251,7 +2251,7 @@ input[type=range].fysio-range::-moz-range-thumb {
             <svg width="14" height="14"><use href="#i-shield"/></svg> Meer rust en veiligheid
           </div>
           <h1 class="h-hero">Slaap is geen knop die stuk is.<br/>Je kunt slaap <em>stap voor stap</em> trainen.</h1>
-          <p>Je hoeft niet perfect te slapen. Elke kleine stap helpt je lichaam rustiger worden.
+          <p>Je hoeft niet perfect te slapen. Elke kleine stap helpt je lichaam rustiger te worden.
             Daardoor kan pijn minder hard binnenkomen.</p>
           <div class="finale-ctas">
             <button class="btn btn-white btn-lg" @click="goTo(0)">
@@ -2289,8 +2289,8 @@ input[type=range].fysio-range::-moz-range-thumb {
         </div>
 
         <p class="disclaimer">
-          Deze uitleg vervangt geen medische zorg. Overleg altijd met je fysiotherapeut of huisarts
-          als klachten aanhouden of verergeren.
+          Deze uitleg vervangt geen zorg. Overleg altijd met je fysio of huisarts
+          als klachten blijven of erger worden.
         </p>
       </section>
 
@@ -3132,7 +3132,7 @@ function slaapModule() {
           duration: 42,
           scenes: [
             { caption: 'Je bent moe, maar je hoofd blijft aan.', voice: 'Eerst zie je de normale situatie: moe zijn is niet hetzelfde als slaperig zijn.' },
-            { caption: 'Moeten slapen zet het systeem hoger.', voice: 'Als je slaap probeert af te dwingen, gaat je waakstand juist omhoog.' },
+            { caption: 'Moeten slapen maakt je wakkerder.', voice: 'Als je slaap probeert af te dwingen, wordt je lichaam vaak juist wakkerder.' },
             { caption: 'Wachten op slaperigheid haalt druk weg.', voice: 'De helpende stap is: uit de strijd, rustig wachten op echte slaperigheid.' },
           ],
         },
@@ -3205,7 +3205,7 @@ function slaapModule() {
           scenes: [
             { caption: 'Dreiging zet je lichaam hoger.', voice: 'Bange gedachten kunnen je beschermingssysteem activeren.' },
             { caption: 'Veiligheidstaal laat het zakken.', voice: 'Een geloofwaardige rustige zin geeft je lichaam een ander signaal.' },
-            { caption: 'Minder dreiging geeft meer slaapkans.', voice: 'Je hoeft slaap niet te overtuigen. Je verlaagt vooral alertheid.' },
+            { caption: 'Minder spanning geeft meer slaapkans.', voice: 'Je hoeft slaap niet te overtuigen. Je helpt je lichaam rustiger worden.' },
           ],
         },
         curve: {
