@@ -748,6 +748,35 @@ input[type=range].fysio-range::-moz-range-thumb {
   gap: 28px; align-items: stretch; padding: 24px; border-color: #B9CBE8;
   box-shadow: 0 20px 54px rgba(14,28,56,.12);
 }
+.media-card.featured.video-featured {
+  display: block;
+}
+.media-card.featured.video-featured .media-visual {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 22px;
+}
+.media-card.featured.video-featured .asset-scene {
+  inset: 18px;
+}
+.media-card.featured.video-featured .media-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr);
+  gap: 18px 22px;
+  align-items: start;
+}
+.media-card.featured.video-featured .media-meta,
+.media-card.featured.video-featured .media-title,
+.media-card.featured.video-featured .media-desc,
+.media-card.featured.video-featured .media-controls {
+  grid-column: 1;
+}
+.media-card.featured.video-featured .media-voice,
+.media-card.featured.video-featured .media-choices,
+.media-card.featured.video-featured .media-script {
+  grid-column: 2;
+}
 .media-card.preview {
   padding: 0; overflow: hidden;
 }
@@ -1417,7 +1446,16 @@ input[type=range].fysio-range::-moz-range-thumb {
   .finale { padding: 56px 32px; }
   .card-grid-2, .card-grid-3, .stats-row, .goals-grid, .compare-grid, .media-grid, .protocol-grid { grid-template-columns: 1fr; }
   .media-card.featured { grid-template-columns: 1fr; }
+  .media-card.featured.video-featured .media-content { grid-template-columns: 1fr; }
+  .media-card.featured.video-featured .media-meta,
+  .media-card.featured.video-featured .media-title,
+  .media-card.featured.video-featured .media-desc,
+  .media-card.featured.video-featured .media-controls,
+  .media-card.featured.video-featured .media-voice,
+  .media-card.featured.video-featured .media-choices,
+  .media-card.featured.video-featured .media-script { grid-column: 1; }
   .media-card.featured .media-visual { height: 300px; }
+  .media-card.featured.video-featured .media-visual { height: auto; }
   .quiz-opts { grid-template-columns: repeat(4, 1fr); }
   .step-body { padding-left: 24px; }
 }
@@ -1433,6 +1471,8 @@ input[type=range].fysio-range::-moz-range-thumb {
   .chapter-head h1 { font-size: 32px; }
   .media-card.featured { padding: 16px; }
   .media-card.featured .media-visual { height: 260px; }
+  .media-card.featured.video-featured .media-visual { height: auto; }
+  .media-card.featured.video-featured .asset-scene { inset: 10px; }
   .media-card.featured .visual-force .media-bed {
     width: 168px; height: 64px; bottom: 84px;
   }
@@ -2130,7 +2170,7 @@ input[type=range].fysio-range::-moz-range-thumb {
         <div class="section-block">
           <div class="media-grid">
             <template x-for="(media, i) in currentTherapyModule.media" :key="media.title">
-              <div class="media-card" :class="[isFeaturedMedia(i) ? 'featured' : 'preview', isMediaPlaying(media, i) ? 'playing' : 'paused']">
+              <div class="media-card" :class="[isFeaturedMedia(i) ? 'featured' : 'preview', isMediaPlaying(media, i) ? 'playing' : 'paused', hasVideo(media.visual) ? 'video-featured' : '']">
                 <!-- ─ Preview (compact, clickable) ─ -->
                 <button type="button" class="media-preview-shell" x-show="!isFeaturedMedia(i)" @click="setFeaturedMedia(i, media)">
                   <div class="media-preview-visual">
