@@ -53,13 +53,13 @@
     {
       "id": "moduleE",
       "icon": "i-brain",
-      "title": "Gedachten",
-      "kicker": "Slaap & veiligheid"
+      "title": "Onderdeel E",
+      "kicker": "Gedachten & rust"
     },
     {
       "id": "moduleF",
       "icon": "i-shield",
-      "title": "Terugvalplan",
+      "title": "Onderdeel F",
       "kicker": "Vasthouden"
     },
     {
@@ -159,6 +159,24 @@
       "recommendsTitle": "Onderdeel D — Je slaapritme herstellen",
       "recommendsBody": "Je tijd in bed beter laten passen bij hoeveel je nu echt slaapt.",
       "recommendModuleId": "moduleD"
+    },
+    {
+      "id": "gedachten",
+      "icon": "i-brain",
+      "title": "Gedachten over slaap",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Ik maak me zorgen dat slapen niet gaat lukken."
+        },
+        {
+          "id": "q2",
+          "text": "Ik denk snel: morgen wordt niets als ik nu niet slaap."
+        }
+      ],
+      "recommendsTitle": "Onderdeel E — Rustiger denken over slaap",
+      "recommendsBody": "Je oefent met bange slaapgedachten omzetten naar helpende zinnen.",
+      "recommendModuleId": "moduleE"
     }
   ],
   "therapyModules": [

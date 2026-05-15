@@ -1684,8 +1684,8 @@ input[type=range].fysio-range::-moz-range-thumb {
         <span class="nav-logo-text">FysionAIr</span>
       </a>
       <div class="nav-progress">
-        <span x-show="pathReady"><span x-text="Math.max(visibleIdxOfCurrent+1, 1)"></span> / <span x-text="visibleChapters.length"></span></span>
-        <span x-show="!pathReady" style="font-weight:600; color:var(--blue);">Stap 1: doe de slaapcheck</span>
+        <span x-show="previewAll || pathReady"><span x-text="Math.max(visibleIdxOfCurrent+1, 1)"></span> / <span x-text="visibleChapters.length"></span></span>
+        <span x-show="!previewAll && !pathReady" style="font-weight:600; color:var(--blue);">Stap 1: doe de slaapcheck</span>
         <div class="nav-progress-bar">
           <div class="nav-progress-fill" :style="`width: ${visibleProgress}%`"></div>
         </div>
@@ -1703,7 +1703,7 @@ input[type=range].fysio-range::-moz-range-thumb {
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <div class="sidebar-title" x-text="pathReady ? 'Jouw stappen' : 'Eerst de slaapcheck'"></div>
+      <div class="sidebar-title" x-text="previewAll ? 'Alle onderdelen' : (pathReady ? 'Jouw stappen' : 'Eerst de slaapcheck')"></div>
       <template x-for="(ch, vi) in visibleChapters" :key="ch.id">
         <button class="side-item" :class="ch.id === currentChapterId ? 'active' : ''" @click="goToId(ch.id)">
           <svg width="18" height="18"><use :href="`#${ch.icon}`"/></svg>
@@ -2523,6 +2523,7 @@ function slaapModule() {
     moduleFeaturedIdx: {},
     audioElement: null,
     mediaViewer: null,
+    previewAll: new URLSearchParams(window.location.search).get('preview') === 'all',
 
     get quizTotal() {
       return this.quizGroups.reduce((s, g) => s + g.questions.length, 0);
@@ -2552,6 +2553,7 @@ function slaapModule() {
       return this.quizAnswered >= minNeeded;
     },
     get visibleChapters() {
+      if (this.previewAll) return this.chapters;
       const pre = this.chapters.filter(ch => ['intro','check'].includes(ch.id));
       if (!this.pathReady) return pre;
       const recIds = this.recommendedModuleIds;
