@@ -251,7 +251,7 @@
         },
         {
           "type": "animation",
-          "label": "Oefening · 4 min",
+          "label": "Oefening · 42 sec",
           "title": "Adem 4-6",
           "desc": "Rustige begeleide ademhaling voor vóór bedtijd.",
           "visual": "breathe",
@@ -337,7 +337,7 @@
         },
         {
           "type": "animation",
-          "label": "Oefening · 3 min",
+          "label": "Oefening · 42 sec",
           "title": "Rustzin in de nacht",
           "desc": "Korte oefening met rustige zinnen zonder slaap te forceren.",
           "visual": "breathe",
@@ -505,10 +505,10 @@
           "script": "Je tijd in bed wordt eerst korter, gelijk aan hoeveel je nu echt slaapt. Dat voelt streng, maar bouwt slaapdruk op. Daarna mag je rustig 15 minuten per keer uitbreiden."
         },
         {
-          "type": "video",
-          "label": "Voorbeeld · 2 min",
+          "type": "animation",
+          "label": "Animatie · 30 sec",
           "title": "Waarom later naar bed veilig kan zijn",
-          "desc": "De fysio legt rustig uit waarom dit tijdelijk kan helpen.",
+          "desc": "Je ziet waarom tijdelijk later naar bed gaan soms kan helpen.",
           "visual": "night",
           "script": "Later naar bed gaan kan tijdelijk helpen. Je bouwt slaapdruk op. Doe dit samen met je fysio, zodat het veilig en haalbaar blijft."
         },
@@ -670,23 +670,23 @@
       "media": [
         {
           "type": "animation",
-          "label": "Animatie · 60 sec",
+          "label": "Animatie · 25 sec",
           "title": "Herstel gaat met ups en downs",
           "desc": "Laat zien dat herstel met ups en downs verloopt en bijsturen normaal is.",
           "visual": "curve",
           "script": "Herstel gaat niet in een rechte lijn. Een slechte nacht is geen mislukking. Je kunt terug naar de basis en opnieuw bijsturen."
         },
         {
-          "type": "video",
-          "label": "Voorbeeld · 90 sec",
+          "type": "animation",
+          "label": "Animatie · 28 sec",
           "title": "Mijn plan voor een slechte week",
-          "desc": "De fysio laat zien hoe je een eenvoudig plan invult.",
+          "desc": "Je ziet hoe je een eenvoudig plan maakt voor moeilijke momenten.",
           "visual": "plan",
           "script": "Een goed plan is simpel. Sta op vaste tijd op, doe geen dutjes, stap uit bed bij lang wakker liggen en gebruik je rustzin."
         },
         {
           "type": "animation",
-          "label": "Oefening · 2 min",
+          "label": "Animatie · 28 sec",
           "title": "Signaal naar actie",
           "desc": "Je koppelt vroege signalen aan concrete acties.",
           "visual": "plan",

@@ -2710,13 +2710,13 @@ function slaapModule() {
       return `${this.currentTherapyModule.id}:${i}:${media.visual || media.title}`;
     },
     hasVideo(visual) {
-      return ['force','worry','thought','meter','cycles','nightwake','pressure','breathe','night','clock','sun','rhythm'].includes(visual);
+      return ['force','worry','thought','meter','cycles','nightwake','pressure','breathe','night','clock','sun','rhythm','curve','plan'].includes(visual);
     },
     videoUrl(visual) {
       return `video/${visual}.mp4`;
     },
     videoPosterUrl(visual) {
-      return ['force','worry','thought','meter','cycles','nightwake','pressure','clock','sun','rhythm'].includes(visual) ? `video/${visual}.png` : '';
+      return ['force','worry','thought','meter','cycles','nightwake','pressure','clock','sun','rhythm','breathe','night','curve','plan'].includes(visual) ? `video/${visual}.png` : '';
     },
     openMediaViewer(media, i) {
       if (!this.hasVideo(media.visual)) return;
@@ -3392,7 +3392,7 @@ function slaapModule() {
           ],
         },
         breathe: {
-          duration: 60,
+          duration: 42,
           scenes: [
             { caption: 'Adem rustig in.', voice: 'Adem rustig in zonder te forceren. Je hoeft niets perfect te doen.' },
             { caption: 'Adem langer uit.', voice: 'De langere uitademing geeft je lichaam een veilig signaal.' },
@@ -3416,11 +3416,11 @@ function slaapModule() {
           ],
         },
         night: {
-          duration: 42,
+          duration: 30,
           scenes: [
-            { caption: 'Wakker worden is niet meteen misgaan.', voice: 'De eerste stap is herkennen: wakker zijn in de nacht is niet gevaarlijk.' },
-            { caption: 'Blijf niet vechten in bed.', voice: 'Word je alert, stap rustig uit bed en houd licht en activiteit klein.' },
-            { caption: 'Ga terug als slaperigheid terugkomt.', voice: 'Zo blijft bed gekoppeld aan slapen in plaats van aan strijd.' },
+            { caption: 'Te vroeg naar bed geeft vaak strijd.', voice: 'Als je te vroeg naar bed gaat, lig je soms lang wakker.' },
+            { caption: 'Tijdelijk later kan helpen.', voice: 'Minder tijd wakker in bed helpt je lichaam bed weer aan slapen koppelen.' },
+            { caption: 'Doe dit samen met je fysio.', voice: 'Je bouwt slaapdruk op en maakt het daarna rustig weer ruimer.' },
           ],
         },
         clock: {
@@ -3472,7 +3472,7 @@ function slaapModule() {
           ],
         },
         curve: {
-          duration: 36,
+          duration: 25,
           scenes: [
             { caption: 'Herstel loopt niet recht.', voice: 'Een mindere nacht betekent niet dat je terug bij af bent.' },
             { caption: 'Vroeg bijsturen voorkomt groter worden.', voice: 'Herken je signaal en ga terug naar je basisstappen.' },
@@ -3480,7 +3480,7 @@ function slaapModule() {
           ],
         },
         plan: {
-          duration: 36,
+          duration: 28,
           scenes: [
             { caption: 'Koppel signaal aan actie.', voice: 'Een goed plan begint met herkennen wat er als eerste misgaat.' },
             { caption: 'Houd acties klein.', voice: 'Vaste opsta-tijd, geen dutje, uit bed bij wakker liggen.' },
