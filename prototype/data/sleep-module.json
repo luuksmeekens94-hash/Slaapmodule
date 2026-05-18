@@ -407,15 +407,15 @@
       "media": [
         {
           "type": "animation",
-          "label": "Animatie · 45 sec",
+          "label": "Animatie · 22 sec",
           "title": "De slaapklok als anker",
           "desc": "Laat zien hoe vaste opsta-tijd en licht je slaapklok rustiger maken.",
           "visual": "clock",
           "script": "Je slaapklok houdt van duidelijkheid. Sta zo veel mogelijk rond dezelfde tijd op. Dat helpt je lichaam de volgende avond weer slaperig worden."
         },
         {
-          "type": "video",
-          "label": "Voorbeeld · 2 min",
+          "type": "animation",
+          "label": "Animatie · 25 sec",
           "title": "Een rustige vroege ochtend",
           "desc": "Voorbeeldroutine zonder paniek of inhalen.",
           "visual": "sun",
@@ -423,7 +423,7 @@
         },
         {
           "type": "animation",
-          "label": "Oefening · 1 min",
+          "label": "Animatie · 25 sec",
           "title": "Licht helpt je ritme",
           "desc": "Je ziet hoe ochtendlicht en avondlicht invloed hebben op slaperigheid.",
           "visual": "sun",
@@ -498,7 +498,7 @@
       "media": [
         {
           "type": "animation",
-          "label": "Animatie · 50 sec",
+          "label": "Animatie · 28 sec",
           "title": "Tijd in bed beter passend maken",
           "desc": "Laat zien hoe je tijd in bed past bij hoeveel je echt slaapt en daarna rustig uitbreidt.",
           "visual": "rhythm",

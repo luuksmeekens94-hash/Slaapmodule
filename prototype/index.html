@@ -2716,7 +2716,7 @@ function slaapModule() {
       return `video/${visual}.mp4`;
     },
     videoPosterUrl(visual) {
-      return ['force','worry','thought','meter','cycles','nightwake','pressure'].includes(visual) ? `video/${visual}.png` : '';
+      return ['force','worry','thought','meter','cycles','nightwake','pressure','clock','sun','rhythm'].includes(visual) ? `video/${visual}.png` : '';
     },
     openMediaViewer(media, i) {
       if (!this.hasVideo(media.visual)) return;
@@ -3424,7 +3424,7 @@ function slaapModule() {
           ],
         },
         clock: {
-          duration: 40,
+          duration: 22,
           scenes: [
             { caption: 'Je klok zoekt een anker.', voice: 'Je lichaam leert van herhaling. Een vaste opsta-tijd geeft duidelijkheid.' },
             { caption: 'Licht helpt je dag starten.', voice: 'Ochtendlicht zegt tegen je lichaam: de dag is begonnen.' },
@@ -3432,7 +3432,7 @@ function slaapModule() {
           ],
         },
         sun: {
-          duration: 36,
+          duration: 25,
           scenes: [
             { caption: 'Begin klein en rustig.', voice: 'Een vroege ochtend hoeft geen paniek te geven.' },
             { caption: 'Zoek licht zodra dat kan.', voice: 'Daglicht helpt je biologische klok sterker dan binnenlicht.' },
@@ -3445,6 +3445,14 @@ function slaapModule() {
             { caption: 'Slaapdruk bouwt op door wakker zijn.', voice: 'Hoe langer je wakker bent, hoe meer slaapdruk je opbouwt.' },
             { caption: 'Dutjes halen druk weg.', voice: 'Een dutje kan logisch voelen, maar maakt inslapen vaak lastiger.' },
             { caption: 'Een duidelijke dag helpt de nacht.', voice: 'Geen dutjes en een vaste opsta-tijd helpen slaapdruk opbouwen.' },
+          ],
+        },
+        rhythm: {
+          duration: 28,
+          scenes: [
+            { caption: 'Veel tijd in bed, minder slaap.', voice: 'Als je lang wakker in bed ligt, leert je lichaam dat bed ook wakker liggen betekent.' },
+            { caption: 'Maak je tijd in bed passend.', voice: 'Soms helpt het om je tijd in bed tijdelijk beter te laten passen bij je echte slaap.' },
+            { caption: 'Daarna breid je rustig uit.', voice: 'Met kleine stapjes wordt je bedtijd later weer ruimer.' },
           ],
         },
         thought: {
