@@ -1524,7 +1524,11 @@ input[type=range].fysio-range::-moz-range-thumb {
   .media-lightbox-fullscreen { min-height: 36px; padding-inline: 10px; }
   .media-lightbox-fullscreen span { display: none; }
   .media-lightbox-close { width: 36px; height: 36px; }
-  .media-lightbox-stage { padding: 0 8px; background: #071126; }
+  .media-lightbox-stage {
+    padding: 18px 8px 8px;
+    background: #071126;
+    place-items: start center;
+  }
   .media-lightbox-video {
     width: 100%;
     max-height: calc(100dvh - 116px);
