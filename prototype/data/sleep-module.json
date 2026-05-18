@@ -321,18 +321,18 @@
       "media": [
         {
           "type": "animation",
-          "label": "Animatie · 60 sec",
+          "label": "Animatie · 19 sec",
           "title": "Slaapcycli en kort wakker worden",
           "desc": "Laat zien dat kort wakker worden normaal zijn tussen cycli.",
           "visual": "cycles",
           "script": "Kort wakker worden hoort bij normale slaap. Het probleem begint vaak pas als je gaat rekenen of balen. Deze animatie laat zien: wakker worden is niet meteen misgaan."
         },
         {
-          "type": "video",
-          "label": "Voorbeeld · 90 sec",
+          "type": "animation",
+          "label": "Animatie · 18 sec",
           "title": "Wat doe ik om 03:00?",
           "desc": "Een praktisch stappenplan voor de nacht: niet kijken, opstaan, terug bij slaperigheid.",
-          "visual": "night",
+          "visual": "nightwake",
           "script": "Lig je lang wakker? Stap rustig uit bed. Doe iets saais in zacht licht. Ga pas terug als je weer slaperig wordt."
         },
         {
@@ -514,7 +514,7 @@
         },
         {
           "type": "animation",
-          "label": "Animatie · 45 sec",
+          "label": "Animatie · 27 sec",
           "title": "Slaapdruk opbouwen",
           "desc": "Je ziet hoe dutjes en lang wakker in bed liggen de slaapdruk lager maken.",
           "visual": "pressure",

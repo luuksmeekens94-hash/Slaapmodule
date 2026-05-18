@@ -2710,13 +2710,13 @@ function slaapModule() {
       return `${this.currentTherapyModule.id}:${i}:${media.visual || media.title}`;
     },
     hasVideo(visual) {
-      return ['force','worry','thought','meter','cycles','breathe','night','clock','sun','rhythm','pressure'].includes(visual);
+      return ['force','worry','thought','meter','cycles','nightwake','pressure','breathe','night','clock','sun','rhythm'].includes(visual);
     },
     videoUrl(visual) {
       return `video/${visual}.mp4`;
     },
     videoPosterUrl(visual) {
-      return ['force','worry','thought','meter'].includes(visual) ? `video/${visual}.png` : '';
+      return ['force','worry','thought','meter','cycles','nightwake','pressure'].includes(visual) ? `video/${visual}.png` : '';
     },
     openMediaViewer(media, i) {
       if (!this.hasVideo(media.visual)) return;
@@ -2739,7 +2739,8 @@ function slaapModule() {
         if (!video) return;
         try {
           video.currentTime = startAt;
-          video.play();
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
         } catch (_) {}
         if (window.matchMedia && window.matchMedia('(max-width: 700px)').matches) {
           this.enterMediaFullscreen(video);
@@ -3399,11 +3400,19 @@ function slaapModule() {
           ],
         },
         cycles: {
-          duration: 45,
+          duration: 19,
           scenes: [
             { caption: 'Slaap gaat in golven.', voice: 'Slaap is geen rechte lijn. Je lichaam gaat door verschillende fases.' },
             { caption: 'Kort wakker worden hoort daarbij.', voice: 'Tussen die fases kun je even wakker zijn. Dat is normaal.' },
             { caption: 'Niet rekenen, maar geruststellen.', voice: 'Het probleem wordt groter als je gaat rekenen of balen. Een rustige zin helpt.' },
+          ],
+        },
+        nightwake: {
+          duration: 18,
+          scenes: [
+            { caption: 'Je wordt wakker om 03:00.', voice: 'Wakker worden in de nacht is vervelend, maar niet gevaarlijk.' },
+            { caption: 'Blijf niet vechten in bed.', voice: 'Als je alert wordt, helpt rustig opstaan vaak beter dan blijven liggen.' },
+            { caption: 'Ga terug als je slaperig bent.', voice: 'Houd licht en activiteit klein en ga terug naar bed bij slaperigheid.' },
           ],
         },
         night: {
@@ -3431,7 +3440,7 @@ function slaapModule() {
           ],
         },
         pressure: {
-          duration: 38,
+          duration: 27,
           scenes: [
             { caption: 'Slaapdruk bouwt op door wakker zijn.', voice: 'Hoe langer je wakker bent, hoe meer slaapdruk je opbouwt.' },
             { caption: 'Dutjes halen druk weg.', voice: 'Een dutje kan logisch voelen, maar maakt inslapen vaak lastiger.' },
@@ -3511,6 +3520,7 @@ function slaapModule() {
         worry: 'i-brain',
         breathe: 'i-sparkles',
         cycles: 'i-refresh-cycle',
+        nightwake: 'i-night',
         night: 'i-night',
         clock: 'i-sunrise',
         sun: 'i-sun',
@@ -3529,6 +3539,7 @@ function slaapModule() {
         worry: 'zorgen op papier',
         breathe: 'rustige adem',
         cycles: 'slaap golft',
+        nightwake: 'uit bed bij wakker',
         night: 'uit bed bij wakker',
         clock: 'slaapkamer bij dageraad',
         sun: 'ochtendlicht door raam',
@@ -3576,7 +3587,11 @@ function slaapModule() {
         if (this.hasVideo(visual)) {
           const videoEl = card && card.querySelector('.asset-scene--video video');
           if (videoEl) {
-            try { videoEl.currentTime = 0; videoEl.play(); } catch (_) {}
+            try {
+              videoEl.currentTime = 0;
+              const playPromise = videoEl.play();
+              if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
+            } catch (_) {}
             attached = true;
             this.activeMediaTimer = setInterval(() => {
               this.activeMediaElapsed = Math.min(lesson.duration, videoEl.currentTime || 0);
