@@ -4,6 +4,14 @@ Interactieve slaapmodule voor patienten met lage rugpijn. De module start met ee
 
 De toon is B1: korte zinnen, weinig vaktaal en veel kleine acties. De module moet voelen als begeleiding, niet als een lange cursus.
 
+## Herbruikbare standaard
+
+Nieuwe FysionAIr educatiemodules moeten dezelfde patientflow, stijl en video-aanpak volgen. De vaste standaard staat in:
+
+- `../docs/fysionair-educatiemodule-standaard.md`
+- `../docs/nieuwe-module-template.json`
+- `../docs/video-productie-briefing-template.md`
+
 ## Huidige patientflow
 
 1. **Welkom**

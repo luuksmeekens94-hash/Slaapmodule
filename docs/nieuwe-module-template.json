@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "moduleName": "Naam van de educatiemodule",
+  "updatedAt": "YYYY-MM-DDT00:00:00.000Z",
+  "chapters": [
+    {
+      "id": "intro",
+      "icon": "i-hand",
+      "title": "Welkom",
+      "kicker": "Waarom dit werkt"
+    },
+    {
+      "id": "check",
+      "icon": "i-clipboard",
+      "title": "Korte check",
+      "kicker": "Interactieve check"
+    },
+    {
+      "id": "basis1",
+      "icon": "i-brain",
+      "title": "Basisuitleg 1",
+      "kicker": "Hoofdstuk 1"
+    },
+    {
+      "id": "basis2",
+      "icon": "i-alert-circle",
+      "title": "Basisuitleg 2",
+      "kicker": "Hoofdstuk 2"
+    },
+    {
+      "id": "moduleA",
+      "icon": "i-moon",
+      "title": "Onderdeel A",
+      "kicker": "Kort thema"
+    },
+    {
+      "id": "moduleB",
+      "icon": "i-refresh-cycle",
+      "title": "Onderdeel B",
+      "kicker": "Kort thema"
+    },
+    {
+      "id": "moduleC",
+      "icon": "i-shield",
+      "title": "Onderdeel C",
+      "kicker": "Kort thema"
+    },
+    {
+      "id": "afsluiting",
+      "icon": "i-shield",
+      "title": "Veiligheid",
+      "kicker": "Afsluiting"
+    }
+  ],
+  "quizOptions": [
+    { "value": 0, "label": "nooit" },
+    { "value": 1, "label": "soms" },
+    { "value": 2, "label": "vaak" },
+    { "value": 3, "label": "bijna altijd" }
+  ],
+  "quizGroups": [
+    {
+      "id": "domeinA",
+      "icon": "i-bed",
+      "title": "Domein in gewone taal",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Ik merk dit probleem vaak in mijn dagelijks leven."
+        },
+        {
+          "id": "q2",
+          "text": "Ik weet niet goed wat ik dan kan doen."
+        }
+      ],
+      "recommendsTitle": "Onderdeel A - Kort en begrijpelijk",
+      "recommendsBody": "Een korte zin over wat de patient hier oefent.",
+      "recommendModuleId": "moduleA"
+    }
+  ],
+  "therapyModules": [
+    {
+      "id": "moduleA",
+      "label": "Onderdeel A - Thema in gewone taal",
+      "title": "Titel met een <span class=\"grad-text\">kernwoord</span>",
+      "intro": "Herkenbare situatie in 2 korte zinnen. Geef rust en richting.",
+      "tags": [
+        "7 dagen oefenen",
+        "kleine stap",
+        "samen met je fysio"
+      ],
+      "whyTitle": "Waarom dit helpt",
+      "whyBody": "Leg in gewone taal uit waarom dit onderdeel belangrijk is.",
+      "keyPoints": [
+        {
+          "title": "Kernpunt 1",
+          "body": "Korte uitleg in gewone taal."
+        },
+        {
+          "title": "Kernpunt 2",
+          "body": "Korte uitleg in gewone taal."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Kleine stap 1",
+          "hint": "Korte toelichting",
+          "body": "<p>Leg uit wat de patient doet en waarom.</p>",
+          "action": "Concrete actie in 1 zin."
+        },
+        {
+          "title": "Kleine stap 2",
+          "hint": "Korte toelichting",
+          "body": "<p>Leg uit wat de patient doet en waarom.</p>",
+          "action": "Concrete actie in 1 zin."
+        },
+        {
+          "title": "Kleine stap 3",
+          "hint": "Korte toelichting",
+          "body": "<p>Leg uit wat de patient doet en waarom.</p>",
+          "action": "Concrete actie in 1 zin."
+        }
+      ],
+      "media": [
+        {
+          "type": "animation",
+          "label": "Animatie - 25 sec",
+          "title": "Titel van video 1",
+          "desc": "Wat de patient ziet en leert.",
+          "visual": "video-slug-1",
+          "script": "B1-kernuitleg voor de video."
+        },
+        {
+          "type": "animation",
+          "label": "Animatie - 25 sec",
+          "title": "Titel van video 2",
+          "desc": "Wat de patient ziet en leert.",
+          "visual": "video-slug-2",
+          "script": "B1-kernuitleg voor de video."
+        },
+        {
+          "type": "animation",
+          "label": "Oefening - 30 sec",
+          "title": "Titel van oefening",
+          "desc": "Wat de patient kan oefenen.",
+          "visual": "video-slug-3",
+          "script": "B1-instructie voor de oefening."
+        }
+      ],
+      "actions": [
+        "Ik oefen stap 1 deze week",
+        "Ik let op mijn eerste signaal",
+        "Ik kies een klein moment om te oefenen",
+        "Ik bespreek wat lukt met mijn fysio"
+      ],
+      "evaluation": [
+        "Merk ik eerder wat er gebeurt?",
+        "Lukt het om de kleine stap te doen?",
+        "Voelt het probleem iets minder groot?",
+        "Weet ik beter wanneer ik hulp vraag?"
+      ],
+      "reflectionPrompt": "Wat was de kleinste stap die deze week hielp?",
+      "extraHelp": "Bespreek dit met je fysio als klachten toenemen, je veel angst voelt of oefenen na 2-3 weken niet helpt."
+    }
+  ]
+}
