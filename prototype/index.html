@@ -2225,7 +2225,7 @@ input[type=range].fysio-range::-moz-range-thumb {
         <div class="section-block">
           <div class="media-grid">
             <template x-for="(media, i) in currentTherapyModule.media" :key="media.title">
-              <div class="media-card" :class="[isFeaturedMedia(i) ? 'featured' : 'preview', isMediaPlaying(media, i) ? 'playing' : 'paused', hasVideo(media.visual) ? 'video-featured' : '']">
+              <div class="media-card" :class="[isFeaturedMedia(i) ? 'featured' : 'preview', isMediaActive(media, i) ? 'playing' : 'paused', hasVideo(media.visual) ? 'video-featured' : '']">
                 <!-- ─ Preview (compact, clickable) ─ -->
                 <button type="button" class="media-preview-shell" x-show="!isFeaturedMedia(i)" @click="setFeaturedMedia(i, media)">
                   <div class="media-preview-visual">
@@ -2257,7 +2257,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                       @keydown.enter.prevent="openMediaViewer(media, i)"
                       @keydown.space.prevent="openMediaViewer(media, i)"
                       :aria-label="`Bekijk ${media.title} groot`">
-                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" autoplay muted loop playsinline preload="metadata"></video>
+                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" autoplay muted playsinline preload="metadata" @ended="finishMedia(media, i)"></video>
                     </div>
                   </template>
                   <template x-if="!hasVideo(media.visual)">
@@ -2280,14 +2280,14 @@ input[type=range].fysio-range::-moz-range-thumb {
                 <div class="media-content" x-show="isFeaturedMedia(i)">
                   <div class="media-meta">
                     <span class="chip chip--teal" x-text="media.label"></span>
-                    <span class="media-state" x-text="isMediaPlaying(media, i) ? 'speelt af' : 'klaar om te starten'"></span>
+                    <span class="media-state" x-text="isMediaEnded(media, i) ? 'afgerond' : (isMediaPlaying(media, i) ? 'speelt af' : 'klaar om te starten')"></span>
                   </div>
                   <div class="media-title" x-text="media.title"></div>
                   <div class="media-desc" x-text="media.desc"></div>
                   <div class="media-controls">
                     <button type="button" class="media-control primary" @click="toggleMedia(media, i)">
-                      <svg width="13" height="13"><use :href="isMediaPlaying(media, i) ? '#i-pause' : '#i-play'"/></svg>
-                      <span x-text="isMediaPlaying(media, i) ? 'Pauzeer' : 'Start uitleg'"></span>
+                      <svg width="13" height="13"><use :href="isMediaPlaying(media, i) ? '#i-pause' : (isMediaEnded(media, i) ? '#i-rotate' : '#i-play')"/></svg>
+                      <span x-text="isMediaPlaying(media, i) ? 'Pauzeer' : (isMediaEnded(media, i) ? 'Opnieuw' : 'Start uitleg')"></span>
                     </button>
                     <button type="button" class="media-control expand" x-show="hasVideo(media.visual)" @click="openMediaViewer(media, i)">
                       <svg width="13" height="13"><use href="#i-expand"/></svg>
@@ -2493,7 +2493,7 @@ input[type=range].fysio-range::-moz-range-thumb {
         <video class="media-lightbox-video"
           :src="mediaViewer.src"
           :poster="mediaViewer.poster"
-          autoplay muted loop controls playsinline></video>
+          autoplay muted controls playsinline></video>
       </template>
     </div>
     <div class="media-lightbox-hint">Draai je telefoon voor groter beeld.</div>
@@ -2507,6 +2507,7 @@ function slaapModule() {
     currentChapterIdx: 0,
     audioPlaying: false,
     activeMediaId: null,
+    endedMediaId: null,
     activeMediaElapsed: 0,
     activeMediaTimer: null,
     mediaChoiceState: {},
@@ -3404,7 +3405,7 @@ function slaapModule() {
           ],
         },
         cycles: {
-          duration: 19,
+          duration: 26,
           scenes: [
             { caption: 'Slaap gaat in golven.', voice: 'Slaap is geen rechte lijn. Je lichaam gaat door verschillende fases.' },
             { caption: 'Kort wakker worden hoort daarbij.', voice: 'Tussen die fases kun je even wakker zijn. Dat is normaal.' },
@@ -3412,7 +3413,7 @@ function slaapModule() {
           ],
         },
         nightwake: {
-          duration: 18,
+          duration: 32,
           scenes: [
             { caption: 'Je wordt wakker om 03:00.', voice: 'Wakker worden in de nacht is vervelend, maar niet gevaarlijk.' },
             { caption: 'Blijf niet vechten in bed.', voice: 'Als je alert wordt, helpt rustig opstaan vaak beter dan blijven liggen.' },
@@ -3420,7 +3421,7 @@ function slaapModule() {
           ],
         },
         night: {
-          duration: 30,
+          duration: 38,
           scenes: [
             { caption: 'Te vroeg naar bed geeft vaak strijd.', voice: 'Als je te vroeg naar bed gaat, lig je soms lang wakker.' },
             { caption: 'Tijdelijk later kan helpen.', voice: 'Minder tijd wakker in bed helpt je lichaam bed weer aan slapen koppelen.' },
@@ -3428,7 +3429,7 @@ function slaapModule() {
           ],
         },
         clock: {
-          duration: 22,
+          duration: 30,
           scenes: [
             { caption: 'Je klok zoekt een anker.', voice: 'Je lichaam leert van herhaling. Een vaste opsta-tijd geeft duidelijkheid.' },
             { caption: 'Licht helpt je dag starten.', voice: 'Ochtendlicht zegt tegen je lichaam: de dag is begonnen.' },
@@ -3436,11 +3437,11 @@ function slaapModule() {
           ],
         },
         sun: {
-          duration: 25,
+          duration: 34,
           scenes: [
-            { caption: 'Begin klein en rustig.', voice: 'Een vroege ochtend hoeft geen paniek te geven.' },
-            { caption: 'Zoek licht zodra dat kan.', voice: 'Daglicht helpt je biologische klok sterker dan binnenlicht.' },
-            { caption: 'Houd uitslapen beperkt.', voice: 'Zo blijft je ritme duidelijk voor de volgende nacht.' },
+            { caption: 'Weinig ochtendlicht maakt je klok onduidelijk.', voice: 'Je lichaam krijgt dan minder duidelijk het signaal dat de dag begonnen is.' },
+            { caption: 'Daglicht geeft je slaapklok een startsein.', voice: 'Tien tot twintig minuten daglicht helpt je ritme op gang.' },
+            { caption: 'In de avond komt slaperigheid beter op tijd.', voice: 'Zo wordt naar bed gaan later op de dag voorspelbaarder.' },
           ],
         },
         pressure: {
@@ -3495,13 +3496,14 @@ function slaapModule() {
       return lessons[visual] || fallback;
     },
     mediaProgress(media, i) {
-      if (!this.isMediaPlaying(media, i)) return 0;
+      if (!this.isMediaActive(media, i)) return 0;
       const lesson = this.mediaLesson(media);
       return Math.min(100, Math.round((this.activeMediaElapsed / lesson.duration) * 100));
     },
     mediaSceneIndex(media, i) {
       const lesson = this.mediaLesson(media);
-      if (!this.isMediaPlaying(media, i)) return 0;
+      if (!this.isMediaActive(media, i)) return 0;
+      if (this.isMediaEnded(media, i)) return lesson.scenes.length - 1;
       const progress = Math.min(.999, this.activeMediaElapsed / lesson.duration);
       return Math.min(lesson.scenes.length - 1, Math.floor(progress * lesson.scenes.length));
     },
@@ -3510,7 +3512,15 @@ function slaapModule() {
       return lesson.scenes[this.mediaSceneIndex(media, i)] || lesson.scenes[0];
     },
     isMediaPlaying(media, i) {
+      const key = this.mediaKey(media, i);
+      return this.activeMediaId === key && this.endedMediaId !== key;
+    },
+    isMediaActive(media, i) {
       return this.activeMediaId === this.mediaKey(media, i);
+    },
+    isMediaEnded(media, i) {
+      const key = this.mediaKey(media, i);
+      return this.activeMediaId === key && this.endedMediaId === key;
     },
     featuredMediaIdx() {
       const id = this.currentTherapyModule.id;
@@ -3579,6 +3589,10 @@ function slaapModule() {
     },
     toggleMedia(media, i) {
       const key = this.mediaKey(media, i);
+      if (this.activeMediaId === key && this.endedMediaId === key) {
+        this.startMedia(media, i);
+        return;
+      }
       if (this.activeMediaId === key) {
         this.stopMedia();
         return;
@@ -3588,6 +3602,7 @@ function slaapModule() {
     startMedia(media, i) {
       this.stopMedia();
       this.activeMediaId = this.mediaKey(media, i);
+      this.endedMediaId = null;
       this.activeMediaElapsed = 0;
       const lesson = this.mediaLesson(media);
       const visual = media.visual || 'breathe';
@@ -3601,6 +3616,7 @@ function slaapModule() {
           if (videoEl) {
             try {
               videoEl.currentTime = 0;
+              videoEl.loop = false;
               const playPromise = videoEl.play();
               if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
             } catch (_) {}
@@ -3630,6 +3646,16 @@ function slaapModule() {
         }
       });
     },
+    finishMedia(media, i) {
+      const key = this.mediaKey(media, i);
+      const lesson = this.mediaLesson(media);
+      if (this.activeMediaId && this.activeMediaId !== key) return;
+      if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
+      this.activeMediaTimer = null;
+      this.activeMediaId = key;
+      this.endedMediaId = key;
+      this.activeMediaElapsed = lesson.duration;
+    },
     stopMedia() {
       if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
       this.activeMediaTimer = null;
@@ -3639,6 +3665,7 @@ function slaapModule() {
       });
       this.activeMediaElapsed = 0;
       this.activeMediaId = null;
+      this.endedMediaId = null;
       if (window.SlaapMotion) window.SlaapMotion.detach();
       this._motionTimeline = null;
     },

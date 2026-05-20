@@ -321,7 +321,7 @@
       "media": [
         {
           "type": "animation",
-          "label": "Animatie · 19 sec",
+          "label": "Animatie · 26 sec",
           "title": "Slaapcycli en kort wakker worden",
           "desc": "Laat zien dat kort wakker worden normaal is tussen slaapcycli.",
           "visual": "cycles",
@@ -329,7 +329,7 @@
         },
         {
           "type": "animation",
-          "label": "Animatie · 24 sec",
+          "label": "Animatie · 32 sec",
           "title": "Wat doe ik om 03:00?",
           "desc": "Laat zien waarom rustig uit bed gaan helpt als je lang wakker ligt.",
           "visual": "nightwake",
@@ -407,7 +407,7 @@
       "media": [
         {
           "type": "animation",
-          "label": "Animatie · 22 sec",
+          "label": "Animatie · 30 sec",
           "title": "De slaapklok als anker",
           "desc": "Laat zien hoe dezelfde opsta-tijd je slaapklok houvast geeft.",
           "visual": "clock",
@@ -415,7 +415,7 @@
         },
         {
           "type": "animation",
-          "label": "Animatie · 25 sec",
+          "label": "Animatie · 34 sec",
           "title": "Ochtendlicht opzoeken",
           "desc": "Je ziet hoe ochtendlicht je dag start en je ritme helpt.",
           "visual": "sun",
@@ -423,7 +423,7 @@
         },
         {
           "type": "animation",
-          "label": "Animatie · 25 sec",
+          "label": "Animatie · 34 sec",
           "title": "Licht helpt je ritme",
           "desc": "Je ziet hoe ochtendlicht en avondlicht invloed hebben op slaperigheid.",
           "visual": "sun",
@@ -506,7 +506,7 @@
         },
         {
           "type": "animation",
-          "label": "Animatie · 30 sec",
+          "label": "Animatie · 38 sec",
           "title": "Waarom later naar bed veilig kan zijn",
           "desc": "Laat zien hoe tijdelijk korter in bed liggen slaapdruk opbouwt.",
           "visual": "night",
