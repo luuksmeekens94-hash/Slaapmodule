@@ -407,27 +407,27 @@
       "media": [
         {
           "type": "animation",
-          "label": "Animatie · 30 sec",
+          "label": "Animatie · 34 sec",
           "title": "De slaapklok als anker",
-          "desc": "Laat zien hoe dezelfde opsta-tijd je slaapklok houvast geeft.",
+          "desc": "Vergelijkt een vaste opsta-tijd met een wisselend ritme.",
           "visual": "clock",
-          "script": "Je lichaam leert van herhaling. Sta zo veel mogelijk rond dezelfde tijd op. Dat geeft je slaapklok een duidelijk anker."
+          "script": "Sta je elke dag rond dezelfde tijd op, dan krijgt je slaapklok houvast. Wisselende tijden maken je ritme sneller onduidelijk."
         },
         {
           "type": "animation",
           "label": "Animatie · 34 sec",
           "title": "Ochtendlicht opzoeken",
-          "desc": "Je ziet hoe ochtendlicht je dag start en je ritme helpt.",
+          "desc": "Je ziet hoe licht via je ogen je slaapklok een startsein geeft.",
           "visual": "sun",
-          "script": "Ochtendlicht zegt je lichaam: de dag is begonnen. Daardoor kan slaperigheid in de avond beter op tijd komen."
+          "script": "Ochtendlicht komt via je ogen binnen. Dat geeft je slaapklok een duidelijk startsein. Daardoor kan slaperigheid in de avond beter op tijd komen."
         },
         {
           "type": "animation",
           "label": "Animatie · 34 sec",
           "title": "Licht helpt je ritme",
-          "desc": "Je ziet hoe ochtendlicht en avondlicht invloed hebben op slaperigheid.",
+          "desc": "Je ziet waarom vroeg licht je avondritme kan helpen.",
           "visual": "sun",
-          "script": "Ochtendlicht is een sterk signaal voor je lichaam. Het zegt: de dag is begonnen. Daardoor wordt slapen in de avond vaak makkelijker."
+          "script": "Licht in de ochtend zet je slaapklok aan. Je lichaam weet dan eerder: de dag is gestart. Dat helpt je avondritme."
         }
       ],
       "actions": [
@@ -498,11 +498,11 @@
       "media": [
         {
           "type": "animation",
-          "label": "Animatie · 28 sec",
+          "label": "Animatie · 32 sec",
           "title": "Tijd in bed beter passend maken",
-          "desc": "Laat zien hoe je tijd in bed past bij hoeveel je echt slaapt en daarna rustig uitbreidt.",
+          "desc": "Laat zien hoe tijd in bed en slaap stap voor stap kunnen meegroeien.",
           "visual": "rhythm",
-          "script": "Je tijd in bed wordt eerst korter, gelijk aan hoeveel je nu echt slaapt. Dat voelt streng, maar bouwt slaapdruk op. Daarna mag je rustig 15 minuten per keer uitbreiden."
+          "script": "Je maakt tijd in bed eerst passend bij echte slaap. Als dit goed gaat, komt er stap voor stap 15 minuten bij. Je slaap kan dan rustig meegroeien."
         },
         {
           "type": "animation",
@@ -514,11 +514,11 @@
         },
         {
           "type": "animation",
-          "label": "Animatie · 27 sec",
+          "label": "Animatie · 32 sec",
           "title": "Slaapdruk opbouwen",
-          "desc": "Je ziet hoe dutjes en lang wakker in bed liggen de slaapdruk lager maken.",
+          "desc": "Je ziet hoe slaapdruk opbouwt en wanneer een kort dutje soms kan.",
           "visual": "pressure",
-          "script": "Dutjes en lang wakker in bed liggen halen slaapdruk weg. Als slaapdruk oploopt, wordt slapen vaak makkelijker."
+          "script": "Slaapdruk bouw je op door wakker te zijn. Een lang dutje haalt slaapdruk weg. Een kort dutje van maximaal 20 minuten kan soms, liefst vroeg op de dag."
         }
       ],
       "actions": [
