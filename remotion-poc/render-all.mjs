@@ -3,14 +3,28 @@ import { spawn } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 
 const DEFAULT_SCENES = ['force', 'cycles', 'breathe', 'night', 'clock', 'sun', 'rhythm', 'pressure'];
-const SCENES = process.argv.slice(2).length ? process.argv.slice(2) : DEFAULT_SCENES;
+const ALLOWED_SCENES = new Set(DEFAULT_SCENES);
+const requestedScenes = process.argv.slice(2);
+
+function validateScenes(scenes) {
+  const invalid = scenes.filter((scene) => !ALLOWED_SCENES.has(scene));
+  if (invalid.length > 0) {
+    console.error(`Invalid scene name(s): ${invalid.join(', ')}`);
+    console.error(`Allowed scenes: ${DEFAULT_SCENES.join(', ')}`);
+    process.exit(1);
+  }
+  return scenes;
+}
+
+const SCENES = validateScenes(requestedScenes.length ? requestedScenes : DEFAULT_SCENES);
 
 async function render(scene) {
   return new Promise((resolve, reject) => {
     const t0 = performance.now();
     const proc = spawn(
-      `npx remotion render ${scene} out/${scene}.mp4 --log=error`,
-      { stdio: 'inherit', shell: true }
+      'npx',
+      ['remotion', 'render', scene, `out/${scene}.mp4`, '--log=error'],
+      { stdio: 'inherit', shell: false }
     );
     proc.on('close', (code) => {
       const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
