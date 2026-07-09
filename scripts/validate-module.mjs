@@ -1,0 +1,125 @@
+#!/usr/bin/env node
+import { existsSync, readFileSync, statSync, writeFileSync, mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
+
+const root = process.cwd();
+const live = process.argv.includes('--live');
+const maxMp4Bytes = 4 * 1024 * 1024;
+const baseUrl = 'https://slaapmodule.vercel.app';
+const errors = [];
+const warnings = [];
+
+function fail(message) { errors.push(message); }
+function warn(message) { warnings.push(message); }
+function readJson(path) {
+  try { return JSON.parse(readFileSync(path, 'utf8')); }
+  catch (error) { fail(`${path} is geen geldige JSON: ${error.message}`); return null; }
+}
+function uniqDuplicates(values) {
+  return [...new Set(values.filter((value, idx) => values.indexOf(value) !== idx))];
+}
+function assertExists(path) {
+  if (!existsSync(path)) fail(`Ontbreekt: ${path}`);
+}
+
+const dataPath = 'prototype/data/sleep-module.json';
+const htmlPath = 'prototype/index.html';
+assertExists(dataPath);
+assertExists(htmlPath);
+
+const data = readJson(dataPath);
+if (data) {
+  const chapters = data.chapters || [];
+  const quizGroups = data.quizGroups || [];
+  const therapyModules = data.therapyModules || [];
+  const moduleIds = new Set(therapyModules.map((mod) => mod.id));
+  const chapterIds = chapters.map((chapter) => chapter.id);
+
+  for (const id of uniqDuplicates(chapterIds)) fail(`Dubbele chapter id: ${id}`);
+  for (const mod of therapyModules) {
+    if (!mod.id) fail('Therapy module zonder id gevonden');
+    if (!Array.isArray(mod.media)) fail(`Module ${mod.id} mist media-array`);
+    if (!Array.isArray(mod.steps) || mod.steps.length < 3) warn(`Module ${mod.id} heeft weinig stappen`);
+    if (!Array.isArray(mod.actions) || mod.actions.length < 4) warn(`Module ${mod.id} heeft weinig acties`);
+    if (!Array.isArray(mod.evaluation) || mod.evaluation.length < 4) warn(`Module ${mod.id} heeft weinig evaluatievragen`);
+  }
+  for (const group of quizGroups) {
+    if (!moduleIds.has(group.recommendModuleId)) fail(`Quizgroep ${group.id} verwijst naar ontbrekende module ${group.recommendModuleId}`);
+    if (!Array.isArray(group.questions) || group.questions.length === 0) fail(`Quizgroep ${group.id} heeft geen vragen`);
+  }
+
+  const visuals = new Set();
+  for (const mod of therapyModules) {
+    for (const media of mod.media || []) {
+      if (!media.visual) fail(`Media in ${mod.id} mist visual: ${media.title || '(zonder titel)'}`);
+      else visuals.add(media.visual);
+    }
+  }
+
+  for (const visual of [...visuals].sort()) {
+    const mp4 = `prototype/video/${visual}.mp4`;
+    const png = `prototype/video/${visual}.png`;
+    assertExists(mp4);
+    assertExists(png);
+    if (existsSync(mp4)) {
+      const size = statSync(mp4).size;
+      if (size > maxMp4Bytes) fail(`${mp4} is groter dan 4 MB (${(size / 1024 / 1024).toFixed(2)} MB)`);
+    }
+  }
+}
+
+try {
+  const html = readFileSync(htmlPath, 'utf8');
+  const scriptMatches = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];
+  const scriptMatch = scriptMatches.at(-1);
+  if (!scriptMatch) {
+    fail('Kon inline <script> blok in prototype/index.html niet vinden');
+  } else {
+    const dir = mkdtempSync(join(tmpdir(), 'slaapmodule-'));
+    const jsPath = join(dir, 'inline.js');
+    writeFileSync(jsPath, scriptMatch[1]);
+    const result = spawnSync('node', ['--check', jsPath], { encoding: 'utf8' });
+    rmSync(dir, { recursive: true, force: true });
+    if (result.status !== 0) fail(`Inline JS syntax check faalt:\n${result.stderr || result.stdout}`);
+  }
+} catch (error) {
+  fail(`Kon HTML/JS niet valideren: ${error.message}`);
+}
+
+if (live && data) {
+  const paths = ['/', '/data/sleep-module.json'];
+  const visuals = new Set();
+  for (const mod of data.therapyModules || []) {
+    for (const media of mod.media || []) if (media.visual) visuals.add(media.visual);
+  }
+  for (const visual of [...visuals].sort()) {
+    paths.push(`/video/${visual}.mp4`, `/video/${visual}.png`);
+  }
+  for (const path of paths) {
+    try {
+      const response = await fetch(`${baseUrl}${path}`, { method: 'HEAD' });
+      if (!response.ok) fail(`Live asset ${path} geeft ${response.status}`);
+      const type = response.headers.get('content-type') || '';
+      if (path.endsWith('.json') && !type.includes('application/json')) fail(`Live ${path} heeft verkeerd content-type: ${type}`);
+      if (path.endsWith('.mp4') && !type.includes('video/mp4')) fail(`Live ${path} heeft verkeerd content-type: ${type}`);
+      if (path.endsWith('.png') && !type.includes('image/png')) fail(`Live ${path} heeft verkeerd content-type: ${type}`);
+      if (path === '/' && !type.includes('text/html')) fail(`Live / heeft verkeerd content-type: ${type}`);
+    } catch (error) {
+      fail(`Live asset ${path} kon niet worden gecontroleerd: ${error.message}`);
+    }
+  }
+}
+
+for (const message of warnings) console.warn(`⚠ ${message}`);
+if (errors.length) {
+  console.error('Slaapmodule validation FAILED');
+  for (const message of errors) console.error(`- ${message}`);
+  process.exit(1);
+}
+
+console.log('Slaapmodule validation OK');
+if (data) {
+  console.log(`chapters=${data.chapters?.length || 0} quizGroups=${data.quizGroups?.length || 0} therapyModules=${data.therapyModules?.length || 0}`);
+}

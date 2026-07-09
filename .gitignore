@@ -19,6 +19,7 @@ remotion-poc/out/*-frame.png
 
 # Memory / session files
 memory/
+.hermes/
 
 # OS
 .DS_Store

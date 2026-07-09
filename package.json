@@ -1,0 +1,11 @@
+{
+  "name": "fysionair-slaapmodule",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-module.mjs",
+    "validate:live": "node scripts/validate-module.mjs --live",
+    "serve": "python3 -m http.server 4321 --bind 127.0.0.1 --directory prototype"
+  }
+}
