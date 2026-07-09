@@ -6,6 +6,8 @@
   "scripts": {
     "validate": "node scripts/validate-module.mjs",
     "validate:live": "node scripts/validate-module.mjs --live",
+    "build": "npm run validate",
+    "vercel-build": "npm run validate",
     "serve": "python3 -m http.server 4321 --bind 127.0.0.1 --directory prototype"
   }
 }

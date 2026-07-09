@@ -2,7 +2,8 @@
 import { spawn } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 
-const SCENES = ['cycles', 'breathe', 'night', 'clock', 'sun', 'rhythm', 'pressure'];
+const DEFAULT_SCENES = ['force', 'cycles', 'breathe', 'night', 'clock', 'sun', 'rhythm', 'pressure'];
+const SCENES = process.argv.slice(2).length ? process.argv.slice(2) : DEFAULT_SCENES;
 
 async function render(scene) {
   return new Promise((resolve, reject) => {

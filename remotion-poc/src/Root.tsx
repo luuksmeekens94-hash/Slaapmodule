@@ -1,6 +1,7 @@
 import React from 'react';
 import { Composition } from 'remotion';
 import { CyclesScene } from './scenes/CyclesScene';
+import { ForceScene } from './scenes/ForceScene';
 import { BreatheScene } from './scenes/BreatheScene';
 import { NightScene } from './scenes/NightScene';
 import { ClockScene } from './scenes/ClockScene';
@@ -19,6 +20,7 @@ const SHARED = {
 export const Root: React.FC = () => {
   return (
     <>
+      <Composition id="force"    component={ForceScene}    {...SHARED} />
       <Composition id="cycles"   component={CyclesScene}   {...SHARED} />
       <Composition id="breathe"  component={BreatheScene}  {...SHARED} />
       <Composition id="night"    component={NightScene}    {...SHARED} />
