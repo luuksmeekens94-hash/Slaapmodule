@@ -1,0 +1,69 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "slug": "plan",
+  "title": "Mijn plan voor een slechte week",
+  "videoDurationSeconds": 26,
+  "audioDurationSeconds": 21.144,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.742,
+    0.891,
+    0.965,
+    0.742
+  ],
+  "chunks": [
+    {
+      "text": "Een slechte week is niet het moment voor ingewikkelde plannen.",
+      "seed": 8519,
+      "durationSeconds": 3.52,
+      "sha256": "f3b8a226e884c1e7ce5de1708364495030702cb8773ea392acf13d971e353844"
+    },
+    {
+      "text": "Kies vooraf een paar vaste acties.",
+      "seed": 8520,
+      "durationSeconds": 2.16,
+      "sha256": "30d2303464758f39afd87f8ed115b71b9e2e46ffae2fac28ea2ec484489b27cf"
+    },
+    {
+      "text": "Sta rond dezelfde tijd op, sla dutjes over en ga even uit bed als je lang wakker ligt.",
+      "seed": 8521,
+      "durationSeconds": 5.12,
+      "sha256": "858fab1955cbac073d37c89b19bcbbf79520d371341a3b8dcc0287b30398e516"
+    },
+    {
+      "text": "Gebruik één rustige zin als je hoofd aan gaat.",
+      "seed": 8522,
+      "durationSeconds": 2.88,
+      "sha256": "2f7ec9dc4e862731bebcbba145cbdfec5d0062c652ff320a2cad4001b6107f6f"
+    },
+    {
+      "text": "Dan hoef je midden in een slechte nacht niet opnieuw te bedenken wat helpt.",
+      "seed": 8523,
+      "durationSeconds": 4.08,
+      "sha256": "f6eb9f50c48d4e07007d9564e6acb58b7969f9da7881b2727f28ad3b691788d4"
+    }
+  ],
+  "endCard": [
+    "Signaal gezien? Kies één actie.",
+    "Je plan ligt al klaar."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

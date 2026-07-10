@@ -1,64 +1,104 @@
-# Slaapmodule — Remotion PoC
+# Slaapmodule — Remotion videoserie
 
-Een proof-of-concept dat laat zien hoe één scene uit de slaapmodule eruit kan zien als
-echte gerenderde video, gemaakt met [Remotion](https://www.remotion.dev/).
+De patiëntmodule gebruikt een intern gebouwde Remotion-serie met volwassen minimale
+vectorillustraties, natuurlijke Nederlandse voice-over en frame-perfecte timing. De
+publieke MP4's staan in `prototype/video/`; de bewerkbare bronnen staan hier.
 
-In dit project wordt de **slaapcycli-scene** uit module B (Wakker worden in de nacht)
-omgezet naar een 30-seconden cinematic video op 1920×1080.
+## Serie-standaard
 
-## Wat is anders dan de live-app
+- 1920×1080, 30 fps, H.264 + AAC;
+- ElevenLabs `eleven_v3`, Nederlandse stem **Nono**;
+- voice-over start na 1 seconde en loopt over vrijwel de hele animatie;
+- Nederlandse WebVTT-captions per gesproken zin;
+- subtiele, inhoudelijk gemotiveerde camera (maximaal circa 2% push-in);
+- eigen SVG-illustraties, geen stockbeelden of infographic-/PowerPointtemplates;
+- één inhoudelijke kernboodschap op de eindkaart;
+- native videobediening in de patiëntmodule.
 
-| | Live SVG (in `prototype/index.html`) | Remotion (deze map)            |
-|--|--|--|
-| Rendering | Browser tijdens afspelen | Eénmalig naar MP4              |
-| Resolutie | Schaalbaar SVG          | 1920×1080 / 4K mogelijk        |
-| Filter / glow | Beperkt CSS         | Echte feGaussianBlur per frame |
-| Audio       | Browser-TTS / mp3     | Frame-perfect synced           |
-| Aanpassen   | F5 om te zien         | `npm run render` (~1–2 min)    |
+De goedgekeurde referentie is `force` (`Slaap kun je niet afdwingen`). De overige
+dertien composities gebruiken `src/series/SleepSeriesScene.tsx` en de inhoud uit
+`series-content.json`.
 
-## Snel starten
+## Installeren en Remotion Studio
 
 ```bash
 cd remotion-poc
-npm install            # ~3 min eerste keer (pakt ook headless Chromium)
-npm start              # opent Remotion Studio op http://localhost:3000
+npm install
+npm start
 ```
 
-In Remotion Studio kun je live door de timeline scrubben en wijzigingen direct zien.
+Studio opent standaard op `http://localhost:3000`.
 
-## Renderen naar MP4
+## Voice-overs reproduceren
+
+Installeer de Pythondependency in een eigen venv en zet de API-key alleen als
+environmentvariabele. De key hoort nooit in Git.
 
 ```bash
-npm run render
-# Output: out/cycles.mp4
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-voice.txt
+export ELEVENLABS_API_KEY='...'
+.venv/bin/python scripts/generate-series-voices.py
 ```
 
-Standaard 30 fps, 30 sec, h.264. Aanpassen kan in `src/Root.tsx`
-(`durationInFrames`, `fps`, `width`, `height`).
+Een beperkte selectie kan zonder dubbele API-kosten opnieuw worden gemaakt:
 
-## Hoe de scene is opgebouwd
+```bash
+.venv/bin/python scripts/generate-series-voices.py --slugs=worry,cycles
+```
 
-`src/CyclesScene.tsx` rendert per frame een SVG met:
+De generator:
 
-1. **Achtergrond** — gradient nachtsky (`#0E1C38` → `#1B3470` → `#3B5489`)
-2. **Sterren** — twaalf statische punten met sinus-twinkle per ster (eigen fase)
-3. **Diepte-banden** — vier subtiele horizontale rechthoeken die de slaapfases markeren
-4. **Sleep-curve** — cubic-Bezier path met 5 segmenten, bekend uit het prototype
-5. **Glow-stroke** — dezelfde curve maar met `feGaussianBlur` filter en gradient stroke
-6. **Stroke-draw** — `stroke-dasharray` + `stroke-dashoffset` synced met moon-progress
-7. **Maan** — halo + witte kern op positie van Bezier-formule (geen DOM-ref nodig)
-8. **Wake-pulses** — twee soft cyaan ringen op 30% en 70% van het pad
-9. **Tekst-overlays** — titel ("Een nacht in slaap") en caption ("Kort wakker tussen cycli is normaal")
+1. genereert elk natuurlijk zinsdeel met een vaste voice-ID en seed;
+2. voegt gewogen stiltes toe zodat de uitleg niet wordt afgeraffeld;
+3. normaliseert naar -16 LUFS en -1,5 dB true peak;
+4. schrijft MP3, VTT en een JSON-manifest per video;
+5. stopt bij te lange spraak of onnatuurlijke pauzes.
 
-De moon-positie wordt **wiskundig** berekend in plaats van via `getPointAtLength`, zodat
-elke frame deterministisch is — handig voor headless rendering.
+## Productierenders
 
-## Volgende stappen
+Goedgekeurde referentievideo:
 
-Als deze scene goed valt:
+```bash
+npm run render:force
+```
 
-1. Drie tot vijf hero-scenes uitbouwen (cycles, slaapvenster, ochtendlicht, slaapdruk).
-2. ElevenLabs voice-overs synchroniseren met `<Audio src="/voiceover.mp3">`.
-3. Render-pipeline: één commando dat alle scenes rendert + naar `prototype/video/`
-   kopieert. De app gebruikt dan `<video src="...">` voor de featured kaart.
-4. Optioneel: Remotion Lambda voor parallelle renders in de cloud.
+Volledige overige serie:
+
+```bash
+npm run render:series
+```
+
+Een inhoudelijke selectie:
+
+```bash
+node scripts/render-series-production.mjs --slugs=worry,cycles,nightwake
+```
+
+Elke productieopdracht voert TypeScriptcontrole, Remotion-render, webencode, poster,
+`ffprobe`-validatie en captioncontrole uit. Alleen een geslaagde output wordt naar
+`prototype/video/` gekopieerd.
+
+## Bronnen en outputs
+
+| Pad | Functie |
+|---|---|
+| `src/scenes/ForceFinalScene.tsx` | goedgekeurde force-referentie |
+| `src/series/SleepSeriesScene.tsx` | gedeelde illustratie- en camera-engine |
+| `series-content.json` | scripts, lengtes, pauzegewichten en eindkaarten |
+| `public/audio/*-nono-v1.mp3` | gemasterde voice-overs |
+| `public/audio/*-nono-v1.json` | reproduceerbare voice-/timingmanifesten |
+| `public/captions/*-nl-nono-v1.vtt` | broncaptions |
+| `out/*.mp4` | gevalideerde lokale productierenders |
+| `../prototype/video/` | moduleklare MP4, poster en VTT |
+
+## Verificatie
+
+Vanuit de projectroot:
+
+```bash
+npm test
+```
+
+De tests controleren onder meer alle videoslugs, native captions, bestandsgroottes,
+Remotionregistratie en de productie-renderstraten.

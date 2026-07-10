@@ -1,0 +1,69 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "slug": "curve",
+  "title": "Herstel gaat met ups en downs",
+  "videoDurationSeconds": 24,
+  "audioDurationSeconds": 19.128,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.867,
+    0.953,
+    0.953,
+    1.127
+  ],
+  "chunks": [
+    {
+      "text": "Herstel loopt bijna nooit in een rechte lijn.",
+      "seed": 8419,
+      "durationSeconds": 2.32,
+      "sha256": "2d79b86338a156eddc1975d2f22c7dd6d1a13a5eced67867be668cacbd3c8239"
+    },
+    {
+      "text": "Een paar betere nachten kunnen zomaar gevolgd worden door een slechte.",
+      "seed": 8420,
+      "durationSeconds": 3.68,
+      "sha256": "858cd55b46f0243e74424cae62c179ee4e63f3308d0fc05fbd18660dd9768646"
+    },
+    {
+      "text": "Dat is balen. Maar het betekent niet dat je terug bij af bent.",
+      "seed": 8421,
+      "durationSeconds": 3.68,
+      "sha256": "47addca065248ce5d837d16281af0ca7895471e301e31d54f2869c0a5c82a510"
+    },
+    {
+      "text": "Kijk wat er veranderde en ga terug naar je vaste basis.",
+      "seed": 8422,
+      "durationSeconds": 3.52,
+      "sha256": "2d991c57ab47fb67500f2faf2a3bcb6b647c5c3e8657cb12af0e7e621d8c068b"
+    },
+    {
+      "text": "Bijsturen hoort bij herstel.",
+      "seed": 8423,
+      "durationSeconds": 2.0,
+      "sha256": "cf425375039f5839850e4cba64122f5d2fed4673fcdc906cb14aed8f8f374527"
+    }
+  ],
+  "endCard": [
+    "Een slechte nacht is geen mislukking.",
+    "Ga terug naar je basis."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

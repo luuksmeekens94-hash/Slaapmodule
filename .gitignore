@@ -15,7 +15,11 @@ node_modules/
 tools/
 
 # Remotion intermediate output (rendered MP4s end up in prototype/video/, those ARE tracked)
+remotion-poc/out/*.mp4
 remotion-poc/out/*-frame.png
+remotion-poc/out/force-*.png
+remotion-poc/out/*-review/
+remotion-poc/out/series-*/
 
 # Memory / session files
 memory/

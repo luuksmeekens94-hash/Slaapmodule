@@ -5,6 +5,12 @@ import vm from 'node:vm';
 
 const html = readFileSync(new URL('../prototype/index.html', import.meta.url), 'utf8');
 const data = JSON.parse(readFileSync(new URL('../prototype/data/sleep-module.json', import.meta.url), 'utf8'));
+const remotionRoot = readFileSync(new URL('../remotion-poc/src/Root.tsx', import.meta.url), 'utf8');
+const remotionPackage = JSON.parse(readFileSync(new URL('../remotion-poc/package.json', import.meta.url), 'utf8'));
+const renderAllSource = readFileSync(new URL('../remotion-poc/render-all.mjs', import.meta.url), 'utf8');
+const forceProductionSource = readFileSync(new URL('../remotion-poc/scripts/render-force-production.mjs', import.meta.url), 'utf8');
+const seriesProductionSource = readFileSync(new URL('../remotion-poc/scripts/render-series-production.mjs', import.meta.url), 'utf8');
+const seriesContent = JSON.parse(readFileSync(new URL('../remotion-poc/series-content.json', import.meta.url), 'utf8'));
 
 const functionStart = html.indexOf('function slaapModule()');
 const functionEnd = html.indexOf('/* ─── SlaapMotion', functionStart);
@@ -246,6 +252,48 @@ test('weekkeuzes blijven bereikbaar met toetsenbord', () => {
   assert.match(html, /<input type="checkbox" class="plan-input"/);
   assert.doesNotMatch(html, /<input type="checkbox"[^>]*style="display:none;"/);
   assert.match(html, /\.plan-item:focus-within/);
+});
+
+test('de professionele videoserie gebruikt hoorbare audio en Nederlandse captions', () => {
+  const moduleA = data.therapyModules.find((module) => module.id === 'moduleA');
+  const force = moduleA.media.find((media) => media.visual === 'force');
+  const seriesSlugs = ['force', ...Object.keys(seriesContent.videos)];
+
+  assert.equal(force.label, 'Animatie · 24 sec');
+  assert.match(force.script, /slapen lukt niet op commando/i);
+  assert.doesNotMatch(force.desc + force.script, /wakkerder/i);
+  assert.doesNotMatch(html, /:muted=/);
+  assert.match(html, /<track kind="captions" srclang="nl" label="Nederlands" :src="videoCaptionUrl\(media\.visual\)" default>/);
+  assert.match(html, /x-show="!hasVideo\(media\.visual\)"[\s\S]*?@click\.stop="toggleMedia/);
+  assert.match(html, /<div class="lesson-overlay" x-show="!hasVideo\(media\.visual\)">/);
+  assert.match(html, /<div class="media-controls" x-show="!hasVideo\(media\.visual\)">/);
+  assert.match(html, /<div class="media-voice" x-show="!hasVideo\(media\.visual\)">/);
+  assert.match(remotionRoot, /<Composition id="force" component=\{ForceFinalScene\} \{\.\.\.SERIES\} \/>/);
+  assert.match(remotionRoot, /<Composition id="force-legacy" component=\{ForceScene\} \{\.\.\.LEGACY\} \/>/);
+  assert.equal(remotionPackage.scripts['render:force'], 'node scripts/render-force-production.mjs');
+  assert.equal(remotionPackage.scripts['render:series'], 'node scripts/render-series-production.mjs');
+  assert.match(renderAllSource, /scripts\/render-force-production\.mjs/);
+  assert.match(renderAllSource, /scripts\/render-series-production\.mjs/);
+  assert.match(forceProductionSource, /bytes > 1_000_000 && bytes < 4_000_000/);
+  assert.match(forceProductionSource, /audio\?\.codec_name !== 'aac'/);
+  assert.match(seriesProductionSource, /video\?\.codec_name !== 'h264'/);
+  assert.match(seriesProductionSource, /audio\?\.codec_name !== 'aac'/);
+
+  for (const slug of seriesSlugs) {
+    const captions = readFileSync(new URL(`../prototype/video/${slug}-nl.vtt`, import.meta.url), 'utf8');
+    const videoBytes = readFileSync(new URL(`../prototype/video/${slug}.mp4`, import.meta.url)).byteLength;
+    const expectedCues = slug === 'force' ? 6 : seriesContent.videos[slug].chunks.length;
+    assert.equal((captions.match(/-->/g) || []).length, expectedCues, `${slug} captions`);
+    assert.ok(videoBytes > 650_000 && videoBytes < 6_000_000, `${slug}.mp4 is ${videoBytes} bytes`);
+  }
+});
+
+test('de eigen pauzeknop bewaart de voortgang van native video', () => {
+  const start = html.indexOf('toggleMedia(media, i) {');
+  const end = html.indexOf('startMedia(media, i, startAt = 0)', start);
+  const toggleSource = html.slice(start, end);
+  assert.match(toggleSource, /activeVideo && !activeVideo\.paused/);
+  assert.match(toggleSource, /activeVideo\.pause\(\);\s*return;/);
 });
 
 test('de patiënt kiest maximaal twee acties voor het weekplan', () => {

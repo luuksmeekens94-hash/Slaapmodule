@@ -1,0 +1,69 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "slug": "nightwake",
+  "title": "Wat doe ik om 03:00?",
+  "videoDurationSeconds": 28,
+  "audioDurationSeconds": 23.136,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    1.494,
+    1.643,
+    2.091,
+    1.792
+  ],
+  "chunks": [
+    {
+      "text": "Lig je al een tijd wakker in bed?",
+      "seed": 7619,
+      "durationSeconds": 1.76,
+      "sha256": "44e89095da6c436d0aa9ad8f99637d24df2b605cc39975a68de4b5fc466f6f47"
+    },
+    {
+      "text": "Dan kan blijven woelen je brein leren: hier ben ik dus ook wakker.",
+      "seed": 7620,
+      "durationSeconds": 3.68,
+      "sha256": "6b43160ffcbc5ed21db33c006207d68db80edfb0ce575ae00760584153d11797"
+    },
+    {
+      "text": "Ga rustig even uit bed. Houd het licht laag en doe iets saais.",
+      "seed": 7621,
+      "durationSeconds": 4.24,
+      "sha256": "7b5c98675b31a6a0bac437f9c9d496dc8edc57789d49959b491809110e573999"
+    },
+    {
+      "text": "Voel je weer slaperigheid? Ga dan terug.",
+      "seed": 7622,
+      "durationSeconds": 3.2,
+      "sha256": "d156363a0f7e5c03f82d14dd4bcb4297d2ebbaad4c28da05ff6e04c95856099c"
+    },
+    {
+      "text": "Zo blijft je bed zoveel mogelijk een plek voor slapen.",
+      "seed": 7623,
+      "durationSeconds": 3.2,
+      "sha256": "a3428c41fbc61902f3a3382cda86a96e81014cf502a9cb38f7358ad945adc573"
+    }
+  ],
+  "endCard": [
+    "Lang wakker? Ga er even uit.",
+    "Terug als je slaperig wordt."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

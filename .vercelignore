@@ -1,0 +1,8 @@
+.git/
+.github/
+.hermes/
+.worktrees/
+design/
+remotion-poc/
+tests/
+node_modules/

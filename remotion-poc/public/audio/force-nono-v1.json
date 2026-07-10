@@ -1,0 +1,33 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq",
+    "publicOwnerId": "32db679c02d356aa1ba29be9dcb93b931663bc4124a24d650126c28d9ed4b0cf",
+    "labels": ["female", "dutch", "casual", "conversational"]
+  },
+  "seed": 7319,
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "sourceText": "[thoughtful] Je ligt wakker en denkt: kom op, ik wil gewoon slapen. [short pause] Ja, logisch. [long pause] Maar hoe meer je probeert, hoe lastiger het soms wordt. [short pause] Slapen lukt niet op commando. [long pause] [softly] Je hoeft het nu niet op te lossen. Echt niet.",
+  "selectedAuditionDurationSeconds": 15.144,
+  "finalTiming": {
+    "output": "force-nono-v1.mp3",
+    "durationSeconds": 18.984,
+    "sourceSegmentsSeconds": [[0, 3.7], [4.0, 5.75], [6.05, 9.2], [9.6, 11.65], [12.25, 14.35], [14.42, 15.144]],
+    "insertedPausesSeconds": [0.9, 1.0, 1.2, 1.3, 1.1]
+  },
+  "mastering": {
+    "sampleRateHz": 48000,
+    "channels": 1,
+    "bitrateKbps": 128
+  },
+  "notes": "De gekozen Nono-uitvoering is ongewijzigd; alleen bestaande gedachtepauzes zijn verlengd om de voice-over over de volledige animatie te spreiden."
+}

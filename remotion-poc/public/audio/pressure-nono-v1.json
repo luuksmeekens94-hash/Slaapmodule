@@ -1,0 +1,69 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "slug": "pressure",
+  "title": "Slaapdruk opbouwen",
+  "videoDurationSeconds": 27,
+  "audioDurationSeconds": 22.128,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    1.077,
+    1.293,
+    1.293,
+    1.077
+  ],
+  "chunks": [
+    {
+      "text": "Slaapdruk groeit terwijl je wakker bent.",
+      "seed": 8119,
+      "durationSeconds": 2.48,
+      "sha256": "bdece5b74f85a78f6b2a7337f15ea93d3326b6887d0b6a93c04c0ff79eebdbf5"
+    },
+    {
+      "text": "Zie het als een rustige golf die over de dag steeds hoger wordt.",
+      "seed": 8120,
+      "durationSeconds": 3.68,
+      "sha256": "1f73d8a689825261426d78e278c84cce3e9531b5a71cd597c1b2c99a451204d2"
+    },
+    {
+      "text": "Een lang dutje haalt een flink stuk van die druk weg.",
+      "seed": 8121,
+      "durationSeconds": 3.04,
+      "sha256": "fd537f6b316949965e7b0d96bdf1be48ab036d4c4a014f1c753d6425fd9e48b9"
+    },
+    {
+      "text": "Een kort dutje kan soms wel: maximaal twintig minuten, en liever vroeg op de dag.",
+      "seed": 8122,
+      "durationSeconds": 5.2,
+      "sha256": "866c6ff46fec09139e2931f3f1364c1843d9c5f92d1780644f116091db604b83"
+    },
+    {
+      "text": "Zo houd je genoeg slaapdruk over voor de avond.",
+      "seed": 8123,
+      "durationSeconds": 2.96,
+      "sha256": "35636dce1f1c59e778f247c436c7aee4a830afa9a4f1212a3e3231f3c757e083"
+    }
+  ],
+  "endCard": [
+    "Wakker zijn bouwt slaapdruk op.",
+    "Dutjes halen er iets vanaf."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}
