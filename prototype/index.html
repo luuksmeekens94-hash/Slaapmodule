@@ -732,8 +732,15 @@ input[type=range].fysio-range::-moz-range-thumb {
 .module-meta {
   display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap;
 }
+.media-stack-intro {
+  display: flex; justify-content: space-between; align-items: end; gap: 18px;
+  margin-bottom: 18px;
+}
+.media-stack-intro p {
+  margin: 6px 0 0; max-width: 680px; color: var(--ink-muted); line-height: 1.6;
+}
 .media-grid {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px;
+  display: grid; grid-template-columns: 1fr; gap: 24px;
 }
 .media-card {
   background: var(--white); border: 1px solid var(--border); border-radius: 10px;
@@ -756,6 +763,7 @@ input[type=range].fysio-range::-moz-range-thumb {
   height: auto;
   aspect-ratio: 4 / 3;
   margin-bottom: 22px;
+  min-height: 360px;
 }
 .media-card.featured.video-featured .asset-scene {
   inset: 18px;
@@ -784,52 +792,6 @@ input[type=range].fysio-range::-moz-range-thumb {
 }
 .media-card.featured.video-featured .media-script {
   grid-column: 2; grid-row: 5; margin-top: 0;
-}
-.media-card.preview {
-  padding: 0; overflow: hidden;
-}
-.media-preview-shell {
-  display: grid; grid-template-columns: 88px 1fr auto; align-items: center; gap: 14px;
-  padding: 18px; width: 100%; text-align: left; transition: transform .2s, background .2s;
-  background: linear-gradient(135deg, #F7FAFE 0%, #ECF6F7 100%);
-  cursor: pointer;
-}
-.media-preview-shell:hover { background: linear-gradient(135deg, #ECF1FB 0%, #DFF1F2 100%); }
-.media-preview-shell:hover .media-preview-cta { background: var(--blue); color: #fff; transform: translateX(2px); }
-.media-preview-visual {
-  position: relative; width: 88px; height: 88px;
-  border-radius: 16px; display: grid; place-items: center;
-  background: var(--grad);
-  box-shadow: 0 8px 18px rgba(24,64,160,.22);
-  flex-shrink: 0;
-}
-.media-preview-icon {
-  display: grid; place-items: center;
-  width: 100%; height: 100%; color: #fff; position: relative; z-index: 2;
-}
-.media-preview-pulse {
-  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  border: 2px solid rgba(255,255,255,.35);
-  animation: previewPulse 2.4s ease-out infinite;
-}
-@keyframes previewPulse {
-  0%   { transform: scale(1);    opacity: .7; }
-  70%  { transform: scale(1.18); opacity: 0; }
-  100% { transform: scale(1.18); opacity: 0; }
-}
-.media-preview-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.media-preview-body .chip { align-self: flex-start; }
-.media-preview-title {
-  font-family: var(--font-head); font-size: 15px; font-weight: 700;
-  color: var(--ink); line-height: 1.25;
-}
-.media-preview-kicker { font-size: 12px; color: var(--ink-muted); }
-.media-preview-cta {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 14px; border-radius: 100px;
-  background: #fff; border: 1px solid #C8D7EF;
-  color: var(--blue); font-size: 12px; font-weight: 700;
-  transition: all .2s; flex-shrink: 0;
 }
 .media-visual {
   height: 112px; border-radius: 8px; margin-bottom: 14px;
@@ -1470,6 +1432,7 @@ input[type=range].fysio-range::-moz-range-thumb {
   .hero { padding: 48px 32px; }
   .finale { padding: 56px 32px; }
   .card-grid-2, .card-grid-3, .stats-row, .goals-grid, .compare-grid, .media-grid, .protocol-grid { grid-template-columns: 1fr; }
+  .media-stack-intro { align-items: start; }
   .media-card.featured { grid-template-columns: 1fr; }
   .media-card.featured.video-featured .media-content { grid-template-columns: 1fr; }
   .media-card.featured.video-featured .media-meta,
@@ -1480,7 +1443,7 @@ input[type=range].fysio-range::-moz-range-thumb {
   .media-card.featured.video-featured .media-choices,
   .media-card.featured.video-featured .media-script { grid-column: 1; grid-row: auto; }
   .media-card.featured .media-visual { height: 300px; }
-  .media-card.featured.video-featured .media-visual { height: auto; }
+  .media-card.featured.video-featured .media-visual { height: auto; min-height: 300px; }
   .quiz-opts { grid-template-columns: repeat(4, 1fr); }
   .step-body { padding-left: 24px; }
 }
@@ -1494,9 +1457,10 @@ input[type=range].fysio-range::-moz-range-thumb {
   .nav-progress > span { display: none; }
   .nav-progress-bar { width: 92px; }
   .chapter-head h1 { font-size: 32px; }
+  .media-stack-intro { display: block; }
   .media-card.featured { padding: 16px; }
   .media-card.featured .media-visual { height: 260px; }
-  .media-card.featured.video-featured .media-visual { height: auto; }
+  .media-card.featured.video-featured .media-visual { height: auto; min-height: 230px; }
   .media-card.featured.video-featured .asset-scene { inset: 10px; }
   .media-card.featured .visual-force .media-bed {
     width: 168px; height: 64px; bottom: 84px;
@@ -2222,28 +2186,18 @@ input[type=range].fysio-range::-moz-range-thumb {
           </template>
         </div>
 
-        <div class="section-block">
+        <div class="section-block media-stack-section">
+          <div class="media-stack-intro">
+            <div>
+              <h3 class="h-block">Animaties en oefeningen</h3>
+              <p>Alle animaties staan nu direct groot onder elkaar. Je hoeft dus niet eerst op een klein kaartje te klikken om de uitleg zichtbaar te maken.</p>
+            </div>
+          </div>
           <div class="media-grid">
             <template x-for="(media, i) in currentTherapyModule.media" :key="media.title">
-              <div class="media-card" :class="[isFeaturedMedia(i) ? 'featured' : 'preview', isMediaActive(media, i) ? 'playing' : 'paused', hasVideo(media.visual) ? 'video-featured' : '']">
-                <!-- ─ Preview (compact, clickable) ─ -->
-                <button type="button" class="media-preview-shell" x-show="!isFeaturedMedia(i)" @click="setFeaturedMedia(i, media)">
-                  <div class="media-preview-visual">
-                    <span class="media-preview-icon"><svg width="22" height="22"><use :href="`#${mediaPreviewIcon(media.visual)}`"/></svg></span>
-                    <span class="media-preview-pulse"></span>
-                  </div>
-                  <div class="media-preview-body">
-                    <span class="chip chip--teal" x-text="media.label"></span>
-                    <span class="media-preview-title" x-text="media.title"></span>
-                    <span class="media-preview-kicker" x-text="mediaPreviewKicker(media.visual)"></span>
-                  </div>
-                  <span class="media-preview-cta">
-                    <svg width="16" height="16"><use href="#i-play"/></svg>
-                    Bekijk
-                  </span>
-                </button>
-                <!-- ─ Featured (full animation) ─ -->
-                <div class="media-visual" x-show="isFeaturedMedia(i)" :class="`visual-${media.visual || 'breathe'}`" :data-scene="mediaSceneIndex(media, i)">
+              <div class="media-card" :class="['featured', isMediaActive(media, i) ? 'playing' : 'paused', hasVideo(media.visual) ? 'video-featured' : '']">
+                <!-- ─ Full inline animation ─ -->
+                <div class="media-visual" :class="`visual-${media.visual || 'breathe'}`" :data-scene="mediaSceneIndex(media, i)">
                   <button class="media-play"
                     type="button"
                     @click.stop="toggleMedia(media, i)"
@@ -2252,21 +2206,17 @@ input[type=range].fysio-range::-moz-range-thumb {
                   </button>
                   <template x-if="hasVideo(media.visual)">
                     <div class="asset-scene asset-scene--video" :data-tone="videoTone(media.visual)"
-                      role="button" tabindex="0"
-                      @click="openMediaViewer(media, i)"
-                      @keydown.enter.prevent="openMediaViewer(media, i)"
-                      @keydown.space.prevent="openMediaViewer(media, i)"
-                      :aria-label="`Bekijk ${media.title} groot`">
-                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" autoplay muted playsinline preload="metadata" @ended="finishMedia(media, i)"></video>
+                      :aria-label="media.title">
+                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" muted controls playsinline preload="metadata"
+                        @play="syncNativeVideoPlay(media, i, $event)"
+                        @pause="syncNativeVideoPause(media, i, $event)"
+                        @timeupdate="syncNativeVideoProgress(media, i, $event)"
+                        @ended="finishMedia(media, i)"></video>
                     </div>
                   </template>
                   <template x-if="!hasVideo(media.visual)">
                     <div class="asset-scene" x-html="renderSceneSvg(media)"></div>
                   </template>
-                  <button type="button" class="media-open" x-show="hasVideo(media.visual)" @click.stop="openMediaViewer(media, i)" title="Bekijk groot">
-                    <svg width="15" height="15"><use href="#i-expand"/></svg>
-                    Vergroot
-                  </button>
                   <div class="lesson-overlay">
                     <div class="lesson-caption" x-text="mediaScene(media, i).caption"></div>
                     <div class="lesson-progress"><span :style="`width:${mediaProgress(media, i)}%`"></span></div>
@@ -2277,7 +2227,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                     </div>
                   </div>
                 </div>
-                <div class="media-content" x-show="isFeaturedMedia(i)">
+                <div class="media-content">
                   <div class="media-meta">
                     <span class="chip chip--teal" x-text="media.label"></span>
                     <span class="media-state" x-text="isMediaEnded(media, i) ? 'afgerond' : (isMediaPlaying(media, i) ? 'speelt af' : 'klaar om te starten')"></span>
@@ -2288,10 +2238,6 @@ input[type=range].fysio-range::-moz-range-thumb {
                     <button type="button" class="media-control primary" @click="toggleMedia(media, i)">
                       <svg width="13" height="13"><use :href="isMediaPlaying(media, i) ? '#i-pause' : (isMediaEnded(media, i) ? '#i-rotate' : '#i-play')"/></svg>
                       <span x-text="isMediaPlaying(media, i) ? 'Pauzeer' : (isMediaEnded(media, i) ? 'Opnieuw' : 'Start uitleg')"></span>
-                    </button>
-                    <button type="button" class="media-control expand" x-show="hasVideo(media.visual)" @click="openMediaViewer(media, i)">
-                      <svg width="13" height="13"><use href="#i-expand"/></svg>
-                      Bekijk groot
                     </button>
                     <button type="button" class="media-control" @click="restartMedia(media, i)">
                       <svg width="13" height="13"><use href="#i-rotate"/></svg>
@@ -2525,7 +2471,6 @@ function slaapModule() {
     quiz: {},
     therapyModules: [],
     reflections: { h1: '' },
-    moduleFeaturedIdx: {},
     audioElement: null,
     mediaViewer: null,
     previewAll: new URLSearchParams(window.location.search).get('preview') === 'all',
@@ -3522,58 +3467,6 @@ function slaapModule() {
       const key = this.mediaKey(media, i);
       return this.activeMediaId === key && this.endedMediaId === key;
     },
-    featuredMediaIdx() {
-      const id = this.currentTherapyModule.id;
-      return this.moduleFeaturedIdx[id] ?? 0;
-    },
-    isFeaturedMedia(i) { return i === this.featuredMediaIdx(); },
-    setFeaturedMedia(i, media) {
-      const id = this.currentTherapyModule.id;
-      this.moduleFeaturedIdx = { ...this.moduleFeaturedIdx, [id]: i };
-      this.stopMedia();
-      // Auto-start the new featured animation after DOM updates
-      this.$nextTick(() => {
-        setTimeout(() => this.startMedia(media, i), 80);
-      });
-    },
-    mediaPreviewIcon(visual) {
-      const map = {
-        force: 'i-bed',
-        worry: 'i-brain',
-        breathe: 'i-sparkles',
-        cycles: 'i-refresh-cycle',
-        nightwake: 'i-night',
-        night: 'i-night',
-        clock: 'i-sunrise',
-        sun: 'i-sun',
-        pressure: 'i-scale',
-        thought: 'i-brain',
-        meter: 'i-shield',
-        curve: 'i-chart',
-        plan: 'i-check',
-        rhythm: 'i-bed',
-      };
-      return map[visual] || 'i-play';
-    },
-    mediaPreviewKicker(visual) {
-      const map = {
-        force: 'wachten op slaperigheid',
-        worry: 'zorgen op papier',
-        breathe: 'rustige adem',
-        cycles: 'slaap golft',
-        nightwake: 'uit bed bij wakker',
-        night: 'uit bed bij wakker',
-        clock: 'vast opstaan',
-        sun: 'licht naar slaapklok',
-        pressure: 'slaapdruk opbouwen',
-        thought: 'helpende gedachte',
-        meter: 'rustiger systeem',
-        curve: 'blijven bijsturen',
-        plan: 'persoonlijk plan',
-        rhythm: 'slaapvenster aanpassen',
-      };
-      return map[visual] || '';
-    },
     playMediaAudio(media) {
       // If media has audioUrl, play that; otherwise fall back to TTS
       if (this.audioElement) { try { this.audioElement.pause(); } catch {} this.audioElement = null; }
@@ -3655,6 +3548,38 @@ function slaapModule() {
       this.activeMediaId = key;
       this.endedMediaId = key;
       this.activeMediaElapsed = lesson.duration;
+    },
+    syncNativeVideoPlay(media, i, event) {
+      const key = this.mediaKey(media, i);
+      if (this.activeMediaId === key) return;
+      if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
+      this.activeMediaTimer = null;
+      if (window.SlaapMotion) window.SlaapMotion.detach();
+      this._motionTimeline = null;
+      document.querySelectorAll('.asset-scene--video video').forEach(video => {
+        if (video !== event.target) {
+          try { video.pause(); video.currentTime = 0; } catch (_) {}
+        }
+      });
+      this.activeMediaId = key;
+      this.endedMediaId = null;
+      this.activeMediaElapsed = Math.min(this.mediaLesson(media).duration, event.target?.currentTime || 0);
+      this.activeMediaTimer = setInterval(() => {
+        this.activeMediaElapsed = Math.min(this.mediaLesson(media).duration, event.target?.currentTime || 0);
+      }, 120);
+    },
+    syncNativeVideoProgress(media, i, event) {
+      if (this.activeMediaId !== this.mediaKey(media, i)) return;
+      this.activeMediaElapsed = Math.min(this.mediaLesson(media).duration, event.target?.currentTime || 0);
+    },
+    syncNativeVideoPause(media, i, event) {
+      const key = this.mediaKey(media, i);
+      if (this.activeMediaId !== key || this.endedMediaId === key || event.target?.ended) return;
+      if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
+      this.activeMediaTimer = null;
+      this.activeMediaId = null;
+      this.endedMediaId = null;
+      this.activeMediaElapsed = 0;
     },
     stopMedia() {
       if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
