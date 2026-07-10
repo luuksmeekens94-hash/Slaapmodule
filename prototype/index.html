@@ -2359,8 +2359,8 @@ input[type=range].fysio-range::-moz-range-thumb {
         <button class="btn btn-ghost" @click="prev()" :disabled="isAtStartOfPath()">
           <svg width="14" height="14"><use href="#i-arrow-left"/></svg> Terug
         </button>
-        <button class="btn btn-primary" x-show="!isAtEndOfPath()" @click="next()">
-          Volgende <svg width="14" height="14"><use href="#i-arrow-right"/></svg>
+        <button class="btn btn-primary" x-show="!isAtEndOfPath()" :disabled="!canGoNext" @click="next()">
+          <span x-text="nextButtonLabel"></span> <svg width="14" height="14"><use href="#i-arrow-right"/></svg>
         </button>
         <span class="chip chip--teal" x-show="isAtEndOfPath()">Route klaar</span>
       </div>
@@ -2403,7 +2403,8 @@ function slaapModule() {
     therapyModules: [],
     reflections: { h1: '' },
     audioElement: null,
-    previewAll: new URLSearchParams(window.location.search).get('preview') === 'all',
+    previewAll: ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
+      && new URLSearchParams(window.location.search).get('preview') === 'all',
 
     get isFysionAirReferral() {
       return this.routeContext.source === 'fysionair';
@@ -2449,12 +2450,13 @@ function slaapModule() {
         .map(g => g.recommendsTitle);
     },
     get recommendedModuleIds() {
-      const quizIds = this.quizGroups
+      if (this.isFysionAirReferral && this.contextRecommendedModuleId) {
+        return [this.contextRecommendedModuleId];
+      }
+      return this.quizGroups
         .filter(g => this.groupScore(g.id) >= 2)
         .sort((a, b) => this.groupScore(b.id) - this.groupScore(a.id))
         .map(g => g.recommendModuleId);
-      if (quizIds.length > 0) return quizIds;
-      return this.contextRecommendedModuleId ? [this.contextRecommendedModuleId] : [];
     },
     get firstRecommendedIndex() {
       const id = this.recommendedModuleIds[0];
@@ -2509,10 +2511,19 @@ function slaapModule() {
       return ((idx + 1) / Math.max(this.visibleChapters.length, 1)) * 100;
     },
     get routeStepLabel() {
+      if (this.currentChapterId === 'check' && !this.pathReady) return 'Je slaapcheck';
       const total = this.visibleChapters.length;
       if (!total) return 'Jouw route';
       const step = Math.max(this.visibleIdxOfCurrent + 1, 1);
       return `Stap ${step} van ${total}`;
+    },
+    get canGoNext() {
+      return !(this.currentChapterId === 'check' && !this.pathReady) && !this.isAtEndOfPath();
+    },
+    get nextButtonLabel() {
+      return this.currentChapterId === 'check' && !this.pathReady
+        ? 'Vul de slaapcheck in'
+        : 'Volgende';
     },
     get isTherapyChapter() {
       return this.currentChapterIdx >= 4 && this.currentChapterIdx < 4 + this.therapyModules.length;
@@ -2540,12 +2551,20 @@ function slaapModule() {
       return this.moduleActions[id] || Array(this.currentTherapyModule.actions.length).fill(false);
     },
     get completedModuleActions() { return this.currentModuleActions.filter(Boolean).length; },
+    get planModuleIds() {
+      if (this.previewAll) return this.therapyModules.map(module => module.id);
+      const recommended = this.recommendedModuleIds;
+      if (recommended.length) return recommended;
+      return this.pathReady ? ['moduleA'] : [];
+    },
     get selectedPlanItems() {
       const items = [];
+      const allowedModules = new Set(this.planModuleIds);
       for (const module of this.therapyModules) {
+        if (!allowedModules.has(module.id)) continue;
         const checks = this.moduleActions[module.id] || [];
         checks.forEach((checked, index) => {
-          if (checked && module.actions[index]) {
+          if (checked && module.actions[index] && items.length < 2) {
             items.push({
               moduleId: module.id,
               moduleTitle: module.label.replace(/^Jouw oefening · /, ''),
@@ -2563,6 +2582,57 @@ function slaapModule() {
       return `Je plan\n\n${actions}\n\nBespreek dit met je fysio.`;
     },
 
+    stateKey(name) {
+      return `fysion.slaap.${name}`;
+    },
+    persistState(name, value) {
+      if (this.isFysionAirReferral || ['reflections', 'moduleNotes'].includes(name)) return;
+      try {
+        localStorage.setItem(this.stateKey(name), JSON.stringify(value));
+      } catch {}
+    },
+    readPersistedState(name) {
+      if (this.isFysionAirReferral || ['reflections', 'moduleNotes'].includes(name)) return null;
+      try {
+        const value = localStorage.getItem(this.stateKey(name));
+        return value ? JSON.parse(value) : null;
+      } catch {
+        return null;
+      }
+    },
+    purgeLegacyFreeText() {
+      try {
+        ['reflections', 'moduleNotes']
+          .forEach(name => localStorage.removeItem(this.stateKey(name)));
+      } catch {}
+    },
+    discardDeviceState() {
+      try {
+        ['quiz', 'actions', 'reflections', 'evals', 'moduleActions', 'moduleEvals', 'moduleNotes']
+          .forEach(name => localStorage.removeItem(this.stateKey(name)));
+      } catch {}
+    },
+    clearPersistedState() {
+      if (this.isFysionAirReferral) return;
+      this.discardDeviceState();
+    },
+    normalizeModuleActions(rawActions) {
+      const normalized = {};
+      const allowedModules = new Set(this.planModuleIds);
+      let selected = 0;
+      for (const module of this.therapyModules) {
+        if (!allowedModules.has(module.id)) continue;
+        const raw = Array.isArray(rawActions?.[module.id]) ? rawActions[module.id] : [];
+        const next = module.actions.map((_, index) => {
+          if (!raw[index] || selected >= 2) return false;
+          selected += 1;
+          return true;
+        });
+        if (next.some(Boolean)) normalized[module.id] = next;
+      }
+      return normalized;
+    },
+
     groupScore(gid) {
       const grp = this.quiz[gid] || {};
       const vals = Object.values(grp).filter(v => v !== undefined && v !== null);
@@ -2573,7 +2643,7 @@ function slaapModule() {
       if (!this.quiz[gid]) this.quiz[gid] = {};
       this.quiz[gid][qid] = val;
       this.quiz = { ...this.quiz };
-      localStorage.setItem('fysion.slaap.quiz', JSON.stringify(this.quiz));
+      this.persistState('quiz', this.quiz);
     },
     isModuleActionChecked(i) { return Boolean(this.currentModuleActions[i]); },
     toggleModuleAction(i) {
@@ -2589,7 +2659,7 @@ function slaapModule() {
         ? 'Deze stap staat in je plan.'
         : 'Deze stap is uit je plan gehaald.';
       this.moduleActions = { ...this.moduleActions, [id]: next };
-      localStorage.setItem('fysion.slaap.moduleActions', JSON.stringify(this.moduleActions));
+      this.persistState('moduleActions', this.moduleActions);
     },
     getModuleEval(i) {
       const id = this.currentTherapyModule.id;
@@ -2600,23 +2670,24 @@ function slaapModule() {
       const next = [...(this.moduleEvals[id] || [5, 5, 5, 5])];
       next[i] = value;
       this.moduleEvals = { ...this.moduleEvals, [id]: next };
-      localStorage.setItem('fysion.slaap.moduleEvals', JSON.stringify(this.moduleEvals));
+      this.persistState('moduleEvals', this.moduleEvals);
     },
     getModuleNote() { return this.moduleNotes[this.currentTherapyModule.id] || ''; },
     setModuleNote(value) {
       this.moduleNotes = { ...this.moduleNotes, [this.currentTherapyModule.id]: value };
-      localStorage.setItem('fysion.slaap.moduleNotes', JSON.stringify(this.moduleNotes));
+      this.persistState('moduleNotes', this.moduleNotes);
     },
     initRouteContext() {
       const params = new URLSearchParams(window.location.search);
       const source = params.get('source') || '';
       const sleep = params.get('sleep') || '';
       const focus = params.get('focus') || '';
-      this.routeContext = {
-        source: ['fysionair'].includes(source) ? source : '',
-        sleep: ['low', 'medium', 'high'].includes(sleep) ? sleep : '',
-        focus: ['inslapen', 'wakker', 'ritme', 'piekeren'].includes(focus) ? focus : '',
-      };
+      const valid = source === 'fysionair'
+        && ['low', 'medium', 'high'].includes(sleep)
+        && ['inslapen', 'wakker', 'ritme', 'piekeren'].includes(focus);
+      this.routeContext = valid
+        ? { source, sleep, focus }
+        : { source: '', sleep: '', focus: '' };
     },
     startRoute() {
       this.goToId(this.isFysionAirReferral && this.contextRecommendedModuleId ? 'gevaar' : 'check');
@@ -2633,6 +2704,7 @@ function slaapModule() {
       window.print();
     },
     next() {
+      if (this.currentChapterId === 'check' && !this.pathReady) return;
       const visible = this.visibleChapters;
       const curId = this.currentChapterId;
       const visIdx = visible.findIndex(ch => ch.id === curId);
@@ -2664,9 +2736,9 @@ function slaapModule() {
       if (i >= 0) this.goTo(i);
     },
     isAtEndOfPath() {
+      if (this.currentChapterId !== 'afsluiting') return false;
       const visible = this.visibleChapters;
-      const curId = this.currentChapterId;
-      return visible.findIndex(ch => ch.id === curId) === visible.length - 1;
+      return visible.findIndex(ch => ch.id === this.currentChapterId) === visible.length - 1;
     },
     isAtStartOfPath() {
       const visible = this.visibleChapters;
@@ -3681,7 +3753,7 @@ function slaapModule() {
     },
     resetProgress() {
       if (!confirm('Weet je zeker dat je alle antwoorden wilt wissen?')) return;
-      ['quiz','actions','reflections','evals','moduleActions','moduleEvals','moduleNotes'].forEach(k => localStorage.removeItem('fysion.slaap.'+k));
+      this.clearPersistedState();
       this.quiz = {};
       this.moduleActions = {};
       this.moduleEvals = {};
@@ -3706,15 +3778,25 @@ function slaapModule() {
     },
     async init() {
       this.initRouteContext();
+      this.purgeLegacyFreeText();
+      if (this.isFysionAirReferral) this.discardDeviceState();
       await this.loadContentData();
       try {
-        const q = localStorage.getItem('fysion.slaap.quiz'); if (q) this.quiz = JSON.parse(q);
-        const r = localStorage.getItem('fysion.slaap.reflections'); if (r) this.reflections = JSON.parse(r);
-        const ma = localStorage.getItem('fysion.slaap.moduleActions'); if (ma) this.moduleActions = JSON.parse(ma);
-        const me = localStorage.getItem('fysion.slaap.moduleEvals'); if (me) this.moduleEvals = JSON.parse(me);
-        const mn = localStorage.getItem('fysion.slaap.moduleNotes'); if (mn) this.moduleNotes = JSON.parse(mn);
-      } catch {}
-      this.$watch('reflections', v => localStorage.setItem('fysion.slaap.reflections', JSON.stringify(v)), { deep: true });
+        if (!this.isFysionAirReferral) {
+          this.quiz = this.readPersistedState('quiz') || {};
+          this.reflections = { h1: '' };
+          this.moduleActions = this.normalizeModuleActions(this.readPersistedState('moduleActions') || {});
+          this.moduleEvals = this.readPersistedState('moduleEvals') || {};
+          this.moduleNotes = {};
+        }
+      } catch {
+        this.quiz = {};
+        this.moduleActions = {};
+        this.moduleEvals = {};
+        this.moduleNotes = {};
+        this.reflections = { h1: '' };
+      }
+      this.$watch('reflections', value => this.persistState('reflections', value), { deep: true });
       if (this.currentChapterIdx === 3) setTimeout(() => { this.stagesReady = true; }, 300);
     },
   };
