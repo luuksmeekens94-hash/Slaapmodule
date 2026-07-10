@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Slaapmodule · FysionAIr</title>
+<title>FysionAIr Slaaproute</title>
 <link rel="icon" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -331,7 +331,12 @@ main { min-width: 0; }
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.hero p { color: rgba(255,255,255,.88); font-size: 18px; line-height: 1.7; max-width: 560px; margin: 24px 0 36px; }
+.hero p { color: rgba(255,255,255,.88); font-size: 18px; line-height: 1.7; max-width: 620px; margin: 24px 0 24px; }
+.hero-context-note {
+  display: inline-flex; max-width: 620px; padding: 12px 16px; margin: 0 0 28px !important;
+  border-radius: var(--radius); background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.22); font-size: 14px !important; line-height: 1.55 !important;
+}
 
 /* ─── STATS ROW ───────────────────────────────────── */
 .stats-row {
@@ -672,10 +677,18 @@ main { min-width: 0; }
 .plan-count-lbl { font-size: 12px; color: var(--ink-muted); margin-top: 4px; }
 
 .plan-item {
+  position: relative;
   display: flex; gap: 14px; align-items: flex-start;
   padding: 16px 18px; border: 1px solid var(--border);
   border-radius: var(--radius); margin-bottom: 10px;
   transition: all .2s; cursor: pointer; background: var(--white);
+}
+.plan-input {
+  position: absolute; width: 1px; height: 1px; opacity: 0;
+  pointer-events: none;
+}
+.plan-item:focus-within {
+  outline: 3px solid rgba(36,114,200,.28); outline-offset: 2px;
 }
 .plan-item:hover { border-color: #CFDBF3; background: #FAFBFD; }
 .plan-item.checked { background: var(--blue-light); border-color: #CFDBF3; }
@@ -1305,6 +1318,27 @@ input[type=range].fysio-range::-moz-range-thumb {
   background: #FBFCFE; color: var(--ink); line-height: 1.55;
 }
 
+/* ─── PATIENT PLAN SUMMARY ────────────────────────── */
+.patient-plan {
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius-xl);
+  padding: 36px; box-shadow: var(--shadow); margin-bottom: 32px;
+}
+.patient-plan-head { display: flex; justify-content: space-between; align-items: start; gap: 20px; margin-bottom: 24px; }
+.patient-plan-list { display: grid; gap: 10px; margin: 18px 0 22px; }
+.patient-plan-item {
+  display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start;
+  padding: 14px 16px; border-radius: var(--radius); background: var(--teal-light);
+  border: 1px solid #C3E8EA; color: var(--ink); font-size: 15px;
+}
+.patient-plan-num {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--teal); color: #fff; font-weight: 800; font-size: 12px;
+}
+.patient-plan-empty { padding: 16px; border-radius: var(--radius); background: var(--bg-alt); color: var(--ink-muted); }
+.patient-plan-question { padding: 16px 18px; border-left: 4px solid var(--blue); background: var(--blue-light); border-radius: 0 var(--radius) var(--radius) 0; }
+.patient-plan-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.plan-notice { min-height: 22px; margin-top: 12px; color: var(--blue); font-size: 13px; font-weight: 600; }
+
 /* ─── FINALE CTA ──────────────────────────────────── */
 .finale {
   position: relative; overflow: hidden;
@@ -1352,8 +1386,17 @@ input[type=range].fysio-range::-moz-range-thumb {
 
 /* ─── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 960px) {
-  .page { grid-template-columns: 1fr; gap: 20px; }
+  .page { grid-template-columns: 1fr; gap: 20px; padding-bottom: 150px; }
   .sidebar { display: none; }
+  .chapter-nav {
+    position: fixed; bottom: 12px; left: 16px; right: 16px; z-index: 40;
+    max-width: 896px; margin: 0 auto; padding: 14px 16px;
+    background: rgba(247,249,253,.96); backdrop-filter: blur(14px);
+    border: 1px solid var(--border); border-radius: var(--radius-lg);
+    box-shadow: 0 -8px 28px rgba(14,28,56,.10);
+  }
+  .patient-plan { padding: 28px 24px; }
+  .patient-plan-head { display: block; }
   .mobile-chapters {
     display: flex; gap: 8px; overflow-x: auto;
     padding-bottom: 12px; margin: 0 -32px 0 -32px; padding-inline: 32px;
@@ -1385,8 +1428,9 @@ input[type=range].fysio-range::-moz-range-thumb {
   .nav-logo { font-size: 18px; min-width: 0; }
   .nav-logo-icon, .nav-logo-icon img { width: 30px; height: 30px; }
   .nav-progress { gap: 8px; margin-left: auto; flex-shrink: 0; white-space: nowrap; }
-  .nav-progress > span { display: none; }
-  .nav-progress-bar { width: 92px; }
+  .nav-progress > span { display: inline; font-size: 11px; }
+  .nav-progress-bar { display: none; }
+  .mobile-chapters { display: none !important; }
   .chapter-head h1 { font-size: 32px; }
   .media-stack-intro { display: block; }
   .media-card.featured { padding: 16px; }
@@ -1409,6 +1453,12 @@ input[type=range].fysio-range::-moz-range-thumb {
   .stage-bar.n2, .stage-bar.n3, .stage-bar.rem { min-width: min(100%, 164px); }
   .stage-scale { margin: 12px 0 0; }
   .cycle-node { max-width: 128px; min-width: 96px; font-size: 11px; padding: 7px 10px; }
+}
+@media print {
+  body * { visibility: hidden !important; }
+  .patient-plan, .patient-plan * { visibility: visible !important; }
+  .patient-plan { position: absolute; inset: 0 auto auto 0; width: 100%; box-shadow: none; border: 0; }
+  .patient-plan-actions, .chapter-nav { display: none !important; }
 }
 </style>
 
@@ -1547,12 +1597,11 @@ input[type=range].fysio-range::-moz-range-thumb {
         <span class="nav-logo-text">FysionAIr</span>
       </a>
       <div class="nav-progress">
-        <span x-show="previewAll || pathReady"><span x-text="Math.max(visibleIdxOfCurrent+1, 1)"></span> / <span x-text="visibleChapters.length"></span></span>
-        <span x-show="!previewAll && !pathReady" style="font-weight:600; color:var(--blue);">Stap 1: doe de slaapcheck</span>
+        <span style="font-weight:600; color:var(--blue);" x-text="routeStepLabel"></span>
         <div class="nav-progress-bar">
           <div class="nav-progress-fill" :style="`width: ${visibleProgress}%`"></div>
         </div>
-        <button class="nav-reset" @click="resetProgress()" title="Reset voortgang" aria-label="Reset">
+        <button class="nav-reset" @click="resetProgress()" title="Wis je keuzes" aria-label="Wis je keuzes">
           <svg width="16" height="16"><use href="#i-rotate"/></svg>
         </button>
       </div>
@@ -1566,7 +1615,7 @@ input[type=range].fysio-range::-moz-range-thumb {
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <div class="sidebar-title" x-text="previewAll ? 'Alle onderdelen' : (pathReady ? 'Jouw stappen' : 'Eerst de slaapcheck')"></div>
+      <div class="sidebar-title" x-text="previewAll ? 'Alle stappen' : (pathReady ? 'Jouw route' : 'Jouw start')"></div>
       <template x-for="(ch, vi) in visibleChapters" :key="ch.id">
         <button class="side-item" :class="ch.id === currentChapterId ? 'active' : ''" @click="goToId(ch.id)">
           <svg width="18" height="18"><use :href="`#${ch.icon}`"/></svg>
@@ -1579,9 +1628,9 @@ input[type=range].fysio-range::-moz-range-thumb {
       <div x-show="pathReady && (chapters.length - visibleChapters.length) > 0" class="sidebar-locked">
         <div class="sidebar-locked-title">
           <svg width="14" height="14"><use href="#i-shield"/></svg>
-          Nu niet nodig
+          Andere stappen
         </div>
-        <p>Deze onderdelen passen nu niet bij je antwoorden. Je fysio kan ze later alsnog met je bekijken.</p>
+        <p>Deze stappen passen nu minder goed bij je antwoorden. Je fysio kan ze later met je bekijken.</p>
       </div>
     </aside>
 
@@ -1600,16 +1649,13 @@ input[type=range].fysio-range::-moz-range-thumb {
       <!-- ─ 0 · WELKOM ─────────────────────────────── -->
       <section class="chapter" x-show="currentChapterIdx === 0" x-transition.opacity>
         <div class="hero section-block">
-          <div class="hero-chip"><span class="live-dot"></span> Slaapstappen die bij jou passen</div>
-          <h1 class="h-hero">Slaap is <em>trainbaar.</em><br/>Je lichaam kan tot rust komen.</h1>
-          <p>Slecht slapen kan voor je lichaam voelen als een waarschuwing. Daardoor kan lage rugpijn sterker voelen.
-            Je krijgt korte uitleg en kleine stappen om je slaap te verbeteren.</p>
+          <div class="hero-chip"><span class="live-dot"></span> <span x-text="startKicker"></span></div>
+          <h1 class="h-hero">Jouw <em>slaaproute</em></h1>
+          <p x-text="startMessage"></p>
+          <p class="hero-context-note" x-show="startFocusMessage" x-text="startFocusMessage"></p>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <button class="btn btn-white btn-lg" @click="goTo(1)">
-              Doe de slaapcheck <svg width="16" height="16"><use href="#i-arrow-right"/></svg>
-            </button>
-            <button class="btn btn-outline-white btn-lg" @click="goTo(2)">
-              Bekijk eerst de uitleg
+            <button class="btn btn-white btn-lg" @click="startRoute()">
+              Start de route <svg width="16" height="16"><use href="#i-arrow-right"/></svg>
             </button>
           </div>
         </div>
@@ -1618,46 +1664,45 @@ input[type=range].fysio-range::-moz-range-thumb {
         <div class="section-block">
           <div style="max-width: 760px; margin-bottom: 40px;">
             <div class="eyebrow" style="margin-bottom:14px;">Misschien herken je dit</div>
-            <h2 class="h-section" style="margin-bottom:18px;">Je ligt wakker. Je draait. Je denkt: <span class="grad-text">"waarom lukt het mij niet?"</span></h2>
-            <p class="lead">En de volgende dag voelt je rug zwaarder. Stijver. Gevoeliger.
-               Je bent hierin niet de enige.</p>
+            <h2 class="h-section" style="margin-bottom:18px;">Na een slechte nacht kunnen je klachten <span class="grad-text">sterker voelen.</span></h2>
+            <p class="lead">Je bent moe. Je lichaam staat meer aan. Dat kan je herstel lastiger maken. Je doet niets fout.</p>
           </div>
           <div class="stats-row gap">
             <div class="stat">
-              <div class="stat-val">53–90%</div>
-              <div class="stat-label">van mensen met aanhoudende pijn slaapt slecht</div>
+              <div class="stat-val">10–15 min</div>
+              <div class="stat-label">voor de korte uitleg</div>
             </div>
             <div class="stat">
-              <div class="stat-val">18×</div>
-              <div class="stat-label">vaker ernstige slapeloosheid bij lage rugpijn</div>
+              <div class="stat-val">1–2</div>
+              <div class="stat-label">stappen voor deze week</div>
             </div>
             <div class="stat">
-              <div class="stat-val">~70%</div>
-              <div class="stat-label">slaapt beter met slaaptherapie</div>
+              <div class="stat-val">Jouw tempo</div>
+              <div class="stat-label">pauzeer wanneer je wilt</div>
             </div>
           </div>
         </div>
 
         <!-- Goals -->
         <div class="section-block">
-          <div class="eyebrow" style="margin-bottom:12px;">Wat ga je bereiken</div>
-          <h2 class="h-section" style="margin-bottom:24px;">Na deze uitleg:</h2>
+          <div class="eyebrow" style="margin-bottom:12px;">Dit ga je doen</div>
+          <h2 class="h-section" style="margin-bottom:24px;">Een korte route met een duidelijk plan</h2>
           <div class="goals-grid">
             <div class="goal-item">
               <div class="goal-icon"><svg width="20" height="20"><use href="#i-brain"/></svg></div>
-              <p>Je begrijpt waarom slaap zo'n grote invloed heeft op je rugpijn.</p>
+              <p>Je leert hoe slaap invloed kan hebben op je klachten.</p>
             </div>
             <div class="goal-item">
               <div class="goal-icon"><svg width="20" height="20"><use href="#i-search"/></svg></div>
-              <p>Je weet wat jouw slaap verstoort.</p>
+              <p>Je herkent wat bij jou speelt.</p>
             </div>
             <div class="goal-item">
               <div class="goal-icon"><svg width="20" height="20"><use href="#i-toolbox"/></svg></div>
-              <p>Je hebt praktische tools om je slaap stap voor stap te verbeteren.</p>
+              <p>Je bekijkt korte uitleg en oefeningen.</p>
             </div>
             <div class="goal-item">
               <div class="goal-icon"><svg width="20" height="20"><use href="#i-muscle"/></svg></div>
-              <p>Je gebruikt je slaap als actief onderdeel van je herstel.</p>
+              <p>Je kiest één of twee stappen voor deze week.</p>
             </div>
           </div>
         </div>
@@ -1666,18 +1711,17 @@ input[type=range].fysio-range::-moz-range-thumb {
       <!-- ─ 1 · GEVARENSIGNAAL ─────────────────────── -->
       <section class="chapter" x-show="currentChapterIdx === 2" x-transition.opacity>
         <header class="chapter-head">
-          <div class="eyebrow">Hoofdstuk 1</div>
-          <h1 class="h-hero">Hoe slecht slapen bijdraagt aan <span class="grad-text">lage rugpijn</span></h1>
-          <p class="lead">Slecht slapen kan voor je brein voelen als een waarschuwing. Je brein zet de bescherming dan harder aan.
-            Daardoor kan rugpijn sterker voelen.</p>
+          <div class="eyebrow">Slaap en herstel</div>
+          <h1 class="h-hero">Slecht slapen kan je klachten <span class="grad-text">sterker laten voelen</span></h1>
+          <p class="lead">Na een slechte nacht staat je lichaam vaak meer op scherp. Klachten kunnen dan sterker voelen. Dat betekent niet dat er meer schade is.</p>
         </header>
 
         <!-- Pathway SVG animation (replaces 'video') -->
         <div class="section-block">
           <div class="pathway-wrap">
-            <div class="eyebrow" style="margin-bottom:8px;">Animatie · route</div>
-            <h3 class="h-block" style="margin-bottom:18px;">Slaap → brein → rug</h3>
-            <svg viewBox="0 0 720 260" class="pathway-svg" role="img" aria-label="Animatie van slaap, brein en rug">
+            <div class="eyebrow" style="margin-bottom:8px;">Korte uitleg</div>
+            <h3 class="h-block" style="margin-bottom:18px;">Slaap → brein → klachten</h3>
+            <svg viewBox="0 0 720 260" class="pathway-svg" role="img" aria-label="Uitleg over slaap, het brein en klachten">
               <!-- Moon (slaap) -->
               <g transform="translate(60, 130)">
                 <circle r="36" fill="#E8F0FB"/>
@@ -1708,7 +1752,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                   <line x1="-6" y1="4"   x2="6" y2="4"/>
                   <line x1="-6" y1="20"  x2="6" y2="20"/>
                 </g>
-                <text y="72" text-anchor="middle" font-size="11" font-family="Plus Jakarta Sans" font-weight="700" fill="#4A5878">RUG</text>
+                <text y="72" text-anchor="middle" font-size="11" font-family="Plus Jakarta Sans" font-weight="700" fill="#4A5878">KLACHTEN</text>
               </g>
               <!-- Pathway lines -->
               <path id="path1" d="M 100 130 C 180 60, 280 60, 360 130" stroke="#F4B8B8" stroke-width="2" fill="none" stroke-dasharray="4 6" opacity=".6"/>
@@ -1720,8 +1764,8 @@ input[type=range].fysio-range::-moz-range-thumb {
               <text x="230" y="50" text-anchor="middle" font-size="10.5" fill="#9B3333" font-family="DM Sans" font-weight="600" letter-spacing="1.2">WAARSCHUWING</text>
             </svg>
             <p class="step-hint" style="text-align:center; margin-top:20px;">
-              Slecht slapen kan voor je brein voelen als een waarschuwing. Je brein zet de bescherming harder aan.
-              Je lichaam kan dan stoffen maken die pijn harder zetten. Daardoor kan rugpijn sterker voelen.
+              Na een slechte nacht kan je brein meer letten op signalen uit je lichaam.
+              Je klachten kunnen dan sterker voelen. Dat betekent niet dat er meer schade is.
             </p>
           </div>
         </div>
@@ -1730,19 +1774,19 @@ input[type=range].fysio-range::-moz-range-thumb {
         <div class="section-block">
           <div class="compare-grid">
             <div class="compare-card neg">
-              <span class="chip chip--amber" style="background:#FEE2E2; color:#9B3333; border-color:#F4B8B8;">Waarschuwingssignaal</span>
-              <h3 class="h-card" style="margin-top:12px;">Je brein beschermt harder</h3>
+              <span class="chip chip--amber" style="background:#FEE2E2; color:#9B3333; border-color:#F4B8B8;">Meer op scherp</span>
+              <h3 class="h-card" style="margin-top:12px;">Je lichaam reageert sneller</h3>
               <p style="color:#7A2828; font-size:13.5px; line-height:1.65; margin-top:6px;">
-                Je lichaam staat meer op scherp. <b>Je rug is niet kapot</b>, maar je brein kan pijn wel harder zetten.
-                Daardoor kan jouw rugpijn sterker voelen.
+                Na een slechte nacht kan je lichaam meer op scherp staan. Klachten kunnen dan sterker voelen.
+                <b>Dat betekent niet dat je lichaam meer beschadigd is.</b>
               </p>
             </div>
             <div class="compare-card pos">
-              <span class="chip chip--teal">Veilig signaal</span>
-              <h3 class="h-card" style="margin-top:12px;">Beter slapen keert het om</h3>
+              <span class="chip chip--teal">Meer rust</span>
+              <h3 class="h-card" style="margin-top:12px;">Je lichaam kan rustiger reageren</h3>
               <p style="color:#155C39; font-size:13.5px; line-height:1.65; margin-top:6px;">
-                Je lichaam komt meer tot rust. Je brein kan pijn dan beter remmen.
-                Daardoor kan jouw rugpijn afnemen. <b>Hier werken we stap voor stap aan.</b>
+                Rust en een duidelijk slaapritme kunnen je lichaam helpen herstellen.
+                Klachten kunnen dan minder sterk voelen. <b>Je werkt hier stap voor stap aan.</b>
               </p>
             </div>
           </div>
@@ -1761,10 +1805,10 @@ input[type=range].fysio-range::-moz-range-thumb {
                   <use href="#i-refresh-cycle" x="-14" y="-14" width="28" height="28" color="#9B3333"/>
                 </g>
               </svg>
-              <div class="cycle-node" style="top:2%; left:50%;">Slecht slapen = meer waarschuwing</div>
-              <div class="cycle-node" style="top:50%; left:98%;">Je brein beschermt harder</div>
-              <div class="cycle-node" style="top:98%; left:50%;">Pijn wordt sneller harder gezet</div>
-              <div class="cycle-node" style="top:50%; left:2%;">Meer pijn en spanning in de rug</div>
+              <div class="cycle-node" style="top:2%; left:50%;">Slecht slapen geeft minder herstel</div>
+              <div class="cycle-node" style="top:50%; left:98%;">Je lichaam staat meer op scherp</div>
+              <div class="cycle-node" style="top:98%; left:50%;">Klachten kunnen sterker voelen</div>
+              <div class="cycle-node" style="top:50%; left:2%;">Meer zorgen en spanning</div>
             </div>
           </div>
         </div>
@@ -1774,11 +1818,11 @@ input[type=range].fysio-range::-moz-range-thumb {
           <div class="reflection">
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
               <svg width="18" height="18" style="color:var(--teal)"><use href="#i-reflect"/></svg>
-              <div class="eyebrow" style="color:var(--teal)">Reflectie</div>
+              <div class="eyebrow" style="color:var(--teal)">Wat merk je?</div>
             </div>
             <p style="font-size:14px; color:var(--ink-muted); line-height:1.65; margin-bottom:14px;">
-              Sta eens kort stil bij de afgelopen weken. Wat merk jij aan je rug na een slechte nacht?
-              Is er verschil op dagen na een betere nacht?
+              Denk kort aan de afgelopen weken. Wat merk je aan je klachten na een slechte nacht?
+              Is er verschil na een rustigere nacht?
             </p>
             <textarea x-model="reflections.h1" placeholder="Schrijf hier wat je merkt... (wordt alleen op dit apparaat opgeslagen)" rows="3"></textarea>
             <p class="reflection-hint">Bespreek dit met je fysio. Wat jij merkt is belangrijk.</p>
@@ -1789,10 +1833,9 @@ input[type=range].fysio-range::-moz-range-thumb {
       <!-- ─ 2 · SLAAPCHECK ─────────────────────────── -->
       <section class="chapter" x-show="currentChapterIdx === 1" x-transition.opacity>
         <header class="chapter-head">
-          <div class="eyebrow">Slaapcheck</div>
-          <h1 class="h-hero">Ontdek waar jij de <span class="grad-text">meeste winst</span> kunt behalen</h1>
-          <p class="lead">Niet iedereen slaapt om dezelfde reden slecht. Beantwoord de vragen over de afgelopen
-            2 weken. Daarna zie je welk onderdeel nu het beste bij jou past.</p>
+          <div class="eyebrow">Je slaapcheck</div>
+          <h1 class="h-hero">Bekijk wat nu het beste <span class="grad-text">bij jou past</span></h1>
+          <p class="lead">Denk aan de afgelopen 2 weken. Kies per zin wat het beste past. Daarna krijg je jouw slaaproute.</p>
         </header>
 
         <template x-for="group in quizGroups" :key="group.id">
@@ -1877,7 +1920,7 @@ input[type=range].fysio-range::-moz-range-thumb {
       <!-- ─ 2 · HOE SLAAP WERKT ────────────────────── -->
       <section class="chapter" x-show="currentChapterIdx === 3" x-transition.opacity>
         <header class="chapter-head">
-          <div class="eyebrow">Hoofdstuk 2 · Uitleg over slaap</div>
+          <div class="eyebrow">Hoe slaap werkt</div>
           <h1 class="h-hero">Slaap gaat op en neer — <span class="grad-text">dat is normaal</span></h1>
           <p class="lead">Als je weet hoe slaap werkt, voelt een slechte nacht minder eng.
             Je weet dan beter welke kleine stap je kunt nemen.</p>
@@ -2180,17 +2223,17 @@ input[type=range].fysio-range::-moz-range-thumb {
             <div class="plan-inner">
               <div class="plan-head">
                 <div>
-                  <div class="eyebrow">Oefenplan voor deze week</div>
-                  <h3 class="h-block" style="margin-top:4px;">Deze week oefen je dit</h3>
+                  <div class="eyebrow">Kies voor deze week</div>
+                  <h3 class="h-block" style="margin-top:4px;">Kies één of twee kleine stappen</h3>
                 </div>
                 <div style="text-align:right;">
-                  <div class="plan-count-val" x-text="`${completedModuleActions}/${currentTherapyModule.actions.length}`"></div>
-                  <div class="plan-count-lbl">afgevinkt</div>
+                  <div class="plan-count-val" x-text="`${selectedPlanItems.length}/2`"></div>
+                  <div class="plan-count-lbl">gekozen</div>
                 </div>
               </div>
               <template x-for="(item, i) in currentTherapyModule.actions" :key="item">
                 <label class="plan-item" :class="isModuleActionChecked(i) ? 'checked' : ''">
-                  <input type="checkbox" :checked="isModuleActionChecked(i)" @change="toggleModuleAction(i)" style="display:none;">
+                  <input type="checkbox" class="plan-input" :checked="isModuleActionChecked(i)" :disabled="!isModuleActionChecked(i) && selectedPlanItems.length >= 2" @change="toggleModuleAction(i)">
                   <span class="plan-checkbox">
                     <svg x-show="isModuleActionChecked(i)" width="14" height="14" style="color:#fff"><use href="#i-check"/></svg>
                   </span>
@@ -2198,11 +2241,12 @@ input[type=range].fysio-range::-moz-range-thumb {
                 </label>
               </template>
               <div class="plan-bar">
-                <div class="plan-bar-fill" :style="`width:${(completedModuleActions/currentTherapyModule.actions.length)*100}%`"></div>
+                <div class="plan-bar-fill" :style="`width:${Math.min(selectedPlanItems.length / 2, 1) * 100}%`"></div>
               </div>
-              <div class="plan-done" x-show="completedModuleActions === currentTherapyModule.actions.length">
-                Mooi! Je hebt deze week alles afgevinkt.
+              <div class="plan-done" x-show="selectedPlanItems.length >= 1">
+                Goed gekozen. Je vindt deze stap straks terug in je plan.
               </div>
+              <div class="plan-notice" role="status" aria-live="polite" x-text="planNotice"></div>
             </div>
           </div>
         </div>
@@ -2211,7 +2255,7 @@ input[type=range].fysio-range::-moz-range-thumb {
           <div class="eval-wrap">
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
               <svg width="18" height="18" style="color:var(--teal)"><use href="#i-chart"/></svg>
-              <div class="eyebrow" style="color:var(--teal)">Evaluatie na 2-3 weken</div>
+              <div class="eyebrow" style="color:var(--teal)">Kijk na 2-3 weken</div>
             </div>
             <template x-for="(q, i) in currentTherapyModule.evaluation" :key="q">
               <div class="eval-q">
@@ -2239,7 +2283,7 @@ input[type=range].fysio-range::-moz-range-thumb {
           <div class="alert alert-amber">
             <div class="alert-icon"><svg width="20" height="20"><use href="#i-lifebuoy"/></svg></div>
             <div>
-              <div class="alert-title">Wanneer extra hulp nodig is?</div>
+              <div class="alert-title">Wanneer heb je extra hulp nodig?</div>
               <div class="alert-body" x-text="currentTherapyModule.extraHelp"></div>
             </div>
           </div>
@@ -2248,45 +2292,59 @@ input[type=range].fysio-range::-moz-range-thumb {
 
       <!-- ─ 5 · AFSLUITING ─────────────────────────── -->
       <section class="chapter" x-show="currentChapterIdx === chapters.length - 1" x-transition.opacity>
+        <div class="patient-plan section-block">
+          <div class="patient-plan-head">
+            <div>
+              <div class="eyebrow">Jouw keuze</div>
+              <h1 class="h-section" style="margin-top:6px;">Je plan voor deze week</h1>
+              <p class="lead" style="margin-top:10px;">Houd het klein. Eén of twee stappen zijn genoeg.</p>
+            </div>
+            <span class="chip chip--teal" x-text="`${selectedPlanItems.length}/2 gekozen`"></span>
+          </div>
+
+          <div class="patient-plan-list" x-show="selectedPlanItems.length">
+            <template x-for="(item, index) in selectedPlanItems" :key="`${item.moduleId}:${item.action}`">
+              <div class="patient-plan-item">
+                <span class="patient-plan-num" x-text="index + 1"></span>
+                <div>
+                  <strong x-text="item.action"></strong>
+                  <div class="step-hint" style="margin-top:4px;" x-text="item.moduleTitle"></div>
+                </div>
+              </div>
+            </template>
+          </div>
+          <div class="patient-plan-empty" x-show="!selectedPlanItems.length">
+            Je hebt nog geen stap gekozen. Ga terug en kies één kleine stap.
+          </div>
+
+          <div class="patient-plan-question">
+            <strong>Bespreek dit met je fysio</strong>
+            <p style="margin-top:4px; color:var(--ink-muted);">Welke stap past goed bij je klachten en je dagelijks leven?</p>
+          </div>
+          <div class="patient-plan-actions">
+            <button type="button" class="btn btn-primary" @click="copyPlan()" :disabled="!selectedPlanItems.length">
+              Kopieer mijn plan
+            </button>
+            <button type="button" class="btn btn-ghost" @click="printPlan()" :disabled="!selectedPlanItems.length">
+              Print mijn plan
+            </button>
+          </div>
+          <div class="plan-notice" role="status" aria-live="polite" x-text="planCopyStatus"></div>
+        </div>
+
         <div class="finale section-block">
           <div class="hero-chip">
             <svg width="14" height="14"><use href="#i-shield"/></svg> Meer rust en veiligheid
           </div>
-          <h1 class="h-hero">Slaap is geen knop die stuk is.<br/>Je kunt slaap <em>stap voor stap</em> trainen.</h1>
-          <p>Je hoeft niet perfect te slapen. Elke kleine stap helpt je lichaam rustiger te worden.
-            Daardoor kan pijn minder hard binnenkomen.</p>
+          <h1 class="h-hero">Je hebt jouw plan gemaakt.<br/><em>Begin klein.</em></h1>
+          <p>Je hoeft niet perfect te slapen. Geef je lichaam tijd om aan een nieuwe stap te wennen.</p>
           <div class="finale-ctas">
             <button class="btn btn-white btn-lg" @click="goTo(0)">
-              <svg width="16" height="16"><use href="#i-arrow-left"/></svg> Opnieuw beginnen
+              <svg width="16" height="16"><use href="#i-arrow-left"/></svg> Terug naar start
             </button>
             <a class="btn btn-outline-white btn-lg" href="https://fysionair.eu" target="_blank" rel="noopener">
               Meer over FysionAIr <svg width="16" height="16"><use href="#i-arrow-right"/></svg>
             </a>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <div class="compare-grid">
-            <div class="compare-card neg">
-              <span class="chip chip--amber" style="background:#FEE2E2; color:#9B3333; border-color:#F4B8B8;">Slechte slaap</span>
-              <ul style="margin-top:14px;">
-                <li><svg width="14" height="14" style="color:#9B3333"><use href="#i-x"/></svg> Je lichaam staat meer aan</li>
-                <li><svg width="14" height="14" style="color:#9B3333"><use href="#i-x"/></svg> Je zenuwen reageren sneller</li>
-                <li><svg width="14" height="14" style="color:#9B3333"><use href="#i-x"/></svg> Pijn komt harder binnen</li>
-                <li><svg width="14" height="14" style="color:#9B3333"><use href="#i-x"/></svg> Meer spanning</li>
-                <li><svg width="14" height="14" style="color:#9B3333"><use href="#i-x"/></svg> Meer pijn</li>
-              </ul>
-            </div>
-            <div class="compare-card pos">
-              <span class="chip chip--teal">Goede slaap</span>
-              <ul style="margin-top:14px;">
-                <li><svg width="14" height="14" style="color:#1C7A4A"><use href="#i-check"/></svg> Je lichaam komt meer tot rust</li>
-                <li><svg width="14" height="14" style="color:#1C7A4A"><use href="#i-check"/></svg> Je zenuwen worden rustiger</li>
-                <li><svg width="14" height="14" style="color:#1C7A4A"><use href="#i-check"/></svg> Pijn kan minder hard binnenkomen</li>
-                <li><svg width="14" height="14" style="color:#1C7A4A"><use href="#i-check"/></svg> Minder spanning</li>
-                <li><svg width="14" height="14" style="color:#1C7A4A"><use href="#i-check"/></svg> Minder pijn</li>
-              </ul>
-            </div>
           </div>
         </div>
 
@@ -2297,13 +2355,14 @@ input[type=range].fysio-range::-moz-range-thumb {
       </section>
 
       <!-- Chapter nav -->
-      <div class="chapter-nav">
+      <div class="chapter-nav" x-show="currentChapterIdx !== 0">
         <button class="btn btn-ghost" @click="prev()" :disabled="isAtStartOfPath()">
-          <svg width="14" height="14"><use href="#i-arrow-left"/></svg> Vorige
+          <svg width="14" height="14"><use href="#i-arrow-left"/></svg> Terug
         </button>
-        <button class="btn btn-primary" @click="next()" :disabled="isAtEndOfPath()">
+        <button class="btn btn-primary" x-show="!isAtEndOfPath()" @click="next()">
           Volgende <svg width="14" height="14"><use href="#i-arrow-right"/></svg>
         </button>
+        <span class="chip chip--teal" x-show="isAtEndOfPath()">Route klaar</span>
       </div>
     </main>
   </div>
@@ -2327,6 +2386,13 @@ function slaapModule() {
     moduleActions: {},
     moduleEvals: {},
     moduleNotes: {},
+    planNotice: '',
+    planCopyStatus: '',
+    routeContext: {
+      source: '',
+      sleep: '',
+      focus: '',
+    },
 
     contentLoaded: false,
     contentError: '',
@@ -2338,6 +2404,37 @@ function slaapModule() {
     reflections: { h1: '' },
     audioElement: null,
     previewAll: new URLSearchParams(window.location.search).get('preview') === 'all',
+
+    get isFysionAirReferral() {
+      return this.routeContext.source === 'fysionair';
+    },
+    get contextRecommendedModuleId() {
+      const focusMap = {
+        inslapen: 'moduleA',
+        wakker: 'moduleB',
+        ritme: 'moduleD',
+        piekeren: 'moduleE',
+      };
+      return focusMap[this.routeContext.focus] || '';
+    },
+    get startKicker() {
+      return this.isFysionAirReferral ? 'Aanbevolen vanuit FysionAIr' : 'Jouw slaaproute';
+    },
+    get startMessage() {
+      if (this.isFysionAirReferral) {
+        return 'Je antwoorden laten zien dat slaap invloed kan hebben op je herstel. Deze route geeft korte uitleg. Daarna kies je één of twee stappen voor deze week.';
+      }
+      return 'Deze route helpt je ontdekken of slaap invloed heeft op je klachten. Je krijgt korte uitleg. Daarna kies je één of twee stappen voor deze week.';
+    },
+    get startFocusMessage() {
+      const messages = {
+        inslapen: 'Je gaf aan dat inslapen lastig is. Daarom krijg je uitleg over rust en slaperigheid.',
+        wakker: 'Je gaf aan dat je vaak wakker wordt. Daarom krijg je uitleg over rustig blijven in de nacht.',
+        ritme: 'Je gaf aan dat je ritme wisselt. Daarom krijg je uitleg over vaste slaapstappen.',
+        piekeren: 'Je gaf aan dat je hoofd vaak actief blijft. Daarom krijg je uitleg over meer rust.',
+      };
+      return messages[this.routeContext.focus] || '';
+    },
 
     get quizTotal() {
       return this.quizGroups.reduce((s, g) => s + g.questions.length, 0);
@@ -2352,10 +2449,12 @@ function slaapModule() {
         .map(g => g.recommendsTitle);
     },
     get recommendedModuleIds() {
-      return this.quizGroups
+      const quizIds = this.quizGroups
         .filter(g => this.groupScore(g.id) >= 2)
         .sort((a, b) => this.groupScore(b.id) - this.groupScore(a.id))
         .map(g => g.recommendModuleId);
+      if (quizIds.length > 0) return quizIds;
+      return this.contextRecommendedModuleId ? [this.contextRecommendedModuleId] : [];
     },
     get firstRecommendedIndex() {
       const id = this.recommendedModuleIds[0];
@@ -2363,15 +2462,20 @@ function slaapModule() {
       return this.chapters.findIndex(ch => ch.id === id);
     },
     get pathReady() {
+      if (this.isFysionAirReferral && this.contextRecommendedModuleId) return true;
       const minNeeded = Math.max(3, Math.floor(this.quizTotal / 2));
       return this.quizAnswered >= minNeeded;
     },
     get visibleChapters() {
       if (this.previewAll) return this.chapters;
-      const pre = this.chapters.filter(ch => ['intro','check'].includes(ch.id));
+      const skipSleepCheck = this.isFysionAirReferral && Boolean(this.contextRecommendedModuleId);
+      const preIds = skipSleepCheck ? ['intro'] : ['intro', 'check'];
+      const pre = this.chapters.filter(ch => preIds.includes(ch.id));
       if (!this.pathReady) return pre;
       const recIds = this.recommendedModuleIds;
-      const baseIds = ['intro','check','gevaar','educatie','afsluiting'];
+      const baseIds = skipSleepCheck
+        ? ['intro', 'gevaar', 'educatie', 'afsluiting']
+        : ['intro', 'check', 'gevaar', 'educatie', 'afsluiting'];
       const allowed = new Set([...baseIds, ...recIds]);
       // If no module recommended, also allow first therapy module as 'optional'
       if (recIds.length === 0) allowed.add('moduleA');
@@ -2404,6 +2508,12 @@ function slaapModule() {
       if (idx < 0) return 0;
       return ((idx + 1) / Math.max(this.visibleChapters.length, 1)) * 100;
     },
+    get routeStepLabel() {
+      const total = this.visibleChapters.length;
+      if (!total) return 'Jouw route';
+      const step = Math.max(this.visibleIdxOfCurrent + 1, 1);
+      return `Stap ${step} van ${total}`;
+    },
     get isTherapyChapter() {
       return this.currentChapterIdx >= 4 && this.currentChapterIdx < 4 + this.therapyModules.length;
     },
@@ -2430,6 +2540,28 @@ function slaapModule() {
       return this.moduleActions[id] || Array(this.currentTherapyModule.actions.length).fill(false);
     },
     get completedModuleActions() { return this.currentModuleActions.filter(Boolean).length; },
+    get selectedPlanItems() {
+      const items = [];
+      for (const module of this.therapyModules) {
+        const checks = this.moduleActions[module.id] || [];
+        checks.forEach((checked, index) => {
+          if (checked && module.actions[index]) {
+            items.push({
+              moduleId: module.id,
+              moduleTitle: module.label.replace(/^Jouw oefening · /, ''),
+              action: module.actions[index],
+            });
+          }
+        });
+      }
+      return items;
+    },
+    get planText() {
+      const actions = this.selectedPlanItems.length
+        ? this.selectedPlanItems.map((item, index) => `${index + 1}. ${item.action}`).join('\n')
+        : 'Kies nog één of twee stappen voor deze week.';
+      return `Je plan\n\n${actions}\n\nBespreek dit met je fysio.`;
+    },
 
     groupScore(gid) {
       const grp = this.quiz[gid] || {};
@@ -2447,7 +2579,15 @@ function slaapModule() {
     toggleModuleAction(i) {
       const id = this.currentTherapyModule.id;
       const next = [...this.currentModuleActions];
+      const willSelect = !next[i];
+      if (willSelect && this.selectedPlanItems.length >= 2) {
+        this.planNotice = 'Kies maximaal twee stappen. Zo blijft je plan haalbaar.';
+        return;
+      }
       next[i] = !next[i];
+      this.planNotice = next[i]
+        ? 'Deze stap staat in je plan.'
+        : 'Deze stap is uit je plan gehaald.';
       this.moduleActions = { ...this.moduleActions, [id]: next };
       localStorage.setItem('fysion.slaap.moduleActions', JSON.stringify(this.moduleActions));
     },
@@ -2466,6 +2606,31 @@ function slaapModule() {
     setModuleNote(value) {
       this.moduleNotes = { ...this.moduleNotes, [this.currentTherapyModule.id]: value };
       localStorage.setItem('fysion.slaap.moduleNotes', JSON.stringify(this.moduleNotes));
+    },
+    initRouteContext() {
+      const params = new URLSearchParams(window.location.search);
+      const source = params.get('source') || '';
+      const sleep = params.get('sleep') || '';
+      const focus = params.get('focus') || '';
+      this.routeContext = {
+        source: ['fysionair'].includes(source) ? source : '',
+        sleep: ['low', 'medium', 'high'].includes(sleep) ? sleep : '',
+        focus: ['inslapen', 'wakker', 'ritme', 'piekeren'].includes(focus) ? focus : '',
+      };
+    },
+    startRoute() {
+      this.goToId(this.isFysionAirReferral && this.contextRecommendedModuleId ? 'gevaar' : 'check');
+    },
+    async copyPlan() {
+      try {
+        await navigator.clipboard.writeText(this.planText);
+        this.planCopyStatus = 'Je plan is gekopieerd.';
+      } catch (_) {
+        this.planCopyStatus = 'Kopiëren lukt niet. Selecteer de tekst en kopieer deze zelf.';
+      }
+    },
+    printPlan() {
+      window.print();
     },
     next() {
       const visible = this.visibleChapters;
@@ -3540,6 +3705,7 @@ function slaapModule() {
       }
     },
     async init() {
+      this.initRouteContext();
       await this.loadContentData();
       try {
         const q = localStorage.getItem('fysion.slaap.quiz'); if (q) this.quiz = JSON.parse(q);

@@ -1,72 +1,72 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-15T10:05:00.000Z",
+  "updatedAt": "2026-07-10T08:00:00.000Z",
   "chapters": [
     {
       "id": "intro",
       "icon": "i-hand",
       "title": "Welkom",
-      "kicker": "Waarom dit werkt"
+      "kicker": "Start"
     },
     {
       "id": "check",
       "icon": "i-clipboard",
-      "title": "Slaapcheck",
-      "kicker": "Interactieve check"
+      "title": "Je slaapcheck",
+      "kicker": "Stap 1"
     },
     {
       "id": "gevaar",
       "icon": "i-alert-circle",
-      "title": "Slaap & rugpijn",
-      "kicker": "Hoofdstuk 1"
+      "title": "Slaap en herstel",
+      "kicker": "Stap 2"
     },
     {
       "id": "educatie",
       "icon": "i-brain",
       "title": "Hoe slaap werkt",
-      "kicker": "Hoofdstuk 2"
+      "kicker": "Stap 3"
     },
     {
       "id": "moduleA",
       "icon": "i-moon",
-      "title": "Onderdeel A",
-      "kicker": "Inslapen & spanning"
+      "title": "Rust bij inslapen",
+      "kicker": "Jouw oefening"
     },
     {
       "id": "moduleB",
       "icon": "i-night",
-      "title": "Onderdeel B",
-      "kicker": "Nachtelijk wakker"
+      "title": "Rust in de nacht",
+      "kicker": "Jouw oefening"
     },
     {
       "id": "moduleC",
       "icon": "i-sunrise",
-      "title": "Onderdeel C",
-      "kicker": "Te vroeg wakker"
+      "title": "Rust bij vroeg wakker worden",
+      "kicker": "Jouw oefening"
     },
     {
       "id": "moduleD",
       "icon": "i-refresh-cycle",
-      "title": "Onderdeel D",
-      "kicker": "Slaapritme"
+      "title": "Een vast slaapritme",
+      "kicker": "Jouw oefening"
     },
     {
       "id": "moduleE",
       "icon": "i-brain",
-      "title": "Onderdeel E",
-      "kicker": "Gedachten & rust"
+      "title": "Rust in je hoofd",
+      "kicker": "Jouw oefening"
     },
     {
       "id": "moduleF",
       "icon": "i-shield",
-      "title": "Onderdeel F",
-      "kicker": "Vasthouden"
+      "title": "Je plan vasthouden",
+      "kicker": "Jouw oefening"
     },
     {
       "id": "afsluiting",
       "icon": "i-shield",
-      "title": "Veiligheid",
-      "kicker": "Afsluiting"
+      "title": "Je plan",
+      "kicker": "Laatste stap"
     }
   ],
   "quizOptions": [
@@ -102,8 +102,8 @@
           "text": "Ik voel spanning of piekergedachten als ik in bed lig."
         }
       ],
-      "recommendsTitle": "Onderdeel A — Inslapen en spanning verminderen",
-      "recommendsBody": "Je bed weer leren koppelen aan slapen en minder strijd in bed.",
+      "recommendsTitle": "Rust bij inslapen",
+      "recommendsBody": "Je leert wachten op slaperigheid en haalt de strijd uit bed.",
       "recommendModuleId": "moduleA"
     },
     {
@@ -120,8 +120,8 @@
           "text": "Als ik wakker word, lig ik daarna langer dan 30 minuten wakker."
         }
       ],
-      "recommendsTitle": "Onderdeel B — Wakker worden in de nacht",
-      "recommendsBody": "Minder klok kijken, rustig uit bed gaan en terug bij slaperigheid.",
+      "recommendsTitle": "Rust in de nacht",
+      "recommendsBody": "Je leert rustig omgaan met wakker worden en laat de klok los.",
       "recommendModuleId": "moduleB"
     },
     {
@@ -134,8 +134,8 @@
           "text": "Ik word vroeger wakker dan ik wil en kan daarna niet meer in slaap vallen."
         }
       ],
-      "recommendsTitle": "Onderdeel C — Te vroeg wakker worden",
-      "recommendsBody": "Rustig omgaan met vroeg wakker zijn en je ritme sterker maken.",
+      "recommendsTitle": "Rust bij vroeg wakker worden",
+      "recommendsBody": "Je leert rustig opstaan en maakt je slaapritme sterker.",
       "recommendModuleId": "moduleC"
     },
     {
@@ -145,7 +145,7 @@
       "questions": [
         {
           "id": "q1",
-          "text": "Ik lig langer in bed dan dat ik daadwerkelijk slaap."
+          "text": "Ik lig langer in bed dan ik slaap."
         },
         {
           "id": "q2",
@@ -156,8 +156,8 @@
           "text": "Mijn slaaptijden verschillen sterk tussen doordeweeks en weekend."
         }
       ],
-      "recommendsTitle": "Onderdeel D — Je slaapritme herstellen",
-      "recommendsBody": "Je tijd in bed beter laten passen bij hoeveel je nu echt slaapt.",
+      "recommendsTitle": "Een vast slaapritme",
+      "recommendsBody": "Je laat je tijd in bed beter passen bij hoeveel je echt slaapt.",
       "recommendModuleId": "moduleD"
     },
     {
@@ -174,15 +174,15 @@
           "text": "Ik denk snel: morgen wordt niets als ik nu niet slaap."
         }
       ],
-      "recommendsTitle": "Onderdeel E — Rustiger denken over slaap",
-      "recommendsBody": "Je oefent met bange slaapgedachten omzetten naar helpende zinnen.",
+      "recommendsTitle": "Rust in je hoofd",
+      "recommendsBody": "Je maakt bange slaapgedachten rustiger en meer helpend.",
       "recommendModuleId": "moduleE"
     }
   ],
   "therapyModules": [
     {
       "id": "moduleA",
-      "label": "Onderdeel A · Inslapen met minder spanning",
+      "label": "Jouw oefening · Rust bij inslapen",
       "title": "Inslapen met minder <span class=\"grad-text\">spanning</span>",
       "intro": "Je ligt in bed. Je bent moe. Maar je hoofd blijft aan. Hard proberen helpt dan vaak niet.",
       "tags": [
@@ -272,11 +272,11 @@
         "Voel ik meer grip op mijn slaap?"
       ],
       "reflectionPrompt": "Wat merkte je deze week als je uit bed ging in plaats van bleef vechten?",
-      "extraHelp": "Bespreek dit met je fysio als spanning erg hoog blijft, je paniek voelt of je na 3 weken geen verbetering merkt."
+      "extraHelp": "Bespreek dit met je fysio als de spanning hoog blijft. Doe dit ook als je paniek voelt. Vraag hulp als je na 3 weken geen verbetering merkt."
     },
     {
       "id": "moduleB",
-      "label": "Onderdeel B · Wakker worden in de nacht",
+      "label": "Jouw oefening · Rust in de nacht",
       "title": "Wakker worden in de nacht en rustig <span class=\"grad-text\">blijven</span>",
       "intro": "Je valt redelijk in slaap, maar wordt in de nacht wakker. Het doel is niet om nooit wakker te worden. Het doel is rustiger blijven.",
       "tags": [
@@ -358,11 +358,11 @@
         "Voelt bed weer meer als slaapplek?"
       ],
       "reflectionPrompt": "Welke nachtelijke gedachte maakte wakker liggen groter, en welke zin hielp juist?",
-      "extraHelp": "Neem contact op als angst in de nacht sterk toeneemt, je overdag extreem slaperig bent of wakker liggen na 2-3 weken niet verandert."
+      "extraHelp": "Neem contact op als je angst in de nacht sterk groeit. Doe dit ook als je overdag heel slaperig bent. Vraag hulp als er na 2 tot 3 weken niets verandert."
     },
     {
       "id": "moduleC",
-      "label": "Onderdeel C · Te vroeg wakker worden",
+      "label": "Jouw oefening · Rust bij vroeg wakker worden",
       "title": "Te vroeg wakker worden en je <span class=\"grad-text\">ritme</span> herstellen",
       "intro": "In de tweede helft van de nacht slaap je lichter. Vroeg wakker worden wordt vooral lastig als je blijft liggen wachten op slaap.",
       "tags": [
@@ -448,9 +448,9 @@
     },
     {
       "id": "moduleD",
-      "label": "Onderdeel D · Slaapritme",
+      "label": "Jouw oefening · Een vast slaapritme",
       "title": "Je <span class=\"grad-text\">slaapritme</span> verbeteren",
-      "intro": "Lig je veel langer in bed dan je slaapt? Dan kan je lichaam leren dat bed ook wakker liggen betekent. In dit onderdeel maak je je bedtijd weer duidelijker.",
+      "intro": "Lig je veel langer in bed dan je slaapt? Dan kan je lichaam leren dat bed ook wakker liggen betekent. In deze stap maak je je bedtijd weer duidelijker.",
       "tags": [
         "samen met je fysio",
         "slaapdagboek",
@@ -465,7 +465,7 @@
         },
         {
           "title": "Check na 7 dagen of het haalbaar is",
-          "body": "De eerste week is vooral oefenen. De echte evaluatie doe je na 2 tot 3 weken samen met je fysio."
+          "body": "De eerste week is om te oefenen. Na 2 tot 3 weken kijk je samen met je fysio hoe het gaat."
         }
       ],
       "steps": [
@@ -492,7 +492,7 @@
         {
           "title": "Maak je bedtijd rustig weer ruimer",
           "hint": "Kleine stapjes van 15 minuten",
-          "body": "<p>Na 7 dagen kijk je kort: lukt het om dit vol te houden en slaap je een groter deel van je tijd in bed? Dan mag je 15 minuten eerder naar bed. Lukt dat nog niet, dan houd je het nog even gelijk. De echte evaluatie volgt na 2 tot 3 weken.</p>"
+          "body": "<p>Kijk na 7 dagen of je dit kunt volhouden. Slaap je een groter deel van je tijd in bed? Ga dan 15 minuten eerder naar bed. Lukt dat nog niet? Houd de tijden dan nog even gelijk. Kijk na 2 tot 3 weken samen met je fysio hoe het gaat.</p>"
         }
       ],
       "media": [
@@ -535,13 +535,13 @@
         "Voelt mijn bedtijd duidelijker?"
       ],
       "reflectionPrompt": "Wat vond je spannend aan je nieuwe bedtijd? Wat viel mee of tegen?",
-      "extraHelp": "Doe dit onderdeel samen met je fysio. Neem contact op bij extreme vermoeidheid, duizeligheid, sterke angst of geen verbetering na 2-3 weken."
+      "extraHelp": "Doe deze stap samen met je fysio. Neem contact op bij extreme vermoeidheid, duizeligheid, sterke angst of geen verbetering na 2-3 weken."
     },
     {
       "id": "moduleE",
-      "label": "Onderdeel E · Rustiger denken over slaap",
+      "label": "Jouw oefening · Rust in je hoofd",
       "title": "Gedachten omzetten naar meer <span class=\"grad-text\">rust</span>",
-      "intro": "Gedachten als \"morgen wordt een ramp\" voelen logisch, maar geven vaak meer spanning. In dit onderdeel oefen je met gedachten die rustiger en realistischer zijn.",
+      "intro": "Gedachten als \"morgen wordt een ramp\" geven vaak meer spanning. Je oefent met gedachten die rustiger zijn en beter kloppen.",
       "tags": [
         "gedachten",
         "rust",
@@ -568,11 +568,11 @@
         {
           "title": "Check de gedachte",
           "hint": "Zeker waar of een voorspelling?",
-          "body": "<p>Vraag: heb ik eerder minder geslapen en toch gefunctioneerd? Wordt mijn rug altijd erger?</p>"
+          "body": "<p>Vraag jezelf: heb ik eerder minder geslapen en toch mijn dag gedaan? Worden mijn klachten altijd erger?</p>"
         },
         {
           "title": "Maak een helpende gedachte",
-          "hint": "Rustgevend en realistisch",
+          "hint": "Rustig en geloofwaardig",
           "body": "<p>Bijvoorbeeld: mijn lichaam kan omgaan met een mindere nacht, of: dit is vervelend, maar tijdelijk.</p>"
         },
         {
@@ -625,7 +625,7 @@
     },
     {
       "id": "moduleF",
-      "label": "Onderdeel F · Slechte nachten opvangen",
+      "label": "Jouw oefening · Je plan vasthouden",
       "title": "Slechte nachten opvangen zonder oude patronen <span class=\"grad-text\">terug</span>",
       "intro": "Iedereen slaapt soms slecht. Het verschil is dat je nu weet hoe je bijstuurt voordat oude patronen weer de leiding nemen.",
       "tags": [
@@ -659,7 +659,7 @@
         {
           "title": "Maak je veiligheidstekst",
           "hint": "Kort en geloofwaardig",
-          "body": "<p>Bijvoorbeeld: één slechte nacht beschadigt mijn rug niet. Ik weet wat ik moet doen.</p>"
+          "body": "<p>Bijvoorbeeld: één slechte nacht beschadigt mijn lichaam niet. Ik weet wat ik kan doen.</p>"
         },
         {
           "title": "Bespreek het op tijd met je fysio",
