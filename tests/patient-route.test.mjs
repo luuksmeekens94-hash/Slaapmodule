@@ -383,6 +383,8 @@ test('een grote videoknop roept play direct vanuit dezelfde gebruikersklik aan',
   assert.doesNotMatch(html, /controls playsinline preload="none"/);
   assert.match(html, /@click\.stop="startNativeVideo\(media, i, \$event\)"/);
   assert.match(appSource, /otherVideo\.removeAttribute\('src'\)[\s\S]*?otherVideo\.load\(\)/);
+  assert.match(appSource, /cloneNode\(true\)/);
+  assert.doesNotMatch(html, /@(play|playing|waiting|pause|timeupdate|ended)=/);
 
   const app = createApp();
   app.mediaKey = () => 'breathe';
@@ -495,6 +497,97 @@ test('videofouten ontgrendelen de knop en oude play-pogingen kunnen nieuwe state
   await secondStart;
   assert.equal(raceApp.loadingMediaId, null);
   assert.equal(raceApp.videoPlayErrorId, null);
+});
+
+test('elke nieuwe broncyclus isoleert oude lifecycle-events op een vervangen video-element', async () => {
+  const scene = {
+    current: null,
+    querySelector() { return this.current; },
+  };
+  const makeVideo = () => {
+    let source = null;
+    const listeners = new Map();
+    const video = {
+      paused: true,
+      ended: false,
+      currentTime: 0,
+      controls: false,
+      attributes: [],
+      listeners,
+      querySelectorAll() { return []; },
+      getAttribute(name) { return name === 'src' ? source : null; },
+      removeAttribute(name) { if (name === 'src') source = null; },
+      set src(value) { source = value; },
+      addEventListener(type, handler) { listeners.set(type, handler); },
+      removeEventListener(type, handler) { if (listeners.get(type) === handler) listeners.delete(type); },
+      dispatch(type) { listeners.get(type)?.({type, target: video}); },
+      pause() { video.paused = true; },
+      load() {},
+      play() { video.paused = false; return Promise.resolve(); },
+      cloneNode() {
+        const clone = makeVideo();
+        if (source) clone.src = source;
+        return clone;
+      },
+      replaceWith(next) { scene.current = next; },
+    };
+    return video;
+  };
+  const event = {currentTarget: {closest: () => scene}};
+  const app = createApp();
+  app.mediaKey = () => 'breathe';
+  const original = makeVideo();
+  scene.current = original;
+
+  await app.startNativeVideo({visual: 'breathe'}, 2, event);
+  const first = scene.current;
+  assert.notEqual(first, original);
+  first.dispatch('play');
+  first.dispatch('playing');
+  assert.equal(app.activeMediaId, 'breathe');
+
+  const firstAttempt = app.nativeVideoAttemptId;
+  first.currentTime = 7;
+  first.paused = true;
+  first.dispatch('pause');
+  assert.equal(app.pausedMediaId, 'breathe');
+  assert.equal(app.nativeVideoAttemptId, firstAttempt);
+
+  first.paused = false;
+  first.dispatch('play');
+  first.dispatch('playing');
+  assert.equal(app.activeMediaId, 'breathe');
+  assert.equal(app.pausedMediaId, null);
+
+  first.currentTime = 42;
+  first.ended = true;
+  first.paused = true;
+  first.dispatch('ended');
+  assert.equal(app.endedMediaId, 'breathe');
+
+  await app.startNativeVideo({visual: 'breathe'}, 2, event);
+  const second = scene.current;
+  assert.notEqual(second, first);
+  second.dispatch('play');
+  second.dispatch('playing');
+  const secondAttempt = app.nativeVideoAttemptId;
+  app.loadingMediaId = 'breathe';
+  ['playing', 'waiting', 'pause', 'ended', 'error', 'abort', 'emptied'].forEach(type => first.dispatch(type));
+  assert.equal(app.nativeVideoAttemptId, secondAttempt);
+  assert.equal(app.loadingMediaId, 'breathe');
+  assert.equal(app.videoPlayErrorId, null);
+  assert.equal(app.endedMediaId, null);
+
+  second.dispatch('error');
+  assert.equal(app.videoPlayErrorId, 'breathe');
+  second.paused = true;
+  await app.startNativeVideo({visual: 'breathe'}, 2, event);
+  const third = scene.current;
+  assert.notEqual(third, second);
+  const thirdAttempt = app.nativeVideoAttemptId;
+  ['playing', 'waiting', 'pause', 'ended', 'error'].forEach(type => second.dispatch(type));
+  assert.equal(app.nativeVideoAttemptId, thirdAttempt);
+  assert.equal(app.videoPlayErrorId, null);
 });
 
 test('de professionele videoserie gebruikt hoorbare audio en Nederlandse captions', () => {

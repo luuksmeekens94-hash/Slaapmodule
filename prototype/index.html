@@ -2169,13 +2169,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                   </button>
                   <template x-if="hasVideo(media.visual)">
                     <div class="asset-scene asset-scene--video" :data-tone="videoTone(media.visual)">
-                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" :aria-label="media.title" :title="media.title" :controls="hasLoadedNativeVideo(media, i)" playsinline preload="none"
-                        @play="syncNativeVideoPlay(media, i, $event)"
-                        @playing="syncNativeVideoPlaying(media, i)"
-                        @waiting="syncNativeVideoWaiting(media, i, $event)"
-                        @pause="syncNativeVideoPause(media, i, $event)"
-                        @timeupdate="syncNativeVideoProgress(media, i, $event)"
-                        @ended="finishMedia(media, i, $event)">
+                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" :aria-label="media.title" :title="media.title" :controls="hasLoadedNativeVideo(media, i)" playsinline preload="none">
                         <track kind="captions" srclang="nl" label="Nederlands" :src="videoCaptionUrl(media.visual)" default>
                       </video>
                       <div class="video-start-overlay" x-show="!isMediaPlaying(media, i) || isNativeVideoLoading(media, i)">
@@ -3692,6 +3686,7 @@ function slaapModule() {
     failNativeVideoAttempt(key, attemptId, event = null) {
       if (!this.isCurrentNativeVideoAttempt(key, attemptId) || this.loadedMediaId !== key) return;
       const video = event?.target || null;
+      if (video && video._sleepAttemptId !== attemptId) return;
       this.clearNativeVideoStallTimer();
       this.loadingMediaId = null;
       this.loadedMediaId = null;
@@ -3706,6 +3701,7 @@ function slaapModule() {
       if (video && typeof video._sleepAttemptCleanup === 'function') video._sleepAttemptCleanup();
       if (video) {
         try {
+          video.controls = false;
           video.pause();
           video.removeAttribute('src');
           video.load();
@@ -3720,20 +3716,60 @@ function slaapModule() {
         this.failNativeVideoAttempt(key, attemptId, video ? {target: video} : null);
       }, 10000);
     },
-    registerNativeVideoAttempt(video, key, attemptId) {
+    renewNativeVideoElement(video) {
+      if (typeof video?.cloneNode !== 'function' || typeof video?.replaceWith !== 'function') return video;
+      const freshVideo = video.cloneNode(true);
+      [freshVideo, ...freshVideo.querySelectorAll('*')].forEach(node => {
+        [...node.attributes].forEach(attribute => {
+          if (attribute.name.startsWith(':') || attribute.name.startsWith('@') || attribute.name.startsWith('x-')) {
+            node.removeAttribute(attribute.name);
+          }
+        });
+      });
       if (typeof video._sleepAttemptCleanup === 'function') video._sleepAttemptCleanup();
+      try {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      } catch (_) {}
+      freshVideo.controls = false;
+      freshVideo.removeAttribute('controls');
+      video.replaceWith(freshVideo);
+      return freshVideo;
+    },
+    registerNativeVideoAttempt(video, key, attemptId, media, i) {
+      if (typeof video._sleepAttemptCleanup === 'function') video._sleepAttemptCleanup();
+      video._sleepAttemptId = attemptId;
       const onTerminalFailure = event => this.failNativeVideoAttempt(key, attemptId, event);
       const onStalled = () => this.markNativeVideoStalled(key, attemptId, video);
-      ['error', 'abort', 'emptied'].forEach(type => video.addEventListener(type, onTerminalFailure));
-      video.addEventListener('stalled', onStalled);
+      const onWaiting = event => this.syncNativeVideoWaiting(media, i, event, attemptId);
+      const onPlaying = event => this.syncNativeVideoPlaying(media, i, event, attemptId);
+      const onPlay = event => this.syncNativeVideoPlay(media, i, event, attemptId);
+      const onPause = event => this.syncNativeVideoPause(media, i, event, attemptId);
+      const onProgress = event => this.syncNativeVideoProgress(media, i, event, attemptId);
+      const onEnded = event => this.finishMedia(media, i, event, attemptId);
+      const listeners = {
+        error: onTerminalFailure,
+        abort: onTerminalFailure,
+        emptied: onTerminalFailure,
+        stalled: onStalled,
+        waiting: onWaiting,
+        playing: onPlaying,
+        play: onPlay,
+        pause: onPause,
+        timeupdate: onProgress,
+        ended: onEnded,
+      };
+      Object.entries(listeners).forEach(([type, handler]) => video.addEventListener(type, handler));
       video._sleepAttemptCleanup = () => {
-        ['error', 'abort', 'emptied'].forEach(type => video.removeEventListener(type, onTerminalFailure));
-        video.removeEventListener('stalled', onStalled);
+        Object.entries(listeners).forEach(([type, handler]) => video.removeEventListener(type, handler));
         video._sleepAttemptCleanup = null;
+        video._sleepAttemptId = null;
       };
     },
-    finishMedia(media, i, event = null) {
+    finishMedia(media, i, event = null, attemptId = null) {
       const key = this.mediaKey(media, i);
+      if (!this.isCurrentNativeVideoAttempt(key, attemptId) || event?.target?._sleepAttemptId !== attemptId) return;
       const lesson = this.mediaLesson(media);
       if (this.activeMediaId && this.activeMediaId !== key) return;
       if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
@@ -3752,6 +3788,7 @@ function slaapModule() {
         if (otherVideo === activeVideo) return;
         try {
           if (typeof otherVideo._sleepAttemptCleanup === 'function') otherVideo._sleepAttemptCleanup();
+          otherVideo.controls = false;
           otherVideo.pause();
           otherVideo.removeAttribute('src');
           otherVideo.load();
@@ -3761,27 +3798,35 @@ function slaapModule() {
     async startNativeVideo(media, i, event) {
       const key = this.mediaKey(media, i);
       const scene = event?.currentTarget?.closest('.asset-scene--video');
-      const video = scene?.querySelector('video');
+      let video = scene?.querySelector('video');
       if (!video) return;
       if (!video.paused) {
         video.pause();
         return;
       }
-      const attemptId = this.nativeVideoAttemptId + 1;
-      this.nativeVideoAttemptId = attemptId;
-      this.nativeVideoAttemptKey = key;
-      this.clearNativeVideoStallTimer();
-      this.loadedMediaId = key;
-      this.cancelOtherNativeVideos(video);
-      if (typeof video.getAttribute === 'function' && !video.getAttribute('src')) {
-        video.src = this.videoUrl(media.visual);
-      }
-      if (video.ended) {
+      const canResume = this.loadedMediaId === key
+        && this.nativeVideoAttemptKey === key
+        && video._sleepAttemptId === this.nativeVideoAttemptId
+        && !video.ended
+        && this.videoPlayErrorId !== key;
+      let attemptId = this.nativeVideoAttemptId;
+      if (!canResume) {
+        video = this.renewNativeVideoElement(video);
+        attemptId = this.nativeVideoAttemptId + 1;
+        this.nativeVideoAttemptId = attemptId;
+        this.nativeVideoAttemptKey = key;
+        this.clearNativeVideoStallTimer();
+        this.loadedMediaId = key;
+        this.cancelOtherNativeVideos(video);
+        if (typeof video.getAttribute === 'function' && !video.getAttribute('src')) {
+          video.src = this.videoUrl(media.visual);
+        }
         try { video.currentTime = 0; } catch (_) {}
+        video.controls = true;
+        this.registerNativeVideoAttempt(video, key, attemptId, media, i);
       }
       this.videoPlayErrorId = null;
       this.loadingMediaId = key;
-      this.registerNativeVideoAttempt(video, key, attemptId);
       this.markNativeVideoStalled(key, attemptId, video);
       try {
         await video.play();
@@ -3797,32 +3842,27 @@ function slaapModule() {
         }
       }
     },
-    syncNativeVideoWaiting(media, i, event) {
+    syncNativeVideoWaiting(media, i, event, attemptId) {
       const key = this.mediaKey(media, i);
-      this.markNativeVideoStalled(key, this.nativeVideoAttemptId, event?.target || null);
+      if (!this.isCurrentNativeVideoAttempt(key, attemptId) || event?.target?._sleepAttemptId !== attemptId) return;
+      this.markNativeVideoStalled(key, attemptId, event.target);
     },
-    syncNativeVideoPlaying(media, i) {
+    syncNativeVideoPlaying(media, i, event, attemptId) {
       const key = this.mediaKey(media, i);
-      if (this.loadedMediaId !== key || this.nativeVideoAttemptKey !== key) return;
+      if (!this.isCurrentNativeVideoAttempt(key, attemptId) || event?.target?._sleepAttemptId !== attemptId) return;
+      if (this.loadedMediaId !== key) return;
       this.clearNativeVideoStallTimer();
       if (this.loadingMediaId === key) this.loadingMediaId = null;
       if (this.videoPlayErrorId === key) this.videoPlayErrorId = null;
     },
-    syncNativeVideoPlay(media, i, event) {
+    syncNativeVideoPlay(media, i, event, attemptId) {
       const key = this.mediaKey(media, i);
       const lesson = this.mediaLesson(media);
       const video = event.target;
+      if (!this.isCurrentNativeVideoAttempt(key, attemptId) || video?._sleepAttemptId !== attemptId) return;
       if (this.loadedMediaId !== key) {
         try { video.pause(); } catch (_) {}
         return;
-      }
-      if (this.nativeVideoAttemptKey !== key) {
-        const attemptId = this.nativeVideoAttemptId + 1;
-        this.nativeVideoAttemptId = attemptId;
-        this.nativeVideoAttemptKey = key;
-        this.videoPlayErrorId = null;
-        this.registerNativeVideoAttempt(video, key, attemptId);
-        this.markNativeVideoStalled(key, attemptId, video);
       }
       if (this.activeMediaId === key && this.endedMediaId !== key) return;
       if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
@@ -3842,8 +3882,9 @@ function slaapModule() {
         this.activeMediaElapsed = Math.min(lesson.duration, video?.currentTime || 0);
       }, 120);
     },
-    syncNativeVideoProgress(media, i, event) {
+    syncNativeVideoProgress(media, i, event, attemptId) {
       const key = this.mediaKey(media, i);
+      if (!this.isCurrentNativeVideoAttempt(key, attemptId) || event?.target?._sleepAttemptId !== attemptId) return;
       const lesson = this.mediaLesson(media);
       if (this.activeMediaId === key) {
         this.activeMediaElapsed = Math.min(lesson.duration, event.target?.currentTime || 0);
@@ -3851,11 +3892,13 @@ function slaapModule() {
         this.pausedMediaElapsed = Math.min(lesson.duration, event.target?.currentTime || 0);
       }
     },
-    syncNativeVideoPause(media, i, event) {
+    syncNativeVideoPause(media, i, event, attemptId) {
       const key = this.mediaKey(media, i);
+      if (!this.isCurrentNativeVideoAttempt(key, attemptId) || event?.target?._sleepAttemptId !== attemptId) return;
+      if (!event.target.paused || event.target.ended) return;
       if (this.loadingMediaId === key) this.loadingMediaId = null;
-      this.invalidateNativeVideoAttempt(key);
-      if (this.activeMediaId !== key || this.endedMediaId === key || event.target?.ended) return;
+      this.clearNativeVideoStallTimer();
+      if (this.activeMediaId !== key || this.endedMediaId === key) return;
       if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
       this.activeMediaTimer = null;
       this.pausedMediaId = key;
