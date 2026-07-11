@@ -275,7 +275,7 @@ def main() -> None:
                 "videoAudioStartSeconds": 1.0,
                 "pauseSeconds": [round(value, 3) for value in pauses],
                 "sourceTake": {
-                    "file": source_mp3.name,
+                    "file": (Path("source") / source_mp3.name).as_posix(),
                     "durationSeconds": round(source_seconds, 3),
                     "sha256": source_hash,
                     "sourceText": source_text,

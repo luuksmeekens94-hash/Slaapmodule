@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
@@ -301,13 +302,33 @@ test('alle serievoices delen Nono-identiteit, seed en één bronopname', () => {
   }
 });
 
+test('elke manifestverwijzing opent de echte doorlopende brontake met dezelfde hash', () => {
+  for (const slug of Object.keys(seriesContent.videos)) {
+    const manifestUrl = new URL(`../remotion-poc/public/audio/${slug}-nono-v2.json`, import.meta.url);
+    const manifest = JSON.parse(readFileSync(manifestUrl, 'utf8'));
+    const sourceBytes = readFileSync(new URL(manifest.sourceTake.file, manifestUrl));
+    const sourceHash = createHash('sha256').update(sourceBytes).digest('hex');
+    assert.equal(sourceHash, manifest.sourceTake.sha256, `${slug} bronbestand en manifesthash wijken af`);
+  }
+});
+
 test('elke videokaart bestaat in bron, renderbatch en webspeler', () => {
   assert.match(renderAllSource, /series-content\.json/);
   assert.match(renderAllSource, /Object\.keys\(seriesContent\.videos\)/);
   const visuals = [...new Set(data.therapyModules.flatMap((module) => (module.media || []).map((media) => media.visual)))];
+  const expectedVisuals = [
+    'force', 'worry', 'breathe', 'cycles', 'nightwake', 'nightphrase',
+    'clock', 'sun', 'lighttiming', 'rhythm', 'night', 'pressure',
+    'thought', 'factcheck', 'meter', 'curve', 'plan', 'signalaction',
+  ];
+  assert.deepEqual(visuals.sort(), expectedVisuals.sort(), 'de kaartset moet exact 18 unieke videoslugs bevatten');
   for (const visual of visuals) {
     assert.ok(visual === 'force' || seriesContent.videos[visual], `${visual} ontbreekt in series-content.json`);
     assert.match(html, new RegExp(`hasVideo\\(visual\\)[\\s\\S]*?'${visual}'`), `${visual} ontbreekt in hasVideo()`);
+    if (visual !== 'force') {
+      assert.equal(seriesTiming.videos[visual].audioFile, `audio/${visual}-nono-v2.mp3`, `${visual} audiopad wijkt af`);
+      assert.equal(seriesTiming.videos[visual].captionFile, `captions/${visual}-nl-nono-v2.vtt`, `${visual} captionpad wijkt af`);
+    }
   }
 });
 
