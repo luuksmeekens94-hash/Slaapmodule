@@ -68,7 +68,26 @@ if (data) {
       const size = statSync(mp4).size;
       if (size > maxMp4Bytes) fail(`${mp4} is groter dan 4 MB (${(size / 1024 / 1024).toFixed(2)} MB)`);
     }
-    if (existsSync(webp) && statSync(webp).size > maxPosterBytes) fail(`${webp} is groter dan 250 KB`);
+    if (existsSync(webp)) {
+      const posterBytes = statSync(webp).size;
+      if (posterBytes < 5_000 || posterBytes > maxPosterBytes) fail(`${webp} moet 5–250 KB zijn (${posterBytes} bytes)`);
+      const signature = readFileSync(webp);
+      if (signature.subarray(0, 4).toString('ascii') !== 'RIFF' || signature.subarray(8, 12).toString('ascii') !== 'WEBP') {
+        fail(`${webp} heeft geen geldige WebP-signature`);
+      }
+      const posterProbe = spawnSync('ffprobe', [
+        '-v', 'error', '-select_streams', 'v:0',
+        '-show_entries', 'stream=codec_name,width,height', '-of', 'json', webp,
+      ], {encoding: 'utf8'});
+      if (posterProbe.status !== 0) {
+        fail(`${webp} kan niet door ffprobe worden gelezen: ${posterProbe.stderr || posterProbe.stdout}`);
+      } else {
+        const poster = JSON.parse(posterProbe.stdout).streams?.[0] || {};
+        if (poster.codec_name !== 'webp' || poster.width !== 1280 || poster.height !== 720) {
+          fail(`${webp} moet WebP 1280x720 zijn: ${JSON.stringify(poster)}`);
+        }
+      }
+    }
   }
 }
 
@@ -106,7 +125,7 @@ if (live && data) {
       const type = response.headers.get('content-type') || '';
       if (path.endsWith('.json') && !type.includes('application/json')) fail(`Live ${path} heeft verkeerd content-type: ${type}`);
       if (path.endsWith('.mp4') && !type.includes('video/mp4')) fail(`Live ${path} heeft verkeerd content-type: ${type}`);
-      if (path.endsWith('.png') && !type.includes('image/png')) fail(`Live ${path} heeft verkeerd content-type: ${type}`);
+      if (path.endsWith('.webp') && !type.includes('image/webp')) fail(`Live ${path} heeft verkeerd content-type: ${type}`);
       if (path === '/' && !type.includes('text/html')) fail(`Live / heeft verkeerd content-type: ${type}`);
     } catch (error) {
       fail(`Live asset ${path} kon niet worden gecontroleerd: ${error.message}`);

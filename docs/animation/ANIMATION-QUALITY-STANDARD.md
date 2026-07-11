@@ -12,10 +12,10 @@ Als een animatie vooral decoratief is, hoort hij niet in de module.
 
 ## Technische standaard
 
-- Resolutie: `1440x1080`
-- Aspect ratio: `4:3`
+- Resolutie: `1920x1080`
+- Aspect ratio: `16:9`
 - Framerate: `30fps`
-- Duur: `18–42 sec`
+- Duur: `18–50 sec`
 - Bestand: MP4 + WebP-poster (1280×720, maximaal 250 KB)
 - Streefbestandsgrootte: `<4 MB`
 - Locatie: `prototype/video/<slug>.mp4` en `.webp`

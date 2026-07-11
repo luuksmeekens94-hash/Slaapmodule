@@ -15,6 +15,7 @@ const seriesContent = JSON.parse(readFileSync(new URL('../remotion-poc/series-co
 const seriesTiming = JSON.parse(readFileSync(new URL('../remotion-poc/series-timing.json', import.meta.url), 'utf8'));
 const seriesVoiceGenerator = readFileSync(new URL('../remotion-poc/scripts/generate-series-voices.py', import.meta.url), 'utf8');
 const seriesSceneSource = readFileSync(new URL('../remotion-poc/src/series/SleepSeriesScene.tsx', import.meta.url), 'utf8');
+const moduleValidatorSource = readFileSync(new URL('../scripts/validate-module.mjs', import.meta.url), 'utf8');
 
 const functionStart = html.indexOf('function slaapModule()');
 const functionEnd = html.indexOf('/* ─── SlaapMotion', functionStart);
@@ -353,6 +354,13 @@ test('videokaarten laden pas na een klik en gebruiken compacte posters', () => {
     const posterBytes = readFileSync(new URL(`../prototype/video/${visual}.webp`, import.meta.url)).byteLength;
     assert.ok(posterBytes < 250_000, `${visual}.webp is te zwaar: ${posterBytes} bytes`);
   }
+});
+
+test('de validator controleert lokale en live WebP-posters inhoudelijk', () => {
+  assert.match(moduleValidatorSource, /path\.endsWith\('\.webp'\)[\s\S]*?image\/webp/);
+  assert.doesNotMatch(moduleValidatorSource, /path\.endsWith\('\.png'\)/);
+  assert.match(moduleValidatorSource, /codec_name !== 'webp'/);
+  assert.match(moduleValidatorSource, /width !== 1280|height !== 720/);
 });
 
 test('de professionele videoserie gebruikt hoorbare audio en Nederlandse captions', () => {
