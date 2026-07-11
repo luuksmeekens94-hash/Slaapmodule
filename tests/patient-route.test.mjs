@@ -24,13 +24,13 @@ assert.notEqual(functionStart, -1, 'slaapModule() ontbreekt');
 assert.notEqual(functionEnd, -1, 'einde van slaapModule() ontbreekt');
 const appSource = html.slice(functionStart, functionEnd);
 
-function createApp(search = '', hostname = 'slaapmodule.vercel.app', initialStorage = {}) {
+function createApp(search = '', hostname = 'slaapmodule.vercel.app', initialStorage = {}, timers = {}) {
   const storage = new Map(Object.entries(initialStorage));
   const context = vm.createContext({
     URLSearchParams,
     console,
-    setTimeout,
-    clearTimeout,
+    setTimeout: timers.setTimeout || setTimeout,
+    clearTimeout: timers.clearTimeout || clearTimeout,
     setInterval,
     clearInterval,
     confirm: () => true,
@@ -395,6 +395,8 @@ test('een grote videoknop roept play direct vanuit dezelfde gebruikersklik aan',
     currentTime: 0,
     getAttribute(name) { return name === 'src' ? source : null; },
     set src(value) { source = value; },
+    addEventListener() {},
+    removeEventListener() {},
     play() {
       playCalls += 1;
       return new Promise((resolve) => { finishPlaybackStart = resolve; });
@@ -410,6 +412,89 @@ test('een grote videoknop roept play direct vanuit dezelfde gebruikersklik aan',
   finishPlaybackStart();
   await start;
   assert.equal(app.loadingMediaId, null);
+});
+
+test('videofouten ontgrendelen de knop en oude play-pogingen kunnen nieuwe state niet overschrijven', async () => {
+  const makeVideo = () => {
+    let source = null;
+    const listeners = new Map();
+    const attempts = [];
+    return {
+      paused: true,
+      ended: false,
+      currentTime: 0,
+      listeners,
+      attempts,
+      getAttribute(name) { return name === 'src' ? source : null; },
+      removeAttribute(name) { if (name === 'src') source = null; },
+      set src(value) { source = value; },
+      pause() { this.paused = true; },
+      load() {},
+      addEventListener(type, handler) { listeners.set(type, handler); },
+      removeEventListener(type, handler) { if (listeners.get(type) === handler) listeners.delete(type); },
+      play() {
+        this.paused = false;
+        return new Promise((resolve, reject) => attempts.push({resolve, reject}));
+      },
+    };
+  };
+  const eventFor = (video) => ({currentTarget: {closest: () => ({querySelector: () => video})}});
+
+  const failedApp = createApp();
+  failedApp.mediaKey = () => 'breathe';
+  const failedVideo = makeVideo();
+  const failedStart = failedApp.startNativeVideo({visual: 'breathe'}, 2, eventFor(failedVideo));
+  assert.equal(typeof failedVideo.listeners.get('stalled'), 'function');
+  assert.equal(typeof failedVideo.listeners.get('abort'), 'function');
+  assert.equal(typeof failedVideo.listeners.get('emptied'), 'function');
+  assert.equal(typeof failedVideo.listeners.get('error'), 'function');
+  failedVideo.listeners.get('stalled')({type: 'stalled'});
+  assert.equal(failedApp.loadingMediaId, 'breathe');
+  failedVideo.listeners.get('error')({type: 'error', target: failedVideo});
+  failedVideo.attempts[0].reject(new Error('network kapot'));
+  await failedStart;
+  assert.equal(failedApp.loadingMediaId, null);
+  assert.equal(failedApp.loadedMediaId, null);
+  assert.equal(failedApp.videoPlayErrorId, 'breathe');
+  assert.equal(failedVideo.getAttribute('src'), null);
+
+  let watchdog = null;
+  const timeoutApp = createApp('', 'slaapmodule.vercel.app', {}, {
+    setTimeout: (callback) => { watchdog = callback; return 1; },
+    clearTimeout: () => {},
+  });
+  timeoutApp.mediaKey = () => 'breathe';
+  const timeoutVideo = makeVideo();
+  const timeoutStart = timeoutApp.startNativeVideo({visual: 'breathe'}, 2, eventFor(timeoutVideo));
+  assert.equal(typeof watchdog, 'function');
+  watchdog();
+  timeoutVideo.attempts[0].reject(new Error('geen media-event ontvangen'));
+  await timeoutStart;
+  assert.equal(timeoutApp.loadingMediaId, null);
+  assert.equal(timeoutApp.loadedMediaId, null);
+  assert.equal(timeoutApp.videoPlayErrorId, 'breathe');
+  assert.equal(timeoutVideo.getAttribute('src'), null);
+
+  const raceApp = createApp();
+  raceApp.mediaKey = () => 'breathe';
+  const raceVideo = makeVideo();
+  const firstStart = raceApp.startNativeVideo({visual: 'breathe'}, 2, eventFor(raceVideo));
+  const staleErrorHandler = raceVideo.listeners.get('error');
+  raceApp.stopMedia();
+  raceVideo.paused = true;
+  const secondStart = raceApp.startNativeVideo({visual: 'breathe'}, 2, eventFor(raceVideo));
+  staleErrorHandler({type: 'error'});
+  assert.equal(raceApp.loadingMediaId, 'breathe');
+  assert.equal(raceApp.videoPlayErrorId, null);
+  assert.equal(raceVideo.getAttribute('src'), 'video/breathe.mp4');
+  raceVideo.attempts[0].reject(new Error('oude poging afgebroken'));
+  await firstStart;
+  assert.equal(raceApp.loadingMediaId, 'breathe');
+  assert.equal(raceApp.videoPlayErrorId, null);
+  raceVideo.attempts[1].resolve();
+  await secondStart;
+  assert.equal(raceApp.loadingMediaId, null);
+  assert.equal(raceApp.videoPlayErrorId, null);
 });
 
 test('de professionele videoserie gebruikt hoorbare audio en Nederlandse captions', () => {
