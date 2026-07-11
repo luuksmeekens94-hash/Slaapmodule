@@ -16,6 +16,7 @@ const seriesTiming = JSON.parse(readFileSync(new URL('../remotion-poc/series-tim
 const seriesVoiceGenerator = readFileSync(new URL('../remotion-poc/scripts/generate-series-voices.py', import.meta.url), 'utf8');
 const seriesSceneSource = readFileSync(new URL('../remotion-poc/src/series/SleepSeriesScene.tsx', import.meta.url), 'utf8');
 const moduleValidatorSource = readFileSync(new URL('../scripts/validate-module.mjs', import.meta.url), 'utf8');
+const vercelConfig = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
 
 const functionStart = html.indexOf('function slaapModule()');
 const functionEnd = html.indexOf('/* ─── SlaapMotion', functionStart);
@@ -354,6 +355,18 @@ test('videokaarten laden pas na een klik en gebruiken compacte posters', () => {
     const posterBytes = readFileSync(new URL(`../prototype/video/${visual}.webp`, import.meta.url)).byteLength;
     assert.ok(posterBytes < 250_000, `${visual}.webp is te zwaar: ${posterBytes} bytes`);
   }
+});
+
+test('de app-shell ververst direct terwijl video-assets gecachet blijven', () => {
+  const cacheValue = (source) => vercelConfig.headers
+    .find((rule) => rule.source === source)?.headers
+    .find((header) => header.key.toLowerCase() === 'cache-control')?.value || '';
+  assert.match(cacheValue('/'), /no-store/);
+  assert.match(cacheValue('/index.html'), /no-store/);
+  assert.match(cacheValue('/data/(.*)'), /no-store/);
+  assert.match(cacheValue('/video/(.*)'), /public/);
+  assert.doesNotMatch(cacheValue('/video/(.*)'), /no-store/);
+  assert.equal(vercelConfig.headers.some((rule) => rule.source === '/(.*)'), false);
 });
 
 test('de validator controleert lokale en live WebP-posters inhoudelijk', () => {
