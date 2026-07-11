@@ -51,7 +51,7 @@ Nieuwe FysionAIr educatiemodules moeten dezelfde patientflow, stijl en video-aan
 
 ## Media
 
-De app gebruikt voor iedere videokaart een lokale MP4, Nederlandse VTT-captions en een compacte WebP-poster in `video/`. Video's hebben `preload="none"`: alleen de aangeklikte MP4 wordt geladen. De posters zijn 1280×720 en maximaal 250 KB, zodat drie kaarten op één scherm de playknoppen niet blokkeren.
+De app gebruikt voor iedere videokaart een lokale MP4, Nederlandse VTT-captions en een compacte WebP-poster in `video/`. Video's hebben `preload="none"`: alleen de aangeklikte MP4 wordt geladen. Iedere kaart toont een grote eigen startknop met laadstatus; de native bediening blijft beschikbaar voor pauze, volume, scrubben en fullscreen. De posters zijn 1280×720 en maximaal 250 KB, zodat drie kaarten op één scherm de startknoppen niet blokkeren.
 
 De bronbestanden en reproduceerbare renderpipeline staan in `../remotion-poc/`. De oude browserstem/voorleesfunctie is uitgeschakeld; iedere serievideo bevat één doorlopende Nono-voice-over.
 

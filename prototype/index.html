@@ -957,6 +957,31 @@ input[type=range].fysio-range::-moz-range-thumb {
 .asset-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .asset-scene--video { border-radius: 18px; overflow: hidden; background: #0E1C38; display: flex; align-items: center; justify-content: center; }
 .asset-scene--video video { width: 100%; height: 100%; object-fit: contain; display: block; }
+.video-start-overlay {
+  position: absolute; inset: 0; z-index: 3; display: grid; place-items: center;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(14,28,56,.16), transparent 55%);
+}
+.video-start-button {
+  pointer-events: auto; min-height: 54px; padding: 10px 18px 10px 10px;
+  display: inline-flex; align-items: center; gap: 10px; border-radius: 999px;
+  background: rgba(255,255,255,.96); color: var(--blue); border: 1px solid rgba(255,255,255,.88);
+  box-shadow: 0 12px 32px rgba(14,28,56,.28); font-size: 14px; font-weight: 800;
+  transition: transform .18s, box-shadow .18s, background .18s;
+}
+.video-start-button:hover { transform: translateY(-1px); background: #fff; box-shadow: 0 16px 38px rgba(14,28,56,.34); }
+.video-start-button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.video-start-button:disabled { cursor: wait; opacity: 1; }
+.video-start-symbol {
+  width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  color: #fff; background: var(--grad); flex: 0 0 auto;
+}
+.video-start-button svg { position: static; inset: auto; width: 16px; height: 16px; }
+.video-start-spinner {
+  width: 17px; height: 17px; border-radius: 50%; border: 2px solid rgba(255,255,255,.42);
+  border-top-color: #fff; animation: videoSpin .75s linear infinite;
+}
+@keyframes videoSpin { to { transform: rotate(360deg); } }
 .asset-scene--video[data-tone="light"] { background: #F4F8FE; }
 .motion-svg, .motion-svg * { transform-box: fill-box; }
 .asset-panel { fill: rgba(255,255,255,.78); stroke: #D9E4F3; stroke-width: 1.2; }
@@ -2144,13 +2169,28 @@ input[type=range].fysio-range::-moz-range-thumb {
                   </button>
                   <template x-if="hasVideo(media.visual)">
                     <div class="asset-scene asset-scene--video" :data-tone="videoTone(media.visual)">
-                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" :aria-label="media.title" :title="media.title" controls playsinline preload="none"
+                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" :aria-label="media.title" :title="media.title" :controls="hasLoadedNativeVideo(media, i)" playsinline preload="none"
                         @play="syncNativeVideoPlay(media, i, $event)"
+                        @playing="syncNativeVideoPlaying(media, i)"
+                        @waiting="syncNativeVideoWaiting(media, i)"
                         @pause="syncNativeVideoPause(media, i, $event)"
                         @timeupdate="syncNativeVideoProgress(media, i, $event)"
                         @ended="finishMedia(media, i)">
                         <track kind="captions" srclang="nl" label="Nederlands" :src="videoCaptionUrl(media.visual)" default>
                       </video>
+                      <div class="video-start-overlay" x-show="!isMediaPlaying(media, i) || isNativeVideoLoading(media, i)">
+                        <button class="video-start-button" type="button"
+                          @click.stop="startNativeVideo(media, i, $event)"
+                          :disabled="isNativeVideoLoading(media, i)"
+                          :aria-busy="isNativeVideoLoading(media, i)"
+                          :aria-label="nativeVideoStartLabel(media, i)">
+                          <span class="video-start-symbol" aria-hidden="true">
+                            <span class="video-start-spinner" x-show="isNativeVideoLoading(media, i)"></span>
+                            <svg width="16" height="16" x-show="!isNativeVideoLoading(media, i)"><use href="#i-play"/></svg>
+                          </span>
+                          <span x-text="nativeVideoStartLabel(media, i)" aria-live="polite"></span>
+                        </button>
+                      </div>
                     </div>
                   </template>
                   <template x-if="!hasVideo(media.visual)">
@@ -2169,7 +2209,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                 <div class="media-content">
                   <div class="media-meta">
                     <span class="chip chip--teal" x-text="media.label"></span>
-                    <span class="media-state" x-text="isMediaEnded(media, i) ? 'afgerond' : (isMediaPlaying(media, i) ? 'speelt af' : (isMediaPaused(media, i) ? 'gepauzeerd' : 'klaar om te starten'))"></span>
+                    <span class="media-state" x-text="isNativeVideoLoading(media, i) ? 'video laden…' : (hasNativeVideoError(media, i) ? 'start opnieuw' : (isMediaEnded(media, i) ? 'afgerond' : (isMediaPlaying(media, i) ? 'speelt af' : (isMediaPaused(media, i) ? 'gepauzeerd' : 'klaar om te starten'))))"></span>
                   </div>
                   <div class="media-title" x-text="media.title"></div>
                   <div class="media-desc" x-text="media.desc"></div>
@@ -2380,6 +2420,9 @@ function slaapModule() {
     activeMediaId: null,
     endedMediaId: null,
     pausedMediaId: null,
+    loadingMediaId: null,
+    loadedMediaId: null,
+    videoPlayErrorId: null,
     activeMediaElapsed: 0,
     pausedMediaElapsed: 0,
     activeMediaTimer: null,
@@ -3528,6 +3571,22 @@ function slaapModule() {
     isMediaPaused(media, i) {
       return this.pausedMediaId === this.mediaKey(media, i);
     },
+    isNativeVideoLoading(media, i) {
+      return this.loadingMediaId === this.mediaKey(media, i);
+    },
+    hasLoadedNativeVideo(media, i) {
+      return this.loadedMediaId === this.mediaKey(media, i);
+    },
+    hasNativeVideoError(media, i) {
+      return this.videoPlayErrorId === this.mediaKey(media, i);
+    },
+    nativeVideoStartLabel(media, i) {
+      if (this.isNativeVideoLoading(media, i)) return 'Video laden…';
+      if (this.hasNativeVideoError(media, i)) return 'Opnieuw proberen';
+      if (this.isMediaPaused(media, i)) return 'Verder afspelen';
+      if (this.isMediaEnded(media, i)) return 'Opnieuw afspelen';
+      return 'Video afspelen';
+    },
     isMediaActive(media, i) {
       const key = this.mediaKey(media, i);
       return this.activeMediaId === key || this.pausedMediaId === key || this.endedMediaId === key;
@@ -3623,8 +3682,56 @@ function slaapModule() {
       this.activeMediaId = key;
       this.endedMediaId = key;
       this.pausedMediaId = null;
+      if (this.loadingMediaId === key) this.loadingMediaId = null;
       this.pausedMediaElapsed = 0;
       this.activeMediaElapsed = lesson.duration;
+    },
+    cancelOtherNativeVideos(activeVideo) {
+      document.querySelectorAll('.asset-scene--video video').forEach(otherVideo => {
+        if (otherVideo === activeVideo) return;
+        try {
+          otherVideo.pause();
+          otherVideo.removeAttribute('src');
+          otherVideo.load();
+        } catch (_) {}
+      });
+    },
+    async startNativeVideo(media, i, event) {
+      const key = this.mediaKey(media, i);
+      const scene = event?.currentTarget?.closest('.asset-scene--video');
+      const video = scene?.querySelector('video');
+      if (!video) return;
+      this.loadedMediaId = key;
+      this.cancelOtherNativeVideos(video);
+      if (typeof video.getAttribute === 'function' && !video.getAttribute('src')) {
+        video.src = this.videoUrl(media.visual);
+      }
+      if (!video.paused) {
+        video.pause();
+        return;
+      }
+      if (video.ended) {
+        try { video.currentTime = 0; } catch (_) {}
+      }
+      this.videoPlayErrorId = null;
+      this.loadingMediaId = key;
+      try {
+        await video.play();
+      } catch (error) {
+        this.videoPlayErrorId = key;
+        console.warn('Video kon niet starten', error);
+      } finally {
+        if (this.loadingMediaId === key) this.loadingMediaId = null;
+      }
+    },
+    syncNativeVideoWaiting(media, i) {
+      const key = this.mediaKey(media, i);
+      if (this.loadedMediaId === key) this.loadingMediaId = key;
+    },
+    syncNativeVideoPlaying(media, i) {
+      const key = this.mediaKey(media, i);
+      if (this.loadingMediaId === key) this.loadingMediaId = null;
+      if (this.videoPlayErrorId === key) this.videoPlayErrorId = null;
     },
     syncNativeVideoPlay(media, i, event) {
       const key = this.mediaKey(media, i);
@@ -3635,11 +3742,7 @@ function slaapModule() {
       this.activeMediaTimer = null;
       if (window.SlaapMotion) window.SlaapMotion.detach();
       this._motionTimeline = null;
-      document.querySelectorAll('.asset-scene--video video').forEach(otherVideo => {
-        if (otherVideo !== video) {
-          try { otherVideo.pause(); otherVideo.currentTime = 0; } catch (_) {}
-        }
-      });
+      this.cancelOtherNativeVideos(video);
       if (this.endedMediaId === key && video && Number.isFinite(video.currentTime) && video.currentTime >= lesson.duration - .25) {
         try { video.currentTime = 0; } catch (_) {}
       }
@@ -3663,6 +3766,7 @@ function slaapModule() {
     },
     syncNativeVideoPause(media, i, event) {
       const key = this.mediaKey(media, i);
+      if (this.loadingMediaId === key) this.loadingMediaId = null;
       if (this.activeMediaId !== key || this.endedMediaId === key || event.target?.ended) return;
       if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
       this.activeMediaTimer = null;
@@ -3675,15 +3779,16 @@ function slaapModule() {
     stopMedia() {
       if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
       this.activeMediaTimer = null;
-      // Pause any playing Remotion video
-      document.querySelectorAll('.asset-scene--video video').forEach(v => {
-        try { v.pause(); v.currentTime = 0; } catch (_) {}
-      });
+      // Stop playback and cancel any in-flight MP4 downloads.
+      this.cancelOtherNativeVideos(null);
       this.activeMediaElapsed = 0;
       this.pausedMediaElapsed = 0;
       this.activeMediaId = null;
       this.endedMediaId = null;
       this.pausedMediaId = null;
+      this.loadingMediaId = null;
+      this.loadedMediaId = null;
+      this.videoPlayErrorId = null;
       if (window.SlaapMotion) window.SlaapMotion.detach();
       this._motionTimeline = null;
     },

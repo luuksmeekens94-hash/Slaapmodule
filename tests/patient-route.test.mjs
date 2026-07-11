@@ -346,7 +346,7 @@ test('kaarttekst en zichtbare duur zijn gelijk aan de werkelijke serievoice', ()
 });
 
 test('videokaarten laden pas na een klik en gebruiken compacte posters', () => {
-  assert.match(html, /controls playsinline preload="none"/);
+  assert.match(html, /:controls="hasLoadedNativeVideo\(media, i\)" playsinline preload="none"/);
   assert.doesNotMatch(html, /preload="metadata"/);
   assert.match(html, /`video\/\$\{visual\}\.webp`/);
   const visuals = [...new Set(data.therapyModules.flatMap((module) => (module.media || []).map((media) => media.visual)))];
@@ -361,6 +361,42 @@ test('de validator controleert lokale en live WebP-posters inhoudelijk', () => {
   assert.doesNotMatch(moduleValidatorSource, /path\.endsWith\('\.png'\)/);
   assert.match(moduleValidatorSource, /codec_name !== 'webp'/);
   assert.match(moduleValidatorSource, /width !== 1280|height !== 720/);
+});
+
+test('een grote videoknop roept play direct vanuit dezelfde gebruikersklik aan', async () => {
+  assert.match(html, /class="video-start-overlay"/);
+  assert.match(html, /\.video-start-button svg\s*\{[^}]*position: static/);
+  assert.match(html, /:controls="hasLoadedNativeVideo\(media, i\)"/);
+  assert.doesNotMatch(html, /controls playsinline preload="none"/);
+  assert.match(html, /@click\.stop="startNativeVideo\(media, i, \$event\)"/);
+  assert.match(appSource, /otherVideo\.removeAttribute\('src'\)[\s\S]*?otherVideo\.load\(\)/);
+
+  const app = createApp();
+  app.mediaKey = () => 'breathe';
+  let playCalls = 0;
+  let source = null;
+  let finishPlaybackStart;
+  const video = {
+    paused: true,
+    ended: false,
+    currentTime: 0,
+    getAttribute(name) { return name === 'src' ? source : null; },
+    set src(value) { source = value; },
+    play() {
+      playCalls += 1;
+      return new Promise((resolve) => { finishPlaybackStart = resolve; });
+    },
+  };
+  const event = {currentTarget: {closest: () => ({querySelector: () => video})}};
+  const start = app.startNativeVideo({visual: 'breathe'}, 2, event);
+
+  assert.equal(source, 'video/breathe.mp4');
+  assert.equal(app.loadedMediaId, 'breathe');
+  assert.equal(playCalls, 1);
+  assert.equal(app.loadingMediaId, 'breathe');
+  finishPlaybackStart();
+  await start;
+  assert.equal(app.loadingMediaId, null);
 });
 
 test('de professionele videoserie gebruikt hoorbare audio en Nederlandse captions', () => {
