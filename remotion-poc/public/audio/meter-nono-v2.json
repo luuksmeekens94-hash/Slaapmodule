@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "meter",
+  "title": "Beschermingsmeter",
+  "videoDurationSeconds": 25,
+  "audioDurationSeconds": 20.136,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.573,
+    0.63,
+    0.688,
+    0.573
+  ],
+  "sourceTake": {
+    "file": "meter-nono-v2-source.mp3",
+    "durationSeconds": 19.52,
+    "sha256": "d04905698d7f91f30fbbc0f6249bd3287c2e92c43cec7c15dd67452099bc61ad",
+    "sourceText": "[calm, natural, close-mic, conversational] Een bange gedachte kan je lichaam meteen op scherp zetten. [short pause] Je adem zit hoger, je spieren spannen aan en je brein blijft zoeken. [short pause] Een helpende gedachte lost de nacht niet zomaar op. [short pause] Maar ze kan je interne alarm wel een stukje laten zakken. [short pause] En dat geeft je lichaam meer ruimte om tot rust te komen."
+  },
+  "segments": [
+    {
+      "text": "Een bange gedachte kan je lichaam meteen op scherp zetten.",
+      "characterStart": 43,
+      "characterEnd": 100,
+      "sourceStartSeconds": 0.09,
+      "sourceEndSeconds": 3.4,
+      "clipStartSeconds": 0.055,
+      "clipEndSeconds": 3.455,
+      "durationSeconds": 3.4,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 4.4
+    },
+    {
+      "text": "Je adem zit hoger, je spieren spannen aan en je brein blijft zoeken.",
+      "characterStart": 116,
+      "characterEnd": 183,
+      "sourceStartSeconds": 3.787,
+      "sourceEndSeconds": 8.16,
+      "clipStartSeconds": 3.752,
+      "clipEndSeconds": 8.215,
+      "durationSeconds": 4.463,
+      "videoStartSeconds": 4.973,
+      "videoEndSeconds": 9.436
+    },
+    {
+      "text": "Een helpende gedachte lost de nacht niet zomaar op.",
+      "characterStart": 199,
+      "characterEnd": 249,
+      "sourceStartSeconds": 8.663,
+      "sourceEndSeconds": 11.723,
+      "clipStartSeconds": 8.628,
+      "clipEndSeconds": 11.778,
+      "durationSeconds": 3.15,
+      "videoStartSeconds": 10.066,
+      "videoEndSeconds": 13.216
+    },
+    {
+      "text": "Maar ze kan je interne alarm wel een stukje laten zakken.",
+      "characterStart": 265,
+      "characterEnd": 321,
+      "sourceStartSeconds": 12.475,
+      "sourceEndSeconds": 15.563,
+      "clipStartSeconds": 12.44,
+      "clipEndSeconds": 15.618,
+      "durationSeconds": 3.178,
+      "videoStartSeconds": 13.904,
+      "videoEndSeconds": 17.082
+    },
+    {
+      "text": "En dat geeft je lichaam meer ruimte om tot rust te komen.",
+      "characterStart": 337,
+      "characterEnd": 393,
+      "sourceStartSeconds": 16.11,
+      "sourceEndSeconds": 19.563,
+      "clipStartSeconds": 16.075,
+      "clipEndSeconds": 19.52,
+      "durationSeconds": 3.445,
+      "videoStartSeconds": 17.655,
+      "videoEndSeconds": 21.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 4.4,
+      "text": "Een bange gedachte kan je lichaam meteen op scherp zetten."
+    },
+    {
+      "start": 4.973,
+      "end": 9.436,
+      "text": "Je adem zit hoger, je spieren spannen aan en je brein blijft zoeken."
+    },
+    {
+      "start": 10.066,
+      "end": 13.216,
+      "text": "Een helpende gedachte lost de nacht niet zomaar op."
+    },
+    {
+      "start": 13.904,
+      "end": 17.082,
+      "text": "Maar ze kan je interne alarm wel een stukje laten zakken."
+    },
+    {
+      "start": 17.655,
+      "end": 21.1,
+      "text": "En dat geeft je lichaam meer ruimte om tot rust te komen."
+    }
+  ],
+  "endCard": [
+    "Gedachten sturen je alarm.",
+    "Een helpende zin kan het laten zakken."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

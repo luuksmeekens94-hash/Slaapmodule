@@ -51,8 +51,8 @@ for (const slug of slugs) {
   const spec = content.videos[slug];
   const workDir = mkdtempSync(join(tmpdir(), `slaapmodule-${slug}-`));
   try {
-    const audioSource = join(remotionDir, 'public', 'audio', `${slug}-nono-v1.mp3`);
-    const captionsSource = join(remotionDir, 'public', 'captions', `${slug}-nl-nono-v1.vtt`);
+    const audioSource = join(remotionDir, 'public', 'audio', `${slug}-nono-v2.mp3`);
+    const captionsSource = join(remotionDir, 'public', 'captions', `${slug}-nl-nono-v2.vtt`);
     const masterVideo = join(workDir, `${slug}-master.mp4`);
     const poster = join(workDir, `${slug}.png`);
     const outVideo = join(outDir, `${slug}.mp4`);
@@ -91,7 +91,7 @@ for (const slug of slugs) {
     }
     if (audio?.codec_name !== 'aac') throw new Error(`${slug}: missing AAC audio`);
     if (!(bytes > 650_000 && bytes < 6_000_000)) throw new Error(`${slug}: suspicious size ${bytes}`);
-    if (cueCount !== spec.chunks.length) throw new Error(`${slug}: ${cueCount} cues for ${spec.chunks.length} chunks`);
+    if (cueCount !== spec.segments.length) throw new Error(`${slug}: ${cueCount} cues for ${spec.segments.length} segments`);
 
     copyFileSync(outVideo, liveVideo);
     copyFileSync(poster, livePoster);

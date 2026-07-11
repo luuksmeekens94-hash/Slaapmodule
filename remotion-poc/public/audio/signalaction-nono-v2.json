@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "signalaction",
+  "title": "Signaal naar actie",
+  "videoDurationSeconds": 28,
+  "audioDurationSeconds": 23.136,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.883,
+    1.059,
+    1.059,
+    0.971
+  ],
+  "sourceTake": {
+    "file": "signalaction-nono-v2-source.mp3",
+    "durationSeconds": 22.64,
+    "sha256": "9bae90a3e8cd44b79c5f153a0bf14d7afb1e940fa555340a6810732a4a015c39",
+    "sourceText": "[calm, natural, close-mic, conversational] Een slechte nacht begint vaak met een herkenbaar signaal. [short pause] Misschien ga je op de klok kijken, rekenen of steeds harder proberen. [short pause] Koppel vooraf één actie aan dat signaal. [short pause] Klok kijken? Leg hem uit zicht. Lang wakker? Ga even uit bed. [short pause] Zo hoef je midden in de nacht niet opnieuw te kiezen."
+  },
+  "segments": [
+    {
+      "text": "Een slechte nacht begint vaak met een herkenbaar signaal.",
+      "characterStart": 43,
+      "characterEnd": 99,
+      "sourceStartSeconds": 0.09,
+      "sourceEndSeconds": 3.4,
+      "clipStartSeconds": 0.055,
+      "clipEndSeconds": 3.455,
+      "durationSeconds": 3.4,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 4.4
+    },
+    {
+      "text": "Misschien ga je op de klok kijken, rekenen of steeds harder proberen.",
+      "characterStart": 115,
+      "characterEnd": 183,
+      "sourceStartSeconds": 4.408,
+      "sourceEndSeconds": 9.0,
+      "clipStartSeconds": 4.373,
+      "clipEndSeconds": 9.055,
+      "durationSeconds": 4.682,
+      "videoStartSeconds": 5.283,
+      "videoEndSeconds": 9.965
+    },
+    {
+      "text": "Koppel vooraf één actie aan dat signaal.",
+      "characterStart": 199,
+      "characterEnd": 238,
+      "sourceStartSeconds": 10.27,
+      "sourceEndSeconds": 13.17,
+      "clipStartSeconds": 10.235,
+      "clipEndSeconds": 13.225,
+      "durationSeconds": 2.99,
+      "videoStartSeconds": 11.024,
+      "videoEndSeconds": 14.014
+    },
+    {
+      "text": "Klok kijken? Leg hem uit zicht. Lang wakker? Ga even uit bed.",
+      "characterStart": 254,
+      "characterEnd": 314,
+      "sourceStartSeconds": 14.002,
+      "sourceEndSeconds": 18.93,
+      "clipStartSeconds": 13.967,
+      "clipEndSeconds": 18.985,
+      "durationSeconds": 5.018,
+      "videoStartSeconds": 15.073,
+      "videoEndSeconds": 20.091
+    },
+    {
+      "text": "Zo hoef je midden in de nacht niet opnieuw te kiezen.",
+      "characterStart": 330,
+      "characterEnd": 382,
+      "sourceStartSeconds": 19.637,
+      "sourceEndSeconds": 22.69,
+      "clipStartSeconds": 19.602,
+      "clipEndSeconds": 22.64,
+      "durationSeconds": 3.038,
+      "videoStartSeconds": 21.062,
+      "videoEndSeconds": 24.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 4.4,
+      "text": "Een slechte nacht begint vaak met een herkenbaar signaal."
+    },
+    {
+      "start": 5.283,
+      "end": 9.965,
+      "text": "Misschien ga je op de klok kijken, rekenen of steeds harder proberen."
+    },
+    {
+      "start": 11.024,
+      "end": 14.014,
+      "text": "Koppel vooraf één actie aan dat signaal."
+    },
+    {
+      "start": 15.073,
+      "end": 20.091,
+      "text": "Klok kijken? Leg hem uit zicht. Lang wakker? Ga even uit bed."
+    },
+    {
+      "start": 21.062,
+      "end": 24.1,
+      "text": "Zo hoef je midden in de nacht niet opnieuw te kiezen."
+    }
+  ],
+  "endCard": [
+    "Eén herkenbaar signaal.",
+    "Eén vooraf gekozen actie."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "plan",
+  "title": "Mijn plan voor een slechte week",
+  "videoDurationSeconds": 26,
+  "audioDurationSeconds": 21.144,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.409,
+    0.491,
+    0.532,
+    0.409
+  ],
+  "sourceTake": {
+    "file": "plan-nono-v2-source.mp3",
+    "durationSeconds": 21.84,
+    "sha256": "1e29d97f70411b8e1f63f124acab0ef27f86396d423c54a96a5b40450ac26988",
+    "sourceText": "[calm, natural, close-mic, conversational] Een slechte week is niet het moment voor ingewikkelde plannen. [short pause] Kies vooraf een paar vaste acties. [short pause] Sta rond dezelfde tijd op, sla dutjes over en ga even uit bed als je lang wakker ligt. [short pause] Gebruik één rustige zin als je hoofd aan gaat. [short pause] Dan hoef je midden in een slechte nacht niet opnieuw te bedenken wat helpt."
+  },
+  "segments": [
+    {
+      "text": "Een slechte week is niet het moment voor ingewikkelde plannen.",
+      "characterStart": 43,
+      "characterEnd": 104,
+      "sourceStartSeconds": 0.09,
+      "sourceEndSeconds": 3.88,
+      "clipStartSeconds": 0.055,
+      "clipEndSeconds": 3.935,
+      "durationSeconds": 3.88,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 4.88
+    },
+    {
+      "text": "Kies vooraf een paar vaste acties.",
+      "characterStart": 120,
+      "characterEnd": 153,
+      "sourceStartSeconds": 4.43,
+      "sourceEndSeconds": 6.68,
+      "clipStartSeconds": 4.395,
+      "clipEndSeconds": 6.735,
+      "durationSeconds": 2.34,
+      "videoStartSeconds": 5.289,
+      "videoEndSeconds": 7.629
+    },
+    {
+      "text": "Sta rond dezelfde tijd op, sla dutjes over en ga even uit bed als je lang wakker ligt.",
+      "characterStart": 169,
+      "characterEnd": 254,
+      "sourceStartSeconds": 7.444,
+      "sourceEndSeconds": 13.084,
+      "clipStartSeconds": 7.409,
+      "clipEndSeconds": 13.139,
+      "durationSeconds": 5.73,
+      "videoStartSeconds": 8.12,
+      "videoEndSeconds": 13.85
+    },
+    {
+      "text": "Gebruik één rustige zin als je hoofd aan gaat.",
+      "characterStart": 270,
+      "characterEnd": 315,
+      "sourceStartSeconds": 14.111,
+      "sourceEndSeconds": 17.244,
+      "clipStartSeconds": 14.076,
+      "clipEndSeconds": 17.299,
+      "durationSeconds": 3.223,
+      "videoStartSeconds": 14.382,
+      "videoEndSeconds": 17.605
+    },
+    {
+      "text": "Dan hoef je midden in een slechte nacht niet opnieuw te bedenken wat helpt.",
+      "characterStart": 331,
+      "characterEnd": 405,
+      "sourceStartSeconds": 17.789,
+      "sourceEndSeconds": 21.884,
+      "clipStartSeconds": 17.754,
+      "clipEndSeconds": 21.84,
+      "durationSeconds": 4.086,
+      "videoStartSeconds": 18.014,
+      "videoEndSeconds": 22.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 4.88,
+      "text": "Een slechte week is niet het moment voor ingewikkelde plannen."
+    },
+    {
+      "start": 5.289,
+      "end": 7.629,
+      "text": "Kies vooraf een paar vaste acties."
+    },
+    {
+      "start": 8.12,
+      "end": 13.85,
+      "text": "Sta rond dezelfde tijd op, sla dutjes over en ga even uit bed als je lang wakker ligt."
+    },
+    {
+      "start": 14.382,
+      "end": 17.605,
+      "text": "Gebruik één rustige zin als je hoofd aan gaat."
+    },
+    {
+      "start": 18.014,
+      "end": 22.1,
+      "text": "Dan hoef je midden in een slechte nacht niet opnieuw te bedenken wat helpt."
+    }
+  ],
+  "endCard": [
+    "Signaal gezien? Kies één actie.",
+    "Je plan ligt al klaar."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

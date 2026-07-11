@@ -17,7 +17,7 @@
       "title": "Piekeren parkeren",
       "durationSeconds": 24,
       "endCard": ["Piekeren mag op papier.", "Niet mee naar bed."],
-      "chunks": [
+      "segments": [
         "Lig je in bed en blijft je hoofd maar lijstjes maken?",
         "Logisch. Je brein probeert gewoon niets te vergeten.",
         "Schrijf je zorgen daarom eerder op de avond even op.",
@@ -28,22 +28,24 @@
     },
     "breathe": {
       "title": "Adem 4–6",
-      "durationSeconds": 36,
+      "durationSeconds": 50,
       "endCard": ["Adem rustig in.", "En iets langer uit."],
-      "chunks": [
+      "segments": [
         "Ga maar makkelijk zitten. Je hoeft nu even niets te bereiken.",
-        "Adem rustig in... twee... drie... vier.",
-        "En langer uit... twee... drie... vier... vijf... zes.",
-        "Nog een keer. Rustig in... en langzaam weer uit.",
+        "Adem rustig in. Twee... drie... vier.",
+        "En langer uit. Twee... drie... vier... vijf... zes.",
+        "Nog een keer.",
+        "Adem rustig in. Twee... drie... vier.",
+        "En langzaam weer uit. Twee... drie... vier... vijf... zes.",
         "Laat je schouders maar zakken. Je hoeft het niet perfect te doen."
       ],
-      "pauseWeights": [1.2, 1.0, 1.5, 1.3]
+      "pauseWeights": [1.2, 0.5, 1.2, 0.5, 0.5, 1.0]
     },
     "cycles": {
       "title": "Slaapcycli en kort wakker worden",
       "durationSeconds": 26,
       "endCard": ["Kort wakker worden is normaal.", "Het is niet meteen misgaan."],
-      "chunks": [
+      "segments": [
         "Even wakker worden in de nacht? Dat gebeurt eigenlijk bij iedereen.",
         "Je slaap beweegt in rondes. Tussen die rondes word je soms kort wakker.",
         "Meestal zak je vanzelf weer weg.",
@@ -56,7 +58,7 @@
       "title": "Wat doe ik om 03:00?",
       "durationSeconds": 28,
       "endCard": ["Lang wakker? Ga er even uit.", "Terug als je slaperig wordt."],
-      "chunks": [
+      "segments": [
         "Lig je al een tijd wakker in bed?",
         "Dan kan blijven woelen je brein leren: hier ben ik dus ook wakker.",
         "Ga rustig even uit bed. Houd het licht laag en doe iets saais.",
@@ -65,11 +67,24 @@
       ],
       "pauseWeights": [1.0, 1.1, 1.4, 1.2]
     },
+    "nightphrase": {
+      "title": "Rustzin in de nacht",
+      "durationSeconds": 27,
+      "endCard": ["Je hoeft dit moment", "niet op te lossen."],
+      "segments": [
+        "Je bent wakker. Dat is vervelend.",
+        "Maar wakker zijn is niet gevaarlijk, en je hoeft slaap nu niet af te dwingen.",
+        "Zeg rustig tegen jezelf: ik hoef dit moment niet op te lossen.",
+        "Laat je kaken los en voel hoe je uitademing vanzelf komt.",
+        "De nacht mag even zijn zoals hij is."
+      ],
+      "pauseWeights": [1.0, 1.2, 1.4, 1.2]
+    },
     "clock": {
       "title": "De slaapklok als anker",
       "durationSeconds": 27,
       "endCard": ["Een vaste opsta-tijd", "geeft je slaapklok houvast."],
-      "chunks": [
+      "segments": [
         "Je slaapklok houdt van een duidelijk anker.",
         "Sta je elke ochtend ongeveer rond dezelfde tijd op, dan weet je lichaam: de dag begint.",
         "Ook na een mindere nacht.",
@@ -82,7 +97,7 @@
       "title": "Ochtendlicht opzoeken",
       "durationSeconds": 27,
       "endCard": ["Ochtendlicht zet je dag aan.", "Zo krijgt je ritme houvast."],
-      "chunks": [
+      "segments": [
         "Ochtendlicht is een sterk startsein voor je slaapklok.",
         "Het licht komt via je ogen binnen en vertelt je lichaam: de dag is begonnen.",
         "Zo kan je ritme overdag op gang komen.",
@@ -91,11 +106,24 @@
       ],
       "pauseWeights": [1.0, 1.1, 1.1, 1.0]
     },
+    "lighttiming": {
+      "title": "Licht helpt je ritme",
+      "durationSeconds": 28,
+      "endCard": ["Helder in de ochtend.", "Zachter in de avond."],
+      "segments": [
+        "Licht helpt je slaapklok vooral door het tijdstip.",
+        "Zoek in de ochtend helder licht op.",
+        "Overdag houdt dat je ritme duidelijk wakker.",
+        "Maak het licht in de laatste uren voor bed juist wat zachter.",
+        "Zo krijgt je lichaam een duidelijk verschil tussen dag en avond."
+      ],
+      "pauseWeights": [1.0, 1.1, 1.2, 1.0]
+    },
     "rhythm": {
       "title": "Tijd in bed beter passend maken",
       "durationSeconds": 28,
       "endCard": ["Maak tijd in bed passend.", "Bouw daarna rustig uit."],
-      "chunks": [
+      "segments": [
         "Misschien lig je veel langer in bed dan je echt slaapt.",
         "Dan raakt je bed makkelijk verbonden met wakker liggen.",
         "Samen met je fysio maak je de tijd in bed eerst passend bij je echte slaap.",
@@ -108,8 +136,8 @@
       "title": "Waarom later naar bed veilig kan zijn",
       "durationSeconds": 30,
       "endCard": ["Korter in bed kan tijdelijk helpen.", "Doe dit samen met je fysio."],
-      "chunks": [
-        "Later naar bed gaan klinkt misschien juist verkeerd.",
+      "segments": [
+        "Het klinkt misschien vreemd om later naar bed te gaan.",
         "Maar tijdelijk wat korter in bed liggen kan helpen om minder lang wakker te liggen.",
         "Je blijft op een vaste tijd opstaan en gaat pas naar bed als je slaperig bent.",
         "Daarna bouw je de tijd in bed rustig weer uit.",
@@ -121,7 +149,7 @@
       "title": "Slaapdruk opbouwen",
       "durationSeconds": 27,
       "endCard": ["Wakker zijn bouwt slaapdruk op.", "Dutjes halen er iets vanaf."],
-      "chunks": [
+      "segments": [
         "Slaapdruk groeit terwijl je wakker bent.",
         "Zie het als een rustige golf die over de dag steeds hoger wordt.",
         "Een lang dutje haalt een flink stuk van die druk weg.",
@@ -134,7 +162,7 @@
       "title": "Van bange gedachte naar helpende zin",
       "durationSeconds": 28,
       "endCard": ["Een gedachte is geen feit.", "Maak haar eerlijker en helpender."],
-      "chunks": [
+      "segments": [
         "Je hoofd zegt: morgen lukt helemaal niks.",
         "Maar een gedachte is niet automatisch een feit. Soms is het een voorspelling.",
         "Schrijf haar op en vraag: weet ik dit zeker?",
@@ -143,11 +171,24 @@
       ],
       "pauseWeights": [1.0, 1.1, 1.0, 1.0]
     },
+    "factcheck": {
+      "title": "Voorspelling of feit?",
+      "durationSeconds": 28,
+      "endCard": ["Feit of voorspelling?", "Eerst toetsen, dan bijsturen."],
+      "segments": [
+        "Je denkt: morgen gaat alles mis.",
+        "Vraag eerst: is dit een feit, of een voorspelling?",
+        "Een feit is wat je nu zeker weet.",
+        "Een voorspelling gaat over wat misschien gebeurt.",
+        "Kies daarna een zin die eerlijk blijft: morgen kan lastig zijn, en ik kan bijsturen."
+      ],
+      "pauseWeights": [1.0, 1.1, 1.1, 1.2]
+    },
     "meter": {
       "title": "Beschermingsmeter",
       "durationSeconds": 25,
       "endCard": ["Gedachten sturen je alarm.", "Een helpende zin kan het laten zakken."],
-      "chunks": [
+      "segments": [
         "Een bange gedachte kan je lichaam meteen op scherp zetten.",
         "Je adem zit hoger, je spieren spannen aan en je brein blijft zoeken.",
         "Een helpende gedachte lost de nacht niet zomaar op.",
@@ -160,7 +201,7 @@
       "title": "Herstel gaat met ups en downs",
       "durationSeconds": 24,
       "endCard": ["Een slechte nacht is geen mislukking.", "Ga terug naar je basis."],
-      "chunks": [
+      "segments": [
         "Herstel loopt bijna nooit in een rechte lijn.",
         "Een paar betere nachten kunnen zomaar gevolgd worden door een slechte.",
         "Dat is balen. Maar het betekent niet dat je terug bij af bent.",
@@ -173,7 +214,7 @@
       "title": "Mijn plan voor een slechte week",
       "durationSeconds": 26,
       "endCard": ["Signaal gezien? Kies één actie.", "Je plan ligt al klaar."],
-      "chunks": [
+      "segments": [
         "Een slechte week is niet het moment voor ingewikkelde plannen.",
         "Kies vooraf een paar vaste acties.",
         "Sta rond dezelfde tijd op, sla dutjes over en ga even uit bed als je lang wakker ligt.",
@@ -181,6 +222,19 @@
         "Dan hoef je midden in een slechte nacht niet opnieuw te bedenken wat helpt."
       ],
       "pauseWeights": [1.0, 1.2, 1.3, 1.0]
+    },
+    "signalaction": {
+      "title": "Signaal naar actie",
+      "durationSeconds": 28,
+      "endCard": ["Eén herkenbaar signaal.", "Eén vooraf gekozen actie."],
+      "segments": [
+        "Een slechte nacht begint vaak met een herkenbaar signaal.",
+        "Misschien ga je op de klok kijken, rekenen of steeds harder proberen.",
+        "Koppel vooraf één actie aan dat signaal.",
+        "Klok kijken? Leg hem uit zicht. Lang wakker? Ga even uit bed.",
+        "Zo hoef je midden in de nacht niet opnieuw te kiezen."
+      ],
+      "pauseWeights": [1.0, 1.2, 1.2, 1.1]
     }
   }
 }

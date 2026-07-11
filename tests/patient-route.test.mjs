@@ -11,6 +11,9 @@ const renderAllSource = readFileSync(new URL('../remotion-poc/render-all.mjs', i
 const forceProductionSource = readFileSync(new URL('../remotion-poc/scripts/render-force-production.mjs', import.meta.url), 'utf8');
 const seriesProductionSource = readFileSync(new URL('../remotion-poc/scripts/render-series-production.mjs', import.meta.url), 'utf8');
 const seriesContent = JSON.parse(readFileSync(new URL('../remotion-poc/series-content.json', import.meta.url), 'utf8'));
+const seriesTiming = JSON.parse(readFileSync(new URL('../remotion-poc/series-timing.json', import.meta.url), 'utf8'));
+const seriesVoiceGenerator = readFileSync(new URL('../remotion-poc/scripts/generate-series-voices.py', import.meta.url), 'utf8');
+const seriesSceneSource = readFileSync(new URL('../remotion-poc/src/series/SleepSeriesScene.tsx', import.meta.url), 'utf8');
 
 const functionStart = html.indexOf('function slaapModule()');
 const functionEnd = html.indexOf('/* ─── SlaapMotion', functionStart);
@@ -254,6 +257,72 @@ test('weekkeuzes blijven bereikbaar met toetsenbord', () => {
   assert.match(html, /\.plan-item:focus-within/);
 });
 
+test('elke inhoudelijk andere videokaart heeft een eigen videobestand', () => {
+  const byVisual = new Map();
+  for (const module of data.therapyModules) {
+    for (const media of module.media || []) {
+      const existing = byVisual.get(media.visual);
+      if (existing) {
+        assert.equal(
+          media.title,
+          existing.title,
+          `${media.visual}.mp4 wordt hergebruikt voor zowel "${existing.title}" als "${media.title}"`,
+        );
+      } else {
+        byVisual.set(media.visual, {title: media.title, moduleId: module.id});
+      }
+    }
+  }
+});
+
+test('elke serievoice komt uit één doorlopende Nono-take met gedeelde cue-timing', () => {
+  assert.match(seriesVoiceGenerator, /convert_with_timestamps/);
+  assert.doesNotMatch(seriesVoiceGenerator, /for chunk_index, text[\s\S]*?generate_chunk/);
+  assert.match(seriesVoiceGenerator, /series-timing\.json/);
+  assert.match(seriesSceneSource, /series-timing\.json/);
+  assert.doesNotMatch(seriesSceneSource, /const visualFrame = kind === 'breathe' \? frame : \(frame \* 720\) \/ durationInFrames/);
+  for (const [slug, video] of Object.entries(seriesContent.videos)) {
+    assert.ok(Array.isArray(video.segments) && video.segments.length >= 3, `${slug} heeft semantische segmenten nodig`);
+    assert.equal(video.chunks, undefined, `${slug} gebruikt nog losse TTS-chunks`);
+  }
+});
+
+test('alle serievoices delen Nono-identiteit, seed en één bronopname', () => {
+  assert.deepEqual(Object.keys(seriesTiming.videos).sort(), Object.keys(seriesContent.videos).sort());
+  for (const [slug, spec] of Object.entries(seriesContent.videos)) {
+    const manifest = JSON.parse(readFileSync(new URL(`../remotion-poc/public/audio/${slug}-nono-v2.json`, import.meta.url), 'utf8'));
+    assert.equal(manifest.voice.voiceId, seriesContent.voice.voiceId, `${slug} voice-ID`);
+    assert.equal(manifest.seed, 7319, `${slug} seed`);
+    assert.deepEqual(manifest.voiceSettings, seriesContent.voice.settings, `${slug} voice-instellingen`);
+    assert.match(manifest.sourceTake.sha256, /^[a-f0-9]{64}$/, `${slug} bronhash`);
+    assert.equal(manifest.segments.length, spec.segments.length, `${slug} segmenten`);
+    assert.equal(manifest.chunks, undefined, `${slug} gebruikt nog losse chunks`);
+    assert.deepEqual(manifest.cues, seriesTiming.videos[slug].cues, `${slug} gedeelde cues`);
+  }
+});
+
+test('elke videokaart bestaat in bron, renderbatch en webspeler', () => {
+  assert.match(renderAllSource, /series-content\.json/);
+  assert.match(renderAllSource, /Object\.keys\(seriesContent\.videos\)/);
+  const visuals = [...new Set(data.therapyModules.flatMap((module) => (module.media || []).map((media) => media.visual)))];
+  for (const visual of visuals) {
+    assert.ok(visual === 'force' || seriesContent.videos[visual], `${visual} ontbreekt in series-content.json`);
+    assert.match(html, new RegExp(`hasVideo\\(visual\\)[\\s\\S]*?'${visual}'`), `${visual} ontbreekt in hasVideo()`);
+  }
+});
+
+test('kaarttekst en zichtbare duur zijn gelijk aan de werkelijke serievoice', () => {
+  const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  for (const module of data.therapyModules) {
+    for (const media of module.media || []) {
+      if (media.visual === 'force') continue;
+      const spec = seriesContent.videos[media.visual];
+      assert.equal(normalize(media.script), normalize(spec.segments.join(' ')), `${media.visual} script wijkt af van audio`);
+      assert.match(media.label, new RegExp(`(?:^|\\D)${spec.durationSeconds}\\s*sec$`), `${media.visual} toont verkeerde duur`);
+    }
+  }
+});
+
 test('de professionele videoserie gebruikt hoorbare audio en Nederlandse captions', () => {
   const moduleA = data.therapyModules.find((module) => module.id === 'moduleA');
   const force = moduleA.media.find((media) => media.visual === 'force');
@@ -278,11 +347,13 @@ test('de professionele videoserie gebruikt hoorbare audio en Nederlandse caption
   assert.match(forceProductionSource, /audio\?\.codec_name !== 'aac'/);
   assert.match(seriesProductionSource, /video\?\.codec_name !== 'h264'/);
   assert.match(seriesProductionSource, /audio\?\.codec_name !== 'aac'/);
+  assert.match(seriesProductionSource, /nono-v2/);
+  assert.match(seriesSceneSource, /seriesTiming/);
 
   for (const slug of seriesSlugs) {
     const captions = readFileSync(new URL(`../prototype/video/${slug}-nl.vtt`, import.meta.url), 'utf8');
     const videoBytes = readFileSync(new URL(`../prototype/video/${slug}.mp4`, import.meta.url)).byteLength;
-    const expectedCues = slug === 'force' ? 6 : seriesContent.videos[slug].chunks.length;
+    const expectedCues = slug === 'force' ? 6 : seriesContent.videos[slug].segments.length;
     assert.equal((captions.match(/-->/g) || []).length, expectedCues, `${slug} captions`);
     assert.ok(videoBytes > 650_000 && videoBytes < 6_000_000, `${slug}.mp4 is ${videoBytes} bytes`);
   }

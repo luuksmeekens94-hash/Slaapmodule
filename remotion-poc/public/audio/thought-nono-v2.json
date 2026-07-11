@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "thought",
+  "title": "Van bange gedachte naar helpende zin",
+  "videoDurationSeconds": 28,
+  "audioDurationSeconds": 23.136,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.516,
+    0.568,
+    0.516,
+    0.516
+  ],
+  "sourceTake": {
+    "file": "thought-nono-v2-source.mp3",
+    "durationSeconds": 25.52,
+    "sha256": "14d114a3a68668e845a8bc02f03542abcbf588fc5fe997c33f7c68f360b9f462",
+    "sourceText": "[calm, natural, close-mic, conversational] Je hoofd zegt: morgen lukt helemaal niks. [short pause] Maar een gedachte is niet automatisch een feit. Soms is het een voorspelling. [short pause] Schrijf haar op en vraag: weet ik dit zeker? [short pause] Maak de zin daarna eerlijker: morgen wordt misschien lastig, én ik kan bijsturen. [short pause] Niet mooier maken. Wel eerlijker en helpender."
+  },
+  "segments": [
+    {
+      "text": "Je hoofd zegt: morgen lukt helemaal niks.",
+      "characterStart": 43,
+      "characterEnd": 83,
+      "sourceStartSeconds": 0.135,
+      "sourceEndSeconds": 3.122,
+      "clipStartSeconds": 0.1,
+      "clipEndSeconds": 3.177,
+      "durationSeconds": 3.077,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 4.077
+    },
+    {
+      "text": "Maar een gedachte is niet automatisch een feit. Soms is het een voorspelling.",
+      "characterStart": 99,
+      "characterEnd": 175,
+      "sourceStartSeconds": 4.466,
+      "sourceEndSeconds": 9.522,
+      "clipStartSeconds": 4.431,
+      "clipEndSeconds": 9.577,
+      "durationSeconds": 5.146,
+      "videoStartSeconds": 4.593,
+      "videoEndSeconds": 9.739
+    },
+    {
+      "text": "Schrijf haar op en vraag: weet ik dit zeker?",
+      "characterStart": 191,
+      "characterEnd": 234,
+      "sourceStartSeconds": 10.627,
+      "sourceEndSeconds": 13.602,
+      "clipStartSeconds": 10.592,
+      "clipEndSeconds": 13.657,
+      "durationSeconds": 3.065,
+      "videoStartSeconds": 10.307,
+      "videoEndSeconds": 13.372
+    },
+    {
+      "text": "Maak de zin daarna eerlijker: morgen wordt misschien lastig, én ik kan bijsturen.",
+      "characterStart": 250,
+      "characterEnd": 330,
+      "sourceStartSeconds": 14.869,
+      "sourceEndSeconds": 20.962,
+      "clipStartSeconds": 14.834,
+      "clipEndSeconds": 21.017,
+      "durationSeconds": 6.183,
+      "videoStartSeconds": 13.888,
+      "videoEndSeconds": 20.071
+    },
+    {
+      "text": "Niet mooier maken. Wel eerlijker en helpender.",
+      "characterStart": 346,
+      "characterEnd": 391,
+      "sourceStartSeconds": 22.042,
+      "sourceEndSeconds": 25.525,
+      "clipStartSeconds": 22.007,
+      "clipEndSeconds": 25.52,
+      "durationSeconds": 3.513,
+      "videoStartSeconds": 20.587,
+      "videoEndSeconds": 24.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 4.077,
+      "text": "Je hoofd zegt: morgen lukt helemaal niks."
+    },
+    {
+      "start": 4.593,
+      "end": 9.739,
+      "text": "Maar een gedachte is niet automatisch een feit. Soms is het een voorspelling."
+    },
+    {
+      "start": 10.307,
+      "end": 13.372,
+      "text": "Schrijf haar op en vraag: weet ik dit zeker?"
+    },
+    {
+      "start": 13.888,
+      "end": 20.071,
+      "text": "Maak de zin daarna eerlijker: morgen wordt misschien lastig, én ik kan bijsturen."
+    },
+    {
+      "start": 20.587,
+      "end": 24.1,
+      "text": "Niet mooier maken. Wel eerlijker en helpender."
+    }
+  ],
+  "endCard": [
+    "Een gedachte is geen feit.",
+    "Maak haar eerlijker en helpender."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

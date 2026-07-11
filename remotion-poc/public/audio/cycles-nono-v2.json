@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "cycles",
+  "title": "Slaapcycli en kort wakker worden",
+  "videoDurationSeconds": 26,
+  "audioDurationSeconds": 21.144,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.693,
+    0.831,
+    0.762,
+    0.693
+  ],
+  "sourceTake": {
+    "file": "cycles-nono-v2-source.mp3",
+    "durationSeconds": 20.8,
+    "sha256": "8a4d0f2044619303b6bd8b0e4e156a83fce8386976b6d5a03609d3cacb4ab2bc",
+    "sourceText": "[calm, natural, close-mic, conversational] Even wakker worden in de nacht? Dat gebeurt eigenlijk bij iedereen. [short pause] Je slaap beweegt in rondes. Tussen die rondes word je soms kort wakker. [short pause] Meestal zak je vanzelf weer weg. [short pause] Het wordt vooral lastiger als je gaat rekenen, balen of controleren. [short pause] Wakker worden betekent dus niet meteen dat je nacht mislukt."
+  },
+  "segments": [
+    {
+      "text": "Even wakker worden in de nacht? Dat gebeurt eigenlijk bij iedereen.",
+      "characterStart": 43,
+      "characterEnd": 109,
+      "sourceStartSeconds": 0.226,
+      "sourceEndSeconds": 4.002,
+      "clipStartSeconds": 0.191,
+      "clipEndSeconds": 4.057,
+      "durationSeconds": 3.866,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 4.866
+    },
+    {
+      "text": "Je slaap beweegt in rondes. Tussen die rondes word je soms kort wakker.",
+      "characterStart": 125,
+      "characterEnd": 195,
+      "sourceStartSeconds": 4.707,
+      "sourceEndSeconds": 9.125,
+      "clipStartSeconds": 4.672,
+      "clipEndSeconds": 9.18,
+      "durationSeconds": 4.508,
+      "videoStartSeconds": 5.559,
+      "videoEndSeconds": 10.067
+    },
+    {
+      "text": "Meestal zak je vanzelf weer weg.",
+      "characterStart": 211,
+      "characterEnd": 242,
+      "sourceStartSeconds": 9.752,
+      "sourceEndSeconds": 11.885,
+      "clipStartSeconds": 9.717,
+      "clipEndSeconds": 11.94,
+      "durationSeconds": 2.223,
+      "videoStartSeconds": 10.898,
+      "videoEndSeconds": 13.121
+    },
+    {
+      "text": "Het wordt vooral lastiger als je gaat rekenen, balen of controleren.",
+      "characterStart": 258,
+      "characterEnd": 325,
+      "sourceStartSeconds": 12.39,
+      "sourceEndSeconds": 16.725,
+      "clipStartSeconds": 12.355,
+      "clipEndSeconds": 16.78,
+      "durationSeconds": 4.425,
+      "videoStartSeconds": 13.882,
+      "videoEndSeconds": 18.307
+    },
+    {
+      "text": "Wakker worden betekent dus niet meteen dat je nacht mislukt.",
+      "characterStart": 341,
+      "characterEnd": 400,
+      "sourceStartSeconds": 17.735,
+      "sourceEndSeconds": 20.805,
+      "clipStartSeconds": 17.7,
+      "clipEndSeconds": 20.8,
+      "durationSeconds": 3.1,
+      "videoStartSeconds": 19.0,
+      "videoEndSeconds": 22.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 4.866,
+      "text": "Even wakker worden in de nacht? Dat gebeurt eigenlijk bij iedereen."
+    },
+    {
+      "start": 5.559,
+      "end": 10.067,
+      "text": "Je slaap beweegt in rondes. Tussen die rondes word je soms kort wakker."
+    },
+    {
+      "start": 10.898,
+      "end": 13.121,
+      "text": "Meestal zak je vanzelf weer weg."
+    },
+    {
+      "start": 13.882,
+      "end": 18.307,
+      "text": "Het wordt vooral lastiger als je gaat rekenen, balen of controleren."
+    },
+    {
+      "start": 19.0,
+      "end": 22.1,
+      "text": "Wakker worden betekent dus niet meteen dat je nacht mislukt."
+    }
+  ],
+  "endCard": [
+    "Kort wakker worden is normaal.",
+    "Het is niet meteen misgaan."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

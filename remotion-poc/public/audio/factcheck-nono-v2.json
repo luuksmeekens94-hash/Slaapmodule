@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "factcheck",
+  "title": "Voorspelling of feit?",
+  "videoDurationSeconds": 28,
+  "audioDurationSeconds": 23.136,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    1.171,
+    1.288,
+    1.288,
+    1.405
+  ],
+  "sourceTake": {
+    "file": "factcheck-nono-v2-source.mp3",
+    "durationSeconds": 22.0,
+    "sha256": "053f16cb874f28a0ec44615089923a38a812224c0ec5568eb63f019e16279049",
+    "sourceText": "[calm, natural, close-mic, conversational] Je denkt: morgen gaat alles mis. [short pause] Vraag eerst: is dit een feit, of een voorspelling? [short pause] Een feit is wat je nu zeker weet. [short pause] Een voorspelling gaat over wat misschien gebeurt. [short pause] Kies daarna een zin die eerlijk blijft: morgen kan lastig zijn, en ik kan bijsturen."
+  },
+  "segments": [
+    {
+      "text": "Je denkt: morgen gaat alles mis.",
+      "characterStart": 43,
+      "characterEnd": 74,
+      "sourceStartSeconds": 0.093,
+      "sourceEndSeconds": 2.2,
+      "clipStartSeconds": 0.058,
+      "clipEndSeconds": 2.255,
+      "durationSeconds": 2.197,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 3.197
+    },
+    {
+      "text": "Vraag eerst: is dit een feit, of een voorspelling?",
+      "characterStart": 90,
+      "characterEnd": 139,
+      "sourceStartSeconds": 3.216,
+      "sourceEndSeconds": 6.6,
+      "clipStartSeconds": 3.181,
+      "clipEndSeconds": 6.655,
+      "durationSeconds": 3.474,
+      "videoStartSeconds": 4.368,
+      "videoEndSeconds": 7.842
+    },
+    {
+      "text": "Een feit is wat je nu zeker weet.",
+      "characterStart": 155,
+      "characterEnd": 187,
+      "sourceStartSeconds": 7.783,
+      "sourceEndSeconds": 10.843,
+      "clipStartSeconds": 7.748,
+      "clipEndSeconds": 10.898,
+      "durationSeconds": 3.15,
+      "videoStartSeconds": 9.129,
+      "videoEndSeconds": 12.279
+    },
+    {
+      "text": "Een voorspelling gaat over wat misschien gebeurt.",
+      "characterStart": 203,
+      "characterEnd": 251,
+      "sourceStartSeconds": 11.788,
+      "sourceEndSeconds": 14.603,
+      "clipStartSeconds": 11.753,
+      "clipEndSeconds": 14.658,
+      "durationSeconds": 2.905,
+      "videoStartSeconds": 13.567,
+      "videoEndSeconds": 16.472
+    },
+    {
+      "text": "Kies daarna een zin die eerlijk blijft: morgen kan lastig zijn, en ik kan bijsturen.",
+      "characterStart": 267,
+      "characterEnd": 350,
+      "sourceStartSeconds": 15.812,
+      "sourceEndSeconds": 22.052,
+      "clipStartSeconds": 15.777,
+      "clipEndSeconds": 22.0,
+      "durationSeconds": 6.223,
+      "videoStartSeconds": 17.877,
+      "videoEndSeconds": 24.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 3.197,
+      "text": "Je denkt: morgen gaat alles mis."
+    },
+    {
+      "start": 4.368,
+      "end": 7.842,
+      "text": "Vraag eerst: is dit een feit, of een voorspelling?"
+    },
+    {
+      "start": 9.129,
+      "end": 12.279,
+      "text": "Een feit is wat je nu zeker weet."
+    },
+    {
+      "start": 13.567,
+      "end": 16.472,
+      "text": "Een voorspelling gaat over wat misschien gebeurt."
+    },
+    {
+      "start": 17.877,
+      "end": 24.1,
+      "text": "Kies daarna een zin die eerlijk blijft: morgen kan lastig zijn, en ik kan bijsturen."
+    }
+  ],
+  "endCard": [
+    "Feit of voorspelling?",
+    "Eerst toetsen, dan bijsturen."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

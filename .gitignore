@@ -20,6 +20,8 @@ remotion-poc/out/*-frame.png
 remotion-poc/out/force-*.png
 remotion-poc/out/*-review/
 remotion-poc/out/series-*/
+remotion-poc/out/v2-*/
+remotion-poc/out/*-audit.json
 
 # Memory / session files
 memory/

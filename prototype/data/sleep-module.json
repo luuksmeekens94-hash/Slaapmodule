@@ -251,11 +251,11 @@
         },
         {
           "type": "animation",
-          "label": "Oefening · 36 sec",
+          "label": "Oefening · 50 sec",
           "title": "Adem 4-6",
           "desc": "Rustige begeleide ademhaling voor vóór bedtijd.",
           "visual": "breathe",
-          "script": "Ga maar makkelijk zitten. Je hoeft nu even niets te bereiken. Adem rustig in: twee, drie, vier. En langer uit: twee, drie, vier, vijf, zes. Nog een keer. Rustig in en langzaam weer uit. Laat je schouders maar zakken. Je hoeft het niet perfect te doen."
+          "script": "Ga maar makkelijk zitten. Je hoeft nu even niets te bereiken. Adem rustig in. Twee, drie, vier. En langer uit. Twee, drie, vier, vijf, zes. Nog een keer. Adem rustig in. Twee, drie, vier. En langzaam weer uit. Twee, drie, vier, vijf, zes. Laat je schouders maar zakken. Je hoeft het niet perfect te doen."
         }
       ],
       "actions": [
@@ -337,11 +337,11 @@
         },
         {
           "type": "animation",
-          "label": "Oefening · 36 sec",
+          "label": "Oefening · 27 sec",
           "title": "Rustzin in de nacht",
           "desc": "Korte oefening met rustige zinnen zonder slaap te forceren.",
-          "visual": "breathe",
-          "script": "Ga maar makkelijk zitten. Je hoeft nu even niets te bereiken. Adem rustig in: twee, drie, vier. En langer uit: twee, drie, vier, vijf, zes. Nog een keer. Rustig in en langzaam weer uit. Laat je schouders maar zakken. Je hoeft het niet perfect te doen."
+          "visual": "nightphrase",
+          "script": "Je bent wakker. Dat is vervelend. Maar wakker zijn is niet gevaarlijk, en je hoeft slaap nu niet af te dwingen. Zeg rustig tegen jezelf: ik hoef dit moment niet op te lossen. Laat je kaken los en voel hoe je uitademing vanzelf komt. De nacht mag even zijn zoals hij is."
         }
       ],
       "actions": [
@@ -423,11 +423,11 @@
         },
         {
           "type": "animation",
-          "label": "Animatie · 27 sec",
+          "label": "Animatie · 28 sec",
           "title": "Licht helpt je ritme",
           "desc": "Je ziet waarom vroeg licht je avondritme kan helpen.",
-          "visual": "sun",
-          "script": "Ochtendlicht is een sterk startsein voor je slaapklok. Het licht komt via je ogen binnen en vertelt je lichaam: de dag is begonnen. Zo kan je ritme overdag op gang komen. En kan slaperigheid in de avond beter op tijd verschijnen. Ga na het opstaan even naar buiten, of zit bij een helder raam."
+          "visual": "lighttiming",
+          "script": "Licht helpt je slaapklok vooral door het tijdstip. Zoek in de ochtend helder licht op. Overdag houdt dat je ritme duidelijk wakker. Maak het licht in de laatste uren voor bed juist wat zachter. Zo krijgt je lichaam een duidelijk verschil tussen dag en avond."
         }
       ],
       "actions": [
@@ -510,7 +510,7 @@
           "title": "Waarom later naar bed veilig kan zijn",
           "desc": "Laat zien hoe tijdelijk korter in bed liggen slaapdruk opbouwt.",
           "visual": "night",
-          "script": "Later naar bed gaan klinkt misschien juist verkeerd. Maar tijdelijk wat korter in bed liggen kan helpen om minder lang wakker te liggen. Je blijft op een vaste tijd opstaan en gaat pas naar bed als je slaperig bent. Daarna bouw je de tijd in bed rustig weer uit. Doe dit altijd samen met je fysio."
+          "script": "Het klinkt misschien vreemd om later naar bed te gaan. Maar tijdelijk wat korter in bed liggen kan helpen om minder lang wakker te liggen. Je blijft op een vaste tijd opstaan en gaat pas naar bed als je slaperig bent. Daarna bouw je de tijd in bed rustig weer uit. Doe dit altijd samen met je fysio."
         },
         {
           "type": "animation",
@@ -603,8 +603,8 @@
           "label": "Animatie · 28 sec",
           "title": "Voorspelling of feit?",
           "desc": "Je oefent met het verschil tussen feit, voorspelling en helpende gedachte.",
-          "visual": "thought",
-          "script": "Je hoofd zegt: morgen lukt helemaal niks. Maar een gedachte is niet automatisch een feit. Soms is het een voorspelling. Schrijf haar op en vraag: weet ik dit zeker? Maak de zin daarna eerlijker: morgen wordt misschien lastig, én ik kan bijsturen. Niet mooier maken. Wel eerlijker en helpender."
+          "visual": "factcheck",
+          "script": "Je denkt: morgen gaat alles mis. Vraag eerst: is dit een feit, of een voorspelling? Een feit is wat je nu zeker weet. Een voorspelling gaat over wat misschien gebeurt. Kies daarna een zin die eerlijk blijft: morgen kan lastig zijn, en ik kan bijsturen."
         }
       ],
       "actions": [
@@ -686,11 +686,11 @@
         },
         {
           "type": "animation",
-          "label": "Animatie · 26 sec",
+          "label": "Animatie · 28 sec",
           "title": "Signaal naar actie",
           "desc": "Je koppelt vroege signalen aan concrete acties.",
-          "visual": "plan",
-          "script": "Een slechte week is niet het moment voor ingewikkelde plannen. Kies vooraf een paar vaste acties. Sta rond dezelfde tijd op, sla dutjes over en ga even uit bed als je lang wakker ligt. Gebruik één rustige zin als je hoofd aan gaat. Dan hoef je midden in een slechte nacht niet opnieuw te bedenken wat helpt."
+          "visual": "signalaction",
+          "script": "Een slechte nacht begint vaak met een herkenbaar signaal. Misschien ga je op de klok kijken, rekenen of steeds harder proberen. Koppel vooraf één actie aan dat signaal. Klok kijken? Leg hem uit zicht. Lang wakker? Ga even uit bed. Zo hoef je midden in de nacht niet opnieuw te kiezen."
         }
       ],
       "actions": [

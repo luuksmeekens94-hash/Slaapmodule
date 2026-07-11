@@ -11,6 +11,7 @@ import {PressureScene} from './scenes/PressureScene';
 import {ForceAnimaticScene} from './scenes/ForceAnimaticScene';
 import {ForceFinalScene} from './scenes/ForceFinalScene';
 import {SleepSeriesScene, SeriesKind} from './series/SleepSeriesScene';
+import seriesContent from '../series-content.json';
 
 const LEGACY = {
   durationInFrames: 900,
@@ -26,21 +27,9 @@ const SERIES = {
   height: 1080,
 } as const;
 
-const SERIES_FRAMES: Record<SeriesKind, number> = {
-  worry: 720,
-  breathe: 1080,
-  cycles: 780,
-  nightwake: 840,
-  clock: 810,
-  sun: 810,
-  rhythm: 840,
-  night: 900,
-  pressure: 810,
-  thought: 840,
-  meter: 750,
-  curve: 720,
-  plan: 780,
-};
+const SERIES_FRAMES = Object.fromEntries(
+  Object.entries(seriesContent.videos).map(([kind, spec]) => [kind, Math.round(spec.durationSeconds * 30)]),
+) as Record<SeriesKind, number>;
 
 export const Root: React.FC = () => {
   return (

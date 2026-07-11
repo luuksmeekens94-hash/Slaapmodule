@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "nightwake",
+  "title": "Wat doe ik om 03:00?",
+  "videoDurationSeconds": 28,
+  "audioDurationSeconds": 23.136,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    1.283,
+    1.411,
+    1.796,
+    1.539
+  ],
+  "sourceTake": {
+    "file": "nightwake-nono-v2-source.mp3",
+    "durationSeconds": 21.52,
+    "sha256": "6474670b61b94aa24da94c5a4ec289510775c6b009e60cbd78588e5a63a5c14b",
+    "sourceText": "[calm, natural, close-mic, conversational] Lig je al een tijd wakker in bed? [short pause] Dan kan blijven woelen je brein leren: hier ben ik dus ook wakker. [short pause] Ga rustig even uit bed. Houd het licht laag en doe iets saais. [short pause] Voel je weer slaperigheid? Ga dan terug. [short pause] Zo blijft je bed zoveel mogelijk een plek voor slapen."
+  },
+  "segments": [
+    {
+      "text": "Lig je al een tijd wakker in bed?",
+      "characterStart": 43,
+      "characterEnd": 75,
+      "sourceStartSeconds": 0.232,
+      "sourceEndSeconds": 1.762,
+      "clipStartSeconds": 0.197,
+      "clipEndSeconds": 1.817,
+      "durationSeconds": 1.62,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 2.62
+    },
+    {
+      "text": "Dan kan blijven woelen je brein leren: hier ben ik dus ook wakker.",
+      "characterStart": 91,
+      "characterEnd": 156,
+      "sourceStartSeconds": 3.252,
+      "sourceEndSeconds": 7.202,
+      "clipStartSeconds": 3.217,
+      "clipEndSeconds": 7.257,
+      "durationSeconds": 4.04,
+      "videoStartSeconds": 3.903,
+      "videoEndSeconds": 7.943
+    },
+    {
+      "text": "Ga rustig even uit bed. Houd het licht laag en doe iets saais.",
+      "characterStart": 172,
+      "characterEnd": 233,
+      "sourceStartSeconds": 8.469,
+      "sourceEndSeconds": 12.962,
+      "clipStartSeconds": 8.434,
+      "clipEndSeconds": 13.017,
+      "durationSeconds": 4.583,
+      "videoStartSeconds": 9.353,
+      "videoEndSeconds": 13.936
+    },
+    {
+      "text": "Voel je weer slaperigheid? Ga dan terug.",
+      "characterStart": 249,
+      "characterEnd": 288,
+      "sourceStartSeconds": 14.149,
+      "sourceEndSeconds": 17.562,
+      "clipStartSeconds": 14.114,
+      "clipEndSeconds": 17.617,
+      "durationSeconds": 3.503,
+      "videoStartSeconds": 15.732,
+      "videoEndSeconds": 19.235
+    },
+    {
+      "text": "Zo blijft je bed zoveel mogelijk een plek voor slapen.",
+      "characterStart": 304,
+      "characterEnd": 357,
+      "sourceStartSeconds": 18.229,
+      "sourceEndSeconds": 21.522,
+      "clipStartSeconds": 18.194,
+      "clipEndSeconds": 21.52,
+      "durationSeconds": 3.326,
+      "videoStartSeconds": 20.774,
+      "videoEndSeconds": 24.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 2.62,
+      "text": "Lig je al een tijd wakker in bed?"
+    },
+    {
+      "start": 3.903,
+      "end": 7.943,
+      "text": "Dan kan blijven woelen je brein leren: hier ben ik dus ook wakker."
+    },
+    {
+      "start": 9.353,
+      "end": 13.936,
+      "text": "Ga rustig even uit bed. Houd het licht laag en doe iets saais."
+    },
+    {
+      "start": 15.732,
+      "end": 19.235,
+      "text": "Voel je weer slaperigheid? Ga dan terug."
+    },
+    {
+      "start": 20.774,
+      "end": 24.1,
+      "text": "Zo blijft je bed zoveel mogelijk een plek voor slapen."
+    }
+  ],
+  "endCard": [
+    "Lang wakker? Ga er even uit.",
+    "Terug als je slaperig wordt."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "sun",
+  "title": "Ochtendlicht opzoeken",
+  "videoDurationSeconds": 27,
+  "audioDurationSeconds": 22.128,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    1.09,
+    1.199,
+    1.199,
+    1.09
+  ],
+  "sourceTake": {
+    "file": "sun-nono-v2-source.mp3",
+    "durationSeconds": 20.08,
+    "sha256": "c3a7cb1ca609f2c443c61bc8afee7526d7d1cb743ee15fcf571445cda4a1dbf0",
+    "sourceText": "[calm, natural, close-mic, conversational] Ochtendlicht is een sterk startsein voor je slaapklok. [short pause] Het licht komt via je ogen binnen en vertelt je lichaam: de dag is begonnen. [short pause] Zo kan je ritme overdag op gang komen. [short pause] En kan slaperigheid in de avond beter op tijd verschijnen. [short pause] Ga na het opstaan even naar buiten, of zit bij een helder raam."
+  },
+  "segments": [
+    {
+      "text": "Ochtendlicht is een sterk startsein voor je slaapklok.",
+      "characterStart": 43,
+      "characterEnd": 96,
+      "sourceStartSeconds": 0.162,
+      "sourceEndSeconds": 3.282,
+      "clipStartSeconds": 0.127,
+      "clipEndSeconds": 3.337,
+      "durationSeconds": 3.21,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 4.21
+    },
+    {
+      "text": "Het licht komt via je ogen binnen en vertelt je lichaam: de dag is begonnen.",
+      "characterStart": 112,
+      "characterEnd": 187,
+      "sourceStartSeconds": 3.987,
+      "sourceEndSeconds": 8.562,
+      "clipStartSeconds": 3.952,
+      "clipEndSeconds": 8.617,
+      "durationSeconds": 4.665,
+      "videoStartSeconds": 5.3,
+      "videoEndSeconds": 9.965
+    },
+    {
+      "text": "Zo kan je ritme overdag op gang komen.",
+      "characterStart": 203,
+      "characterEnd": 240,
+      "sourceStartSeconds": 9.265,
+      "sourceEndSeconds": 11.612,
+      "clipStartSeconds": 9.23,
+      "clipEndSeconds": 11.667,
+      "durationSeconds": 2.437,
+      "videoStartSeconds": 11.164,
+      "videoEndSeconds": 13.601
+    },
+    {
+      "text": "En kan slaperigheid in de avond beter op tijd verschijnen.",
+      "characterStart": 256,
+      "characterEnd": 313,
+      "sourceStartSeconds": 11.919,
+      "sourceEndSeconds": 15.292,
+      "clipStartSeconds": 11.884,
+      "clipEndSeconds": 15.347,
+      "durationSeconds": 3.463,
+      "videoStartSeconds": 14.8,
+      "videoEndSeconds": 18.263
+    },
+    {
+      "text": "Ga na het opstaan even naar buiten, of zit bij een helder raam.",
+      "characterStart": 329,
+      "characterEnd": 391,
+      "sourceStartSeconds": 16.368,
+      "sourceEndSeconds": 20.101,
+      "clipStartSeconds": 16.333,
+      "clipEndSeconds": 20.08,
+      "durationSeconds": 3.747,
+      "videoStartSeconds": 19.353,
+      "videoEndSeconds": 23.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 4.21,
+      "text": "Ochtendlicht is een sterk startsein voor je slaapklok."
+    },
+    {
+      "start": 5.3,
+      "end": 9.965,
+      "text": "Het licht komt via je ogen binnen en vertelt je lichaam: de dag is begonnen."
+    },
+    {
+      "start": 11.164,
+      "end": 13.601,
+      "text": "Zo kan je ritme overdag op gang komen."
+    },
+    {
+      "start": 14.8,
+      "end": 18.263,
+      "text": "En kan slaperigheid in de avond beter op tijd verschijnen."
+    },
+    {
+      "start": 19.353,
+      "end": 23.1,
+      "text": "Ga na het opstaan even naar buiten, of zit bij een helder raam."
+    }
+  ],
+  "endCard": [
+    "Ochtendlicht zet je dag aan.",
+    "Zo krijgt je ritme houvast."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

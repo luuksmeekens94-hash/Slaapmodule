@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "worry",
+  "title": "Piekeren parkeren",
+  "videoDurationSeconds": 24,
+  "audioDurationSeconds": 19.128,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    1.173,
+    1.291,
+    1.173,
+    1.291
+  ],
+  "sourceTake": {
+    "file": "worry-nono-v2-source.mp3",
+    "durationSeconds": 16.72,
+    "sha256": "207eeced054c6e1682b3226586b18354fb974be498044570e4533f4079c4607d",
+    "sourceText": "[calm, natural, close-mic, conversational] Lig je in bed en blijft je hoofd maar lijstjes maken? [short pause] Logisch. Je brein probeert gewoon niets te vergeten. [short pause] Schrijf je zorgen daarom eerder op de avond even op. [short pause] Zet er eventueel één kleine actie voor morgen naast. [short pause] Dan hoeft je hoofd het in bed niet allemaal vast te houden."
+  },
+  "segments": [
+    {
+      "text": "Lig je in bed en blijft je hoofd maar lijstjes maken?",
+      "characterStart": 43,
+      "characterEnd": 95,
+      "sourceStartSeconds": 0.182,
+      "sourceEndSeconds": 2.722,
+      "clipStartSeconds": 0.147,
+      "clipEndSeconds": 2.777,
+      "durationSeconds": 2.63,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 3.63
+    },
+    {
+      "text": "Logisch. Je brein probeert gewoon niets te vergeten.",
+      "characterStart": 111,
+      "characterEnd": 162,
+      "sourceStartSeconds": 3.637,
+      "sourceEndSeconds": 6.642,
+      "clipStartSeconds": 3.602,
+      "clipEndSeconds": 6.697,
+      "durationSeconds": 3.095,
+      "videoStartSeconds": 4.803,
+      "videoEndSeconds": 7.898
+    },
+    {
+      "text": "Schrijf je zorgen daarom eerder op de avond even op.",
+      "characterStart": 178,
+      "characterEnd": 229,
+      "sourceStartSeconds": 7.507,
+      "sourceEndSeconds": 10.082,
+      "clipStartSeconds": 7.472,
+      "clipEndSeconds": 10.137,
+      "durationSeconds": 2.665,
+      "videoStartSeconds": 9.189,
+      "videoEndSeconds": 11.854
+    },
+    {
+      "text": "Zet er eventueel één kleine actie voor morgen naast.",
+      "characterStart": 245,
+      "characterEnd": 296,
+      "sourceStartSeconds": 10.552,
+      "sourceEndSeconds": 13.602,
+      "clipStartSeconds": 10.517,
+      "clipEndSeconds": 13.657,
+      "durationSeconds": 3.14,
+      "videoStartSeconds": 13.027,
+      "videoEndSeconds": 16.167
+    },
+    {
+      "text": "Dan hoeft je hoofd het in bed niet allemaal vast te houden.",
+      "characterStart": 312,
+      "characterEnd": 370,
+      "sourceStartSeconds": 14.113,
+      "sourceEndSeconds": 16.733,
+      "clipStartSeconds": 14.078,
+      "clipEndSeconds": 16.72,
+      "durationSeconds": 2.642,
+      "videoStartSeconds": 17.458,
+      "videoEndSeconds": 20.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 3.63,
+      "text": "Lig je in bed en blijft je hoofd maar lijstjes maken?"
+    },
+    {
+      "start": 4.803,
+      "end": 7.898,
+      "text": "Logisch. Je brein probeert gewoon niets te vergeten."
+    },
+    {
+      "start": 9.189,
+      "end": 11.854,
+      "text": "Schrijf je zorgen daarom eerder op de avond even op."
+    },
+    {
+      "start": 13.027,
+      "end": 16.167,
+      "text": "Zet er eventueel één kleine actie voor morgen naast."
+    },
+    {
+      "start": 17.458,
+      "end": 20.1,
+      "text": "Dan hoeft je hoofd het in bed niet allemaal vast te houden."
+    }
+  ],
+  "endCard": [
+    "Piekeren mag op papier.",
+    "Niet mee naar bed."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

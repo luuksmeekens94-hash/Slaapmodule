@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "pressure",
+  "title": "Slaapdruk opbouwen",
+  "videoDurationSeconds": 27,
+  "audioDurationSeconds": 22.128,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.863,
+    1.035,
+    1.035,
+    0.863
+  ],
+  "sourceTake": {
+    "file": "pressure-nono-v2-source.mp3",
+    "durationSeconds": 22.88,
+    "sha256": "c8a945290b2e5ae09b8a02bf7168807c25f139b4052e954bb33dc042aa021806",
+    "sourceText": "[calm, natural, close-mic, conversational] Slaapdruk groeit terwijl je wakker bent. [short pause] Zie het als een rustige golf die over de dag steeds hoger wordt. [short pause] Een lang dutje haalt een flink stuk van die druk weg. [short pause] Een kort dutje kan soms wel: maximaal twintig minuten, en liever vroeg op de dag. [short pause] Zo houd je genoeg slaapdruk over voor de avond."
+  },
+  "segments": [
+    {
+      "text": "Slaapdruk groeit terwijl je wakker bent.",
+      "characterStart": 43,
+      "characterEnd": 82,
+      "sourceStartSeconds": 0.159,
+      "sourceEndSeconds": 2.439,
+      "clipStartSeconds": 0.124,
+      "clipEndSeconds": 2.494,
+      "durationSeconds": 2.37,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 3.37
+    },
+    {
+      "text": "Zie het als een rustige golf die over de dag steeds hoger wordt.",
+      "characterStart": 98,
+      "characterEnd": 161,
+      "sourceStartSeconds": 3.789,
+      "sourceEndSeconds": 7.48,
+      "clipStartSeconds": 3.754,
+      "clipEndSeconds": 7.535,
+      "durationSeconds": 3.781,
+      "videoStartSeconds": 4.233,
+      "videoEndSeconds": 8.014
+    },
+    {
+      "text": "Een lang dutje haalt een flink stuk van die druk weg.",
+      "characterStart": 177,
+      "characterEnd": 229,
+      "sourceStartSeconds": 8.504,
+      "sourceEndSeconds": 11.399,
+      "clipStartSeconds": 8.469,
+      "clipEndSeconds": 11.454,
+      "durationSeconds": 2.985,
+      "videoStartSeconds": 9.049,
+      "videoEndSeconds": 12.034
+    },
+    {
+      "text": "Een kort dutje kan soms wel: maximaal twintig minuten, en liever vroeg op de dag.",
+      "characterStart": 245,
+      "characterEnd": 325,
+      "sourceStartSeconds": 12.584,
+      "sourceEndSeconds": 18.679,
+      "clipStartSeconds": 12.549,
+      "clipEndSeconds": 18.734,
+      "durationSeconds": 6.185,
+      "videoStartSeconds": 13.069,
+      "videoEndSeconds": 19.254
+    },
+    {
+      "text": "Zo houd je genoeg slaapdruk over voor de avond.",
+      "characterStart": 341,
+      "characterEnd": 387,
+      "sourceStartSeconds": 19.932,
+      "sourceEndSeconds": 22.919,
+      "clipStartSeconds": 19.897,
+      "clipEndSeconds": 22.88,
+      "durationSeconds": 2.983,
+      "videoStartSeconds": 20.117,
+      "videoEndSeconds": 23.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 3.37,
+      "text": "Slaapdruk groeit terwijl je wakker bent."
+    },
+    {
+      "start": 4.233,
+      "end": 8.014,
+      "text": "Zie het als een rustige golf die over de dag steeds hoger wordt."
+    },
+    {
+      "start": 9.049,
+      "end": 12.034,
+      "text": "Een lang dutje haalt een flink stuk van die druk weg."
+    },
+    {
+      "start": 13.069,
+      "end": 19.254,
+      "text": "Een kort dutje kan soms wel: maximaal twintig minuten, en liever vroeg op de dag."
+    },
+    {
+      "start": 20.117,
+      "end": 23.1,
+      "text": "Zo houd je genoeg slaapdruk over voor de avond."
+    }
+  ],
+  "endCard": [
+    "Wakker zijn bouwt slaapdruk op.",
+    "Dutjes halen er iets vanaf."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

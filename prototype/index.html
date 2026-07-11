@@ -2763,7 +2763,7 @@ function slaapModule() {
       return `${this.currentTherapyModule.id}:${i}:${media.visual || media.title}`;
     },
     hasVideo(visual) {
-      return ['force','worry','thought','meter','cycles','nightwake','pressure','breathe','night','clock','sun','rhythm','curve','plan'].includes(visual);
+      return ['force','worry','thought','factcheck','meter','cycles','nightwake','nightphrase','pressure','breathe','night','clock','sun','lighttiming','rhythm','curve','plan','signalaction'].includes(visual);
     },
     videoUrl(visual) {
       return `video/${visual}.mp4`;
@@ -2772,11 +2772,11 @@ function slaapModule() {
       return `video/${visual}-nl.vtt`;
     },
     videoPosterUrl(visual) {
-      return ['force','worry','thought','meter','cycles','nightwake','pressure','clock','sun','rhythm','breathe','night','curve','plan'].includes(visual) ? `video/${visual}.png` : '';
+      return ['force','worry','thought','factcheck','meter','cycles','nightwake','nightphrase','pressure','clock','sun','lighttiming','rhythm','breathe','night','curve','plan','signalaction'].includes(visual) ? `video/${visual}.png` : '';
     },
     videoTone(visual) {
       // Light scenes have paper backgrounds; dark scenes have deep navy backgrounds.
-      return ['clock','sun','pressure'].includes(visual) ? 'light' : 'dark';
+      return ['clock','sun','lighttiming','pressure'].includes(visual) ? 'light' : 'dark';
     },
     renderSceneSvg(media) {
       const defs = `

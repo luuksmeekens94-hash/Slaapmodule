@@ -8,21 +8,26 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
+import seriesTiming from '../../series-timing.json';
 
 export type SeriesKind =
   | 'worry'
   | 'breathe'
   | 'cycles'
   | 'nightwake'
+  | 'nightphrase'
   | 'clock'
   | 'sun'
+  | 'lighttiming'
   | 'rhythm'
   | 'night'
   | 'pressure'
   | 'thought'
+  | 'factcheck'
   | 'meter'
   | 'curve'
-  | 'plan';
+  | 'plan'
+  | 'signalaction';
 
 type SeriesConfig = {
   endLine1: string;
@@ -56,6 +61,12 @@ export const SERIES_CONFIG: Record<SeriesKind, SeriesConfig> = {
     cameraOrigin: '62% 52%',
     tone: 'night',
   },
+  nightphrase: {
+    endLine1: 'Je hoeft dit moment',
+    endLine2: 'niet op te lossen.',
+    cameraOrigin: '58% 52%',
+    tone: 'night',
+  },
   clock: {
     endLine1: 'Een vaste opsta-tijd',
     endLine2: 'geeft je slaapklok houvast.',
@@ -66,6 +77,12 @@ export const SERIES_CONFIG: Record<SeriesKind, SeriesConfig> = {
     endLine1: 'Ochtendlicht zet je dag aan.',
     endLine2: 'Zo krijgt je ritme houvast.',
     cameraOrigin: '62% 42%',
+    tone: 'dawn',
+  },
+  lighttiming: {
+    endLine1: 'Helder in de ochtend.',
+    endLine2: 'Zachter in de avond.',
+    cameraOrigin: '54% 46%',
     tone: 'dawn',
   },
   rhythm: {
@@ -92,6 +109,12 @@ export const SERIES_CONFIG: Record<SeriesKind, SeriesConfig> = {
     cameraOrigin: '38% 56%',
     tone: 'night',
   },
+  factcheck: {
+    endLine1: 'Feit of voorspelling?',
+    endLine2: 'Eerst toetsen, dan bijsturen.',
+    cameraOrigin: '48% 54%',
+    tone: 'night',
+  },
   meter: {
     endLine1: 'Gedachten sturen je alarm.',
     endLine2: 'Een helpende zin kan het laten zakken.',
@@ -110,6 +133,12 @@ export const SERIES_CONFIG: Record<SeriesKind, SeriesConfig> = {
     cameraOrigin: '42% 54%',
     tone: 'night',
   },
+  signalaction: {
+    endLine1: 'Eén herkenbaar signaal.',
+    endLine2: 'Eén vooraf gekozen actie.',
+    cameraOrigin: '54% 54%',
+    tone: 'night',
+  },
 };
 
 const clamp = (value: number) => Math.max(0, Math.min(1, value));
@@ -119,6 +148,29 @@ const smooth = (value: number) => {
 };
 const phase = (frame: number, from: number, to: number) => smooth((frame - from) / (to - from));
 const mix = (from: number, to: number, amount: number) => from + (to - from) * amount;
+
+type Cue = {start: number; end: number; text: string};
+type TimingData = {videos: Partial<Record<SeriesKind, {durationSeconds: number; audioFile: string; captionFile: string; cues: Cue[]}>>};
+type CueState = {index: number; progress: number; cues: Cue[]};
+const timingData = seriesTiming as TimingData;
+
+const cueStateFor = (kind: SeriesKind, seconds: number, durationInFrames: number): CueState => {
+  const configured = timingData.videos[kind]?.cues;
+  const cues = configured?.length
+    ? configured
+    : Array.from({length: kind === 'breathe' ? 7 : 5}, (_, index) => ({
+        start: (durationInFrames / 30 - 5) * index / (kind === 'breathe' ? 7 : 5),
+        end: (durationInFrames / 30 - 5) * (index + 1) / (kind === 'breathe' ? 7 : 5),
+        text: '',
+      }));
+  let index = cues.findIndex((cue) => seconds <= cue.end);
+  if (index < 0) index = cues.length - 1;
+  const cue = cues[index];
+  return {index, progress: smooth((seconds - cue.start) / Math.max(0.001, cue.end - cue.start)), cues};
+};
+
+const revealAtCue = (state: CueState, target: number) =>
+  state.index < target ? 0 : state.index > target ? 1 : state.progress;
 
 const Person = ({
   x,
@@ -293,33 +345,42 @@ const Definitions = () => (
   </defs>
 );
 
-const WorryVisual = ({frame}: {frame: number}) => {
-  const write = phase(frame, 135, 360);
-  const park = phase(frame, 380, 560);
+const WorryVisual = ({state}: {state: CueState}) => {
+  const bedOpacity = state.index < 2 ? 1 : state.index > 2 ? 0 : 1 - smooth(state.progress / 0.28);
+  const desk = state.index < 2 ? 0 : state.index > 2 ? 1 : smooth((state.progress - 0.22) / 0.28);
+  const write = revealAtCue(state, 2);
+  const park = revealAtCue(state, 4);
   return (
     <>
       <Window x={1390} y={100} />
-      <Desk x={170} y={670} />
-      <Person x={430} y={510} scale={1.08} seated calm={park} />
-      <Scribble x={250} y={170} opacity={1 - park} />
-      <g transform={`translate(${230 + park * 650} ${660 - park * 40}) rotate(${write * 2 - park * 4})`}>
-        <Paper x={0} y={0} lines={3} checked={Math.round(write * 2)} />
-        <path d={`M110 105 Q${150 + write * 60} ${80 + write * 50} 248 115`} stroke="#254464" strokeWidth="8" fill="none" strokeLinecap="round" />
+      <g opacity={bedOpacity}>
+        <Bed x={830} y={650} asleep={false} />
+        <Scribble x={410} y={160} opacity={1 - desk} />
       </g>
-      <g transform="translate(1120 720)">
-        <rect width="420" height="220" rx="28" fill="#7A5542" />
-        <path d="M-20 22 H440" stroke="#A8795E" strokeWidth="28" strokeLinecap="round" />
-        <text x="210" y="142" textAnchor="middle" fill="#E9CDB5" fontSize="32" fontWeight="700" letterSpacing="5">MORGEN</text>
+      <g opacity={desk}>
+        <Desk x={170} y={670} />
+        <Person x={430} y={510} scale={1.08} seated calm={park} />
+        <Scribble x={250} y={170} opacity={1 - park} />
+        <g transform={`translate(${230 + park * 650} ${660 - park * 40}) rotate(${write * 2 - park * 4})`}>
+          <Paper x={0} y={0} lines={3} checked={Math.round(write * 2)} />
+          <path d={`M110 105 Q${150 + write * 60} ${80 + write * 50} 248 115`} stroke="#254464" strokeWidth="8" fill="none" strokeLinecap="round" />
+        </g>
+        <g transform="translate(1120 720)">
+          <rect width="420" height="220" rx="28" fill="#7A5542" />
+          <path d="M-20 22 H440" stroke="#A8795E" strokeWidth="28" strokeLinecap="round" />
+          <text x="210" y="142" textAnchor="middle" fill="#E9CDB5" fontSize="32" fontWeight="700" letterSpacing="5">MORGEN</text>
+        </g>
       </g>
     </>
   );
 };
 
-const BreatheVisual = ({frame}: {frame: number}) => {
-  const seconds = frame / 30;
-  const cycle = Math.max(0, seconds - 4) % 10;
-  const inhale = cycle < 4 ? smooth(cycle / 4) : 1 - smooth((cycle - 4) / 6);
-  const ring = 150 + inhale * 120;
+const BreatheVisual = ({state}: {state: CueState}) => {
+  const inhale = state.index === 1 || state.index === 4;
+  const exhale = state.index === 2 || state.index === 5;
+  const breath = inhale ? state.progress : exhale ? 1 - state.progress : 0;
+  const ring = 150 + breath * 120;
+  const label = inhale ? 'RUSTIG IN' : exhale ? 'LANGER UIT' : state.index === 3 ? 'NOG EEN KEER' : 'ADEM RUSTIG';
   return (
     <>
       <Window x={180} y={120} />
@@ -329,20 +390,22 @@ const BreatheVisual = ({frame}: {frame: number}) => {
       ))}
       <Person x={1040} y={510} scale={1.35} seated eyesClosed calm={1} />
       <text x="1040" y="930" textAnchor="middle" fill="#E8F4F2" fontSize="52" fontWeight="600" letterSpacing="8">
-        {cycle < 4 ? 'RUSTIG IN' : 'LANGER UIT'}
+        {label}
       </text>
     </>
   );
 };
 
-const CyclesVisual = ({frame}: {frame: number}) => {
-  const wake = phase(frame, 310, 360) * (1 - phase(frame, 405, 465));
-  const settle = phase(frame, 470, 590);
+const CyclesVisual = ({state, frame}: {state: CueState; frame: number}) => {
+  const settleFirst = state.index === 2 ? state.progress : state.index > 2 ? 1 : 0;
+  const checking = state.index === 3 ? Math.sin(state.progress * Math.PI) : 0;
+  const finalSettle = revealAtCue(state, 4);
+  const awake = state.index < 2 ? 1 : state.index === 2 ? 1 - settleFirst : checking > 0.05 ? 1 : 1 - finalSettle;
   const offset = frame * 2.2;
   return (
     <>
       <Window x={170} y={105} />
-      <Bed x={1030} y={630} asleep={wake < 0.4} glow={settle} />
+      <Bed x={1030} y={630} asleep={awake < 0.35} glow={Math.max(settleFirst, finalSettle)} />
       <g opacity=".76">
         {[0, 1, 2].map((i) => (
           <path
@@ -356,24 +419,27 @@ const CyclesVisual = ({frame}: {frame: number}) => {
           />
         ))}
       </g>
-      <circle cx="1320" cy="610" r={40 + settle * 80} fill="url(#aura)" opacity={settle} />
+      <Scribble x={1260} y={330} opacity={checking * 0.8} />
+      <ClockFace x={1540} y={240} hour={3} glow={checking} />
     </>
   );
 };
 
-const NightWakeVisual = ({frame}: {frame: number}) => {
-  const leave = phase(frame, 210, 350);
-  const returnBed = phase(frame, 500, 620);
-  const bedOpacity = 1 - leave * (1 - returnBed);
-  const chairOpacity = leave * (1 - returnBed);
+const NightWakeVisual = ({state}: {state: CueState}) => {
+  const leaveBed = state.index < 2 ? 1 : state.index > 2 ? 0 : 1 - smooth(state.progress / 0.28);
+  const enterChair = state.index < 2 ? 0 : state.index > 2 ? 1 : smooth((state.progress - 0.22) / 0.3);
+  const returnBed = state.index < 3 ? 0 : state.index > 3 ? 1 : smooth((state.progress - 0.55) / 0.25);
+  const leaveChair = state.index === 3 ? smooth((state.progress - 0.48) / 0.25) : state.index > 3 ? 1 : 0;
+  const chairOpacity = enterChair * (1 - leaveChair);
+  const bedOpacity = state.index < 3 ? leaveBed : returnBed;
   return (
     <>
       <Window x={170} y={100} />
-      <Bed x={1080} y={640} asleep={returnBed > 0.5} glow={returnBed} personOpacity={bedOpacity} />
+      <Bed x={1080} y={640} asleep={returnBed > 0.7} glow={returnBed} personOpacity={bedOpacity} />
       <g opacity={chairOpacity} transform={`translate(${mix(100, 0, chairOpacity)} 0)`}>
         <ellipse cx="1390" cy="850" rx="250" ry="48" fill="#061126" opacity=".28" />
         <path d="M1220 690 Q1390 610 1550 700 L1515 920 H1250Z" fill="#315F78" />
-        <Person x={1385} y={630} scale={1.12} seated eyesClosed calm={phase(frame, 360, 510)} />
+        <Person x={1385} y={630} scale={1.12} seated eyesClosed calm={returnBed} />
         <circle cx="1640" cy="590" r="120" fill="#F4C477" opacity=".18" filter="url(#glow)" />
         <path d="M1600 650 H1690 L1650 500Z" fill="#E6B765" />
       </g>
@@ -382,21 +448,26 @@ const NightWakeVisual = ({frame}: {frame: number}) => {
   );
 };
 
-const ClockVisual = ({frame}: {frame: number}) => {
-  const dawn = phase(frame, 80, 210);
-  const repeat = phase(frame, 250, 500);
+const ClockVisual = ({state}: {state: CueState}) => {
+  const dawn = revealAtCue(state, 1);
+  const repeat = revealAtCue(state, 2);
+  const variation = state.index === 3 ? Math.sin(state.progress * Math.PI) : 0;
+  const anchor = revealAtCue(state, 4);
   return (
     <>
       <Window x={210} y={95} dawn={dawn} />
-      <ClockFace x={1260} y={360} hour={7} glow={dawn} />
-      <Person x={1260} y={650} scale={1.25} seated calm={dawn} />
-      {[0, 1, 2].map((i) => (
-        <g key={i} transform={`translate(${720 + i * 185} 870)`} opacity={0.28 + repeat * 0.52}>
-          <path d="M0 0 Q70 -18 140 0 L132 118 Q70 132 4 116Z" fill="#F1E8D6" />
-          <text x="70" y="46" textAnchor="middle" fill="#39566A" fontSize="24" fontWeight="700">DAG {i + 1}</text>
-          <circle cx="70" cy="83" r="16" fill="#F2A94F" />
-        </g>
-      ))}
+      <ClockFace x={1260} y={360} hour={7 + variation * 2} glow={Math.max(dawn, anchor)} />
+      <Person x={1260} y={650} scale={1.25} seated calm={anchor} />
+      {[0, 1, 2].map((i) => {
+        const shift = (i - 1) * variation * 28 * (1 - anchor);
+        return (
+          <g key={i} transform={`translate(${720 + i * 185} ${870 + shift})`} opacity={0.28 + repeat * 0.52}>
+            <path d="M0 0 Q70 -18 140 0 L132 118 Q70 132 4 116Z" fill="#F1E8D6" />
+            <text x="70" y="46" textAnchor="middle" fill="#39566A" fontSize="24" fontWeight="700">DAG {i + 1}</text>
+            <circle cx="70" cy="83" r="16" fill={variation > 0.1 ? '#E28A66' : '#F2A94F'} />
+          </g>
+        );
+      })}
     </>
   );
 };
@@ -437,35 +508,39 @@ const RhythmVisual = ({frame}: {frame: number}) => {
   );
 };
 
-const NightVisual = ({frame}: {frame: number}) => {
-  const wait = phase(frame, 120, 300);
-  const chairOut = phase(frame, 340, 375);
-  const sleep = phase(frame, 380, 410);
-  const guide = phase(frame, 500, 620);
+const NightVisual = ({state}: {state: CueState}) => {
+  const anchor = revealAtCue(state, 2);
+  const guide = revealAtCue(state, 3);
+  const settle = revealAtCue(state, 4);
   return (
     <>
-      <Window x={160} y={90} />
-      <g opacity={1 - chairOut}>
-        <path d="M310 700 Q500 620 680 710 L650 940 H340Z" fill="#315F78" />
-        <Person x={495} y={625} scale={1.05} seated eyesClosed={wait > 0.6} calm={wait} />
-        <path d="M700 660 H835 V900 H760V720H700Z" fill="#725141" />
-        <circle cx="765" cy="595" r="100" fill="#F3C36E" opacity=".18" filter="url(#glow)" />
-      </g>
-      <g opacity={sleep}><Bed x={1130} y={650} asleep glow={sleep} /></g>
-      <g opacity={guide} transform="translate(1540 760)">
+      <Window x={160} y={90} dawn={anchor} />
+      <ClockFace x={560} y={330} hour={anchor > 0.5 ? 7 : 1} glow={anchor} />
+      <Bed x={1130} y={650} asleep={anchor > 0.6} glow={Math.max(anchor, settle)} />
+      <path d="M440 820 H1540" stroke="#8DD8D5" strokeWidth="18" strokeLinecap="round" opacity={anchor * 0.7} />
+      <circle cx={mix(1420, 760, anchor)} cy="820" r="24" fill="#E9B565" />
+      <g opacity={guide} transform="translate(1650 320)">
         <circle r="92" fill="#EAF2E9" />
-        <path d="M-42 10 Q0 -20 42 10" fill="none" stroke="#4B7890" strokeWidth="10" strokeLinecap="round" />
+        <path d="M-42 8 Q0 34 42 8" fill="none" stroke="#4B7890" strokeWidth="10" strokeLinecap="round" />
         <circle cx="-24" cy="-22" r="7" fill="#27435F" /><circle cx="24" cy="-22" r="7" fill="#27435F" />
+        <text x="0" y="132" textAnchor="middle" fill="#D9ECEB" fontSize="25" fontWeight="700" letterSpacing="3">FYSIO</text>
       </g>
     </>
   );
 };
 
-const PressureVisual = ({frame}: {frame: number}) => {
-  const build = phase(frame, 70, 390);
-  const nap = phase(frame, 390, 470) * (1 - phase(frame, 500, 555));
-  const recover = phase(frame, 520, 650);
-  const pressure = clamp(build - nap * 0.55 + recover * 0.25);
+const PressureVisual = ({state}: {state: CueState}) => {
+  const build = state.index < 2 ? (state.index + state.progress) / 2 : 1;
+  const shortNap = state.index === 3 ? Math.sin(state.progress * Math.PI) : 0;
+  const recover = revealAtCue(state, 4);
+  const pressure = state.index < 2
+    ? build
+    : state.index === 2
+      ? mix(1, 0.25, smooth(state.progress * 1.8))
+      : state.index === 3
+        ? 0.65 - shortNap * 0.15
+        : mix(0.65, 1, recover);
+  const nap = Math.max(state.index === 2 ? 1 : 0, shortNap);
   return (
     <>
       <circle cx="360" cy="215" r="92" fill="#F3AD49" opacity=".95" />
@@ -500,20 +575,20 @@ const ThoughtVisual = ({frame}: {frame: number}) => {
   );
 };
 
-const MeterVisual = ({frame}: {frame: number}) => {
-  const alert = phase(frame, 100, 280);
-  const calm = phase(frame, 360, 590);
+const MeterVisual = ({state}: {state: CueState}) => {
+  const alert = state.index === 0 ? 0.45 + state.progress * 0.55 : state.index < 3 ? 1 : 1 - revealAtCue(state, 3);
+  const calm = revealAtCue(state, 3);
   return (
     <>
       <Window x={150} y={90} />
-      <circle cx="980" cy="480" r={210 + alert * 120} fill="url(#alertAura)" opacity={alert * (1 - calm)} />
+      <circle cx="980" cy="480" r={210 + alert * 120} fill="url(#alertAura)" opacity={alert * 0.8} />
       <circle cx="980" cy="480" r={180 + calm * 120} fill="url(#aura)" opacity={calm * 0.7} />
       <Person x={980} y={520} scale={1.5} seated calm={calm} />
       <g transform={`translate(1350 ${260 + calm * 300})`} opacity={0.4 + calm * 0.6}>
         <Paper x={0} y={0} lines={2} checked={calm > 0.55 ? 2 : 0} />
       </g>
       {[0, 1, 2].map((i) => (
-        <path key={i} d={`M${720 - i * 35} ${380 + i * 90} Q650 ${440 + i * 70} ${700 - i * 28} ${510 + i * 52}`} fill="none" stroke="#F09B93" strokeWidth="10" opacity={(1 - calm) * 0.7} strokeLinecap="round" />
+        <path key={i} d={`M${720 - i * 35} ${380 + i * 90} Q650 ${440 + i * 70} ${700 - i * 28} ${510 + i * 52}`} fill="none" stroke="#F09B93" strokeWidth="10" opacity={alert * 0.7} strokeLinecap="round" />
       ))}
     </>
   );
@@ -557,29 +632,116 @@ const PlanVisual = ({frame}: {frame: number}) => {
   );
 };
 
-const Visual = ({kind, frame}: {kind: SeriesKind; frame: number}) => {
+const NightPhraseVisual = ({state}: {state: CueState}) => {
+  const phrase = revealAtCue(state, 2);
+  const calm = revealAtCue(state, 3);
+  return (
+    <>
+      <Window x={160} y={95} />
+      <Bed x={1050} y={650} asleep={false} glow={calm} />
+      <circle cx="1120" cy="500" r={130 + calm * 170} fill="url(#aura)" opacity={calm * 0.34} />
+      <g opacity={phrase} transform={`translate(${400 + phrase * 70} ${250 - phrase * 20})`}>
+        <path d="M0 0 Q250 -32 500 0 L480 190 Q250 220 16 188Z" fill="#F3EEE2" opacity=".96" />
+        <text x="250" y="82" textAnchor="middle" fill="#284B60" fontSize="36" fontWeight="600">Ik hoef dit moment</text>
+        <text x="250" y="132" textAnchor="middle" fill="#284B60" fontSize="36" fontWeight="600">niet op te lossen.</text>
+      </g>
+    </>
+  );
+};
+
+const LightTimingVisual = ({state}: {state: CueState}) => {
+  const morning = revealAtCue(state, 1);
+  const evening = revealAtCue(state, 3);
+  return (
+    <>
+      <g opacity={1 - evening * 0.45}><Window x={190} y={95} dawn={morning} /></g>
+      <path d={`M610 130 L${1180 + morning * 250} 760 L760 760Z`} fill="#FFE2A0" opacity={morning * (1 - evening) * 0.36} />
+      <Person x={1050} y={620} scale={1.28} seated calm={morning} />
+      <g opacity={evening}>
+        <circle cx="1550" cy="300" r="118" fill="#F1C66E" opacity=".18" filter="url(#glow)" />
+        <path d="M1500 650 H1620 L1580 410Z" fill="#D9A956" />
+        <circle cx="1580" cy="410" r="58" fill="#F5D28A" />
+        <text x="1510" y="840" textAnchor="middle" fill="#D9E9EA" fontSize="38" fontWeight="600">ZACHTER LICHT</text>
+      </g>
+    </>
+  );
+};
+
+const FactCheckVisual = ({state}: {state: CueState}) => {
+  const question = revealAtCue(state, 1);
+  const fact = revealAtCue(state, 2);
+  const prediction = revealAtCue(state, 3);
+  const reframe = revealAtCue(state, 4);
+  return (
+    <>
+      <Window x={150} y={95} />
+      <Desk x={150} y={680} />
+      <Person x={420} y={520} scale={1.08} seated calm={reframe} />
+      <Scribble x={235} y={170} opacity={1 - reframe} />
+      <g transform={`translate(760 ${430 - question * 25})`} opacity={0.35 + question * 0.65}>
+        <Paper x={0} y={0} lines={2} checked={Math.round(fact)} />
+        <text x="165" y="90" textAnchor="middle" fill="#2C6870" fontSize="33" fontWeight="800">FEIT</text>
+      </g>
+      <g transform={`translate(1240 ${430 - question * 25})`} opacity={0.35 + question * 0.65}>
+        <Paper x={0} y={0} lines={2} checked={Math.round(prediction)} />
+        <text x="165" y="90" textAnchor="middle" fill="#8A4551" fontSize="30" fontWeight="800">VOORSPELLING</text>
+      </g>
+      <path d="M1070 720 H1240" stroke="#8ADBD7" strokeWidth="14" strokeLinecap="round" opacity={reframe} />
+    </>
+  );
+};
+
+const SignalActionVisual = ({state}: {state: CueState}) => {
+  const signal = revealAtCue(state, 1);
+  const link = revealAtCue(state, 2);
+  const action = revealAtCue(state, 3);
+  const settle = revealAtCue(state, 4);
+  return (
+    <>
+      <Window x={150} y={95} />
+      <Bed x={700} y={650} asleep={false} glow={settle} />
+      <ClockFace x={1460} y={260} hour={3} glow={signal} />
+      <Scribble x={1120} y={220} opacity={signal * (1 - settle)} />
+      <path d="M1180 570 C1320 520 1380 570 1460 650" fill="none" stroke="#8ADBD7" strokeWidth="18" strokeLinecap="round" opacity={link} />
+      <path d="M1430 620 l42 32 -45 24" fill="none" stroke="#8ADBD7" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" opacity={link} />
+      <g opacity={action} transform="translate(1370 650)">
+        <rect width="260" height="210" rx="26" fill="#315F78" />
+        <circle cx="210" cy="105" r="18" fill="#F2C06D" />
+        <text x="130" y="275" textAnchor="middle" fill="#D9E9EA" fontSize="34" fontWeight="600">EVEN UIT BED</text>
+      </g>
+    </>
+  );
+};
+
+const Visual = ({kind, frame, state}: {kind: SeriesKind; frame: number; state: CueState}) => {
   switch (kind) {
-    case 'worry': return <WorryVisual frame={frame} />;
-    case 'breathe': return <BreatheVisual frame={frame} />;
-    case 'cycles': return <CyclesVisual frame={frame} />;
-    case 'nightwake': return <NightWakeVisual frame={frame} />;
-    case 'clock': return <ClockVisual frame={frame} />;
+    case 'worry': return <WorryVisual state={state} />;
+    case 'breathe': return <BreatheVisual state={state} />;
+    case 'cycles': return <CyclesVisual state={state} frame={frame} />;
+    case 'nightwake': return <NightWakeVisual state={state} />;
+    case 'nightphrase': return <NightPhraseVisual state={state} />;
+    case 'clock': return <ClockVisual state={state} />;
     case 'sun': return <SunVisual frame={frame} />;
+    case 'lighttiming': return <LightTimingVisual state={state} />;
     case 'rhythm': return <RhythmVisual frame={frame} />;
-    case 'night': return <NightVisual frame={frame} />;
-    case 'pressure': return <PressureVisual frame={frame} />;
+    case 'night': return <NightVisual state={state} />;
+    case 'pressure': return <PressureVisual state={state} />;
     case 'thought': return <ThoughtVisual frame={frame} />;
-    case 'meter': return <MeterVisual frame={frame} />;
+    case 'factcheck': return <FactCheckVisual state={state} />;
+    case 'meter': return <MeterVisual state={state} />;
     case 'curve': return <CurveVisual frame={frame} />;
     case 'plan': return <PlanVisual frame={frame} />;
+    case 'signalaction': return <SignalActionVisual state={state} />;
   }
 };
 
 export const SleepSeriesScene: React.FC<{kind: SeriesKind}> = ({kind}) => {
   const frame = useCurrentFrame();
   const {durationInFrames} = useVideoConfig();
-  const visualFrame = kind === 'breathe' ? frame : (frame * 720) / durationInFrames;
+  const state = cueStateFor(kind, frame / 30, durationInFrames);
+  const visualFrame = state.index * 144 + state.progress * 144;
   const config = SERIES_CONFIG[kind];
+  const audioFile = timingData.videos[kind]?.audioFile ?? `audio/${kind}-nono-v2.mp3`;
   const endStart = durationInFrames - 82;
   const sceneFade = phase(frame, endStart - 28, endStart + 8);
   const endText = phase(frame, endStart, endStart + 30);
@@ -591,7 +753,7 @@ export const SleepSeriesScene: React.FC<{kind: SeriesKind}> = ({kind}) => {
   return (
     <AbsoluteFill style={{background: '#08152C', fontFamily: 'Manrope, sans-serif', overflow: 'hidden'}}>
       <Sequence from={30}>
-        <Audio src={staticFile(`audio/${kind}-nono-v1.mp3`)} volume={1} />
+        <Audio src={staticFile(audioFile)} volume={1} />
       </Sequence>
       <AbsoluteFill
         style={{
@@ -604,7 +766,7 @@ export const SleepSeriesScene: React.FC<{kind: SeriesKind}> = ({kind}) => {
         <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
           <Definitions />
           <Background tone={config.tone} />
-          <Visual kind={kind} frame={visualFrame} />
+          <Visual kind={kind} frame={visualFrame} state={state} />
         </svg>
       </AbsoluteFill>
 

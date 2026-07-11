@@ -1,0 +1,559 @@
+{
+  "version": 2,
+  "videos": {
+    "breathe": {
+      "durationSeconds": 50,
+      "audioFile": "audio/breathe-nono-v2.mp3",
+      "captionFile": "captions/breathe-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 4.477,
+          "text": "Ga maar makkelijk zitten. Je hoeft nu even niets te bereiken."
+        },
+        {
+          "start": 5.777,
+          "end": 11.734,
+          "text": "Adem rustig in. Twee... drie... vier."
+        },
+        {
+          "start": 12.276,
+          "end": 22.081,
+          "text": "En langer uit. Twee... drie... vier... vijf... zes."
+        },
+        {
+          "start": 23.38,
+          "end": 24.67,
+          "text": "Nog een keer."
+        },
+        {
+          "start": 25.212,
+          "end": 31.169,
+          "text": "Adem rustig in. Twee... drie... vier."
+        },
+        {
+          "start": 31.711,
+          "end": 41.828,
+          "text": "En langzaam weer uit. Twee... drie... vier... vijf... zes."
+        },
+        {
+          "start": 42.911,
+          "end": 46.1,
+          "text": "Laat je schouders maar zakken. Je hoeft het niet perfect te doen."
+        }
+      ]
+    },
+    "worry": {
+      "durationSeconds": 24,
+      "audioFile": "audio/worry-nono-v2.mp3",
+      "captionFile": "captions/worry-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.63,
+          "text": "Lig je in bed en blijft je hoofd maar lijstjes maken?"
+        },
+        {
+          "start": 4.803,
+          "end": 7.898,
+          "text": "Logisch. Je brein probeert gewoon niets te vergeten."
+        },
+        {
+          "start": 9.189,
+          "end": 11.854,
+          "text": "Schrijf je zorgen daarom eerder op de avond even op."
+        },
+        {
+          "start": 13.027,
+          "end": 16.167,
+          "text": "Zet er eventueel één kleine actie voor morgen naast."
+        },
+        {
+          "start": 17.458,
+          "end": 20.1,
+          "text": "Dan hoeft je hoofd het in bed niet allemaal vast te houden."
+        }
+      ]
+    },
+    "cycles": {
+      "durationSeconds": 26,
+      "audioFile": "audio/cycles-nono-v2.mp3",
+      "captionFile": "captions/cycles-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 4.866,
+          "text": "Even wakker worden in de nacht? Dat gebeurt eigenlijk bij iedereen."
+        },
+        {
+          "start": 5.559,
+          "end": 10.067,
+          "text": "Je slaap beweegt in rondes. Tussen die rondes word je soms kort wakker."
+        },
+        {
+          "start": 10.898,
+          "end": 13.121,
+          "text": "Meestal zak je vanzelf weer weg."
+        },
+        {
+          "start": 13.882,
+          "end": 18.307,
+          "text": "Het wordt vooral lastiger als je gaat rekenen, balen of controleren."
+        },
+        {
+          "start": 19.0,
+          "end": 22.1,
+          "text": "Wakker worden betekent dus niet meteen dat je nacht mislukt."
+        }
+      ]
+    },
+    "nightwake": {
+      "durationSeconds": 28,
+      "audioFile": "audio/nightwake-nono-v2.mp3",
+      "captionFile": "captions/nightwake-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 2.62,
+          "text": "Lig je al een tijd wakker in bed?"
+        },
+        {
+          "start": 3.903,
+          "end": 7.943,
+          "text": "Dan kan blijven woelen je brein leren: hier ben ik dus ook wakker."
+        },
+        {
+          "start": 9.353,
+          "end": 13.936,
+          "text": "Ga rustig even uit bed. Houd het licht laag en doe iets saais."
+        },
+        {
+          "start": 15.732,
+          "end": 19.235,
+          "text": "Voel je weer slaperigheid? Ga dan terug."
+        },
+        {
+          "start": 20.774,
+          "end": 24.1,
+          "text": "Zo blijft je bed zoveel mogelijk een plek voor slapen."
+        }
+      ]
+    },
+    "nightphrase": {
+      "durationSeconds": 27,
+      "audioFile": "audio/nightphrase-nono-v2.mp3",
+      "captionFile": "captions/nightphrase-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.597,
+          "text": "Je bent wakker. Dat is vervelend."
+        },
+        {
+          "start": 4.179,
+          "end": 9.117,
+          "text": "Maar wakker zijn is niet gevaarlijk, en je hoeft slaap nu niet af te dwingen."
+        },
+        {
+          "start": 9.816,
+          "end": 14.514,
+          "text": "Zeg rustig tegen jezelf: ik hoef dit moment niet op te lossen."
+        },
+        {
+          "start": 15.33,
+          "end": 19.593,
+          "text": "Laat je kaken los en voel hoe je uitademing vanzelf komt."
+        },
+        {
+          "start": 20.292,
+          "end": 23.1,
+          "text": "De nacht mag even zijn zoals hij is."
+        }
+      ]
+    },
+    "clock": {
+      "durationSeconds": 27,
+      "audioFile": "audio/clock-nono-v2.mp3",
+      "captionFile": "captions/clock-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.463,
+          "text": "Je slaapklok houdt van een duidelijk anker."
+        },
+        {
+          "start": 4.974,
+          "end": 10.134,
+          "text": "Sta je elke ochtend ongeveer rond dezelfde tijd op, dan weet je lichaam: de dag begint."
+        },
+        {
+          "start": 11.946,
+          "end": 13.276,
+          "text": "Ook na een mindere nacht."
+        },
+        {
+          "start": 15.24,
+          "end": 18.39,
+          "text": "Steeds wisselen maakt dat ritme juist onduidelijker."
+        },
+        {
+          "start": 19.901,
+          "end": 23.1,
+          "text": "Een vaste opsta-tijd geeft je slaapklok dus houvast."
+        }
+      ]
+    },
+    "sun": {
+      "durationSeconds": 27,
+      "audioFile": "audio/sun-nono-v2.mp3",
+      "captionFile": "captions/sun-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 4.21,
+          "text": "Ochtendlicht is een sterk startsein voor je slaapklok."
+        },
+        {
+          "start": 5.3,
+          "end": 9.965,
+          "text": "Het licht komt via je ogen binnen en vertelt je lichaam: de dag is begonnen."
+        },
+        {
+          "start": 11.164,
+          "end": 13.601,
+          "text": "Zo kan je ritme overdag op gang komen."
+        },
+        {
+          "start": 14.8,
+          "end": 18.263,
+          "text": "En kan slaperigheid in de avond beter op tijd verschijnen."
+        },
+        {
+          "start": 19.353,
+          "end": 23.1,
+          "text": "Ga na het opstaan even naar buiten, of zit bij een helder raam."
+        }
+      ]
+    },
+    "lighttiming": {
+      "durationSeconds": 28,
+      "audioFile": "audio/lighttiming-nono-v2.mp3",
+      "captionFile": "captions/lighttiming-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.863,
+          "text": "Licht helpt je slaapklok vooral door het tijdstip."
+        },
+        {
+          "start": 5.903,
+          "end": 8.006,
+          "text": "Zoek in de ochtend helder licht op."
+        },
+        {
+          "start": 10.25,
+          "end": 12.665,
+          "text": "Overdag houdt dat je ritme duidelijk wakker."
+        },
+        {
+          "start": 15.114,
+          "end": 18.177,
+          "text": "Maak het licht in de laatste uren voor bed juist wat zachter."
+        },
+        {
+          "start": 20.217,
+          "end": 24.1,
+          "text": "Zo krijgt je lichaam een duidelijk verschil tussen dag en avond."
+        }
+      ]
+    },
+    "rhythm": {
+      "durationSeconds": 28,
+      "audioFile": "audio/rhythm-nono-v2.mp3",
+      "captionFile": "captions/rhythm-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.682,
+          "text": "Misschien lig je veel langer in bed dan je echt slaapt."
+        },
+        {
+          "start": 5.047,
+          "end": 7.472,
+          "text": "Dan raakt je bed makkelijk verbonden met wakker liggen."
+        },
+        {
+          "start": 8.974,
+          "end": 13.014,
+          "text": "Samen met je fysio maak je de tijd in bed eerst passend bij je echte slaap."
+        },
+        {
+          "start": 14.788,
+          "end": 18.251,
+          "text": "Gaat dat stabieler? Dan kan er stap voor stap een kwartier bij."
+        },
+        {
+          "start": 19.753,
+          "end": 24.1,
+          "text": "Niet sneller. Je slaap krijgt rustig de tijd om mee te groeien."
+        }
+      ]
+    },
+    "night": {
+      "durationSeconds": 30,
+      "audioFile": "audio/night-nono-v2.mp3",
+      "captionFile": "captions/night-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.44,
+          "text": "Het klinkt misschien vreemd om later naar bed te gaan."
+        },
+        {
+          "start": 5.409,
+          "end": 9.477,
+          "text": "Maar tijdelijk wat korter in bed liggen kan helpen om minder lang wakker te liggen."
+        },
+        {
+          "start": 11.804,
+          "end": 16.427,
+          "text": "Je blijft op een vaste tijd opstaan en gaat pas naar bed als je slaperig bent."
+        },
+        {
+          "start": 18.755,
+          "end": 21.738,
+          "text": "Daarna bouw je de tijd in bed rustig weer uit."
+        },
+        {
+          "start": 24.244,
+          "end": 26.1,
+          "text": "Doe dit altijd samen met je fysio."
+        }
+      ]
+    },
+    "pressure": {
+      "durationSeconds": 27,
+      "audioFile": "audio/pressure-nono-v2.mp3",
+      "captionFile": "captions/pressure-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.37,
+          "text": "Slaapdruk groeit terwijl je wakker bent."
+        },
+        {
+          "start": 4.233,
+          "end": 8.014,
+          "text": "Zie het als een rustige golf die over de dag steeds hoger wordt."
+        },
+        {
+          "start": 9.049,
+          "end": 12.034,
+          "text": "Een lang dutje haalt een flink stuk van die druk weg."
+        },
+        {
+          "start": 13.069,
+          "end": 19.254,
+          "text": "Een kort dutje kan soms wel: maximaal twintig minuten, en liever vroeg op de dag."
+        },
+        {
+          "start": 20.117,
+          "end": 23.1,
+          "text": "Zo houd je genoeg slaapdruk over voor de avond."
+        }
+      ]
+    },
+    "thought": {
+      "durationSeconds": 28,
+      "audioFile": "audio/thought-nono-v2.mp3",
+      "captionFile": "captions/thought-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 4.077,
+          "text": "Je hoofd zegt: morgen lukt helemaal niks."
+        },
+        {
+          "start": 4.593,
+          "end": 9.739,
+          "text": "Maar een gedachte is niet automatisch een feit. Soms is het een voorspelling."
+        },
+        {
+          "start": 10.307,
+          "end": 13.372,
+          "text": "Schrijf haar op en vraag: weet ik dit zeker?"
+        },
+        {
+          "start": 13.888,
+          "end": 20.071,
+          "text": "Maak de zin daarna eerlijker: morgen wordt misschien lastig, én ik kan bijsturen."
+        },
+        {
+          "start": 20.587,
+          "end": 24.1,
+          "text": "Niet mooier maken. Wel eerlijker en helpender."
+        }
+      ]
+    },
+    "factcheck": {
+      "durationSeconds": 28,
+      "audioFile": "audio/factcheck-nono-v2.mp3",
+      "captionFile": "captions/factcheck-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.197,
+          "text": "Je denkt: morgen gaat alles mis."
+        },
+        {
+          "start": 4.368,
+          "end": 7.842,
+          "text": "Vraag eerst: is dit een feit, of een voorspelling?"
+        },
+        {
+          "start": 9.129,
+          "end": 12.279,
+          "text": "Een feit is wat je nu zeker weet."
+        },
+        {
+          "start": 13.567,
+          "end": 16.472,
+          "text": "Een voorspelling gaat over wat misschien gebeurt."
+        },
+        {
+          "start": 17.877,
+          "end": 24.1,
+          "text": "Kies daarna een zin die eerlijk blijft: morgen kan lastig zijn, en ik kan bijsturen."
+        }
+      ]
+    },
+    "meter": {
+      "durationSeconds": 25,
+      "audioFile": "audio/meter-nono-v2.mp3",
+      "captionFile": "captions/meter-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 4.4,
+          "text": "Een bange gedachte kan je lichaam meteen op scherp zetten."
+        },
+        {
+          "start": 4.973,
+          "end": 9.436,
+          "text": "Je adem zit hoger, je spieren spannen aan en je brein blijft zoeken."
+        },
+        {
+          "start": 10.066,
+          "end": 13.216,
+          "text": "Een helpende gedachte lost de nacht niet zomaar op."
+        },
+        {
+          "start": 13.904,
+          "end": 17.082,
+          "text": "Maar ze kan je interne alarm wel een stukje laten zakken."
+        },
+        {
+          "start": 17.655,
+          "end": 21.1,
+          "text": "En dat geeft je lichaam meer ruimte om tot rust te komen."
+        }
+      ]
+    },
+    "curve": {
+      "durationSeconds": 24,
+      "audioFile": "audio/curve-nono-v2.mp3",
+      "captionFile": "captions/curve-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 3.37,
+          "text": "Herstel loopt bijna nooit in een rechte lijn."
+        },
+        {
+          "start": 4.13,
+          "end": 8.02,
+          "text": "Een paar betere nachten kunnen zomaar gevolgd worden door een slechte."
+        },
+        {
+          "start": 8.856,
+          "end": 12.366,
+          "text": "Dat is balen. Maar het betekent niet dat je terug bij af bent."
+        },
+        {
+          "start": 13.203,
+          "end": 16.933,
+          "text": "Kijk wat er veranderde en ga terug naar je vaste basis."
+        },
+        {
+          "start": 17.921,
+          "end": 20.1,
+          "text": "Bijsturen hoort bij herstel."
+        }
+      ]
+    },
+    "plan": {
+      "durationSeconds": 26,
+      "audioFile": "audio/plan-nono-v2.mp3",
+      "captionFile": "captions/plan-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 4.88,
+          "text": "Een slechte week is niet het moment voor ingewikkelde plannen."
+        },
+        {
+          "start": 5.289,
+          "end": 7.629,
+          "text": "Kies vooraf een paar vaste acties."
+        },
+        {
+          "start": 8.12,
+          "end": 13.85,
+          "text": "Sta rond dezelfde tijd op, sla dutjes over en ga even uit bed als je lang wakker ligt."
+        },
+        {
+          "start": 14.382,
+          "end": 17.605,
+          "text": "Gebruik één rustige zin als je hoofd aan gaat."
+        },
+        {
+          "start": 18.014,
+          "end": 22.1,
+          "text": "Dan hoef je midden in een slechte nacht niet opnieuw te bedenken wat helpt."
+        }
+      ]
+    },
+    "signalaction": {
+      "durationSeconds": 28,
+      "audioFile": "audio/signalaction-nono-v2.mp3",
+      "captionFile": "captions/signalaction-nl-nono-v2.vtt",
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 4.4,
+          "text": "Een slechte nacht begint vaak met een herkenbaar signaal."
+        },
+        {
+          "start": 5.283,
+          "end": 9.965,
+          "text": "Misschien ga je op de klok kijken, rekenen of steeds harder proberen."
+        },
+        {
+          "start": 11.024,
+          "end": 14.014,
+          "text": "Koppel vooraf één actie aan dat signaal."
+        },
+        {
+          "start": 15.073,
+          "end": 20.091,
+          "text": "Klok kijken? Leg hem uit zicht. Lang wakker? Ga even uit bed."
+        },
+        {
+          "start": 21.062,
+          "end": 24.1,
+          "text": "Zo hoef je midden in de nacht niet opnieuw te kiezen."
+        }
+      ]
+    }
+  }
+}

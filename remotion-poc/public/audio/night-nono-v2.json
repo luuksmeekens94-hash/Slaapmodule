@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "night",
+  "title": "Waarom later naar bed veilig kan zijn",
+  "videoDurationSeconds": 30,
+  "audioDurationSeconds": 25.128,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    1.969,
+    2.327,
+    2.327,
+    2.506
+  ],
+  "sourceTake": {
+    "file": "night-nono-v2-source.mp3",
+    "durationSeconds": 19.2,
+    "sha256": "e4713630ffeea3761c62c8f2bffa4f5b6edd9ffa48082bef474933885cd6012b",
+    "sourceText": "[calm, natural, close-mic, conversational] Het klinkt misschien vreemd om later naar bed te gaan. [short pause] Maar tijdelijk wat korter in bed liggen kan helpen om minder lang wakker te liggen. [short pause] Je blijft op een vaste tijd opstaan en gaat pas naar bed als je slaperig bent. [short pause] Daarna bouw je de tijd in bed rustig weer uit. [short pause] Doe dit altijd samen met je fysio."
+  },
+  "segments": [
+    {
+      "text": "Het klinkt misschien vreemd om later naar bed te gaan.",
+      "characterStart": 43,
+      "characterEnd": 96,
+      "sourceStartSeconds": 0.09,
+      "sourceEndSeconds": 2.44,
+      "clipStartSeconds": 0.055,
+      "clipEndSeconds": 2.495,
+      "durationSeconds": 2.44,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 3.44
+    },
+    {
+      "text": "Maar tijdelijk wat korter in bed liggen kan helpen om minder lang wakker te liggen.",
+      "characterStart": 112,
+      "characterEnd": 194,
+      "sourceStartSeconds": 3.742,
+      "sourceEndSeconds": 7.72,
+      "clipStartSeconds": 3.707,
+      "clipEndSeconds": 7.775,
+      "durationSeconds": 4.068,
+      "videoStartSeconds": 5.409,
+      "videoEndSeconds": 9.477
+    },
+    {
+      "text": "Je blijft op een vaste tijd opstaan en gaat pas naar bed als je slaperig bent.",
+      "characterStart": 210,
+      "characterEnd": 287,
+      "sourceStartSeconds": 8.907,
+      "sourceEndSeconds": 13.44,
+      "clipStartSeconds": 8.872,
+      "clipEndSeconds": 13.495,
+      "durationSeconds": 4.623,
+      "videoStartSeconds": 11.804,
+      "videoEndSeconds": 16.427
+    },
+    {
+      "text": "Daarna bouw je de tijd in bed rustig weer uit.",
+      "characterStart": 303,
+      "characterEnd": 348,
+      "sourceStartSeconds": 14.027,
+      "sourceEndSeconds": 16.92,
+      "clipStartSeconds": 13.992,
+      "clipEndSeconds": 16.975,
+      "durationSeconds": 2.983,
+      "videoStartSeconds": 18.755,
+      "videoEndSeconds": 21.738
+    },
+    {
+      "text": "Doe dit altijd samen met je fysio.",
+      "characterStart": 364,
+      "characterEnd": 397,
+      "sourceStartSeconds": 17.379,
+      "sourceEndSeconds": 19.249,
+      "clipStartSeconds": 17.344,
+      "clipEndSeconds": 19.2,
+      "durationSeconds": 1.856,
+      "videoStartSeconds": 24.244,
+      "videoEndSeconds": 26.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 3.44,
+      "text": "Het klinkt misschien vreemd om later naar bed te gaan."
+    },
+    {
+      "start": 5.409,
+      "end": 9.477,
+      "text": "Maar tijdelijk wat korter in bed liggen kan helpen om minder lang wakker te liggen."
+    },
+    {
+      "start": 11.804,
+      "end": 16.427,
+      "text": "Je blijft op een vaste tijd opstaan en gaat pas naar bed als je slaperig bent."
+    },
+    {
+      "start": 18.755,
+      "end": 21.738,
+      "text": "Daarna bouw je de tijd in bed rustig weer uit."
+    },
+    {
+      "start": 24.244,
+      "end": 26.1,
+      "text": "Doe dit altijd samen met je fysio."
+    }
+  ],
+  "endCard": [
+    "Korter in bed kan tijdelijk helpen.",
+    "Doe dit samen met je fysio."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

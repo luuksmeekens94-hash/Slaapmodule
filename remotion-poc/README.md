@@ -85,10 +85,13 @@ Elke productieopdracht voert TypeScriptcontrole, Remotion-render, webencode, pos
 |---|---|
 | `src/scenes/ForceFinalScene.tsx` | goedgekeurde force-referentie |
 | `src/series/SleepSeriesScene.tsx` | gedeelde illustratie- en camera-engine |
-| `series-content.json` | scripts, lengtes, pauzegewichten en eindkaarten |
-| `public/audio/*-nono-v1.mp3` | gemasterde voice-overs |
-| `public/audio/*-nono-v1.json` | reproduceerbare voice-/timingmanifesten |
-| `public/captions/*-nl-nono-v1.vtt` | broncaptions |
+| `series-content.json` | scripts, lengtes, semantische segmenten, pauzegewichten en eindkaarten |
+| `series-timing.json` | gedeelde cuegrenzen voor audio, captions en beeldbeats |
+| `public/audio/*-nono-v2.mp3` | gemasterde serievoice uit één doorlopende take per video |
+| `public/audio/source/*-nono-v2-source.mp3` | reproduceerbare doorlopende Nono-brontakes |
+| `public/audio/*-nono-v2.json` | voice-, bronhash- en timingmanifesten |
+| `public/captions/*-nl-nono-v2.vtt` | uit dezelfde cuegrenzen gemaakte broncaptions |
+| `public/audio/force-nono-v1.*` | apart bewaarde, goedgekeurde force-referentie |
 | `out/*.mp4` | gevalideerde lokale productierenders |
 | `../prototype/video/` | moduleklare MP4, poster en VTT |
 

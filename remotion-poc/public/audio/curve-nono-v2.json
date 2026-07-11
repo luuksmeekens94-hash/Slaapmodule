@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "curve",
+  "title": "Herstel gaat met ups en downs",
+  "videoDurationSeconds": 24,
+  "audioDurationSeconds": 19.128,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    0.76,
+    0.836,
+    0.836,
+    0.988
+  ],
+  "sourceTake": {
+    "file": "curve-nono-v2-source.mp3",
+    "durationSeconds": 18.48,
+    "sha256": "187a6d387235c30f66299e76eaea22df7e7e46f4e391718f60c6c68ff461d61d",
+    "sourceText": "[calm, natural, close-mic, conversational] Herstel loopt bijna nooit in een rechte lijn. [short pause] Een paar betere nachten kunnen zomaar gevolgd worden door een slechte. [short pause] Dat is balen. Maar het betekent niet dat je terug bij af bent. [short pause] Kijk wat er veranderde en ga terug naar je vaste basis. [short pause] Bijsturen hoort bij herstel."
+  },
+  "segments": [
+    {
+      "text": "Herstel loopt bijna nooit in een rechte lijn.",
+      "characterStart": 43,
+      "characterEnd": 87,
+      "sourceStartSeconds": 0.153,
+      "sourceEndSeconds": 2.433,
+      "clipStartSeconds": 0.118,
+      "clipEndSeconds": 2.488,
+      "durationSeconds": 2.37,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 3.37
+    },
+    {
+      "text": "Een paar betere nachten kunnen zomaar gevolgd worden door een slechte.",
+      "characterStart": 103,
+      "characterEnd": 172,
+      "sourceStartSeconds": 3.443,
+      "sourceEndSeconds": 7.243,
+      "clipStartSeconds": 3.408,
+      "clipEndSeconds": 7.298,
+      "durationSeconds": 3.89,
+      "videoStartSeconds": 4.13,
+      "videoEndSeconds": 8.02
+    },
+    {
+      "text": "Dat is balen. Maar het betekent niet dat je terug bij af bent.",
+      "characterStart": 188,
+      "characterEnd": 249,
+      "sourceStartSeconds": 7.752,
+      "sourceEndSeconds": 11.172,
+      "clipStartSeconds": 7.717,
+      "clipEndSeconds": 11.227,
+      "durationSeconds": 3.51,
+      "videoStartSeconds": 8.856,
+      "videoEndSeconds": 12.366
+    },
+    {
+      "text": "Kijk wat er veranderde en ga terug naar je vaste basis.",
+      "characterStart": 265,
+      "characterEnd": 319,
+      "sourceStartSeconds": 12.061,
+      "sourceEndSeconds": 15.701,
+      "clipStartSeconds": 12.026,
+      "clipEndSeconds": 15.756,
+      "durationSeconds": 3.73,
+      "videoStartSeconds": 13.203,
+      "videoEndSeconds": 16.933
+    },
+    {
+      "text": "Bijsturen hoort bij herstel.",
+      "characterStart": 335,
+      "characterEnd": 362,
+      "sourceStartSeconds": 16.336,
+      "sourceEndSeconds": 18.541,
+      "clipStartSeconds": 16.301,
+      "clipEndSeconds": 18.48,
+      "durationSeconds": 2.179,
+      "videoStartSeconds": 17.921,
+      "videoEndSeconds": 20.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 3.37,
+      "text": "Herstel loopt bijna nooit in een rechte lijn."
+    },
+    {
+      "start": 4.13,
+      "end": 8.02,
+      "text": "Een paar betere nachten kunnen zomaar gevolgd worden door een slechte."
+    },
+    {
+      "start": 8.856,
+      "end": 12.366,
+      "text": "Dat is balen. Maar het betekent niet dat je terug bij af bent."
+    },
+    {
+      "start": 13.203,
+      "end": 16.933,
+      "text": "Kijk wat er veranderde en ga terug naar je vaste basis."
+    },
+    {
+      "start": 17.921,
+      "end": 20.1,
+      "text": "Bijsturen hoort bij herstel."
+    }
+  ],
+  "endCard": [
+    "Een slechte nacht is geen mislukking.",
+    "Ga terug naar je basis."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

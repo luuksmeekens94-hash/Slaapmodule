@@ -1,0 +1,133 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_v3",
+  "language": "nl",
+  "voice": {
+    "name": "Nono",
+    "voiceId": "CtjTJXKqZxz9SvrZFyXq"
+  },
+  "voiceSettings": {
+    "stability": 0.32,
+    "similarityBoost": 0.78,
+    "style": 0.18,
+    "useSpeakerBoost": true,
+    "speed": 0.93
+  },
+  "seed": 7319,
+  "slug": "clock",
+  "title": "De slaapklok als anker",
+  "videoDurationSeconds": 27,
+  "audioDurationSeconds": 22.128,
+  "videoAudioStartSeconds": 1.0,
+  "pauseSeconds": [
+    1.511,
+    1.813,
+    1.964,
+    1.511
+  ],
+  "sourceTake": {
+    "file": "clock-nono-v2-source.mp3",
+    "durationSeconds": 18.48,
+    "sha256": "97bf8e5a822042cf83578881e3b95018a012b12e481c66c452a72951a67e589f",
+    "sourceText": "[calm, natural, close-mic, conversational] Je slaapklok houdt van een duidelijk anker. [short pause] Sta je elke ochtend ongeveer rond dezelfde tijd op, dan weet je lichaam: de dag begint. [short pause] Ook na een mindere nacht. [short pause] Steeds wisselen maakt dat ritme juist onduidelijker. [short pause] Een vaste opsta-tijd geeft je slaapklok dus houvast."
+  },
+  "segments": [
+    {
+      "text": "Je slaapklok houdt van een duidelijk anker.",
+      "characterStart": 43,
+      "characterEnd": 85,
+      "sourceStartSeconds": 0.146,
+      "sourceEndSeconds": 2.519,
+      "clipStartSeconds": 0.111,
+      "clipEndSeconds": 2.574,
+      "durationSeconds": 2.463,
+      "videoStartSeconds": 1.0,
+      "videoEndSeconds": 3.463
+    },
+    {
+      "text": "Sta je elke ochtend ongeveer rond dezelfde tijd op, dan weet je lichaam: de dag begint.",
+      "characterStart": 101,
+      "characterEnd": 187,
+      "sourceStartSeconds": 3.529,
+      "sourceEndSeconds": 8.599,
+      "clipStartSeconds": 3.494,
+      "clipEndSeconds": 8.654,
+      "durationSeconds": 5.16,
+      "videoStartSeconds": 4.974,
+      "videoEndSeconds": 10.134
+    },
+    {
+      "text": "Ook na een mindere nacht.",
+      "characterStart": 203,
+      "characterEnd": 227,
+      "sourceStartSeconds": 9.522,
+      "sourceEndSeconds": 10.762,
+      "clipStartSeconds": 9.487,
+      "clipEndSeconds": 10.817,
+      "durationSeconds": 1.33,
+      "videoStartSeconds": 11.946,
+      "videoEndSeconds": 13.276
+    },
+    {
+      "text": "Steeds wisselen maakt dat ritme juist onduidelijker.",
+      "characterStart": 243,
+      "characterEnd": 294,
+      "sourceStartSeconds": 11.751,
+      "sourceEndSeconds": 14.811,
+      "clipStartSeconds": 11.716,
+      "clipEndSeconds": 14.866,
+      "durationSeconds": 3.15,
+      "videoStartSeconds": 15.24,
+      "videoEndSeconds": 18.39
+    },
+    {
+      "text": "Een vaste opsta-tijd geeft je slaapklok dus houvast.",
+      "characterStart": 310,
+      "characterEnd": 361,
+      "sourceStartSeconds": 15.316,
+      "sourceEndSeconds": 18.531,
+      "clipStartSeconds": 15.281,
+      "clipEndSeconds": 18.48,
+      "durationSeconds": 3.199,
+      "videoStartSeconds": 19.901,
+      "videoEndSeconds": 23.1
+    }
+  ],
+  "cues": [
+    {
+      "start": 1.0,
+      "end": 3.463,
+      "text": "Je slaapklok houdt van een duidelijk anker."
+    },
+    {
+      "start": 4.974,
+      "end": 10.134,
+      "text": "Sta je elke ochtend ongeveer rond dezelfde tijd op, dan weet je lichaam: de dag begint."
+    },
+    {
+      "start": 11.946,
+      "end": 13.276,
+      "text": "Ook na een mindere nacht."
+    },
+    {
+      "start": 15.24,
+      "end": 18.39,
+      "text": "Steeds wisselen maakt dat ritme juist onduidelijker."
+    },
+    {
+      "start": 19.901,
+      "end": 23.1,
+      "text": "Een vaste opsta-tijd geeft je slaapklok dus houvast."
+    }
+  ],
+  "endCard": [
+    "Een vaste opsta-tijd",
+    "geeft je slaapklok houvast."
+  ],
+  "mastering": {
+    "lufs": -16,
+    "truePeakDb": -1.5,
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

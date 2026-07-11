@@ -1,22 +1,10 @@
 #!/usr/bin/env node
 import {spawn} from 'node:child_process';
+import {readFileSync} from 'node:fs';
 import {performance} from 'node:perf_hooks';
 
-const SERIES_SCENES = [
-  'worry',
-  'breathe',
-  'cycles',
-  'nightwake',
-  'clock',
-  'sun',
-  'rhythm',
-  'night',
-  'pressure',
-  'thought',
-  'meter',
-  'curve',
-  'plan',
-];
+const seriesContent = JSON.parse(readFileSync(new URL('./series-content.json', import.meta.url), 'utf8'));
+const SERIES_SCENES = Object.keys(seriesContent.videos);
 const DEFAULT_SCENES = ['force', ...SERIES_SCENES];
 const ALLOWED_SCENES = new Set(DEFAULT_SCENES);
 const requestedScenes = process.argv.slice(2);
