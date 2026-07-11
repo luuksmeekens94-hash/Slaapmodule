@@ -3767,6 +3767,15 @@ function slaapModule() {
         video._sleepAttemptId = null;
       };
     },
+    resetNativeMediaStateForAttempt() {
+      if (this.activeMediaTimer) clearInterval(this.activeMediaTimer);
+      this.activeMediaTimer = null;
+      this.activeMediaId = null;
+      this.pausedMediaId = null;
+      this.endedMediaId = null;
+      this.activeMediaElapsed = 0;
+      this.pausedMediaElapsed = 0;
+    },
     finishMedia(media, i, event = null, attemptId = null) {
       const key = this.mediaKey(media, i);
       if (!this.isCurrentNativeVideoAttempt(key, attemptId) || event?.target?._sleepAttemptId !== attemptId) return;
@@ -3780,6 +3789,11 @@ function slaapModule() {
       if (this.loadingMediaId === key) this.loadingMediaId = null;
       this.pausedMediaElapsed = 0;
       this.activeMediaElapsed = lesson.duration;
+      this.loadedMediaId = null;
+      if (event?.target) {
+        event.target.controls = false;
+        event.target.removeAttribute('controls');
+      }
       this.invalidateNativeVideoAttempt(key);
       if (event?.target && typeof event.target._sleepAttemptCleanup === 'function') event.target._sleepAttemptCleanup();
     },
@@ -3811,6 +3825,7 @@ function slaapModule() {
         && this.videoPlayErrorId !== key;
       let attemptId = this.nativeVideoAttemptId;
       if (!canResume) {
+        this.resetNativeMediaStateForAttempt();
         video = this.renewNativeVideoElement(video);
         attemptId = this.nativeVideoAttemptId + 1;
         this.nativeVideoAttemptId = attemptId;

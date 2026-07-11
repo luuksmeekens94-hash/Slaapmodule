@@ -545,6 +545,7 @@ test('elke nieuwe broncyclus isoleert oude lifecycle-events op een vervangen vid
   first.dispatch('play');
   first.dispatch('playing');
   assert.equal(app.activeMediaId, 'breathe');
+  const staleLifecycleHandlers = new Map(first.listeners);
 
   const firstAttempt = app.nativeVideoAttemptId;
   first.currentTime = 7;
@@ -564,6 +565,8 @@ test('elke nieuwe broncyclus isoleert oude lifecycle-events op een vervangen vid
   first.paused = true;
   first.dispatch('ended');
   assert.equal(app.endedMediaId, 'breathe');
+  assert.equal(app.loadedMediaId, null);
+  assert.equal(first.controls, false);
 
   await app.startNativeVideo({visual: 'breathe'}, 2, event);
   const second = scene.current;
@@ -573,6 +576,9 @@ test('elke nieuwe broncyclus isoleert oude lifecycle-events op een vervangen vid
   const secondAttempt = app.nativeVideoAttemptId;
   app.loadingMediaId = 'breathe';
   ['playing', 'waiting', 'pause', 'ended', 'error', 'abort', 'emptied'].forEach(type => first.dispatch(type));
+  ['playing', 'waiting', 'pause', 'ended', 'error', 'abort', 'emptied'].forEach(type => {
+    staleLifecycleHandlers.get(type)?.({type, target: first});
+  });
   assert.equal(app.nativeVideoAttemptId, secondAttempt);
   assert.equal(app.loadingMediaId, 'breathe');
   assert.equal(app.videoPlayErrorId, null);
@@ -588,6 +594,69 @@ test('elke nieuwe broncyclus isoleert oude lifecycle-events op een vervangen vid
   ['playing', 'waiting', 'pause', 'ended', 'error'].forEach(type => second.dispatch(type));
   assert.equal(app.nativeVideoAttemptId, thirdAttempt);
   assert.equal(app.videoPlayErrorId, null);
+});
+
+test('een mislukte cross-card start laat geen oude kaart logisch actief', async () => {
+  const app = createApp();
+  app.mediaKey = (media) => media.visual;
+  app.activeMediaId = 'force';
+  app.pausedMediaId = 'worry';
+  app.endedMediaId = 'cycles';
+  app.activeMediaElapsed = 12;
+  app.pausedMediaElapsed = 7;
+  let source = null;
+  const listeners = new Map();
+  const video = {
+    paused: true,
+    ended: false,
+    currentTime: 0,
+    controls: false,
+    getAttribute(name) { return name === 'src' ? source : null; },
+    removeAttribute(name) { if (name === 'src') source = null; },
+    set src(value) { source = value; },
+    addEventListener(type, handler) { listeners.set(type, handler); },
+    removeEventListener(type, handler) { if (listeners.get(type) === handler) listeners.delete(type); },
+    pause() { this.paused = true; },
+    load() {},
+    play() { return Promise.reject(new Error('kaart B faalt vóór play')); },
+  };
+  const event = {currentTarget: {closest: () => ({querySelector: () => video})}};
+  await app.startNativeVideo({visual: 'breathe'}, 2, event);
+  assert.equal(app.activeMediaId, null);
+  assert.equal(app.pausedMediaId, null);
+  assert.equal(app.endedMediaId, null);
+  assert.equal(app.activeMediaElapsed, 0);
+  assert.equal(app.pausedMediaElapsed, 0);
+  assert.equal(app.videoPlayErrorId, 'breathe');
+
+  let watchdog = null;
+  const watchdogApp = createApp('', 'slaapmodule.vercel.app', {}, {
+    setTimeout: (callback) => { watchdog = callback; return 1; },
+    clearTimeout: () => {},
+  });
+  watchdogApp.mediaKey = (media) => media.visual;
+  watchdogApp.activeMediaId = 'force';
+  watchdogApp.pausedMediaId = 'worry';
+  watchdogApp.endedMediaId = 'cycles';
+  let rejectPending;
+  const watchdogVideo = {
+    ...video,
+    paused: true,
+    play() { return new Promise((resolve, reject) => { rejectPending = reject; }); },
+  };
+  const watchdogStart = watchdogApp.startNativeVideo(
+    {visual: 'breathe'},
+    2,
+    {currentTarget: {closest: () => ({querySelector: () => watchdogVideo})}},
+  );
+  assert.equal(typeof watchdog, 'function');
+  watchdog();
+  rejectPending(new Error('watchdog breekt kaart B af'));
+  await watchdogStart;
+  assert.equal(watchdogApp.activeMediaId, null);
+  assert.equal(watchdogApp.pausedMediaId, null);
+  assert.equal(watchdogApp.endedMediaId, null);
+  assert.equal(watchdogApp.videoPlayErrorId, 'breathe');
 });
 
 test('de professionele videoserie gebruikt hoorbare audio en Nederlandse captions', () => {
