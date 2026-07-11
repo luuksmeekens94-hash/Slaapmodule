@@ -54,10 +54,11 @@ for (const slug of slugs) {
     const audioSource = join(remotionDir, 'public', 'audio', `${slug}-nono-v2.mp3`);
     const captionsSource = join(remotionDir, 'public', 'captions', `${slug}-nl-nono-v2.vtt`);
     const masterVideo = join(workDir, `${slug}-master.mp4`);
-    const poster = join(workDir, `${slug}.png`);
+    const posterPng = join(workDir, `${slug}.png`);
+    const posterWebp = join(workDir, `${slug}.webp`);
     const outVideo = join(outDir, `${slug}.mp4`);
     const liveVideo = join(liveDir, `${slug}.mp4`);
-    const livePoster = join(liveDir, `${slug}.png`);
+    const livePoster = join(liveDir, `${slug}.webp`);
     const liveCaptions = join(liveDir, `${slug}-nl.vtt`);
     const durationFrames = Math.round(Number(spec.durationSeconds) * 30);
     const posterFrame = Math.max(60, durationFrames - 150);
@@ -65,7 +66,12 @@ for (const slug of slugs) {
     statSync(audioSource);
     statSync(captionsSource);
     run('npx', ['remotion', 'render', slug, masterVideo, '--log=error']);
-    run('npx', ['remotion', 'still', slug, poster, `--frame=${posterFrame}`, '--log=error']);
+    run('npx', ['remotion', 'still', slug, posterPng, `--frame=${posterFrame}`, '--log=error']);
+    run('ffmpeg', [
+      '-y', '-loglevel', 'error', '-i', posterPng,
+      '-vf', 'scale=1280:720', '-frames:v', '1',
+      '-c:v', 'libwebp', '-q:v', '84', '-compression_level', '6', posterWebp,
+    ]);
     run('ffmpeg', [
       '-y', '-loglevel', 'error', '-i', masterVideo,
       '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-pix_fmt', 'yuv420p',
@@ -81,6 +87,7 @@ for (const slug of slugs) {
     const video = probe.streams?.find((stream) => stream.codec_type === 'video');
     const audio = probe.streams?.find((stream) => stream.codec_type === 'audio');
     const bytes = statSync(outVideo).size;
+    const posterBytes = statSync(posterWebp).size;
     const cueCount = (readFileSync(captionsSource, 'utf8').match(/-->/g) || []).length;
 
     if (Math.abs(duration - Number(spec.durationSeconds)) > 0.1) {
@@ -91,12 +98,13 @@ for (const slug of slugs) {
     }
     if (audio?.codec_name !== 'aac') throw new Error(`${slug}: missing AAC audio`);
     if (!(bytes > 650_000 && bytes < 6_000_000)) throw new Error(`${slug}: suspicious size ${bytes}`);
+    if (!(posterBytes > 5_000 && posterBytes < 250_000)) throw new Error(`${slug}: suspicious poster size ${posterBytes}`);
     if (cueCount !== spec.segments.length) throw new Error(`${slug}: ${cueCount} cues for ${spec.segments.length} segments`);
 
     copyFileSync(outVideo, liveVideo);
-    copyFileSync(poster, livePoster);
+    copyFileSync(posterWebp, livePoster);
     copyFileSync(captionsSource, liveCaptions);
-    summary.push({slug, duration, bytes, cueCount, posterFrame});
+    summary.push({slug, duration, bytes, posterBytes, cueCount, posterFrame});
     console.log(JSON.stringify({status: 'PASS', ...summary.at(-1)}));
   } finally {
     rmSync(workDir, {recursive: true, force: true});

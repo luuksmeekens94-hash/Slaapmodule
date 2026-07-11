@@ -344,6 +344,17 @@ test('kaarttekst en zichtbare duur zijn gelijk aan de werkelijke serievoice', ()
   }
 });
 
+test('videokaarten laden pas na een klik en gebruiken compacte posters', () => {
+  assert.match(html, /controls playsinline preload="none"/);
+  assert.doesNotMatch(html, /preload="metadata"/);
+  assert.match(html, /`video\/\$\{visual\}\.webp`/);
+  const visuals = [...new Set(data.therapyModules.flatMap((module) => (module.media || []).map((media) => media.visual)))];
+  for (const visual of visuals) {
+    const posterBytes = readFileSync(new URL(`../prototype/video/${visual}.webp`, import.meta.url)).byteLength;
+    assert.ok(posterBytes < 250_000, `${visual}.webp is te zwaar: ${posterBytes} bytes`);
+  }
+});
+
 test('de professionele videoserie gebruikt hoorbare audio en Nederlandse captions', () => {
   const moduleA = data.therapyModules.find((module) => module.id === 'moduleA');
   const force = moduleA.media.find((media) => media.visual === 'force');

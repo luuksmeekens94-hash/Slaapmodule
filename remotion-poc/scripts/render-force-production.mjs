@@ -14,11 +14,12 @@ const captionsSource = join(remotionDir, 'public', 'captions', 'force-nl-nono-v1
 const audioSource = join(remotionDir, 'public', 'audio', 'force-nono-v1.mp3');
 const outVideo = join(outDir, 'force.mp4');
 const liveVideo = join(liveDir, 'force.mp4');
-const livePoster = join(liveDir, 'force.png');
+const livePoster = join(liveDir, 'force.webp');
 const liveCaptions = join(liveDir, 'force-nl.vtt');
 const workDir = mkdtempSync(join(tmpdir(), 'slaapmodule-force-'));
 const masterVideo = join(workDir, 'force-master.mp4');
-const poster = join(workDir, 'force.png');
+const posterPng = join(workDir, 'force.png');
+const posterWebp = join(workDir, 'force.webp');
 
 function run(command, args) {
   const result = spawnSync(command, args, {
@@ -48,7 +49,12 @@ try {
   statSync(captionsSource);
 
   run('npx', ['remotion', 'render', 'force', masterVideo, '--log=error']);
-  run('npx', ['remotion', 'still', 'force', poster, '--frame=520', '--log=error']);
+  run('npx', ['remotion', 'still', 'force', posterPng, '--frame=520', '--log=error']);
+  run('ffmpeg', [
+    '-y', '-loglevel', 'error', '-i', posterPng,
+    '-vf', 'scale=1280:720', '-frames:v', '1',
+    '-c:v', 'libwebp', '-q:v', '84', '-compression_level', '6', posterWebp,
+  ]);
   run('ffmpeg', [
     '-y', '-loglevel', 'error', '-i', masterVideo,
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-pix_fmt', 'yuv420p',
@@ -64,6 +70,7 @@ try {
   const video = probe.streams?.find((stream) => stream.codec_type === 'video');
   const audio = probe.streams?.find((stream) => stream.codec_type === 'audio');
   const bytes = statSync(outVideo).size;
+  const posterBytes = statSync(posterWebp).size;
   const captionCues = (readFileSync(captionsSource, 'utf8').match(/-->/g) || []).length;
 
   if (!(duration >= 24 && duration <= 24.1)) throw new Error(`Unexpected duration: ${duration}`);
@@ -72,16 +79,18 @@ try {
   }
   if (audio?.codec_name !== 'aac') throw new Error(`Missing AAC audio stream: ${JSON.stringify(audio)}`);
   if (!(bytes > 1_000_000 && bytes < 4_000_000)) throw new Error(`force.mp4 must be 1–4 MB, got ${bytes}`);
+  if (!(posterBytes > 5_000 && posterBytes < 250_000)) throw new Error(`force.webp must be 5–250 KB, got ${posterBytes}`);
   if (captionCues !== 6) throw new Error(`Expected 6 caption cues, got ${captionCues}`);
 
   copyFileSync(outVideo, liveVideo);
-  copyFileSync(poster, livePoster);
+  copyFileSync(posterWebp, livePoster);
   copyFileSync(captionsSource, liveCaptions);
 
   console.log(JSON.stringify({
     status: 'PASS',
     duration,
     bytes,
+    posterBytes,
     video: `${video.codec_name} ${video.width}x${video.height} ${video.r_frame_rate}`,
     audio: audio.codec_name,
     captionCues,

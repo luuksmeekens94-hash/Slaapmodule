@@ -2144,7 +2144,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                   </button>
                   <template x-if="hasVideo(media.visual)">
                     <div class="asset-scene asset-scene--video" :data-tone="videoTone(media.visual)">
-                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" :aria-label="media.title" :title="media.title" controls playsinline preload="metadata"
+                      <video :src="videoUrl(media.visual)" :poster="videoPosterUrl(media.visual)" :aria-label="media.title" :title="media.title" controls playsinline preload="none"
                         @play="syncNativeVideoPlay(media, i, $event)"
                         @pause="syncNativeVideoPause(media, i, $event)"
                         @timeupdate="syncNativeVideoProgress(media, i, $event)"
@@ -2772,7 +2772,7 @@ function slaapModule() {
       return `video/${visual}-nl.vtt`;
     },
     videoPosterUrl(visual) {
-      return ['force','worry','thought','factcheck','meter','cycles','nightwake','nightphrase','pressure','clock','sun','lighttiming','rhythm','breathe','night','curve','plan','signalaction'].includes(visual) ? `video/${visual}.png` : '';
+      return ['force','worry','thought','factcheck','meter','cycles','nightwake','nightphrase','pressure','clock','sun','lighttiming','rhythm','breathe','night','curve','plan','signalaction'].includes(visual) ? `video/${visual}.webp` : '';
     },
     videoTone(visual) {
       // Light scenes have paper backgrounds; dark scenes have deep navy backgrounds.

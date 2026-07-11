@@ -23,7 +23,7 @@
 - App is nu een statisch prototype:
   - `prototype/index.html` bevat CSS, HTML, Alpine-state en animatielogica
   - `prototype/data/sleep-module.json` bevat content
-  - `prototype/video/*.mp4|*.png` bevat media
+  - `prototype/video/*.mp4|*.webp` bevat media
   - voortgang staat alleen in `localStorage`
 
 ## 1. Definitie van professioneel
@@ -207,7 +207,7 @@ git commit -m "docs: add slaapmodule professionalization baseline"
 - Modify/Create: `remotion-poc/src/scenes/ForceScene.tsx`
 - Modify/Create: `remotion-poc/src/scenes/CyclesScene.tsx`
 - Modify/Create: `remotion-poc/src/scenes/RhythmScene.tsx`
-- Output: `prototype/video/force.mp4`, `prototype/video/force.png`, etc.
+- Output: `prototype/video/force.mp4`, `prototype/video/force.webp`, etc.
 
 **Verification:**
 ```bash

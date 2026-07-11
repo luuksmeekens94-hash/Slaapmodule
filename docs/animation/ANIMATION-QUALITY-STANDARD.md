@@ -16,9 +16,9 @@ Als een animatie vooral decoratief is, hoort hij niet in de module.
 - Aspect ratio: `4:3`
 - Framerate: `30fps`
 - Duur: `18–42 sec`
-- Bestand: MP4 + PNG poster
+- Bestand: MP4 + WebP-poster (1280×720, maximaal 250 KB)
 - Streefbestandsgrootte: `<4 MB`
-- Locatie: `prototype/video/<slug>.mp4` en `.png`
+- Locatie: `prototype/video/<slug>.mp4` en `.webp`
 - Moet stil te begrijpen zijn: tekst/beeld dragen de kernboodschap
 
 ## Visuele standaard

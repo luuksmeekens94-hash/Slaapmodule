@@ -51,26 +51,9 @@ Nieuwe FysionAIr educatiemodules moeten dezelfde patientflow, stijl en video-aan
 
 ## Media
 
-De app gebruikt lokale MP4's in `video/` voor de belangrijkste animaties:
+De app gebruikt voor iedere videokaart een lokale MP4, Nederlandse VTT-captions en een compacte WebP-poster in `video/`. Video's hebben `preload="none"`: alleen de aangeklikte MP4 wordt geladen. De posters zijn 1280×720 en maximaal 250 KB, zodat drie kaarten op één scherm de playknoppen niet blokkeren.
 
-- `breathe.mp4` met poster `breathe.png`
-- `clock.mp4` met poster `clock.png`
-- `cycles.mp4` met poster `cycles.png`
-- `force.mp4` met poster `force.png`
-- `meter.mp4` met poster `meter.png`
-- `night.mp4` met poster `night.png`
-- `nightwake.mp4` met poster `nightwake.png`
-- `curve.mp4` met poster `curve.png`
-- `plan.mp4` met poster `plan.png`
-- `pressure.mp4` met poster `pressure.png`
-- `rhythm.mp4` met poster `rhythm.png`
-- `sun.mp4` met poster `sun.png`
-- `thought.mp4` met poster `thought.png`
-- `worry.mp4` met poster `worry.png`
-
-De meeste bronbestanden voor deze video's staan in `../remotion-poc/`. De video's `force.mp4`, `worry.mp4`, `thought.mp4`, `meter.mp4`, `cycles.mp4`, `nightwake.mp4`, `pressure.mp4`, `clock.mp4`, `sun.mp4`, `rhythm.mp4`, `breathe.mp4`, `night.mp4`, `curve.mp4` en `plan.mp4` zijn gemaakt met de Claude Code video toolkit en staan als webklare MP4's in `video/`.
-
-De oude browserstem/voorleesfunctie is voorlopig uit de UI gehaald. Echte voice-over kan later weer worden toegevoegd als losse audio per media-item.
+De bronbestanden en reproduceerbare renderpipeline staan in `../remotion-poc/`. De oude browserstem/voorleesfunctie is uitgeschakeld; iedere serievideo bevat één doorlopende Nono-voice-over.
 
 ## Preview
 

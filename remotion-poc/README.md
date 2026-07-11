@@ -75,9 +75,9 @@ Een inhoudelijke selectie:
 node scripts/render-series-production.mjs --slugs=worry,cycles,nightwake
 ```
 
-Elke productieopdracht voert TypeScriptcontrole, Remotion-render, webencode, poster,
-`ffprobe`-validatie en captioncontrole uit. Alleen een geslaagde output wordt naar
-`prototype/video/` gekopieerd.
+Elke productieopdracht voert TypeScriptcontrole, Remotion-render, webencode, compacte
+WebP-poster (1280×720, maximaal 250 KB), `ffprobe`-validatie en captioncontrole uit.
+Alleen een geslaagde output wordt naar `prototype/video/` gekopieerd.
 
 ## Bronnen en outputs
 

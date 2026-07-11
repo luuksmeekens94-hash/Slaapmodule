@@ -38,7 +38,7 @@ Bestanden:
 
 ```text
 prototype/video/[slug].mp4
-prototype/video/[slug].png
+prototype/video/[slug].webp
 ```
 
 ## Video 1

@@ -7,6 +7,7 @@ import { spawnSync } from 'node:child_process';
 const root = process.cwd();
 const live = process.argv.includes('--live');
 const maxMp4Bytes = 4 * 1024 * 1024;
+const maxPosterBytes = 250 * 1024;
 const baseUrl = 'https://slaapmodule.vercel.app';
 const errors = [];
 const warnings = [];
@@ -60,13 +61,14 @@ if (data) {
 
   for (const visual of [...visuals].sort()) {
     const mp4 = `prototype/video/${visual}.mp4`;
-    const png = `prototype/video/${visual}.png`;
+    const webp = `prototype/video/${visual}.webp`;
     assertExists(mp4);
-    assertExists(png);
+    assertExists(webp);
     if (existsSync(mp4)) {
       const size = statSync(mp4).size;
       if (size > maxMp4Bytes) fail(`${mp4} is groter dan 4 MB (${(size / 1024 / 1024).toFixed(2)} MB)`);
     }
+    if (existsSync(webp) && statSync(webp).size > maxPosterBytes) fail(`${webp} is groter dan 250 KB`);
   }
 }
 
@@ -95,7 +97,7 @@ if (live && data) {
     for (const media of mod.media || []) if (media.visual) visuals.add(media.visual);
   }
   for (const visual of [...visuals].sort()) {
-    paths.push(`/video/${visual}.mp4`, `/video/${visual}.png`);
+    paths.push(`/video/${visual}.mp4`, `/video/${visual}.webp`);
   }
   for (const path of paths) {
     try {
