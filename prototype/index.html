@@ -264,6 +264,19 @@ nav.topbar {
 }
 .path-step-go:hover { background: #fff; color: var(--blue); transform: translateX(2px); }
 .path-step.is-current .path-step-go { background: var(--blue); color: #fff; border-color: transparent; }
+.secondary-topics {
+  margin-top: 18px; padding: 16px 18px; border-radius: var(--radius);
+  background: rgba(6, 21, 51, .24); border: 1px solid rgba(255,255,255,.18);
+}
+.secondary-topics h3 { margin-top: 3px; font-family: var(--font-head); font-size: 16px; color: #fff; }
+.secondary-topics p { margin-top: 5px; color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.55; }
+.secondary-topic-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; list-style: none; }
+.secondary-topic {
+  display: inline-flex; align-items: center; gap: 7px; padding: 8px 11px;
+  border-radius: 999px; background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.16);
+  color: #fff; font-size: 12.5px; font-weight: 650; line-height: 1.3;
+}
+.secondary-topic svg { flex: 0 0 auto; opacity: .8; }
 
 /* ─── SECTIONS ────────────────────────────────────── */
 main { min-width: 0; }
@@ -1413,6 +1426,27 @@ input[type=range].fysio-range::-moz-range-thumb {
   background: var(--teal); color: #fff; font-weight: 800; font-size: 12px;
 }
 .patient-plan-empty { padding: 16px; border-radius: var(--radius); background: var(--bg-alt); color: var(--ink-muted); }
+.recovery-card {
+  margin: 24px 0; padding: 22px; border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #F0F7FF 0%, #EEF9F8 100%);
+  border: 1px solid #CFE2EE;
+}
+.recovery-card-head { display: grid; grid-template-columns: 40px 1fr; gap: 13px; align-items: center; }
+.recovery-card-icon {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: #fff; color: var(--blue); border: 1px solid #D5E3F2;
+}
+.recovery-card h2 { margin-top: 2px; font-size: 19px; }
+.recovery-card > p { margin: 13px 0 15px; color: var(--ink-muted); font-size: 14px; line-height: 1.65; }
+.recovery-steps { display: grid; gap: 9px; list-style: none; counter-reset: recovery-step; }
+.recovery-step {
+  counter-increment: recovery-step; display: grid; grid-template-columns: 27px 1fr; gap: 10px; align-items: start;
+  color: var(--ink); font-size: 14px; line-height: 1.5;
+}
+.recovery-step::before {
+  content: counter(recovery-step); width: 25px; height: 25px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--blue); color: #fff; font-size: 11px; font-weight: 800;
+}
 .patient-plan-question { padding: 16px 18px; border-left: 4px solid var(--blue); background: var(--blue-light); border-radius: 0 var(--radius) var(--radius) 0; }
 .patient-plan-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 .plan-notice { min-height: 22px; margin-top: 12px; color: var(--blue); font-size: 13px; font-weight: 600; }
@@ -1998,6 +2032,20 @@ input[type=range].fysio-range::-moz-range-thumb {
             </template>
           </ol>
 
+          <div class="secondary-topics" x-show="secondaryRecommendedTopics.length" x-transition>
+            <div class="eyebrow" style="color:rgba(255,255,255,.72);">Voor later</div>
+            <h3>Ook passend bij jouw antwoorden</h3>
+            <p>Je hoeft dit nu niet te doen. Bewaar deze onderwerpen voor later of bespreek ze met je fysio.</p>
+            <ul class="secondary-topic-list">
+              <template x-for="topic in secondaryRecommendedTopics" :key="topic.moduleId">
+                <li class="secondary-topic">
+                  <svg width="13" height="13" aria-hidden="true"><use href="#i-bookmark"/></svg>
+                  <span x-text="topic.title"></span>
+                </li>
+              </template>
+            </ul>
+          </div>
+
           <button class="btn btn-white btn-lg" @click="goToId(personalPath[0]?.id || 'gevaar')" style="margin-top:24px;">
             Begin met stap 1 <svg width="16" height="16"><use href="#i-arrow-right"/></svg>
           </button>
@@ -2424,6 +2472,22 @@ input[type=range].fysio-range::-moz-range-thumb {
             Je hebt nog geen stap gekozen. Ga terug en kies één kleine stap.
           </div>
 
+          <div class="recovery-card">
+            <div class="recovery-card-head">
+              <div class="recovery-card-icon"><svg width="19" height="19" aria-hidden="true"><use href="#i-shield"/></svg></div>
+              <div>
+                <div class="eyebrow">Als het even minder gaat</div>
+                <h2>Een slechte nacht is geen mislukking</h2>
+              </div>
+            </div>
+            <p>Je hoeft niet opnieuw te beginnen. Pak rustig de kleine stap uit je plan weer op.</p>
+            <ol class="recovery-steps">
+              <li class="recovery-step">Pak één stap uit je plan weer op.</li>
+              <li class="recovery-step">Geef die stap rustig een week.</li>
+              <li class="recovery-step">Bespreek het met je fysio of huisarts als slecht slapen langer dan drie weken aanhoudt of de angst duidelijk toeneemt.</li>
+            </ol>
+          </div>
+
           <div class="patient-plan-question">
             <strong>Bespreek dit met je fysio</strong>
             <p style="margin-top:4px; color:var(--ink-muted);">Welke stap past goed bij je klachten en je dagelijks leven?</p>
@@ -2572,6 +2636,17 @@ function slaapModule() {
         .slice(0, 2)
         .map(g => g.recommendModuleId);
     },
+    get secondaryRecommendedTopics() {
+      if (this.isFysionAirReferral) return [];
+      return this.quizGroups
+        .filter(g => this.groupScore(g.id) >= 2)
+        .sort((a, b) => this.groupScore(b.id) - this.groupScore(a.id))
+        .slice(2)
+        .map(g => ({
+          moduleId: g.recommendModuleId,
+          title: g.recommendsTitle,
+        }));
+    },
     get firstRecommendedIndex() {
       const id = this.recommendedModuleIds[0];
       if (!id) return this.chapters.findIndex(ch => ch.id === 'educatie');
@@ -2693,7 +2768,7 @@ function slaapModule() {
       const actions = this.selectedPlanItems.length
         ? this.selectedPlanItems.map((item, index) => `${index + 1}. ${item.action}`).join('\n')
         : 'Kies nog één of twee stappen voor deze week.';
-      return `Je plan\n\n${actions}\n\nBespreek dit met je fysio.`;
+      return `Je plan\n\n${actions}\n\nAls het even minder gaat\nEen slechte nacht is geen mislukking. Je hoeft niet opnieuw te beginnen.\n1. Pak één stap uit je plan weer op.\n2. Geef die stap rustig een week.\n3. Bespreek het met je fysio of huisarts als slecht slapen langer dan drie weken aanhoudt of de angst duidelijk toeneemt.\n\nBespreek dit met je fysio.`;
     },
 
     stateKey(name) {

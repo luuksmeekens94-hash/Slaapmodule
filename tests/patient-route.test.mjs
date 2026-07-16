@@ -244,6 +244,28 @@ test('de slaapcheck beperkt de persoonlijke route tot twee prioritaire onderdele
   assert.deepEqual(plain(app.recommendedModuleIds), ['moduleA', 'moduleB']);
 });
 
+test('de slaapcheck houdt overige passende onderwerpen zichtbaar voor later', () => {
+  const app = createApp();
+  app.quizGroups = data.quizGroups;
+  app.quiz = Object.fromEntries(data.quizGroups.map((group) => [
+    group.id,
+    Object.fromEntries(group.questions.map((question) => [question.id, 3])),
+  ]));
+
+  assert.deepEqual(
+    plain(app.secondaryRecommendedTopics.map(({moduleId, title}) => ({moduleId, title}))),
+    [
+      {moduleId: 'moduleC', title: 'Rust bij vroeg wakker worden'},
+      {moduleId: 'moduleD', title: 'Een vast slaapritme'},
+      {moduleId: 'moduleE', title: 'Rust in je hoofd'},
+    ],
+  );
+  assert.deepEqual(plain(app.recommendedModuleIds), ['moduleA', 'moduleB']);
+  assert.match(html, /class="secondary-topics"[\s\S]*?Ook passend bij jouw antwoorden/);
+  assert.match(html, /x-for="topic in secondaryRecommendedTopics"/);
+  assert.match(html, /\.secondary-topics h3 \{[^}]*color: #fff;/);
+});
+
 test('de voortgang gebruikt een duidelijke staptekst', () => {
   const app = createApp('?preview=all');
   app.chapters = data.chapters;
@@ -264,6 +286,19 @@ test('mobiel toont één startactie en houdt de staptekst zichtbaar', () => {
 test('het eindscherm doet geen stellige pijnbelofte', () => {
   const closing = html.slice(html.indexOf('<!-- ─ 5 · AFSLUITING'), html.indexOf('<!-- Chapter nav -->'));
   assert.doesNotMatch(closing, /Slechte slaap|Goede slaap|Meer pijn|Minder pijn|Pijn komt harder binnen/i);
+});
+
+test('het eindplan geeft een kort herstelplan en neemt dit mee bij kopiëren', () => {
+  const app = createApp('?preview=all');
+  app.previewAll = true;
+  app.therapyModules = data.therapyModules;
+  app.moduleActions = {moduleA: [true, false, false, false, false]};
+
+  assert.match(html, /class="recovery-card"[\s\S]*?Als het even minder gaat/);
+  assert.match(html, /Een slechte nacht is geen mislukking/);
+  assert.match(app.planText, /Als het even minder gaat/);
+  assert.match(app.planText, /Pak één stap uit je plan weer op/);
+  assert.match(app.planText, /langer dan drie weken aanhoudt/);
 });
 
 test('weekkeuzes blijven bereikbaar met toetsenbord', () => {

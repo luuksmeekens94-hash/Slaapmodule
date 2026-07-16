@@ -87,7 +87,7 @@ Als het antwoord overal `nee` is, kies een stilstaande visual of geen media.
 | `plan` — Mijn plan voor een slechte week | **Video verwijderen en in planfunctie opnemen** | De app laat de patiënt al een echt plan kiezen; een animatie van een checklist is dubbel. | Werkelijk persoonlijk plan met maximaal twee acties. |
 | `signalaction` — Signaal naar actie | **Samenvoegen met het plan** | Dit is een als-dan-afspraak, geen video-inhoud. | Twee-kolommenkaart: `Als ik merk…` → `dan doe ik…`. |
 
-Module F wordt nu niet via de normale route aanbevolen. De nuttige inhoud kan beter worden opgenomen in het afsluitende persoonlijke plan dan als apart onderdeel met drie video’s te blijven bestaan.
+Module F wordt niet via de normale route aanbevolen. De kern is nu verwerkt in het afsluitende persoonlijke plan: maximaal twee gekozen acties plus een compacte herstelkaart voor een slechte nacht. Dezelfde herstelstappen gaan mee bij `Kopieer mijn plan`; het volledige onderdeel blijft alleen beschikbaar voor preview en inhoudelijk beheer.
 
 ## Aanbevolen kernset bewegende media
 
