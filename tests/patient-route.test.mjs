@@ -232,6 +232,18 @@ test('een veilige focus uit FysionAIr maakt direct een passende route', () => {
   assert.equal(app.routeStepLabel, 'Stap 2 van 5');
 });
 
+test('de slaapcheck beperkt de persoonlijke route tot twee prioritaire onderdelen', () => {
+  const app = createApp();
+  app.quizGroups = data.quizGroups;
+  app.quiz = Object.fromEntries(data.quizGroups.map((group) => [
+    group.id,
+    Object.fromEntries(group.questions.map((question) => [question.id, 3])),
+  ]));
+
+  assert.equal(app.recommendedModuleIds.length, 2);
+  assert.deepEqual(plain(app.recommendedModuleIds), ['moduleA', 'moduleB']);
+});
+
 test('de voortgang gebruikt een duidelijke staptekst', () => {
   const app = createApp('?preview=all');
   app.chapters = data.chapters;
@@ -314,17 +326,26 @@ test('elke manifestverwijzing opent de echte doorlopende brontake met dezelfde h
   }
 });
 
-test('elke videokaart bestaat in bron, renderbatch en webspeler', () => {
+test('de patiëntflow gebruikt vier functionele video’s en vijf statische visuals', () => {
   assert.match(renderAllSource, /series-content\.json/);
   assert.match(renderAllSource, /Object\.keys\(seriesContent\.videos\)/);
-  const visuals = [...new Set(data.therapyModules.flatMap((module) => (module.media || []).map((media) => media.visual)))];
-  const expectedVisuals = [
-    'force', 'worry', 'breathe', 'cycles', 'nightwake', 'nightphrase',
-    'clock', 'sun', 'lighttiming', 'rhythm', 'night', 'pressure',
-    'thought', 'factcheck', 'meter', 'curve', 'plan', 'signalaction',
-  ];
-  assert.deepEqual(visuals.sort(), expectedVisuals.sort(), 'de kaartset moet exact 18 unieke videoslugs bevatten');
-  for (const visual of visuals) {
+
+  const media = data.therapyModules.flatMap((module) => module.media || []);
+  const moving = media.filter((item) => ['animation', 'video'].includes(item.type));
+  const supportive = media.filter((item) => ['visual', 'worksheet'].includes(item.type));
+  const expectedMoving = ['force', 'breathe', 'cycles', 'rhythm'];
+  const expectedSupportive = ['worry-plan', 'night-plan', 'light-rhythm', 'pressure-curve', 'thought-check'];
+
+  assert.deepEqual(moving.map((item) => item.visual).sort(), expectedMoving.sort());
+  assert.deepEqual(supportive.map((item) => item.visual).sort(), expectedSupportive.sort());
+  assert.equal(media.length, 9, 'de zichtbare mediaset moet compact blijven');
+
+  for (const module of data.therapyModules) {
+    const movingCount = (module.media || []).filter((item) => ['animation', 'video'].includes(item.type)).length;
+    assert.ok(movingCount <= 2, `${module.id} toont meer dan twee bewegende media-items`);
+  }
+
+  for (const visual of moving.map((item) => item.visual)) {
     assert.ok(visual === 'force' || seriesContent.videos[visual], `${visual} ontbreekt in series-content.json`);
     assert.match(html, new RegExp(`hasVideo\\(visual\\)[\\s\\S]*?'${visual}'`), `${visual} ontbreekt in hasVideo()`);
     if (visual !== 'force') {
@@ -334,10 +355,33 @@ test('elke videokaart bestaat in bron, renderbatch en webspeler', () => {
   }
 });
 
+test('statische uitlegitems renderen als rustige visuals zonder videospeler', () => {
+  assert.match(html, /isStaticMedia\(media\)/);
+  assert.match(html, /x-html="renderStaticVisual\(media\)"/);
+
+  const app = createApp();
+  const expectedVisuals = ['worry-plan', 'night-plan', 'light-rhythm', 'pressure-curve', 'thought-check'];
+  for (const visual of expectedVisuals) {
+    const rendered = app.renderStaticVisual({ visual });
+    assert.match(rendered, /class="static-visual-art/);
+    assert.doesNotMatch(rendered, /<video|animation:/);
+  }
+});
+
+test('statische visuals hebben een leesbare gestapelde mobiele variant', () => {
+  const app = createApp();
+  for (const visual of ['worry-plan', 'night-plan', 'light-rhythm', 'pressure-curve', 'thought-check']) {
+    assert.match(app.renderStaticVisual({ visual }), /class="static-visual-mobile/);
+  }
+  assert.match(html, /@media \(max-width: 560px\)[\s\S]*?\.static-visual-art\s*\{\s*display:\s*none/s);
+  assert.match(html, /@media \(max-width: 560px\)[\s\S]*?\.static-visual-mobile\s*\{\s*display:\s*grid/s);
+});
+
 test('kaarttekst en zichtbare duur zijn gelijk aan de werkelijke serievoice', () => {
   const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
   for (const module of data.therapyModules) {
     for (const media of module.media || []) {
+      if (!['animation', 'video'].includes(media.type)) continue;
       if (media.visual === 'force') continue;
       const spec = seriesContent.videos[media.visual];
       assert.equal(normalize(media.script), normalize(spec.segments.join(' ')), `${media.visual} script wijkt af van audio`);
@@ -346,11 +390,26 @@ test('kaarttekst en zichtbare duur zijn gelijk aan de werkelijke serievoice', ()
   }
 });
 
+test('de volledige videotekst staat standaard ingeklapt', () => {
+  assert.match(html, /<details class="media-script"/);
+  assert.match(html, /<summary>Lees de tekst van deze video<\/summary>/);
+  assert.doesNotMatch(html, /<div class="media-script">/);
+});
+
+test('de route respecteert reduced motion en stopt decoratieve herhaalbeweging', () => {
+  assert.match(html, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+  assert.match(html, /animation-duration:\s*0\.01ms\s*!important/);
+  assert.match(html, /\.hero-chip\s+\.live-dot\s*\{[^}]*animation:\s*none/s);
+  assert.match(html, /\.pathway-pulse\s*\{[^}]*display:\s*none/s);
+});
+
 test('videokaarten laden pas na een klik en gebruiken compacte posters', () => {
   assert.match(html, /:controls="hasLoadedNativeVideo\(media, i\)" playsinline preload="none"/);
   assert.doesNotMatch(html, /preload="metadata"/);
   assert.match(html, /`video\/\$\{visual\}\.webp`/);
-  const visuals = [...new Set(data.therapyModules.flatMap((module) => (module.media || []).map((media) => media.visual)))];
+  const visuals = [...new Set(data.therapyModules.flatMap((module) => (module.media || [])
+    .filter((media) => ['animation', 'video'].includes(media.type))
+    .map((media) => media.visual)))];
   for (const visual of visuals) {
     const posterBytes = readFileSync(new URL(`../prototype/video/${visual}.webp`, import.meta.url)).byteLength;
     assert.ok(posterBytes < 250_000, `${visual}.webp is te zwaar: ${posterBytes} bytes`);
@@ -367,6 +426,12 @@ test('de app-shell ververst direct terwijl video-assets gecachet blijven', () =>
   assert.match(cacheValue('/video/(.*)'), /public/);
   assert.doesNotMatch(cacheValue('/video/(.*)'), /no-store/);
   assert.equal(vercelConfig.headers.some((rule) => rule.source === '/(.*)'), false);
+});
+
+test('de validator vraagt alleen voor bewegende media om MP4 en WebP', () => {
+  assert.match(moduleValidatorSource, /function isPlayableMedia\(media\)/);
+  assert.match(moduleValidatorSource, /\['animation', 'video'\]\.includes\(media\?\.type\)/);
+  assert.match(moduleValidatorSource, /isPlayableMedia\(media\)[\s\S]*?videoVisuals\.add\(media\.visual\)/);
 });
 
 test('de validator controleert lokale en live WebP-posters inhoudelijk', () => {
@@ -669,10 +734,10 @@ test('de professionele videoserie gebruikt hoorbare audio en Nederlandse caption
   assert.doesNotMatch(force.desc + force.script, /wakkerder/i);
   assert.doesNotMatch(html, /:muted=/);
   assert.match(html, /<track kind="captions" srclang="nl" label="Nederlands" :src="videoCaptionUrl\(media\.visual\)" default>/);
-  assert.match(html, /x-show="!hasVideo\(media\.visual\)"[\s\S]*?@click\.stop="toggleMedia/);
-  assert.match(html, /<div class="lesson-overlay" x-show="!hasVideo\(media\.visual\)">/);
-  assert.match(html, /<div class="media-controls" x-show="!hasVideo\(media\.visual\)">/);
-  assert.match(html, /<div class="media-voice" x-show="!hasVideo\(media\.visual\)">/);
+  assert.match(html, /x-show="!hasVideo\(media\.visual\) && !isStaticMedia\(media\)"[\s\S]*?@click\.stop="toggleMedia/);
+  assert.match(html, /<div class="lesson-overlay" x-show="!hasVideo\(media\.visual\) && !isStaticMedia\(media\)">/);
+  assert.match(html, /<div class="media-controls" x-show="!hasVideo\(media\.visual\) && !isStaticMedia\(media\)">/);
+  assert.match(html, /<div class="media-voice" x-show="!hasVideo\(media\.visual\) && !isStaticMedia\(media\)">/);
   assert.match(remotionRoot, /<Composition id="force" component=\{ForceFinalScene\} \{\.\.\.SERIES\} \/>/);
   assert.match(remotionRoot, /<Composition id="force-legacy" component=\{ForceScene\} \{\.\.\.LEGACY\} \/>/);
   assert.equal(remotionPackage.scripts['render:force'], 'node scripts/render-force-production.mjs');

@@ -242,12 +242,11 @@
           "script": "Je ligt wakker en denkt: kom op, ik wil gewoon slapen. Ja, logisch. Maar hoe meer je probeert, hoe lastiger het soms wordt. Slapen lukt niet op commando. Je hoeft het nu niet op te lossen. Echt niet."
         },
         {
-          "type": "video",
-          "label": "Animatie · 24 sec",
-          "title": "Piekeren parkeren",
-          "desc": "Je ziet hoe je zorgen uit bed haalt en op papier zet.",
-          "visual": "worry",
-          "script": "Lig je in bed en blijft je hoofd maar lijstjes maken? Logisch. Je brein probeert gewoon niets te vergeten. Schrijf je zorgen daarom eerder op de avond even op. Zet er eventueel één kleine actie voor morgen naast. Dan hoeft je hoofd het in bed niet allemaal vast te houden."
+          "type": "visual",
+          "label": "Stappenkaart",
+          "title": "Piekeren parkeren in 3 stappen",
+          "desc": "Schrijf je zorg op, kies zo nodig één actie voor morgen en laat het daarna rusten.",
+          "visual": "worry-plan"
         },
         {
           "type": "animation",
@@ -328,20 +327,11 @@
           "script": "Even wakker worden in de nacht? Dat gebeurt eigenlijk bij iedereen. Je slaap beweegt in rondes. Tussen die rondes word je soms kort wakker. Meestal zak je vanzelf weer weg. Het wordt vooral lastiger als je gaat rekenen, balen of controleren. Wakker worden betekent dus niet meteen dat je nacht mislukt."
         },
         {
-          "type": "animation",
-          "label": "Animatie · 28 sec",
-          "title": "Wat doe ik om 03:00?",
-          "desc": "Laat zien waarom rustig uit bed gaan helpt als je lang wakker ligt.",
-          "visual": "nightwake",
-          "script": "Lig je al een tijd wakker in bed? Dan kan blijven woelen je brein leren: hier ben ik dus ook wakker. Ga rustig even uit bed. Houd het licht laag en doe iets saais. Voel je weer slaperigheid? Ga dan terug. Zo blijft je bed zoveel mogelijk een plek voor slapen."
-        },
-        {
-          "type": "animation",
-          "label": "Oefening · 27 sec",
-          "title": "Rustzin in de nacht",
-          "desc": "Korte oefening met rustige zinnen zonder slaap te forceren.",
-          "visual": "nightphrase",
-          "script": "Je bent wakker. Dat is vervelend. Maar wakker zijn is niet gevaarlijk, en je hoeft slaap nu niet af te dwingen. Zeg rustig tegen jezelf: ik hoef dit moment niet op te lossen. Laat je kaken los en voel hoe je uitademing vanzelf komt. De nacht mag even zijn zoals hij is."
+          "type": "visual",
+          "label": "Keuzekaart",
+          "title": "Wat doe ik als ik wakker lig?",
+          "desc": "Kijk eerst of je nog suf bent of juist alert. Kies daarna de kleinste rustige stap.",
+          "visual": "night-plan"
         }
       ],
       "actions": [
@@ -406,28 +396,11 @@
       ],
       "media": [
         {
-          "type": "animation",
-          "label": "Animatie · 27 sec",
-          "title": "De slaapklok als anker",
-          "desc": "Vergelijkt een vaste opsta-tijd met een wisselend ritme.",
-          "visual": "clock",
-          "script": "Je slaapklok houdt van een duidelijk anker. Sta je elke ochtend ongeveer rond dezelfde tijd op, dan weet je lichaam: de dag begint. Ook na een mindere nacht. Steeds wisselen maakt dat ritme juist onduidelijker. Een vaste opsta-tijd geeft je slaapklok dus houvast."
-        },
-        {
-          "type": "animation",
-          "label": "Animatie · 27 sec",
-          "title": "Ochtendlicht opzoeken",
-          "desc": "Je ziet hoe licht via je ogen je slaapklok een startsein geeft.",
-          "visual": "sun",
-          "script": "Ochtendlicht is een sterk startsein voor je slaapklok. Het licht komt via je ogen binnen en vertelt je lichaam: de dag is begonnen. Zo kan je ritme overdag op gang komen. En kan slaperigheid in de avond beter op tijd verschijnen. Ga na het opstaan even naar buiten, of zit bij een helder raam."
-        },
-        {
-          "type": "animation",
-          "label": "Animatie · 28 sec",
-          "title": "Licht helpt je ritme",
-          "desc": "Je ziet waarom vroeg licht je avondritme kan helpen.",
-          "visual": "lighttiming",
-          "script": "Licht helpt je slaapklok vooral door het tijdstip. Zoek in de ochtend helder licht op. Overdag houdt dat je ritme duidelijk wakker. Maak het licht in de laatste uren voor bed juist wat zachter. Zo krijgt je lichaam een duidelijk verschil tussen dag en avond."
+          "type": "visual",
+          "label": "Dagritme",
+          "title": "Licht en een vaste opsta-tijd",
+          "desc": "Ochtendlicht en een vaste opsta-tijd geven je slaapklok een duidelijk begin van de dag.",
+          "visual": "light-rhythm"
         }
       ],
       "actions": [
@@ -505,20 +478,11 @@
           "script": "Misschien lig je veel langer in bed dan je echt slaapt. Dan raakt je bed makkelijk verbonden met wakker liggen. Samen met je fysio maak je de tijd in bed eerst passend bij je echte slaap. Gaat dat stabieler? Dan kan er stap voor stap een kwartier bij. Niet sneller. Je slaap krijgt rustig de tijd om mee te groeien."
         },
         {
-          "type": "animation",
-          "label": "Animatie · 30 sec",
-          "title": "Waarom later naar bed veilig kan zijn",
-          "desc": "Laat zien hoe tijdelijk korter in bed liggen slaapdruk opbouwt.",
-          "visual": "night",
-          "script": "Het klinkt misschien vreemd om later naar bed te gaan. Maar tijdelijk wat korter in bed liggen kan helpen om minder lang wakker te liggen. Je blijft op een vaste tijd opstaan en gaat pas naar bed als je slaperig bent. Daarna bouw je de tijd in bed rustig weer uit. Doe dit altijd samen met je fysio."
-        },
-        {
-          "type": "animation",
-          "label": "Animatie · 27 sec",
-          "title": "Slaapdruk opbouwen",
-          "desc": "Je ziet hoe slaapdruk opbouwt en wanneer een kort dutje soms kan.",
-          "visual": "pressure",
-          "script": "Slaapdruk groeit terwijl je wakker bent. Zie het als een rustige golf die over de dag steeds hoger wordt. Een lang dutje haalt een flink stuk van die druk weg. Een kort dutje kan soms wel: maximaal twintig minuten, en liever vroeg op de dag. Zo houd je genoeg slaapdruk over voor de avond."
+          "type": "visual",
+          "label": "Dagcurve",
+          "title": "Zo bouwt slaapdruk op",
+          "desc": "Slaapdruk groeit als je wakker bent en neemt tijdens de slaap weer af.",
+          "visual": "pressure-curve"
         }
       ],
       "actions": [
@@ -583,28 +547,11 @@
       ],
       "media": [
         {
-          "type": "video",
-          "label": "Animatie · 28 sec",
-          "title": "Van bange gedachte naar helpende zin",
-          "desc": "Je ziet hoe een strenge voorspelling een rustigere zin wordt.",
-          "visual": "thought",
-          "script": "Je hoofd zegt: morgen lukt helemaal niks. Maar een gedachte is niet automatisch een feit. Soms is het een voorspelling. Schrijf haar op en vraag: weet ik dit zeker? Maak de zin daarna eerlijker: morgen wordt misschien lastig, én ik kan bijsturen. Niet mooier maken. Wel eerlijker en helpender."
-        },
-        {
-          "type": "animation",
-          "label": "Animatie · 25 sec",
-          "title": "Beschermingsmeter",
-          "desc": "Laat zien hoe bange gedachten je lichaam aanzetten en rustige gedachten helpen zakken.",
-          "visual": "meter",
-          "script": "Een bange gedachte kan je lichaam meteen op scherp zetten. Je adem zit hoger, je spieren spannen aan en je brein blijft zoeken. Een helpende gedachte lost de nacht niet zomaar op. Maar ze kan je interne alarm wel een stukje laten zakken. En dat geeft je lichaam meer ruimte om tot rust te komen."
-        },
-        {
-          "type": "animation",
-          "label": "Animatie · 28 sec",
-          "title": "Voorspelling of feit?",
-          "desc": "Je oefent met het verschil tussen feit, voorspelling en helpende gedachte.",
-          "visual": "factcheck",
-          "script": "Je denkt: morgen gaat alles mis. Vraag eerst: is dit een feit, of een voorspelling? Een feit is wat je nu zeker weet. Een voorspelling gaat over wat misschien gebeurt. Kies daarna een zin die eerlijk blijft: morgen kan lastig zijn, en ik kan bijsturen."
+          "type": "worksheet",
+          "label": "Oefenkaart",
+          "title": "Van gedachte naar een eerlijkere zin",
+          "desc": "Onderzoek één slaapgedachte en maak haar rustiger zonder haar mooier te maken.",
+          "visual": "thought-check"
         }
       ],
       "actions": [
@@ -667,32 +614,7 @@
           "body": "<p>Plan contact als slechte slaap langer dan drie weken aanhoudt of angst sterk toeneemt.</p>"
         }
       ],
-      "media": [
-        {
-          "type": "animation",
-          "label": "Animatie · 24 sec",
-          "title": "Herstel gaat met ups en downs",
-          "desc": "Laat zien dat herstel met ups en downs verloopt en bijsturen normaal is.",
-          "visual": "curve",
-          "script": "Herstel loopt bijna nooit in een rechte lijn. Een paar betere nachten kunnen zomaar gevolgd worden door een slechte. Dat is balen. Maar het betekent niet dat je terug bij af bent. Kijk wat er veranderde en ga terug naar je vaste basis. Bijsturen hoort bij herstel."
-        },
-        {
-          "type": "animation",
-          "label": "Animatie · 26 sec",
-          "title": "Mijn plan voor een slechte week",
-          "desc": "Je ziet hoe je een eenvoudig plan maakt voor moeilijke momenten.",
-          "visual": "plan",
-          "script": "Een slechte week is niet het moment voor ingewikkelde plannen. Kies vooraf een paar vaste acties. Sta rond dezelfde tijd op, sla dutjes over en ga even uit bed als je lang wakker ligt. Gebruik één rustige zin als je hoofd aan gaat. Dan hoef je midden in een slechte nacht niet opnieuw te bedenken wat helpt."
-        },
-        {
-          "type": "animation",
-          "label": "Animatie · 28 sec",
-          "title": "Signaal naar actie",
-          "desc": "Je koppelt vroege signalen aan concrete acties.",
-          "visual": "signalaction",
-          "script": "Een slechte nacht begint vaak met een herkenbaar signaal. Misschien ga je op de klok kijken, rekenen of steeds harder proberen. Koppel vooraf één actie aan dat signaal. Klok kijken? Leg hem uit zicht. Lang wakker? Ga even uit bed. Zo hoef je midden in de nacht niet opnieuw te kiezen."
-        }
-      ],
+      "media": [],
       "actions": [
         "Ik ken mijn drie waarschuwingssignalen",
         "Ik ga terug naar vaste opsta-tijd",

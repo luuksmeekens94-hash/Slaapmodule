@@ -123,28 +123,19 @@
       ],
       "media": [
         {
-          "type": "animation",
-          "label": "Animatie - 25 sec",
-          "title": "Titel van video 1",
-          "desc": "Wat de patient ziet en leert.",
-          "visual": "video-slug-1",
-          "script": "B1-kernuitleg voor de video."
+          "type": "visual",
+          "label": "Visual",
+          "title": "Titel van de rustige visual",
+          "desc": "Wat de patient in één oogopslag begrijpt.",
+          "visual": "visual-slug"
         },
         {
           "type": "animation",
           "label": "Animatie - 25 sec",
-          "title": "Titel van video 2",
-          "desc": "Wat de patient ziet en leert.",
-          "visual": "video-slug-2",
-          "script": "B1-kernuitleg voor de video."
-        },
-        {
-          "type": "animation",
-          "label": "Oefening - 30 sec",
-          "title": "Titel van oefening",
-          "desc": "Wat de patient kan oefenen.",
-          "visual": "video-slug-3",
-          "script": "B1-instructie voor de oefening."
+          "title": "Alleen gebruiken als beweging functioneel nodig is",
+          "desc": "Welke verandering in tijd, volgorde of uitvoering zichtbaar wordt.",
+          "visual": "video-slug",
+          "script": "B1-kernuitleg die niet al volledig in de stappen staat."
         }
       ],
       "actions": [

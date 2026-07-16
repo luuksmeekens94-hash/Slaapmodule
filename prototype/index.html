@@ -321,8 +321,8 @@ main { min-width: 0; }
 }
 .hero-chip .live-dot {
   width: 7px; height: 7px; border-radius: 50%; background: #5DE6F0;
-  animation: pulse 2s ease-in-out infinite;
-  box-shadow: 0 0 12px #5DE6F0;
+  animation: none;
+  box-shadow: none;
 }
 @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: .5; transform: scale(.8);} }
 .hero h1 em {
@@ -418,7 +418,8 @@ main { min-width: 0; }
 .pathway-svg { display: block; margin: 0 auto; max-width: 100%; height: auto; position: relative; }
 .pathway-pulse {
   fill: var(--teal);
-  animation: travel 3.5s cubic-bezier(.42,0,.58,1) infinite;
+  display: none;
+  animation: none;
 }
 .pathway-pulse:nth-child(2) { animation-delay: -1.2s; }
 .pathway-pulse:nth-child(3) { animation-delay: -2.4s; }
@@ -430,7 +431,8 @@ main { min-width: 0; }
 }
 .pathway-glow {
   transform-origin: center;
-  animation: ache 2.8s ease-in-out infinite;
+  animation: none;
+  opacity: .4;
 }
 @keyframes ache {
   0%,100% { opacity: .25; transform: scale(.85);}
@@ -442,7 +444,7 @@ main { min-width: 0; }
 .cycle-svg circle.cycle-ring {
   fill: none; stroke: #F4B8B8; stroke-width: 2;
   stroke-dasharray: 10 8;
-  animation: cycle-rotate 20s linear infinite;
+  animation: none;
   transform-origin: center;
 }
 @keyframes cycle-rotate { to { transform: rotate(360deg); } }
@@ -571,7 +573,8 @@ main { min-width: 0; }
 .clock-hand {
   stroke: var(--blue); stroke-width: 2; stroke-linecap: round;
   transform-origin: 150px 150px;
-  animation: sweep 20s linear infinite;
+  animation: none;
+  transform: rotate(45deg);
 }
 .clock-marker {
   stroke-width: 2.5; stroke-linecap: round;
@@ -829,6 +832,53 @@ input[type=range].fysio-range::-moz-range-thumb {
   pointer-events: none;
 }
 .media-visual svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.static-visual-wrap { position: absolute; inset: 0; display: grid; place-items: center; background: #F7F9FD; }
+.static-visual-art { position: static !important; width: 100%; height: 100%; display: block; }
+.static-visual-mobile { display: none; }
+.static-mobile-kicker {
+  color: var(--blue); font-family: var(--font-head); font-size: 16px; font-weight: 800;
+  line-height: 1.35; margin-bottom: 2px;
+}
+.static-mobile-step, .static-mobile-panel {
+  display: grid; grid-template-columns: 34px 1fr; align-items: start; gap: 11px;
+  padding: 13px; border: 1px solid #D7E1F0; border-radius: 12px; background: #fff;
+}
+.static-mobile-panel { display: block; }
+.static-mobile-step > span {
+  width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+  color: #fff; background: var(--blue); font-size: 14px; font-weight: 800;
+}
+.static-mobile-step strong, .static-mobile-panel strong {
+  display: block; color: var(--ink); font-family: var(--font-head); font-size: 15px; line-height: 1.35;
+}
+.static-mobile-step small, .static-mobile-panel small {
+  display: block; color: var(--ink-muted); font-size: 13.5px; line-height: 1.5; margin-top: 3px;
+}
+.static-mobile-panel em {
+  display: inline-block; color: var(--blue); background: var(--blue-light); border-radius: 999px;
+  font-size: 12px; font-style: normal; font-weight: 800; margin-top: 9px; padding: 4px 9px;
+}
+.static-visual-mobile.is-night { background: #101F3E; }
+.static-visual-mobile.is-night .static-mobile-kicker { color: #fff; }
+.static-visual-mobile.is-night .static-mobile-panel { border-color: rgba(255,255,255,.2); }
+.static-mobile-panel.is-sun { border-left: 4px solid #F3C763; }
+.static-mobile-step.is-thought { background: #FFF8F8; border-color: #E7C9CF; }
+.static-mobile-step.is-thought > span { background: #8C3B52; }
+.static-mobile-step.is-check > span { background: #2472C8; }
+.static-mobile-step.is-helpful { background: #EFF9F5; border-color: #BFE2D2; }
+.static-mobile-step.is-helpful > span { background: #238B73; }
+.static-mobile-curve { height: 64px; display: flex; align-items: end; gap: 5px; padding: 0 6px; }
+.static-mobile-curve i { flex: 1; border-radius: 999px 999px 4px 4px; background: linear-gradient(180deg, #2472C8, #A8DCE0); }
+.static-mobile-curve i:nth-child(1) { height: 22%; }
+.static-mobile-curve i:nth-child(2) { height: 48%; }
+.static-mobile-curve i:nth-child(3) { height: 92%; }
+.static-mobile-curve i:nth-child(4) { height: 28%; }
+.static-mobile-labels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; color: var(--ink-muted); font-size: 10px; text-align: center; }
+.static-visual-mobile > p { color: var(--ink-muted); font-size: 12.5px; line-height: 1.45; }
+.media-card.static-featured { border-color: #D7E1F0; box-shadow: 0 12px 34px rgba(14,28,56,.08); }
+.media-card.static-featured .media-visual { background: #F7F9FD; }
+.media-card.static-featured .media-content { align-content: start; }
+.media-card.static-featured .media-state { display: none; }
 .media-play {
   position: absolute; right: 10px; top: 10px; z-index: 4;
   width: 34px; height: 34px; display: grid; place-items: center;
@@ -1276,14 +1326,17 @@ input[type=range].fysio-range::-moz-range-thumb {
 .media-card:not(.featured) .media-desc { min-height: 42px; }
 .media-script {
   margin-top: 14px; background: #F8FBFF; border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px;
+  border-radius: var(--radius); padding: 0 14px;
 }
-.media-script-label {
-  display: block; color: var(--teal); font-size: 10px; font-weight: 800;
-  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px;
+.media-script summary {
+  cursor: pointer; padding: 13px 0; color: var(--blue); font-size: 12px;
+  font-weight: 800; line-height: 1.4;
 }
+.media-script summary:focus-visible { outline: 3px solid rgba(48,181,190,.3); outline-offset: 3px; }
+.media-script[open] { padding-bottom: 14px; }
+.media-script[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 12px; }
 .media-script p { font-size: 13px; line-height: 1.65; color: var(--ink-muted); }
-.media-card.featured .media-script { margin-top: 18px; padding: 18px; }
+.media-card.featured .media-script { margin-top: 18px; padding-inline: 18px; }
 .media-card.featured .media-script p { font-size: 14.5px; color: var(--ink); }
 
 @keyframes meterRise { 0%, 100% { width: 22%; } 50% { width: 86%; } }
@@ -1460,6 +1513,11 @@ input[type=range].fysio-range::-moz-range-thumb {
   .media-stack-intro { display: block; }
   .media-card.featured { padding: 16px; }
   .media-card.featured .media-visual { height: 260px; }
+  .media-card.static-featured .media-visual { height: auto; min-height: 0; }
+  .media-card.static-featured .media-visual::before { display: none; }
+  .media-card.static-featured .static-visual-wrap { position: relative; inset: auto; display: block; }
+  .static-visual-art { display: none; }
+  .static-visual-mobile { display: grid; gap: 10px; padding: 16px; }
   .media-card.featured.video-featured .media-visual { height: auto; min-height: 230px; }
   .media-card.featured.video-featured .asset-scene { inset: 10px; }
   .media-card.featured .visual-force .media-bed {
@@ -1478,6 +1536,15 @@ input[type=range].fysio-range::-moz-range-thumb {
   .stage-bar.n2, .stage-bar.n3, .stage-bar.rem { min-width: min(100%, 164px); }
   .stage-scale { margin: 12px 0 0; }
   .cycle-node { max-width: 128px; min-width: 96px; font-size: 11px; padding: 7px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
 }
 @media print {
   body * { visibility: hidden !important; }
@@ -2157,12 +2224,12 @@ input[type=range].fysio-range::-moz-range-thumb {
           </div>
           <div class="media-grid">
             <template x-for="(media, i) in currentTherapyModule.media" :key="media.title">
-              <div class="media-card" :class="['featured', isMediaPlaying(media, i) ? 'playing' : 'paused', hasVideo(media.visual) ? 'video-featured' : '']">
+              <div class="media-card" :class="['featured', isMediaPlaying(media, i) ? 'playing' : 'paused', hasVideo(media.visual) ? 'video-featured' : '', isStaticMedia(media) ? 'static-featured' : '']">
                 <!-- ─ Full inline animation ─ -->
                 <div class="media-visual" :class="`visual-${media.visual || 'breathe'}`" :data-scene="mediaSceneIndex(media, i)">
                   <button class="media-play"
                     type="button"
-                    x-show="!hasVideo(media.visual)"
+                    x-show="!hasVideo(media.visual) && !isStaticMedia(media)"
                     @click.stop="toggleMedia(media, i)"
                     :aria-label="isMediaPlaying(media, i) ? 'Pauzeer animatie' : 'Speel animatie af'">
                     <svg width="15" height="15"><use :href="isMediaPlaying(media, i) ? '#i-pause' : '#i-play'"/></svg>
@@ -2187,10 +2254,13 @@ input[type=range].fysio-range::-moz-range-thumb {
                       </div>
                     </div>
                   </template>
-                  <template x-if="!hasVideo(media.visual)">
+                  <template x-if="isStaticMedia(media)">
+                    <div class="static-visual-wrap" x-html="renderStaticVisual(media)"></div>
+                  </template>
+                  <template x-if="!hasVideo(media.visual) && !isStaticMedia(media)">
                     <div class="asset-scene" x-html="renderSceneSvg(media)"></div>
                   </template>
-                  <div class="lesson-overlay" x-show="!hasVideo(media.visual)">
+                  <div class="lesson-overlay" x-show="!hasVideo(media.visual) && !isStaticMedia(media)">
                     <div class="lesson-caption" x-text="mediaScene(media, i).caption"></div>
                     <div class="lesson-progress"><span :style="`width:${mediaProgress(media, i)}%`"></span></div>
                     <div class="lesson-steps">
@@ -2203,11 +2273,11 @@ input[type=range].fysio-range::-moz-range-thumb {
                 <div class="media-content">
                   <div class="media-meta">
                     <span class="chip chip--teal" x-text="media.label"></span>
-                    <span class="media-state" x-text="isNativeVideoLoading(media, i) ? 'video laden…' : (hasNativeVideoError(media, i) ? 'start opnieuw' : (isMediaEnded(media, i) ? 'afgerond' : (isMediaPlaying(media, i) ? 'speelt af' : (isMediaPaused(media, i) ? 'gepauzeerd' : 'klaar om te starten'))))"></span>
+                    <span class="media-state" x-show="!isStaticMedia(media)" x-text="isNativeVideoLoading(media, i) ? 'video laden…' : (hasNativeVideoError(media, i) ? 'start opnieuw' : (isMediaEnded(media, i) ? 'afgerond' : (isMediaPlaying(media, i) ? 'speelt af' : (isMediaPaused(media, i) ? 'gepauzeerd' : 'klaar om te starten'))))"></span>
                   </div>
                   <div class="media-title" x-text="media.title"></div>
                   <div class="media-desc" x-text="media.desc"></div>
-                  <div class="media-controls" x-show="!hasVideo(media.visual)">
+                  <div class="media-controls" x-show="!hasVideo(media.visual) && !isStaticMedia(media)">
                     <button type="button" class="media-control primary" @click="toggleMedia(media, i)">
                       <svg width="13" height="13"><use :href="isMediaPlaying(media, i) ? '#i-pause' : (isMediaEnded(media, i) ? '#i-rotate' : '#i-play')"/></svg>
                       <span x-text="isMediaPlaying(media, i) ? 'Pauzeer' : (isMediaEnded(media, i) ? 'Opnieuw' : (isMediaPaused(media, i) ? 'Verder' : 'Start uitleg'))"></span>
@@ -2221,7 +2291,7 @@ input[type=range].fysio-range::-moz-range-thumb {
                       Volgende stap
                     </button>
                   </div>
-                  <div class="media-voice" x-show="!hasVideo(media.visual)">
+                  <div class="media-voice" x-show="!hasVideo(media.visual) && !isStaticMedia(media)">
                     <div class="media-voice-label">
                       <span>Uitleg in stappen</span>
                       <span x-text="`${mediaSceneIndex(media, i) + 1}/${mediaLesson(media).scenes.length}`"></span>
@@ -2244,10 +2314,10 @@ input[type=range].fysio-range::-moz-range-thumb {
                     </div>
                   </template>
                   <template x-if="media.script">
-                    <div class="media-script">
-                      <span class="media-script-label">Korte uitleg</span>
+                    <details class="media-script">
+                      <summary>Lees de tekst van deze video</summary>
                       <p x-text="media.script"></p>
-                    </div>
+                    </details>
                   </template>
                 </div>
               </div>
@@ -2499,6 +2569,7 @@ function slaapModule() {
       return this.quizGroups
         .filter(g => this.groupScore(g.id) >= 2)
         .sort((a, b) => this.groupScore(b.id) - this.groupScore(a.id))
+        .slice(0, 2)
         .map(g => g.recommendModuleId);
     },
     get firstRecommendedIndex() {
@@ -2804,6 +2875,184 @@ function slaapModule() {
     },
     hasVideo(visual) {
       return ['force','worry','thought','factcheck','meter','cycles','nightwake','nightphrase','pressure','breathe','night','clock','sun','lighttiming','rhythm','curve','plan','signalaction'].includes(visual);
+    },
+    isStaticMedia(media) {
+      return ['visual', 'worksheet'].includes(media?.type);
+    },
+    renderStaticVisual(media) {
+      const common = `font-family="DM Sans, sans-serif"`;
+      const visuals = {
+        'worry-plan': `
+          <svg class="static-visual-art" viewBox="0 0 960 540" role="img" aria-labelledby="worryPlanTitle">
+            <title id="worryPlanTitle">Piekeren parkeren in drie stappen</title>
+            <rect width="960" height="540" rx="34" fill="#F4F7FC"/>
+            <circle cx="812" cy="92" r="46" fill="#DFF4F5"/>
+            <path d="M812 68v48M788 92h48" stroke="#30B5BE" stroke-width="7" stroke-linecap="round"/>
+            <rect x="96" y="68" width="768" height="404" rx="30" fill="#FFFFFF" stroke="#D7E1F0" stroke-width="3"/>
+            <text x="144" y="126" ${common} font-size="24" font-weight="700" fill="#1840A0">Eerder op de avond</text>
+            <g transform="translate(142 164)">
+              <circle cx="34" cy="34" r="34" fill="#1840A0"/><text x="34" y="44" text-anchor="middle" ${common} font-size="28" font-weight="800" fill="#fff">1</text>
+              <text x="94" y="28" ${common} font-size="27" font-weight="700" fill="#0E1C38">Schrijf je zorg op</text>
+              <text x="94" y="62" ${common} font-size="20" fill="#4A5878">Eén korte zin is genoeg.</text>
+            </g>
+            <line x1="176" y1="246" x2="176" y2="274" stroke="#B7C8E2" stroke-width="4" stroke-linecap="round"/>
+            <g transform="translate(142 278)">
+              <circle cx="34" cy="34" r="34" fill="#2472C8"/><text x="34" y="44" text-anchor="middle" ${common} font-size="28" font-weight="800" fill="#fff">2</text>
+              <text x="94" y="28" ${common} font-size="27" font-weight="700" fill="#0E1C38">Kies zo nodig één actie</text>
+              <text x="94" y="62" ${common} font-size="20" fill="#4A5878">Wat kun je morgen rustig doen?</text>
+            </g>
+            <line x1="176" y1="360" x2="176" y2="388" stroke="#B7C8E2" stroke-width="4" stroke-linecap="round"/>
+            <g transform="translate(142 392)">
+              <circle cx="34" cy="34" r="34" fill="#30B5BE"/><text x="34" y="44" text-anchor="middle" ${common} font-size="28" font-weight="800" fill="#fff">3</text>
+              <text x="94" y="28" ${common} font-size="27" font-weight="700" fill="#0E1C38">Laat het daarna rusten</text>
+              <text x="94" y="62" ${common} font-size="20" fill="#4A5878">Je hoeft het niet mee naar bed te nemen.</text>
+            </g>
+          </svg>`,
+        'night-plan': `
+          <svg class="static-visual-art" viewBox="0 0 960 540" role="img" aria-labelledby="nightPlanTitle">
+            <title id="nightPlanTitle">Keuzekaart voor wakker liggen in de nacht</title>
+            <rect width="960" height="540" rx="34" fill="#101F3E"/>
+            <circle cx="820" cy="92" r="44" fill="#DDE8FA"/>
+            <circle cx="838" cy="78" r="42" fill="#101F3E"/>
+            <text x="480" y="102" text-anchor="middle" ${common} font-size="30" font-weight="750" fill="#FFFFFF">Je bent wakker. Wat merk je?</text>
+            <path d="M480 132v52M480 184H268v38M480 184h212v38" fill="none" stroke="#7DA8D9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="92" y="222" width="352" height="220" rx="26" fill="#FFFFFF"/>
+            <text x="268" y="278" text-anchor="middle" ${common} font-size="25" font-weight="750" fill="#1840A0">Nog suf en ontspannen?</text>
+            <text x="268" y="324" text-anchor="middle" ${common} font-size="21" fill="#4A5878">Blijf rustig liggen.</text>
+            <text x="268" y="358" text-anchor="middle" ${common} font-size="21" fill="#4A5878">Laat de klok met rust.</text>
+            <rect x="152" y="386" width="232" height="34" rx="17" fill="#E2F5F6"/>
+            <text x="268" y="410" text-anchor="middle" ${common} font-size="18" font-weight="700" fill="#187780">Niets hoeft opgelost</text>
+            <rect x="516" y="222" width="352" height="220" rx="26" fill="#FFFFFF"/>
+            <text x="692" y="278" text-anchor="middle" ${common} font-size="25" font-weight="750" fill="#1840A0">Alert en al lang wakker?</text>
+            <text x="692" y="324" text-anchor="middle" ${common} font-size="21" fill="#4A5878">Ga rustig even uit bed.</text>
+            <text x="692" y="358" text-anchor="middle" ${common} font-size="21" fill="#4A5878">Ga terug bij slaperigheid.</text>
+            <rect x="576" y="386" width="232" height="34" rx="17" fill="#E8F0FB"/>
+            <text x="692" y="410" text-anchor="middle" ${common} font-size="18" font-weight="700" fill="#1840A0">Laag licht · iets saais</text>
+          </svg>`,
+        'light-rhythm': `
+          <svg class="static-visual-art" viewBox="0 0 960 540" role="img" aria-labelledby="lightRhythmTitle">
+            <title id="lightRhythmTitle">Dagritme met ochtendlicht en een vaste opsta-tijd</title>
+            <defs><linearGradient id="dayBand" x1="0" x2="1"><stop offset="0" stop-color="#DDE8FA"/><stop offset=".28" stop-color="#F9D98B"/><stop offset=".68" stop-color="#CBECEF"/><stop offset="1" stop-color="#17294D"/></linearGradient></defs>
+            <rect width="960" height="540" rx="34" fill="#F7F9FD"/>
+            <text x="86" y="82" ${common} font-size="28" font-weight="750" fill="#0E1C38">Geef je slaapklok elke dag twee duidelijke signalen</text>
+            <rect x="86" y="148" width="788" height="92" rx="46" fill="url(#dayBand)"/>
+            <circle cx="286" cy="194" r="30" fill="#F6C967"/>
+            <path d="M286 146v-22M286 264v-22M238 194h-22M356 194h-22M252 160l-16-16M320 228l16 16M320 160l16-16M252 228l-16 16" stroke="#AB7800" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="786" cy="194" r="29" fill="#E3ECFA"/>
+            <circle cx="798" cy="184" r="28" fill="#17294D"/>
+            <line x1="210" y1="126" x2="210" y2="262" stroke="#1840A0" stroke-width="6" stroke-linecap="round"/>
+            <rect x="140" y="96" width="140" height="42" rx="21" fill="#1840A0"/>
+            <text x="210" y="124" text-anchor="middle" ${common} font-size="18" font-weight="750" fill="#fff">vaste opsta-tijd</text>
+            <text x="126" y="286" ${common} font-size="18" fill="#4A5878">ochtend</text>
+            <text x="451" y="286" ${common} font-size="18" fill="#4A5878">overdag</text>
+            <text x="748" y="286" ${common} font-size="18" fill="#4A5878">avond</text>
+            <rect x="86" y="340" width="364" height="120" rx="24" fill="#FFFFFF" stroke="#D7E1F0" stroke-width="2"/>
+            <circle cx="134" cy="390" r="25" fill="#F9D98B"/>
+            <text x="178" y="382" ${common} font-size="22" font-weight="750" fill="#0E1C38">Zoek ochtendlicht</text>
+            <text x="178" y="418" ${common} font-size="19" fill="#4A5878">Buiten werkt vaak het sterkst.</text>
+            <rect x="510" y="340" width="364" height="120" rx="24" fill="#FFFFFF" stroke="#D7E1F0" stroke-width="2"/>
+            <circle cx="558" cy="390" r="25" fill="#DDE8FA"/>
+            <text x="602" y="382" ${common} font-size="22" font-weight="750" fill="#0E1C38">Maak de avond zachter</text>
+            <text x="602" y="418" ${common} font-size="19" fill="#4A5878">Minder fel licht helpt het verschil.</text>
+          </svg>`,
+        'pressure-curve': `
+          <svg class="static-visual-art" viewBox="0 0 960 540" role="img" aria-labelledby="pressureCurveTitle">
+            <title id="pressureCurveTitle">Slaapdruk groeit tijdens wakker zijn en daalt tijdens slaap</title>
+            <rect width="960" height="540" rx="34" fill="#F7F9FD"/>
+            <text x="92" y="86" ${common} font-size="30" font-weight="750" fill="#0E1C38">Slaapdruk groeit zolang je wakker bent</text>
+            <line x1="112" y1="412" x2="850" y2="412" stroke="#CBD7E8" stroke-width="3"/>
+            <line x1="112" y1="142" x2="112" y2="412" stroke="#CBD7E8" stroke-width="3"/>
+            <path d="M120 382 C250 360 330 318 430 270 C560 206 680 150 760 132 C805 122 836 152 846 228 C854 292 842 354 810 398" fill="none" stroke="#2472C8" stroke-width="12" stroke-linecap="round"/>
+            <path d="M120 382 C250 360 330 318 430 270 C560 206 680 150 760 132 L760 412 L120 412 Z" fill="#DDEBFA" opacity=".72"/>
+            <circle cx="122" cy="382" r="13" fill="#30B5BE"/>
+            <circle cx="760" cy="132" r="13" fill="#1840A0"/>
+            <circle cx="810" cy="398" r="13" fill="#30B5BE"/>
+            <text x="118" y="454" ${common} font-size="19" fill="#4A5878">ochtend</text>
+            <text x="438" y="454" ${common} font-size="19" fill="#4A5878">overdag</text>
+            <text x="738" y="454" ${common} font-size="19" fill="#4A5878">avond</text>
+            <text x="802" y="454" ${common} font-size="19" fill="#4A5878">nacht</text>
+            <rect x="558" y="176" width="240" height="54" rx="27" fill="#FFFFFF" stroke="#C8D7EF" stroke-width="2"/>
+            <text x="678" y="211" text-anchor="middle" ${common} font-size="19" font-weight="700" fill="#1840A0">meer behoefte aan slaap</text>
+            <text x="92" y="496" ${common} font-size="19" fill="#4A5878">Een lang dutje kan een deel van die opgebouwde druk wegnemen.</text>
+          </svg>`,
+        'thought-check': `
+          <svg class="static-visual-art" viewBox="0 0 960 540" role="img" aria-labelledby="thoughtCheckTitle">
+            <title id="thoughtCheckTitle">Oefenkaart van slaapgedachte naar eerlijkere zin</title>
+            <rect width="960" height="540" rx="34" fill="#F7F9FD"/>
+            <text x="74" y="76" ${common} font-size="29" font-weight="750" fill="#0E1C38">Onderzoek één gedachte. Maak haar niet mooier, wel eerlijker.</text>
+            <g transform="translate(62 126)">
+              <rect width="254" height="314" rx="24" fill="#FFF8F8" stroke="#E7C9CF" stroke-width="2"/>
+              <circle cx="38" cy="42" r="21" fill="#8C3B52"/><text x="38" y="50" text-anchor="middle" ${common} font-size="20" font-weight="800" fill="#fff">1</text>
+              <text x="72" y="50" ${common} font-size="21" font-weight="750" fill="#6F2F43">Eerste gedachte</text>
+              <text x="28" y="116" ${common} font-size="23" font-weight="700" fill="#0E1C38">“Morgen lukt</text>
+              <text x="28" y="150" ${common} font-size="23" font-weight="700" fill="#0E1C38">helemaal niets.”</text>
+              <text x="28" y="226" ${common} font-size="18" fill="#4A5878">Schrijf letterlijk op</text>
+              <text x="28" y="254" ${common} font-size="18" fill="#4A5878">wat je hoofd zegt.</text>
+            </g>
+            <path d="M326 282h48" stroke="#A7B9D2" stroke-width="5" stroke-linecap="round"/><path d="M362 268l16 14-16 14" fill="none" stroke="#A7B9D2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <g transform="translate(382 126)">
+              <rect width="196" height="314" rx="24" fill="#FFFFFF" stroke="#D7E1F0" stroke-width="2"/>
+              <circle cx="38" cy="42" r="21" fill="#2472C8"/><text x="38" y="50" text-anchor="middle" ${common} font-size="20" font-weight="800" fill="#fff">2</text>
+              <text x="72" y="50" ${common} font-size="21" font-weight="750" fill="#1840A0">Check</text>
+              <text x="24" y="118" ${common} font-size="21" font-weight="700" fill="#0E1C38">Feit of</text>
+              <text x="24" y="150" ${common} font-size="21" font-weight="700" fill="#0E1C38">voorspelling?</text>
+              <text x="24" y="218" ${common} font-size="17" fill="#4A5878">Weet ik dit zeker?</text>
+              <text x="24" y="250" ${common} font-size="17" fill="#4A5878">Wat lukte eerder</text>
+              <text x="24" y="276" ${common} font-size="17" fill="#4A5878">toch nog wel?</text>
+            </g>
+            <path d="M588 282h48" stroke="#A7B9D2" stroke-width="5" stroke-linecap="round"/><path d="M624 268l16 14-16 14" fill="none" stroke="#A7B9D2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <g transform="translate(646 126)">
+              <rect width="252" height="314" rx="24" fill="#EFF9F5" stroke="#BFE2D2" stroke-width="2"/>
+              <circle cx="38" cy="42" r="21" fill="#238B73"/><text x="38" y="50" text-anchor="middle" ${common} font-size="20" font-weight="800" fill="#fff">3</text>
+              <text x="72" y="50" ${common} font-size="21" font-weight="750" fill="#176550">Eerlijkere zin</text>
+              <text x="26" y="112" ${common} font-size="21" font-weight="700" fill="#0E1C38">“Morgen kan</text>
+              <text x="26" y="143" ${common} font-size="21" font-weight="700" fill="#0E1C38">lastig zijn.</text>
+              <text x="26" y="174" ${common} font-size="21" font-weight="700" fill="#0E1C38">En ik kan</text>
+              <text x="26" y="205" ${common} font-size="21" font-weight="700" fill="#0E1C38">bijsturen.”</text>
+              <text x="26" y="260" ${common} font-size="17" fill="#4A5878">Rustig én geloofwaardig.</text>
+            </g>
+          </svg>`,
+      };
+      const mobileVisuals = {
+        'worry-plan': `
+          <div class="static-visual-mobile" role="img" aria-label="Piekeren parkeren in drie stappen">
+            <div class="static-mobile-kicker">Eerder op de avond</div>
+            <div class="static-mobile-step"><span>1</span><div><strong>Schrijf je zorg op</strong><small>Eén korte zin is genoeg.</small></div></div>
+            <div class="static-mobile-step"><span>2</span><div><strong>Kies zo nodig één actie</strong><small>Wat kun je morgen rustig doen?</small></div></div>
+            <div class="static-mobile-step"><span>3</span><div><strong>Laat het daarna rusten</strong><small>Je hoeft het niet mee naar bed te nemen.</small></div></div>
+          </div>`,
+        'night-plan': `
+          <div class="static-visual-mobile is-night" role="img" aria-label="Keuzekaart voor wakker liggen in de nacht">
+            <div class="static-mobile-kicker">Je bent wakker. Wat merk je?</div>
+            <div class="static-mobile-panel"><strong>Nog suf en ontspannen?</strong><small>Blijf rustig liggen. Laat de klok met rust.</small><em>Niets hoeft opgelost</em></div>
+            <div class="static-mobile-panel"><strong>Alert en al lang wakker?</strong><small>Ga rustig even uit bed. Ga terug bij slaperigheid.</small><em>Laag licht · iets saais</em></div>
+          </div>`,
+        'light-rhythm': `
+          <div class="static-visual-mobile" role="img" aria-label="Ochtendlicht en een vaste opsta-tijd helpen het slaapritme">
+            <div class="static-mobile-kicker">Twee duidelijke signalen voor je slaapklok</div>
+            <div class="static-mobile-panel is-sun"><strong>1 · Vaste opsta-tijd</strong><small>Begin iedere dag ongeveer op hetzelfde moment.</small></div>
+            <div class="static-mobile-panel is-sun"><strong>2 · Zoek ochtendlicht</strong><small>Buiten werkt vaak het sterkst.</small></div>
+            <div class="static-mobile-panel"><strong>Maak de avond zachter</strong><small>Minder fel licht maakt het verschil tussen dag en avond duidelijker.</small></div>
+          </div>`,
+        'pressure-curve': `
+          <div class="static-visual-mobile" role="img" aria-label="Slaapdruk groeit tijdens wakker zijn en daalt tijdens slaap">
+            <div class="static-mobile-kicker">Zo verandert slaapdruk</div>
+            <div class="static-mobile-curve" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="static-mobile-labels"><span>ochtend</span><span>overdag</span><span>avond</span><span>nacht</span></div>
+            <div class="static-mobile-panel"><strong>Overdag</strong><small>De behoefte aan slaap groeit zolang je wakker bent.</small></div>
+            <div class="static-mobile-panel"><strong>In de nacht</strong><small>Tijdens slaap neemt de opgebouwde slaapdruk weer af.</small></div>
+            <p>Een lang dutje kan een deel van de opgebouwde druk wegnemen.</p>
+          </div>`,
+        'thought-check': `
+          <div class="static-visual-mobile" role="img" aria-label="Oefenkaart van slaapgedachte naar eerlijkere zin">
+            <div class="static-mobile-kicker">Maak de gedachte niet mooier, wel eerlijker</div>
+            <div class="static-mobile-step is-thought"><span>1</span><div><strong>Eerste gedachte</strong><small>“Morgen lukt helemaal niets.”</small></div></div>
+            <div class="static-mobile-step is-check"><span>2</span><div><strong>Check</strong><small>Is dit een feit of een voorspelling?</small></div></div>
+            <div class="static-mobile-step is-helpful"><span>3</span><div><strong>Eerlijkere zin</strong><small>“Morgen kan lastig zijn. En ik kan bijsturen.”</small></div></div>
+          </div>`,
+      };
+      const visual = media?.visual;
+      return `${visuals[visual] || ''}${mobileVisuals[visual] || ''}`;
     },
     videoUrl(visual) {
       return `video/${visual}.mp4`;

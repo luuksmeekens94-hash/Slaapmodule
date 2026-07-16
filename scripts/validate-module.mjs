@@ -24,6 +24,9 @@ function uniqDuplicates(values) {
 function assertExists(path) {
   if (!existsSync(path)) fail(`Ontbreekt: ${path}`);
 }
+function isPlayableMedia(media) {
+  return ['animation', 'video'].includes(media?.type);
+}
 
 const dataPath = 'prototype/data/sleep-module.json';
 const htmlPath = 'prototype/index.html';
@@ -51,15 +54,15 @@ if (data) {
     if (!Array.isArray(group.questions) || group.questions.length === 0) fail(`Quizgroep ${group.id} heeft geen vragen`);
   }
 
-  const visuals = new Set();
+  const videoVisuals = new Set();
   for (const mod of therapyModules) {
     for (const media of mod.media || []) {
       if (!media.visual) fail(`Media in ${mod.id} mist visual: ${media.title || '(zonder titel)'}`);
-      else visuals.add(media.visual);
+      else if (isPlayableMedia(media)) videoVisuals.add(media.visual);
     }
   }
 
-  for (const visual of [...visuals].sort()) {
+  for (const visual of [...videoVisuals].sort()) {
     const mp4 = `prototype/video/${visual}.mp4`;
     const webp = `prototype/video/${visual}.webp`;
     assertExists(mp4);
@@ -111,11 +114,13 @@ try {
 
 if (live && data) {
   const paths = ['/', '/data/sleep-module.json'];
-  const visuals = new Set();
+  const videoVisuals = new Set();
   for (const mod of data.therapyModules || []) {
-    for (const media of mod.media || []) if (media.visual) visuals.add(media.visual);
+    for (const media of mod.media || []) {
+      if (media.visual && isPlayableMedia(media)) videoVisuals.add(media.visual);
+    }
   }
-  for (const visual of [...visuals].sort()) {
+  for (const visual of [...videoVisuals].sort()) {
     paths.push(`/video/${visual}.mp4`, `/video/${visual}.webp`);
   }
   for (const path of paths) {

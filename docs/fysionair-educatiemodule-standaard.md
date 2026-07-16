@@ -11,7 +11,7 @@ Belangrijk:
 - De module start met een korte check.
 - De patient ziet alleen onderdelen die nu passen.
 - Teksten zijn B1: korte zinnen, weinig vaktaal, concrete acties.
-- Elk onderdeel heeft 2-3 korte animaties of video's.
+- Media is optioneel: gebruik alleen beweging als die aantoonbaar meer uitlegt dan een stilstaand beeld of de oefening zelf.
 - De fysiotherapeut kan later samen met de patient terugkijken.
 
 ## Vaste patientflow
@@ -30,7 +30,7 @@ Gebruik bij elke nieuwe module dezelfde opbouw.
    - Gebruik gewone taal. Vraag naar gedrag, gevoel of situatie.
 
 3. **Jouw stappen**
-   - Toon alleen de onderdelen die passen bij de antwoorden.
+   - Toon alleen de onderdelen die passen bij de antwoorden, met maximaal 2 prioritaire onderdelen tegelijk.
    - Gebruik woorden als `Jouw stappen`, `Dit past nu bij jou` en `We starten met`.
    - Vermijd woorden als `leerpad`, `curriculum` of `cursus`.
 
@@ -41,7 +41,7 @@ Gebruik bij elke nieuwe module dezelfde opbouw.
 
 5. **Passende onderdelen**
    - Elk onderdeel behandelt een concreet probleem.
-   - Elk onderdeel bevat uitleg, stappen, media, acties, evaluatie en een notitie.
+   - Elk onderdeel bevat uitleg, stappen, acties, evaluatie en een notitie; media alleen waar dit functioneel helpt.
 
 6. **Afsluiting en veiligheid**
    - Vat samen wat de patient meeneemt.
@@ -61,7 +61,7 @@ Elk onderdeel in `therapyModules` gebruikt dezelfde structuur.
 - `whyBody`: 1 korte alinea.
 - `keyPoints`: precies 2 punten.
 - `steps`: 3-5 kleine stappen.
-- `media`: 2-3 animaties of video-oefeningen.
+- `media`: 0-2 ondersteuners. Standaard een statische visual of werkkaart; maximaal 1 uitlegvideo plus eventueel 1 begeleide oefening waarbij timing of beweging nodig is.
 - `actions`: 4-5 acties voor de komende week.
 - `evaluation`: 4 vragen voor evaluatie na 2-3 weken.
 - `reflectionPrompt`: 1 vraag voor gesprek met de fysio.
@@ -176,11 +176,20 @@ Inhoudelijke standaard:
 - Geen stockachtige beelden.
 - Eindbeeld met concrete kernzin.
 
-Elke module krijgt bij voorkeur:
+Start ieder onderdeel zonder verplichte video en toets elk voorgesteld media-item:
 
-- 1 uitlegvideo: wat gebeurt er?
-- 1 gedragsvideo: wat kan ik doen?
-- 1 oefenvideo of voorbeeld: hoe ziet oefenen eruit?
+1. Laat beweging een verandering in tijd, volgorde of uitvoering zien die een stilstaand beeld niet even duidelijk kan tonen?
+2. Moet de patient een tempo of handeling volgen, zoals bij ademhaling of een oefening?
+3. Vervangt de video werkelijk uitleg, of herhaalt hij vooral tekst en stappen die al zichtbaar zijn?
+4. Is dit media-item nog nodig wanneer de volledige patientroute meerdere onderdelen achter elkaar toont?
+
+Als de eerste twee vragen beide `nee` zijn, kies dan een statische visual, werkkaart, beslisboom, audiofragment of geen extra media. Verbeter of render pas video's nadat deze selectietoets is afgerond.
+
+Per onderdeel geldt als bovengrens:
+
+- maximaal 1 uitlegvideo voor een dynamisch mechanisme;
+- eventueel 1 begeleide oefening wanneer beweging of timing functioneel noodzakelijk is;
+- geen decoratieve animatie als standaardvulling.
 
 ## Claude Code video workflow
 
