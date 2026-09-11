@@ -1,0 +1,36 @@
+Temporary review link works in a fresh browser; four V2 code/style files match HEAD.
+
+Running 12 tests using 3 workers
+
+(node:353812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:319520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:352448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Temporary review link works in a fresh browser; four V2 code/style files match HEAD.
+Temporary review link works in a fresh browser; four V2 code/style files match HEAD.
+Temporary review link works in a fresh browser; four V2 code/style files match HEAD.
+  ok  2 [desktop] › tests\browser\route.spec.js:280:3 › the inslapen topic produces its own complete, usable plan (1.8s)
+  ok  1 [desktop] › tests\browser\route.spec.js:165:1 › referrals and direct hashes cannot bypass complete safety and symptom checks (2.3s)
+  ok  3 [desktop] › tests\browser\route.spec.js:280:3 › the wakker topic produces its own complete, usable plan (1.9s)
+  ok  4 [desktop] › tests\browser\route.spec.js:280:3 › the vroeg topic produces its own complete, usable plan (1.8s)
+  ok  5 [desktop] › tests\browser\route.spec.js:280:3 › the ritme topic produces its own complete, usable plan (1.7s)
+(node:351700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:358756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [desktop] › tests\browser\route.spec.js:280:3 › the piekeren topic produces its own complete, usable plan (1.8s)
+(node:331460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Temporary review link works in a fresh browser; four V2 code/style files match HEAD.
+Temporary review link works in a fresh browser; four V2 code/style files match HEAD.
+Temporary review link works in a fresh browser; four V2 code/style files match HEAD.
+  ok  7 [mobile] › tests\browser\route.spec.js:165:1 › referrals and direct hashes cannot bypass complete safety and symptom checks (2.0s)
+  ok  8 [mobile] › tests\browser\route.spec.js:280:3 › the inslapen topic produces its own complete, usable plan (1.9s)
+  ok  9 [mobile] › tests\browser\route.spec.js:280:3 › the wakker topic produces its own complete, usable plan (1.9s)
+  ok 10 [mobile] › tests\browser\route.spec.js:280:3 › the vroeg topic produces its own complete, usable plan (1.8s)
+  ok 11 [mobile] › tests\browser\route.spec.js:280:3 › the ritme topic produces its own complete, usable plan (2.1s)
+  ok 12 [mobile] › tests\browser\route.spec.js:280:3 › the piekeren topic produces its own complete, usable plan (1.7s)
+
+  12 passed (12.1s)

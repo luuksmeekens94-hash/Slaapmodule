@@ -2,6 +2,15 @@
 
 11 september 2026. Technische preview; patiëntgebruik en klinische geschiktheid zijn nog niet gevalideerd.
 
+## Review en preview
+
+- [Draft-PR #1](https://github.com/luuksmeekens94-hash/Slaapmodule/pull/1).
+- [Geteste V2-preview](https://slaapmodule-iicz6rcro-luuksmeekens94-6788s-projects.vercel.app/v2/) op implementatiecommit `d0ecd94363991f47c62ce54004f83c5d4d6a7ae7`, deployment `dpl_F5EvQ7REpzMu9Pik16m4oB83bWFc`, status READY, preview-target.
+- [Preview van de branch](https://slaapmodule-git-codex-slaa-451091-luuksmeekens94-6788s-projects.vercel.app/v2/) volgt latere commits op dezelfde branch.
+- De gewone preview-URL vereist de bestaande Vercel-toegang. Een tijdelijke reviewlink is apart aan de gebruiker verstrekt; die geeft circa 23 uur toegang zonder login. Toegangsbeleid is niet gewijzigd. Deel de tijdelijke token niet in de repository.
+
+Op de gepubliceerde preview zijn 12 extra browsergevallen geslaagd: alle vijf onderwerpen plus verwijzings-/checkgrenzen, op mobiel en desktop. De tijdelijke link is getest in een nieuwe browsercontext. De vier V2-code-/stijlbestanden op de preview zijn met SHA-256 vergeleken met de implementatiecommit: gelijk. De GitHub Actions voor push en PR zijn eveneens geslaagd. Zie `preview-tests.log`. De aanvullende documentatiecommit verandert de programmacode niet.
+
 ## Resultaat
 
 V2 staat onder `/v2/`, met zes vaste stappen: hulpvraag, volledige check, gerichte uitleg, maximaal twee concrete acties, weekplan en terugkijken/bijstellen. V1 blijft onder `/` beschikbaar. De bestaande V1-app, inhoudsconfiguratie, video's en Remotion-bronnen zijn ongewijzigd ten opzichte van basiscommit `04f2ea6a5d44f561b4b8b8c3fa629ca61db65284`.

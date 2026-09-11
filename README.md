@@ -8,7 +8,7 @@ Lokaal: `npm ci`, `npm run serve`, open `http://127.0.0.1:4321/v2/`. Checks: `np
 
 V2 gebruikt dezelfde statische basis en huisstijl, met losse modules zonder externe runtimebibliotheken. Zie [inhoudelijke keuzes](reviews/slaapmodule-v2/inhoudelijke-keuzes.md), [optionele videoscripts](reviews/slaapmodule-v2/synthesia-storyboards.md) en [patiëntgebruikstest](reviews/slaapmodule-v2/patientgebruikstest.md). Het [bouwplan](reviews/slaapmodule-audit-2026-09-11/bouwplan-v2.md) en de [analyse](reviews/slaapmodule-audit-2026-09-11/analyse-en-voorstel-v2.md) zijn in deze branch opgenomen.
 
-De onderstaande documentatie beschrijft de historische V1.
+Het [opleverrapport](reviews/slaapmodule-v2/opleverrapport.md) bevat de PR, preview, verificatie en beperkingen. De onderstaande documentatie beschrijft de historische V1.
 
 Interactieve FysionAIr slaapmodule voor patiënten met lage rugpijn. De module helpt patiënten in korte B1-stappen begrijpen hoe slaap, stress/bescherming en rugpijn elkaar kunnen beïnvloeden, en welke slaapstappen zij samen met hun fysio kunnen oefenen.
 
