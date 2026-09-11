@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      name="description"
+      content="Een persoonlijke blik op FysionAIr: van het gesprek in de praktijk naar een kleine stap thuis. Interactieve demonstratie van een hybride slaaproute."
+    />
+    <title>FysionAIr · Een persoonlijke preview voor FysOptima</title>
+    <link rel="icon" href="../logo.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Direct naar de inhoud</a>
+    <header class="header">
+      <a class="brand" href="#" aria-label="FysionAIr start"
+        ><img src="../logo.png" alt="" width="38" height="38" /><span
+          >FysionAIr</span
+        ></a
+      >
+      <nav aria-label="Hoofdnavigatie">
+        <a href="#ontdekken">Ervaar de route</a><a href="#videos">De video's</a
+        ><button class="preview-badge" data-about><span></span> Preview</button>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="line"></span> Hybride zorg · Slaap & herstel
+          </p>
+          <h1 id="hero-title">Goede zorg gaat<br />mee <em>naar huis.</em></h1>
+          <p class="lead">
+            Het gesprek in de praktijk is het begin. FysionAIr helpt patiënten
+            thuis verder met begrijpelijke uitleg, een haalbare stap en ruimte
+            om terug te kijken.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#ontdekken"
+              >Ervaar de slaaproute <span aria-hidden="true">↗</span></a
+            ><button class="text-button" data-video="welcome">
+              <span class="play-small" aria-hidden="true">▶</span> Bekijk de
+              introductie <small>0:32</small>
+            </button>
+          </div>
+          <div class="hero-note">
+            <span class="avatars" aria-hidden="true"
+              ><span>P</span><span>F</span></span
+            >
+            <p>
+              De patiënt aan zet.<br /><strong
+                >De fysiotherapeut dichtbij.</strong
+              >
+            </p>
+          </div>
+        </div>
+        <div
+          class="hero-visual"
+          aria-label="Van samen verkennen in de praktijk naar een kleine stap thuis en samen terugkijken"
+        >
+          <div class="visual-top">
+            <span>FYSIONAIR SLAAPROUTE</span
+            ><span class="pill">Van inzicht naar actie</span>
+          </div>
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="orbit-dot"></div>
+          <div class="journey-card card-one">
+            <span class="mini-icon">01</span>
+            <div>
+              <small>IN DE PRAKTIJK</small><strong>Samen verkennen</strong
+              ><span>Wat wil je weer makkelijker doen?</span>
+            </div>
+          </div>
+          <div class="journey-card card-two">
+            <span class="mini-icon">02</span>
+            <div>
+              <small>TUSSEN DE AFSPRAKEN</small
+              ><strong>Een kleine stap thuis</strong
+              ><span>Uitleg die aansluit. Een plan dat past.</span>
+            </div>
+            <span class="check" aria-hidden="true">✓</span>
+          </div>
+          <div class="journey-card card-three">
+            <span class="mini-icon">03</span>
+            <div>
+              <small>BIJ HET VOLGENDE GESPREK</small
+              ><strong>Terugkijken & bijstellen</strong
+              ><span>Jouw ervaring als vertrekpunt.</span>
+            </div>
+          </div>
+          <div class="visual-bottom">
+            <span class="sun" aria-hidden="true">✳</span>
+            <p>
+              Een kleine stap.<br /><strong>Meer ruimte voor je dag.</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+      <div class="intro-strip">
+        <div class="wrap">
+          <p>
+            Een persoonlijke preview voor <strong>Geert · FysOptima</strong>
+          </p>
+          <span
+            >3 korte video's <i></i> Interactieve voorbeeldroute <i></i> Circa 4
+            minuten</span
+          >
+        </div>
+      </div>
+
+      <section
+        class="section wrap"
+        id="ontdekken"
+        aria-labelledby="discover-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / Zelf ervaren</p>
+            <h2 id="discover-title">Van hulpvraag naar een kleine stap.</h2>
+          </div>
+          <p>
+            Klik door een selectie uit de slaapmodule. Bekijk hoe de ervaring
+            van de patiënt het vervolg richting geeft.
+          </p>
+        </div>
+        <div class="demo-shell">
+          <aside class="demo-sidebar">
+            <div class="route-label">
+              <img src="../logo.png" width="30" height="30" alt="" /><strong
+                >Mijn slaaproute</strong
+              >
+            </div>
+            <p class="demo-caption">Interactief voorbeeld</p>
+            <nav
+              id="route-nav"
+              aria-label="Onderdelen van de voorbeeldroute"
+            ></nav>
+            <div class="side-bottom">
+              <span class="mini-label">VOORBEELDPERSOON</span>
+              <div class="person">
+                <span aria-hidden="true">S</span>
+                <div>
+                  <strong>Sam, 42 jaar</strong><small>Fictieve situatie</small>
+                </div>
+              </div>
+              <button class="reset" id="reset-demo">
+                Voorbeeld opnieuw beginnen ↺
+              </button>
+            </div>
+          </aside>
+          <div class="demo-workspace">
+            <div class="demo-top">
+              <span id="step-label">01 — Samen verkennen</span
+              ><span class="demo-tag">DEMO · geen patiëntgegevens</span>
+            </div>
+            <div id="demo-content" tabindex="-1"></div>
+          </div>
+        </div>
+        <p class="under-note">
+          Dit is een verkorte demonstratie. De volledige route bevat een
+          uitgebreidere inventarisatie en zorgvragen. Keuzes in deze preview
+          worden niet bewaard of verstuurd.
+        </p>
+      </section>
+
+      <section
+        class="video-section"
+        id="videos"
+        aria-labelledby="video-section-title"
+      >
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">02 / Begrijpelijke uitleg</p>
+              <h2 id="video-section-title">Even kijken. Rustig verder.</h2>
+            </div>
+            <p>
+              Korte video's in een vertrouwde stijl. Als steun bij de oefening,
+              op een moment dat past.
+            </p>
+          </div>
+          <div class="video-grid">
+            <button class="video-card" data-video="welcome">
+              <span class="video-art welcome-art"
+                ><span class="art-wordmark">FysionAIr</span
+                ><span class="art-tagline">Ruimte voor een betere dag.</span
+                ><span class="play" aria-hidden="true">▶</span
+                ><span class="duration">0:32</span></span
+              ><span class="video-copy"
+                ><small>BEGINNEN</small><strong>Welkom bij je slaaproute</strong
+                ><span
+                  >Een persoonlijke uitnodiging om te ontdekken wat bij je
+                  past.</span
+                ><span class="video-link"
+                  >Bekijk de video <span aria-hidden="true">↗</span></span
+                ></span
+              >
+            </button>
+            <button class="video-card" data-video="awake">
+              <span class="video-art awake-art"
+                ><svg viewBox="0 0 420 230" aria-hidden="true">
+                  <circle cx="310" cy="58" r="45" fill="#f8edce" />
+                  <path d="M29 184H390" stroke="#cbdce8" />
+                  <rect
+                    x="40"
+                    y="104"
+                    width="158"
+                    height="57"
+                    rx="15"
+                    fill="#fff"
+                    stroke="#496589"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M40 173V97M198 150V173"
+                    stroke="#496589"
+                    stroke-width="3"
+                  />
+                  <rect
+                    x="53"
+                    y="114"
+                    width="44"
+                    height="25"
+                    rx="9"
+                    fill="#dfeaf6"
+                  />
+                  <path d="M107 139H194" stroke="#8fabc9" stroke-width="2" />
+                  <rect
+                    x="292"
+                    y="116"
+                    width="71"
+                    height="49"
+                    rx="13"
+                    fill="#99d9da"
+                  />
+                  <rect
+                    x="300"
+                    y="79"
+                    width="55"
+                    height="64"
+                    rx="15"
+                    fill="#bbe6e4"
+                  />
+                  <path
+                    d="M301 164V181M353 164V181M264 72V182M249 182H279"
+                    stroke="#496589"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M250 50H278L285 75H243Z"
+                    fill="#f7dc9e"
+                    stroke="#496589"
+                    stroke-width="2"
+                  /></svg
+                ><span class="play" aria-hidden="true">▶</span
+                ><span class="duration">0:34</span></span
+              ><span class="video-copy"
+                ><small>RUST & SLAAP</small><strong>Als je wakker ligt</strong
+                ><span
+                  >Ruimte om te kiezen wat op dat moment prettig en haalbaar
+                  is.</span
+                ><span class="video-link"
+                  >Bekijk de video <span aria-hidden="true">↗</span></span
+                ></span
+              >
+            </button>
+            <button class="video-card" data-video="worry">
+              <span class="video-art worry-art"
+                ><span class="paper paper-back"></span
+                ><span class="paper"
+                  ><span class="paper-heading">Wat houdt me bezig?</span
+                  ><span class="paper-line"></span
+                  ><span class="paper-line short"></span
+                  ><span class="paper-check"
+                    >✓ <span>Een kleine stap</span></span
+                  ></span
+                ><span class="play" aria-hidden="true">▶</span
+                ><span class="duration">0:43</span></span
+              ><span class="video-copy"
+                ><small>GEDACHTEN & RUIMTE</small
+                ><strong>Geef je gedachten een plek</strong
+                ><span
+                  >Een rustige manier om overdag aandacht te geven aan wat je
+                  bezighoudt.</span
+                ><span class="video-link"
+                  >Bekijk de video <span aria-hidden="true">↗</span></span
+                ></span
+              >
+            </button>
+          </div>
+          <p class="under-note">
+            De video's laden pas als je ze opent. Afspelen gebeurt via
+            Synthesia; bij iedere video staat ook de volledige tekst.
+          </p>
+        </div>
+      </section>
+
+      <section class="section wrap vision" aria-labelledby="vision-title">
+        <div>
+          <p class="eyebrow">03 / Samen verder denken</p>
+          <h2 id="vision-title">
+            Een doorlopende lijn.<br />Tussen praktijk en dagelijks leven.
+          </h2>
+          <p>
+            De slaaproute laat zien hoe wij hybride zorgpaden verkennen:
+            menselijk in het contact, praktisch in de ondersteuning en met
+            ruimte voor samen beslissen.
+          </p>
+          <button class="button primary" id="see-clinician">
+            Bekijk het behandelaarsperspectief
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+        <div class="vision-points">
+          <article>
+            <span>01</span>
+            <div>
+              <h3>Een herkenbaar vertrekpunt</h3>
+              <p>
+                De hulpvraag en het dagelijks functioneren geven richting aan
+                het gesprek.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span>02</span>
+            <div>
+              <h3>Ondersteuning tussen afspraken</h3>
+              <p>
+                Een stukje uitleg, een concrete oefening en een kleine,
+                zelfgekozen actie.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span>03</span>
+            <div>
+              <h3>De ervaring terug naar de praktijk</h3>
+              <p>
+                Een voorbeeld van hoe een weekactie en terugblik het
+                vervolggesprek kunnen ondersteunen.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="footer wrap">
+      <a class="brand" href="#"
+        ><img src="../logo.png" width="30" height="30" alt="" /><span
+          >FysionAIr</span
+        ></a
+      >
+      <p>
+        Persoonlijke demonstratie voor Geert · FysOptima<br /><small
+          >In ontwikkeling · geen klinisch gevalideerd zorgproduct</small
+        >
+      </p>
+      <button class="text-button" data-about>Over deze preview ↗</button>
+    </footer>
+
+    <dialog
+      id="welcome-dialog"
+      aria-labelledby="welcome-title"
+      aria-describedby="welcome-description"
+    >
+      <div class="modal-accent"></div>
+      <div class="welcome-body">
+        <div class="modal-brand">
+          <img src="../logo.png" width="46" height="46" alt="" /><span
+            class="preview-badge"
+            >Persoonlijke preview</span
+          >
+        </div>
+        <p class="eyebrow">Welkom, Geert</p>
+        <h2 id="welcome-title">Een kijkje in de zorg<br />van morgen.</h2>
+        <p id="welcome-description">
+          Deze preview van FysionAIr is speciaal samengesteld om met FysOptima
+          de mogelijkheden van hybride zorgpaden te verkennen.
+        </p>
+        <div class="preview-explanation">
+          <strong>Je bekijkt een demonstratie.</strong>
+          <p>
+            Ontdek drie video's en probeer een verkorte slaaproute. Alle
+            patiëntsituaties zijn fictief. Er wordt niets opgeslagen of naar een
+            behandelaar verstuurd.
+          </p>
+        </div>
+        <p class="modal-small">
+          De inhoud en vormgeving zijn in ontwikkeling. De preview is bedoeld
+          voor bespreking, niet voor gebruik in een behandeling.
+        </p>
+        <button class="button primary full" id="enter-preview">
+          Ontdek de preview <span aria-hidden="true">↗</span></button
+        ><span class="welcome-time">Vrij rondkijken · ongeveer 4 minuten</span>
+      </div>
+    </dialog>
+    <dialog id="video-dialog" aria-labelledby="video-title">
+      <div class="video-modal-top">
+        <div>
+          <p class="eyebrow">FysionAIr · Slaaproute</p>
+          <h2 id="video-title"></h2>
+        </div>
+        <button
+          class="close-button"
+          id="close-video"
+          aria-label="Video sluiten"
+        >
+          ✕
+        </button>
+      </div>
+      <div id="player"></div>
+      <div class="video-modal-bottom">
+        <a id="video-fallback" target="_blank" rel="noopener"
+          >Open video apart ↗</a
+        >
+        <details>
+          <summary>Liever lezen? Bekijk de volledige tekst</summary>
+          <div id="transcript"></div>
+        </details>
+      </div>
+    </dialog>
+    <noscript
+      ><div class="noscript">
+        Dit is een preview met fictieve situaties. Schakel JavaScript in om de
+        video's en interactieve voorbeeldroute te bekijken.
+      </div></noscript
+    >
+  </body>
+</html>
