@@ -1,0 +1,53 @@
+
+> fysionair-slaapmodule@0.1.0 test:browser
+> playwright test
+
+
+Running 32 tests using 3 workers
+
+(node:339996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:326308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:334892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\resilience.spec.js:2:1 › leaving and returning starts a fresh visit without silently retaining choices (532ms)
+  ok  2 [desktop] › tests\browser\resilience.spec.js:64:1 › corrupt or unavailable storage cannot crash start and opt-out really removes saved data (495ms)
+  ok  4 [desktop] › tests\browser\resilience.spec.js:84:1 › cross-tab deletion does not get undone by a stale tab (681ms)
+  ok  3 [desktop] › tests\browser\resilience.spec.js:14:1 › whole route works using only Tab, arrow, space and Enter keys (1.5s)
+  ok  6 [desktop] › tests\browser\route.spec.js:165:1 › referrals and direct hashes cannot bypass complete safety and symptom checks (1.7s)
+  ok  7 [desktop] › tests\browser\route.spec.js:197:1 › few symptoms, topic change and browser back preserve honest route boundaries (1.7s)
+  ok  5 [desktop] › tests\browser\route.spec.js:66:1 › complete route, privacy opt-in, resume, review, adjustment, copy, print and erase (3.8s)
+  ok  8 [desktop] › tests\browser\route.spec.js:228:1 › breathing is user-started, keyboard operable, reduced-motion safe and stops on leave (1.8s)
+  ok  9 [desktop] › tests\browser\route.spec.js:280:3 › the inslapen topic produces its own complete, usable plan (1.6s)
+  ok 10 [desktop] › tests\browser\route.spec.js:280:3 › the wakker topic produces its own complete, usable plan (1.6s)
+  ok 11 [desktop] › tests\browser\route.spec.js:280:3 › the vroeg topic produces its own complete, usable plan (1.5s)
+  ok 12 [desktop] › tests\browser\route.spec.js:280:3 › the ritme topic produces its own complete, usable plan (1.5s)
+  ok 13 [desktop] › tests\browser\route.spec.js:280:3 › the piekeren topic produces its own complete, usable plan (1.6s)
+  ok 14 [desktop] › tests\browser\route.spec.js:304:1 › exercise text is escaped, stays transient and missing images do not block route (1.7s)
+  ok 15 [desktop] › tests\browser\route.spec.js:335:1 › storage denial and clipboard failure have usable fallbacks (1.6s)
+(node:349756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:339516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 17 [mobile] › tests\browser\resilience.spec.js:2:1 › leaving and returning starts a fresh visit without silently retaining choices (514ms)
+  ok 19 [mobile] › tests\browser\resilience.spec.js:64:1 › corrupt or unavailable storage cannot crash start and opt-out really removes saved data (357ms)
+  ok 18 [mobile] › tests\browser\resilience.spec.js:14:1 › whole route works using only Tab, arrow, space and Enter keys (1.4s)
+  ok 20 [mobile] › tests\browser\resilience.spec.js:84:1 › cross-tab deletion does not get undone by a stale tab (614ms)
+  ok 21 [mobile] › tests\browser\route.spec.js:165:1 › referrals and direct hashes cannot bypass complete safety and symptom checks (1.8s)
+  ok 16 [desktop] › tests\browser\route.spec.js:357:1 › accessibility checks across all six screens and sources (5.0s)
+(node:325200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 22 [mobile] › tests\browser\route.spec.js:66:1 › complete route, privacy opt-in, resume, review, adjustment, copy, print and erase (3.6s)
+  ok 23 [mobile] › tests\browser\route.spec.js:197:1 › few symptoms, topic change and browser back preserve honest route boundaries (2.1s)
+  ok 24 [mobile] › tests\browser\route.spec.js:228:1 › breathing is user-started, keyboard operable, reduced-motion safe and stops on leave (1.9s)
+  ok 25 [mobile] › tests\browser\route.spec.js:280:3 › the inslapen topic produces its own complete, usable plan (1.7s)
+  ok 26 [mobile] › tests\browser\route.spec.js:280:3 › the wakker topic produces its own complete, usable plan (1.7s)
+  ok 27 [mobile] › tests\browser\route.spec.js:280:3 › the vroeg topic produces its own complete, usable plan (1.7s)
+  ok 28 [mobile] › tests\browser\route.spec.js:280:3 › the ritme topic produces its own complete, usable plan (1.7s)
+  ok 29 [mobile] › tests\browser\route.spec.js:280:3 › the piekeren topic produces its own complete, usable plan (1.8s)
+  ok 30 [mobile] › tests\browser\route.spec.js:304:1 › exercise text is escaped, stays transient and missing images do not block route (1.9s)
+  ok 31 [mobile] › tests\browser\route.spec.js:335:1 › storage denial and clipboard failure have usable fallbacks (1.9s)
+  ok 32 [mobile] › tests\browser\route.spec.js:357:1 › accessibility checks across all six screens and sources (4.5s)
+
+  32 passed (23.3s)

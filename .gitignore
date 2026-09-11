@@ -33,3 +33,6 @@ Thumbs.db
 
 .vercel
 .env*
+playwright-report/
+test-results/
+test-baseline.log

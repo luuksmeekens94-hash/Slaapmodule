@@ -1,0 +1,342 @@
+
+> fysionair-slaapmodule@0.1.0 validate
+> node scripts/validate-module.mjs && npm test
+
+Slaapmodule validation OK
+chapters=11 quizGroups=5 therapyModules=6
+
+> fysionair-slaapmodule@0.1.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Video kon niet starten Error: kaart B faalt vóór play
+#     at Object.play (file:///C:/Users/luuks/.codex/worktrees/626d/Slaapmodule/tests/patient-route.test.mjs:721:36)
+#     at Object.startNativeVideo (evalmachine.<anonymous>:1628:21)
+#     at TestContext.<anonymous> (file:///C:/Users/luuks/.codex/worktrees/626d/Slaapmodule/tests/patient-route.test.mjs:724:13)
+#     at Test.runInAsyncScope (node:async_hooks:214:14)
+#     at Test.run (node:internal/test_runner/test:1047:25)
+#     at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+#     at Test.postRun (node:internal/test_runner/test:1173:19)
+#     at Test.run (node:internal/test_runner/test:1101:12)
+#     at async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+# Subtest: de patiënttekst voldoet aan de vaste B1-basisregels
+ok 1 - de patiënttekst voldoet aan de vaste B1-basisregels
+  ---
+  duration_ms: 2.6584
+  type: 'test'
+  ...
+# Subtest: de zichtbare producttaal gebruikt slaaproute en geen interne lesnamen
+ok 2 - de zichtbare producttaal gebruikt slaaproute en geen interne lesnamen
+  ---
+  duration_ms: 0.3871
+  type: 'test'
+  ...
+# Subtest: FysionAIr-context gebruikt alleen veilige waarden en geeft B1-starttekst
+ok 3 - FysionAIr-context gebruikt alleen veilige waarden en geeft B1-starttekst
+  ---
+  duration_ms: 1.8965
+  type: 'test'
+  ...
+# Subtest: onbekende URL-waarden worden niet overgenomen
+ok 4 - onbekende URL-waarden worden niet overgenomen
+  ---
+  duration_ms: 0.6647
+  type: 'test'
+  ...
+# Subtest: onvolledige FysionAIr-context wordt als geheel geweigerd
+ok 5 - onvolledige FysionAIr-context wordt als geheel geweigerd
+  ---
+  duration_ms: 0.8423
+  type: 'test'
+  ...
+# Subtest: preview van alle stappen werkt alleen lokaal
+ok 6 - preview van alle stappen werkt alleen lokaal
+  ---
+  duration_ms: 1.1232
+  type: 'test'
+  ...
+# Subtest: een geldige verwijzing wint altijd van oude quizantwoorden
+ok 7 - een geldige verwijzing wint altijd van oude quizantwoorden
+  ---
+  duration_ms: 0.8131
+  type: 'test'
+  ...
+# Subtest: een nieuwe verwijzing bewaart geen patiëntkeuzes op dit apparaat
+ok 8 - een nieuwe verwijzing bewaart geen patiëntkeuzes op dit apparaat
+  ---
+  duration_ms: 0.8204
+  type: 'test'
+  ...
+# Subtest: een nieuwe verwijzing laadt geen oude patiëntgegevens
+ok 9 - een nieuwe verwijzing laadt geen oude patiëntgegevens
+  ---
+  duration_ms: 1.2333
+  type: 'test'
+  ...
+# Subtest: vrije tekst wordt nooit op het apparaat bewaard
+ok 10 - vrije tekst wordt nooit op het apparaat bewaard
+  ---
+  duration_ms: 0.8899
+  type: 'test'
+  ...
+# Subtest: oude vrije tekst wordt bij elke start van het apparaat verwijderd
+ok 11 - oude vrije tekst wordt bij elke start van het apparaat verwijderd
+  ---
+  duration_ms: 1.4728
+  type: 'test'
+  ...
+# Subtest: oude actiekeuzes worden beperkt tot twee passende acties
+ok 12 - oude actiekeuzes worden beperkt tot twee passende acties
+  ---
+  duration_ms: 0.8623
+  type: 'test'
+  ...
+# Subtest: een onvolledige slaapcheck is niet het einde van de route
+ok 13 - een onvolledige slaapcheck is niet het einde van de route
+  ---
+  duration_ms: 0.7403
+  type: 'test'
+  ...
+# Subtest: een veilige focus uit FysionAIr maakt direct een passende route
+ok 14 - een veilige focus uit FysionAIr maakt direct een passende route
+  ---
+  duration_ms: 0.8062
+  type: 'test'
+  ...
+# Subtest: de slaapcheck beperkt de persoonlijke route tot twee prioritaire onderdelen
+ok 15 - de slaapcheck beperkt de persoonlijke route tot twee prioritaire onderdelen
+  ---
+  duration_ms: 0.7116
+  type: 'test'
+  ...
+# Subtest: de slaapcheck houdt overige passende onderwerpen zichtbaar voor later
+ok 16 - de slaapcheck houdt overige passende onderwerpen zichtbaar voor later
+  ---
+  duration_ms: 0.9679
+  type: 'test'
+  ...
+# Subtest: de voortgang gebruikt een duidelijke staptekst
+ok 17 - de voortgang gebruikt een duidelijke staptekst
+  ---
+  duration_ms: 0.6035
+  type: 'test'
+  ...
+# Subtest: mobiel toont één startactie en houdt de staptekst zichtbaar
+ok 18 - mobiel toont één startactie en houdt de staptekst zichtbaar
+  ---
+  duration_ms: 0.4369
+  type: 'test'
+  ...
+# Subtest: het eindscherm doet geen stellige pijnbelofte
+ok 19 - het eindscherm doet geen stellige pijnbelofte
+  ---
+  duration_ms: 0.2006
+  type: 'test'
+  ...
+# Subtest: het eindplan geeft een kort herstelplan en neemt dit mee bij kopiëren
+ok 20 - het eindplan geeft een kort herstelplan en neemt dit mee bij kopiëren
+  ---
+  duration_ms: 0.8817
+  type: 'test'
+  ...
+# Subtest: weekkeuzes blijven bereikbaar met toetsenbord
+ok 21 - weekkeuzes blijven bereikbaar met toetsenbord
+  ---
+  duration_ms: 0.2749
+  type: 'test'
+  ...
+# Subtest: elke inhoudelijk andere videokaart heeft een eigen videobestand
+ok 22 - elke inhoudelijk andere videokaart heeft een eigen videobestand
+  ---
+  duration_ms: 0.1592
+  type: 'test'
+  ...
+# Subtest: elke serievoice komt uit één doorlopende Nono-take met gedeelde cue-timing
+ok 23 - elke serievoice komt uit één doorlopende Nono-take met gedeelde cue-timing
+  ---
+  duration_ms: 0.279
+  type: 'test'
+  ...
+# Subtest: alle serievoices delen Nono-identiteit, seed en één bronopname
+ok 24 - alle serievoices delen Nono-identiteit, seed en één bronopname
+  ---
+  duration_ms: 85.3303
+  type: 'test'
+  ...
+# Subtest: elke manifestverwijzing opent de echte doorlopende brontake met dezelfde hash
+ok 25 - elke manifestverwijzing opent de echte doorlopende brontake met dezelfde hash
+  ---
+  duration_ms: 191.9536
+  type: 'test'
+  ...
+# Subtest: de patiëntflow gebruikt vier functionele video’s en vijf statische visuals
+ok 26 - de patiëntflow gebruikt vier functionele video’s en vijf statische visuals
+  ---
+  duration_ms: 0.7738
+  type: 'test'
+  ...
+# Subtest: statische uitlegitems renderen als rustige visuals zonder videospeler
+ok 27 - statische uitlegitems renderen als rustige visuals zonder videospeler
+  ---
+  duration_ms: 1.2025
+  type: 'test'
+  ...
+# Subtest: statische visuals hebben een leesbare gestapelde mobiele variant
+ok 28 - statische visuals hebben een leesbare gestapelde mobiele variant
+  ---
+  duration_ms: 2.5434
+  type: 'test'
+  ...
+# Subtest: kaarttekst en zichtbare duur zijn gelijk aan de werkelijke serievoice
+ok 29 - kaarttekst en zichtbare duur zijn gelijk aan de werkelijke serievoice
+  ---
+  duration_ms: 0.2956
+  type: 'test'
+  ...
+# Subtest: de volledige videotekst staat standaard ingeklapt
+ok 30 - de volledige videotekst staat standaard ingeklapt
+  ---
+  duration_ms: 0.1481
+  type: 'test'
+  ...
+# Subtest: de route respecteert reduced motion en stopt decoratieve herhaalbeweging
+ok 31 - de route respecteert reduced motion en stopt decoratieve herhaalbeweging
+  ---
+  duration_ms: 0.2112
+  type: 'test'
+  ...
+# Subtest: videokaarten laden pas na een klik en gebruiken compacte posters
+ok 32 - videokaarten laden pas na een klik en gebruiken compacte posters
+  ---
+  duration_ms: 0.8894
+  type: 'test'
+  ...
+# Subtest: de app-shell ververst direct terwijl video-assets gecachet blijven
+ok 33 - de app-shell ververst direct terwijl video-assets gecachet blijven
+  ---
+  duration_ms: 0.2277
+  type: 'test'
+  ...
+# Subtest: de validator vraagt alleen voor bewegende media om MP4 en WebP
+ok 34 - de validator vraagt alleen voor bewegende media om MP4 en WebP
+  ---
+  duration_ms: 0.1075
+  type: 'test'
+  ...
+# Subtest: de validator controleert lokale en live WebP-posters inhoudelijk
+ok 35 - de validator controleert lokale en live WebP-posters inhoudelijk
+  ---
+  duration_ms: 0.1093
+  type: 'test'
+  ...
+# Subtest: een grote videoknop roept play direct vanuit dezelfde gebruikersklik aan
+ok 36 - een grote videoknop roept play direct vanuit dezelfde gebruikersklik aan
+  ---
+  duration_ms: 1.925
+  type: 'test'
+  ...
+# Subtest: videofouten ontgrendelen de knop en oude play-pogingen kunnen nieuwe state niet overschrijven
+ok 37 - videofouten ontgrendelen de knop en oude play-pogingen kunnen nieuwe state niet overschrijven
+  ---
+  duration_ms: 2.8875
+  type: 'test'
+  ...
+# Subtest: elke nieuwe broncyclus isoleert oude lifecycle-events op een vervangen video-element
+ok 38 - elke nieuwe broncyclus isoleert oude lifecycle-events op een vervangen video-element
+  ---
+  duration_ms: 1.9398
+  type: 'test'
+  ...
+# Subtest: een mislukte cross-card start laat geen oude kaart logisch actief
+ok 39 - een mislukte cross-card start laat geen oude kaart logisch actief
+  ---
+  duration_ms: 2.4211
+  type: 'test'
+  ...
+# Subtest: de professionele videoserie gebruikt hoorbare audio en Nederlandse captions
+ok 40 - de professionele videoserie gebruikt hoorbare audio en Nederlandse captions
+  ---
+  duration_ms: 217.7696
+  type: 'test'
+  ...
+# Subtest: de eigen pauzeknop bewaart de voortgang van native video
+ok 41 - de eigen pauzeknop bewaart de voortgang van native video
+  ---
+  duration_ms: 0.3821
+  type: 'test'
+  ...
+# Subtest: de patiënt kiest maximaal twee acties voor het weekplan
+ok 42 - de patiënt kiest maximaal twee acties voor het weekplan
+  ---
+  duration_ms: 1.4134
+  type: 'test'
+  ...
+# Subtest: every missing core or safety answer blocks a personal conclusion, also with a referral
+ok 43 - every missing core or safety answer blocks a personal conclusion, also with a referral
+  ---
+  duration_ms: 3.5537
+  type: 'test'
+  ...
+# Subtest: no symptoms, single concern and equal concerns keep choice transparent
+ok 44 - no symptoms, single concern and equal concerns keep choice transparent
+  ---
+  duration_ms: 0.3992
+  type: 'test'
+  ...
+# Subtest: regularity never creates a restriction schedule
+ok 45 - regularity never creates a restriction schedule
+  ---
+  duration_ms: 0.6256
+  type: 'test'
+  ...
+# Subtest: safety advice is visible before the check is complete
+ok 46 - safety advice is visible before the check is complete
+  ---
+  duration_ms: 0.1408
+  type: 'test'
+  ...
+# Subtest: zero actions or missing details cannot generate plan success
+ok 47 - zero actions or missing details cannot generate plan success
+  ---
+  duration_ms: 0.2115
+  type: 'test'
+  ...
+# Subtest: maximum two actions, no duplicates or actions from another topic
+ok 48 - maximum two actions, no duplicates or actions from another topic
+  ---
+  duration_ms: 0.1598
+  type: 'test'
+  ...
+# Subtest: evaluation starts empty and changes invalidate the previous review
+ok 49 - evaluation starts empty and changes invalidate the previous review
+  ---
+  duration_ms: 0.1947
+  type: 'test'
+  ...
+# Subtest: saved choices roundtrip while free text and unsafe keys do not survive
+ok 50 - saved choices roundtrip while free text and unsafe keys do not survive
+  ---
+  duration_ms: 0.6384
+  type: 'test'
+  ...
+# Subtest: tampered saved plans cannot skip mandatory check, topic or action limits
+ok 51 - tampered saved plans cannot skip mandatory check, topic or action limits
+  ---
+  duration_ms: 0.4682
+  type: 'test'
+  ...
+# Subtest: referral values are allowlisted and never import personal URL data
+ok 52 - referral values are allowlisted and never import personal URL data
+  ---
+  duration_ms: 0.3198
+  type: 'test'
+  ...
+1..52
+# tests 52
+# suites 0
+# pass 52
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 713.4708

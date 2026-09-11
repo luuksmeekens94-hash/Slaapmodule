@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>FysionAIr Slaaproute V2</title>
+    <meta
+      name="description"
+      content="Van je eigen hulpvraag naar één haalbare stap voor deze week. Een rustige slaaproute op jouw tempo."
+    />
+    <link rel="icon" href="../logo.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Direct naar de inhoud</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="FysionAIr Slaaproute start"
+        ><img src="../logo.png" alt="" width="38" height="38" /><span
+          >Fysion<span class="brand-ai">AI</span>r<span class="brand-sub"
+            >Slaaproute</span
+          ></span
+        ></a
+      ><span class="preview-label">V2 · preview</span>
+    </header>
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="eyebrow">Jouw route</p>
+        <nav aria-label="De zes stappen" id="steps"></nav>
+        <div class="side-note">
+          <span class="small-sun" aria-hidden="true">✳</span>
+          <p>Een kleine stap.<br />Op jouw tempo.</p>
+          <span>Je hoeft niet perfect te slapen.</span>
+        </div>
+      </aside>
+      <div class="workspace">
+        <div class="progress-line">
+          <span id="progress">Stap 1 van 6</span
+          ><span>Ruimte voor een betere dag</span>
+        </div>
+        <div class="progress-track"><div id="progress-bar"></div></div>
+        <main id="main" tabindex="-1">
+          <noscript
+            ><h1>Je slaaproute</h1>
+            <p>
+              Voor het maken van je plan is JavaScript nodig. Je kunt ook de
+              <a
+                href="https://www.thuisarts.nl/slecht-slapen/ik-wil-beter-slapen-slaapadviezen"
+                >slaapadviezen van Thuisarts lezen</a
+              >.
+            </p></noscript
+          >
+        </main>
+        <p id="notice" role="status" aria-live="polite"></p>
+        <section class="storage" aria-label="Bewaren en privacy">
+          <label
+            ><input
+              id="remember"
+              type="checkbox"
+              aria-describedby="storage-description"
+            />
+            Bewaar mijn keuzes op dit apparaat</label
+          >
+          <p id="storage-description">
+            Zonder vinkje verdwijnen je keuzes bij vernieuwen, verlaten of
+            sluiten. Met vinkje kun je hier later verder. Vrije oefentekst wordt
+            nooit bewaard. Gebruik dit alleen op je eigen apparaat.
+          </p>
+          <p id="storage-status" role="status"></p>
+          <button type="button" class="text-button" id="erase">
+            Wis mijn V2-keuzes
+          </button>
+          <div id="erase-confirm" hidden>
+            <p>
+              Je wist je V2-keuzes en oefentekst hier en op dit apparaat. Een
+              zelf gekopieerd of geprint plan blijft bestaan.
+            </p>
+            <button type="button" id="erase-yes" class="secondary">
+              Ja, wis mijn keuzes
+            </button>
+            <button type="button" id="erase-no" class="text-button">
+              Annuleren
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+    <footer>
+      <span>FysionAIr · Zelfzorg voor volwassenen</span
+      ><a href="./bronnen.html" target="_blank" rel="noopener noreferrer"
+        >Bronnen & over deze route (nieuw tabblad)</a
+      ><a href="../" target="_blank" rel="noopener noreferrer"
+        >Bekijk V1 ter vergelijking (nieuw tabblad)</a
+      >
+    </footer>
+    <section id="print-plan" aria-hidden="true"></section>
+  </body>
+</html>
