@@ -2,6 +2,15 @@
 
 11 september 2026. Aparte featurepreview onder `/preview/`, branch `codex/fysoptima-preview`. Geen productierelease.
 
+## Gepubliceerde reviewversie
+
+- [Preview](https://slaapmodule-rlpgauyry-luuksmeekens94-6788s-projects.vercel.app/preview/), deployment `dpl_CCf7VuDmGhbNo7NBQMPafd8F6CUb`, READY, preview-target, GitHub-commit `ed561b456ddb96c829cd1fe96994da99a0b4aa03`.
+- [Draft-PR #2](https://github.com/luuksmeekens94-hash/Slaapmodule/pull/2), gericht op de bestaande V2-branch; geen merge uitgevoerd.
+- Bestaande Vercel-bescherming behouden. Een afzonderlijke tijdelijke reviewlink is uitgegeven, geldig tot 12 september 2026 om circa 16:11 Nederlandse tijd. De URL zonder token vraagt toegang. De token staat alleen buiten versiebeheer en is aan Luuk verstrekt.
+- In twee verse browsercontexten (desktop en mobiel) werkt de tijdelijke link zonder account. De gepubliceerde interactieve route, plan en terugkoppeling zijn gecontroleerd. De drie echte embedded video's zijn gestart en hun voortgang is gemeten. Zie `remote-controle.txt`.
+- HTML, CSS en JavaScript van de deployment zijn met SHA-256 gelijk bevonden aan de lokaal geteste bestanden. Previewheaders zijn aanwezig.
+- GitHub Actions-run `34614698605` is geslaagd. De aanvullende documentatiecommit verandert de hierboven geteste implementatie niet.
+
 ## Wat Geert kan bekijken
 
 - Persoonlijke welkomstmelding met expliciete previewstatus; opnieuw op te roepen vanuit header en footer.
