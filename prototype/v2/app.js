@@ -121,8 +121,8 @@ function care() {
 }
 function start() {
   return `${resumePrompt ? `<section class="resume"><h2>Je kunt verder met je bewaarde keuzes</h2><p>Alleen hervatten als dit jouw keuzes zijn. Je kunt ze hieronder ook wissen.</p><button class="secondary" type="button" data-resume>Hervat mijn route</button></section>` : ""}
-    ${header("Jouw slaaproute", "Een kleine stap.<br>Meer ruimte voor je dag.", "Waar heb jij last van? Samen maken we daar één haalbaar experiment voor deze week van.")}
-    <div class="chips"><span class="chip">6 korte stappen</span><span class="chip">Ongeveer 10 minuten</span><span class="chip">Jouw tempo</span></div>${introArt}
+    <section class="route-hero">${header("Jouw slaaproute", "Een kleine stap.<br><em>Meer ruimte voor je dag.</em>", "Waar heb jij last van? Samen maken we daar één haalbaar experiment voor deze week van.")}
+    <div class="chips"><span class="chip">6 korte stappen</span><span class="chip">Ongeveer 10 minuten</span><span class="chip">Jouw tempo</span></div></section>${introArt}
     ${hint ? `<p class="callout">Je komt vanuit FysionAIr, met aandacht voor <strong>${TOPICS[hint]}</strong>Je kiest hier zelf wat belangrijk is. We doen altijd eerst de volledige check.</p>` : ""}
     ${fieldset("Waar heb je het meeste last van?", "wish", [...Object.entries(TOPICS), ["weinig", "Weinig klachten · ik wil mijn slaap beter begrijpen"]], state.wish, { grid: true })}
     ${fieldset("Wat wil je weer makkelijker kunnen?", "goal", GOALS, state.goal)}

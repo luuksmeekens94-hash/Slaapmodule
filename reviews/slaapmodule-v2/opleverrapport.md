@@ -13,6 +13,12 @@ Op de gepubliceerde preview zijn 12 extra browsergevallen geslaagd: alle vijf on
 
 ## Resultaat
 
+### Huisstijlcorrectie na visuele review
+
+De eerste V2-preview week te veel af van V1: ontbrekende geladen lettertypen, een donkerder turquoise, een anders gekleurd woordmerk en geen herkenbare verloopbanner. Dit is hersteld met de oorspronkelijke kleuren (#30B5BE, #1B56B8, #1840A0), achtergrond (#F7F9FD), borders (#DDE4F0), dezelfde logoafbeelding en het volledige verloopwoordmerk. DM Sans en Plus Jakarta Sans zijn lokaal meegeleverd met hun OFL-licenties, zonder externe fontverzoeken. Koppen, knoppen, kaarten en de startbanner volgen de oorspronkelijke huisstijl; de zesstappenroute blijft behouden.
+
+Na de correctie slagen opnieuw 52 logica-/regressietests en 32 browsergevallen, inclusief toegankelijkheidscontrole van alle stappen. De desktop- en mobiele beelden in `evidence/` zijn vernieuwd en de startpagina is visueel vergeleken met V1. De eerder genoemde 12 remote browsergevallen horen bij de eerdere implementatiepreview.
+
 V2 staat onder `/v2/`, met zes vaste stappen: hulpvraag, volledige check, gerichte uitleg, maximaal twee concrete acties, weekplan en terugkijken/bijstellen. V1 blijft onder `/` beschikbaar. De bestaande V1-app, inhoudsconfiguratie, video's en Remotion-bronnen zijn ongewijzigd ten opzichte van basiscommit `04f2ea6a5d44f561b4b8b8c3fa629ca61db65284`.
 
 De geïsoleerde branch is `codex/slaaproute-v2`. Beide oorspronkelijke opdrachtstukken zijn opgenomen onder `reviews/slaapmodule-audit-2026-09-11/`. Het niet-gecommitte mediawerk in de oorspronkelijke werkmap is niet gewijzigd.
