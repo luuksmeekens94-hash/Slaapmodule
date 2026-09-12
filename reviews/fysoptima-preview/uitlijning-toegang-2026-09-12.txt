@@ -1,0 +1,4 @@
+desktop: nieuwe deelbare toegang, popup, tekst, uitlijning en geen overflow gecontroleerd.
+mobile: nieuwe deelbare toegang, popup, tekst, uitlijning en geen overflow gecontroleerd.
+Bronbestanden gelijk aan commit a904e5f180028b2a31d1a8b29b4a1d514de96655.
+Vercel bevestigt scope shareable-link, expires=1789855201 (2026-09-19T22:00:01.000Z).
