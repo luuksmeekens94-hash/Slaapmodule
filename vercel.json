@@ -1,7 +1,7 @@
 {
   "outputDirectory": "prototype",
   "buildCommand": "",
-  "installCommand": "",
+  "installCommand": "npm ci",
   "framework": null,
   "headers": [
     {
