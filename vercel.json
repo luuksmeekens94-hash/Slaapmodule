@@ -1,6 +1,6 @@
 {
   "outputDirectory": "prototype",
-  "buildCommand": "",
+  "buildCommand": "node --check middleware.js && node --check lib/preview-access.js",
   "installCommand": "npm ci",
   "framework": null,
   "headers": [
