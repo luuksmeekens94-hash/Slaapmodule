@@ -1,5 +1,7 @@
 # Patiëntgerichte oefening onder de video — 12 september 2026
 
+Gepubliceerd en gecontroleerd: [preview](https://slaapmodule-li29dgfv6-luuksmeekens94-6788s-projects.vercel.app/preview/#gedachten), deployment `dpl_DskuPWhoqxUUMJHYrikdZ2ymYXJ1`, implementatiecommit `8a6614efb932cb9790c9d4290cc45f9adb94e2d6`. De afzonderlijk verstrekte deelbare link is geldig tot 13 september 2026 circa 16:35 Nederlandse tijd. De gewone link hierboven vereist bestaande Vercel-toegang. Deelbare tokens staan niet in versiebeheer.
+
 ## Ontwerpbesluit
 
 Onder ‘Rust in je hoofd’ vervangen we de statische uitlegkaarten door één kernboodschap en een korte begeleide oefening. De gebruiker kiest een herkenbare gedachte, onderzoekt deze, kiest een geloofwaardige zin en koppelt die aan een rustig moment overdag. Een kaart kan naar het klembord worden gekopieerd. De oorspronkelijke introductie, alle drie video's, videovakken, kleuren, gradients, fonts en het onderdeel ‘Wakker in de nacht’ blijven intact.
@@ -27,4 +29,6 @@ Voer eerst een kleine formatieve gebruikstest uit met bijvoorbeeld 5–8 patiën
 
 ## Verificatie
 
-Modulevalidatie en 52 bestaande logica-/regressietests slagen. De tien previewbrowsergevallen slagen op desktop en 360px mobiel, inclusief alle drie gedachtekeuzes, validatie, teruggaan, reset, gespreksroute, kopiëren en de tekstfallback. Axe vindt geen overtredingen in de gecontroleerde stappen en eindkaarten (WCAG 2 A/AA en 2.1 AA). Dit is een automatische controle, geen volledige toegankelijkheidsaudit. Visuele review: `evidence/patient-oefening-2026-09-12/`. De video-lifecycle wordt met een testspeler gecontroleerd; echt afspelen en de gepubliceerde bronbestanden worden na deployment apart gecontroleerd.
+Modulevalidatie en 52 bestaande logica-/regressietests slagen. Alle 42 browsergevallen slagen lokaal én in GitHub Actions-run `34702693555`. De tien previewgevallen controleren desktop en 360px mobiel, inclusief alle drie gedachtekeuzes, validatie, teruggaan, reset, gespreksroute, kopiëren en de tekstfallback. Axe vindt geen overtredingen in de gecontroleerde stappen en eindkaarten (WCAG 2 A/AA en 2.1 AA). Dit is een automatische controle, geen volledige toegankelijkheidsaudit. Visuele review: `evidence/patient-oefening-2026-09-12/`.
+
+Op de gepubliceerde versie zijn alle drie echte Synthesia-video's afgespeeld op desktop en mobiel, met gemeten voortgang boven twee seconden. De volledige oefening, feedback, actiekaart, leesroute en afwezigheid van browseropslag zijn gecontroleerd. Zeven gepubliceerde bronbestanden komen overeen met de geteste lokale bron en hebben een noindex-header. Tijdelijke toegang werkt in een verse browsercontext. Zie `patient-oefening-remote-2026-09-12.txt`. Een bronvergelijking met commit `774b9fa` bevestigt dat het oorspronkelijke stylesheet, videodata, moduledata, de welkom- en wakkersecties, de gedachte-header en video en de bestaande preview-CSS intact zijn. De aanvullende documentatiecommit wijzigt de geteste code niet.

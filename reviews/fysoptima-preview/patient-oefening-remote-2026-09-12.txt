@@ -1,0 +1,20 @@
+2026-09-12T15:37:13.069Z
+Deployment dpl_DskuPWhoqxUUMJHYrikdZ2ymYXJ1
+Commit 8a6614efb932cb9790c9d4290cc45f9adb94e2d6
+desktop / welkom: navigatie, videoplayback >2 s en sluiten geslaagd.
+desktop / wakker: navigatie, videoplayback >2 s en sluiten geslaagd.
+desktop / gedachten: navigatie, videoplayback >2 s en sluiten geslaagd.
+index.html: gelijk aan geteste bron; noindex-header aanwezig.
+style.css: gelijk aan geteste bron; noindex-header aanwezig.
+original.css: gelijk aan geteste bron; noindex-header aanwezig.
+app.js: gelijk aan geteste bron; noindex-header aanwezig.
+excerpts.js: gelijk aan geteste bron; noindex-header aanwezig.
+videos.js: gelijk aan geteste bron; noindex-header aanwezig.
+thought-practice.js: gelijk aan geteste bron; noindex-header aanwezig.
+desktop: begeleide oefening, feedback, actiekaart, leesroute en nul browseropslag geslaagd.
+desktop: geen paginafouten, geen overflow; tijdelijke toegang in verse browsercontext geslaagd.
+mobile / welkom: navigatie, videoplayback >2 s en sluiten geslaagd.
+mobile / wakker: navigatie, videoplayback >2 s en sluiten geslaagd.
+mobile / gedachten: navigatie, videoplayback >2 s en sluiten geslaagd.
+mobile: begeleide oefening, feedback, actiekaart, leesroute en nul browseropslag geslaagd.
+mobile: geen paginafouten, geen overflow; tijdelijke toegang in verse browsercontext geslaagd.
