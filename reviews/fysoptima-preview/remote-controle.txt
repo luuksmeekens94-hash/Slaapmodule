@@ -1,0 +1,12 @@
+2026-09-11T15:13:29.903Z
+Deployment dpl_CCf7VuDmGhbNo7NBQMPafd8F6CUb
+Implementatie ed561b456ddb96c829cd1fe96994da99a0b4aa03
+Zonder reviewlink: HTTP 302 (beschermde deployment).
+index.html: SHA-256 gelijk aan lokaal geteste versie; noindex-header aanwezig.
+app.js: SHA-256 gelijk aan lokaal geteste versie; noindex-header aanwezig.
+style.css: SHA-256 gelijk aan lokaal geteste versie; noindex-header aanwezig.
+Echte Synthesia-video welcome: playback >2 s, duur 33.0 s.
+Echte Synthesia-video awake: playback >2 s, duur 34.9 s.
+Echte Synthesia-video worry: playback >2 s, duur 43.3 s.
+desktop: verse browsercontext zonder login, modal, oefening, weekplan en behandelaarsterugblik geslaagd; geen paginafouten of horizontale overflow.
+mobile: verse browsercontext zonder login, modal, oefening, weekplan en behandelaarsterugblik geslaagd; geen paginafouten of horizontale overflow.

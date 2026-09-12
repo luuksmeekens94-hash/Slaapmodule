@@ -1,0 +1,3 @@
+desktop: gewone URL zonder cookies opent zonder Vercel-login; opnieuw doorsturen van de adresbalk naar tweede lege browser werkt; V2 blijft 404.
+mobile: gewone URL zonder cookies opent zonder Vercel-login; opnieuw doorsturen van de adresbalk naar tweede lege browser werkt; V2 blijft 404.
+CI 34706449341 geslaagd; scoped override door Vercel bevestigd; cutoff 20 september 00:00 Europe/Amsterdam.

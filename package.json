@@ -8,7 +8,7 @@
     "validate": "node scripts/validate-module.mjs && npm test",
     "validate:live": "node scripts/validate-module.mjs --live && npm test",
     "build": "npm run validate",
-    "vercel-build": "npm run validate",
+    "vercel-build": "node --check middleware.js && node --check lib/preview-access.js",
     "serve": "node scripts/serve.mjs",
     "test:browser": "playwright test",
     "test:v2": "node --test tests/v2.test.mjs"
@@ -16,5 +16,8 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0"
+  },
+  "dependencies": {
+    "@vercel/functions": "3.9.7"
   }
 }

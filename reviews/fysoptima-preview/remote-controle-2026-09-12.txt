@@ -1,0 +1,17 @@
+2026-09-12T11:50:43.525Z
+Deployment dpl_GTqW8DTZfs1KzY6v1KeursZSs6X5
+Commit 774b9fa1edc2230b607a176af79599ba3c37cf0a
+desktop / welkom: navigatie, videoplayback >2 s en sluiten geslaagd.
+desktop / wakker: navigatie, videoplayback >2 s en sluiten geslaagd.
+desktop / gedachten: navigatie, videoplayback >2 s en sluiten geslaagd.
+index.html: gelijk aan geteste bron; noindex-header aanwezig.
+style.css: gelijk aan geteste bron; noindex-header aanwezig.
+original.css: gelijk aan geteste bron; noindex-header aanwezig.
+app.js: gelijk aan geteste bron; noindex-header aanwezig.
+excerpts.js: gelijk aan geteste bron; noindex-header aanwezig.
+videos.js: gelijk aan geteste bron; noindex-header aanwezig.
+desktop: geen paginafouten, geen overflow; tijdelijke toegang in verse browsercontext geslaagd.
+mobile / welkom: navigatie, videoplayback >2 s en sluiten geslaagd.
+mobile / wakker: navigatie, videoplayback >2 s en sluiten geslaagd.
+mobile / gedachten: navigatie, videoplayback >2 s en sluiten geslaagd.
+mobile: geen paginafouten, geen overflow; tijdelijke toegang in verse browsercontext geslaagd.
