@@ -1,0 +1,30 @@
+# Patiëntgerichte oefening onder de video — 12 september 2026
+
+## Ontwerpbesluit
+
+Onder ‘Rust in je hoofd’ vervangen we de statische uitlegkaarten door één kernboodschap en een korte begeleide oefening. De gebruiker kiest een herkenbare gedachte, onderzoekt deze, kiest een geloofwaardige zin en koppelt die aan een rustig moment overdag. Een kaart kan naar het klembord worden gekopieerd. De oorspronkelijke introductie, alle drie video's, videovakken, kleuren, gradients, fonts en het onderdeel ‘Wakker in de nacht’ blijven intact.
+
+Iedere stap stelt één hoofdvraag. Grote radiokeuzes geven ruimte om te lezen en te kiezen. Feedback reageert op het antwoord zonder goed/fout-score. ‘Ik vind dit lastig’ en ‘dit past niet’ zijn geldige routes. Wie liever leest, kan de gehele uitleg openen zonder de oefening te doorlopen. Geen geforceerd positief denken, slaapprestatie, punten, aftelklok of behandelresultaatclaim.
+
+De kaart bevat één gekozen zin en één moment; een alternatief moment is optioneel. Als geen zin past, wordt een gesprekskaart aangeboden zonder verplichte oefenplanning. Terugkijken is optioneel en begint zonder verondersteld succes. Antwoorden bestaan uit vaste keuzes en blijven alleen in het geheugen van de pagina. Ze worden niet opgeslagen of verstuurd; herladen en terugkeer uit de browsercache resetten de oefening. Kopiëren gebeurt uitsluitend na de expliciete knop. De drie bestaande externe videospelers laden nog steeds alleen na play.
+
+## Onderbouwing en grenzen
+
+- [Pharos — checklist toegankelijke informatie](https://checklisttoegankelijkeinfo.pharos.nl/checklist): korte, concrete teksten, beperkte kernboodschappen, stapsgewijze instructies en testen met de doelgroep. Daarom beperken we uitleg tot één kernboodschap en tonen we één vraag tegelijk. Ontwerprichtlijnen zijn geen effectbewijs voor deze module; A2/B1-begrijpelijkheid is nog niet met patiënten vastgesteld.
+- [AHRQ — Teach-Back](https://www.ahrq.gov/teamstepps-program/curriculum/communication/tools/teachback.html): begrijpelijkheid controleren door iemand in eigen woorden te laten vertellen wat is afgesproken. Dat gebruiken we als voorstel voor patiënttesten en een behandelgesprek. De digitale keuzeknoppen zijn geen vervanging voor echte teach-back en worden niet zo gepresenteerd.
+- [NICE PH49 — aanbevelingen, met name 7](https://www.nice.org.uk/guidance/ph49/chapter/recommendations): een gekozen actie, een concrete gelegenheid, omgaan met belemmeringen en terugkijken ondersteunen gedragsverandering. Vertaald naar één zin, één moment en een optioneel alternatief. Dit is algemene gedragsveranderingsguidance, geen bewijs voor onze specifieke slaapgedachte-oefening.
+- [AASM — Edinger e.a., 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7853203/): multicomponente cognitieve gedragstherapie voor chronische slapeloosheid heeft een sterke aanbeveling. Dat onderbouwt niet automatisch een losse cognitieve oefening of een specifieke digitale presentatie. We benoemen daarom dat dit geen volledige slaapbehandeling is en beloven geen directe verbetering van de slaap.
+- [Muller e.a., JMIR 2017](https://www.jmir.org/2017/1/e21): in een gerandomiseerd onderzoek bij mensen met diabetes gaf interactieve/audiovisuele informatie geen algemeen voordeel boven toegankelijke tekst. De context en uitkomsten verschillen van slaapzorg. Daarom gebruiken we interactie alleen voor een duidelijke functie: kiezen, passende feedback krijgen en iets meenemen. De leesroute blijft beschikbaar.
+- [Thuisarts — slaapadviezen](https://www.thuisarts.nl/slecht-slapen/ik-wil-beter-slapen-slaapadviezen): patiëntinformatie over slaap en het bespreken van zorgen. De leesversie verwijst hiernaar en adviseert aanhoudende zorgen of slaapproblemen met huisarts of behandelaar te bespreken. Geen nieuw medicatieadvies of zelfstandig slaaprestrictieschema toegevoegd.
+
+Bronnen geraadpleegd op 12 september 2026. De uitwerking is evidence-informed; deze specifieke interface is niet klinisch gevalideerd.
+
+## Vervolg voor de overige module
+
+Gebruik per onderwerp dezelfde opbouw: één boodschap onder de video, een korte keuze of oefening, passende feedback en één concrete stap om mee te nemen. De inhoud bepaalt of interactie nodig is. Bij ‘Wakker in de nacht’ kan later bijvoorbeeld een eigen keuze voor een rustige activiteit en haalbaarheid met pijn of mobiliteitsproblemen worden uitgewerkt; dit is in deze wijziging nog niet veranderd. Vermijd dat elk onderwerp een lange vragenlijst wordt.
+
+Voer eerst een kleine formatieve gebruikstest uit met bijvoorbeeld 5–8 patiënten met verschillende lees- en digitale vaardigheden, ook op hun eigen telefoon. Dit aantal is een praktische eerste ontwerpronde, geen effectstudie. Laat hen zelfstandig een oefening doorlopen en in eigen woorden vertellen: wat is de boodschap, wat ga je proberen en wanneer vraag je hulp? Vraag enkele dagen later wat zij werkelijk gebruikten en wat lastig was. Herschrijf op basis van geobserveerde misverstanden. Betrek ook een behandelaar met expertise in slaap/CGT-I bij de inhoudelijke review voordat dit als patiëntzorg wordt aangeboden.
+
+## Verificatie
+
+Modulevalidatie en 52 bestaande logica-/regressietests slagen. De tien previewbrowsergevallen slagen op desktop en 360px mobiel, inclusief alle drie gedachtekeuzes, validatie, teruggaan, reset, gespreksroute, kopiëren en de tekstfallback. Axe vindt geen overtredingen in de gecontroleerde stappen en eindkaarten (WCAG 2 A/AA en 2.1 AA). Dit is een automatische controle, geen volledige toegankelijkheidsaudit. Visuele review: `evidence/patient-oefening-2026-09-12/`. De video-lifecycle wordt met een testspeler gecontroleerd; echt afspelen en de gepubliceerde bronbestanden worden na deployment apart gecontroleerd.

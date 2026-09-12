@@ -73,7 +73,7 @@ test("original appearance, neutral notice and real module excerpts on all three 
     );
   }
   await expect(page.locator("#gedachten")).toContainText(
-    "Gedachten kunnen je lichaam wakkerder maken",
+    "Een gedachte is nog geen zekerheid.",
   );
   await page.goBack();
   await expect(page.locator("#wakker")).toBeVisible();
@@ -134,10 +134,10 @@ test("direct links, keyboard interaction and reopening preview notice", async ({
   await page.getByRole("button", { name: "Bekijk de slaapmodule" }).focus();
   await page.keyboard.press("Enter");
   await expect(page.locator("#gedachten")).toBeVisible();
-  const summary = page.locator("#gedachten .step-head").first();
+  const summary = page.locator("#thought-reading summary").first();
   await summary.focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("#gedachten .step-item").first()).toHaveAttribute(
+  await expect(page.locator("#thought-reading").first()).toHaveAttribute(
     "open",
     "",
   );

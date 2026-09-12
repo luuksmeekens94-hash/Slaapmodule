@@ -1,5 +1,6 @@
 import { excerpts } from "./excerpts.js";
 import { videos } from "./videos.js";
+import { resetPractice } from "./thought-practice.js";
 const covers = {
   welcome: {
     note: "Een introductie bij het begin van de module.",
@@ -34,6 +35,7 @@ for (const module of excerpts) {
   // The HTML fragments are trusted, versioned excerpts from the original module.
   document.querySelector(`[data-module-header="${module.id}"]`).innerHTML =
     `<span class="chip" style="margin-bottom:18px">${escape(module.label)}</span><h1 class="h-hero" id="${headingId}">${module.title}</h1><p class="lead">${escape(module.intro)}</p>`;
+  if (module.id === "moduleE") continue;
   document.querySelector(`[data-module-insight="${module.id}"]`).innerHTML =
     `<div class="card card-lg"><h2 class="h-block">${escape(module.whyTitle)}</h2><p class="insight-body">${escape(module.whyBody)}</p><div class="protocol-grid">${module.keyPoints.map((point) => `<div class="protocol-card"><strong>${escape(point.title)}</strong><span>${escape(point.body)}</span></div>`).join("")}</div></div>`;
   document.querySelector(`[data-module-steps="${module.id}"]`).innerHTML =
@@ -50,6 +52,7 @@ const dialog = document.querySelector("#preview-dialog"),
 const routes = ["welkom", "wakker", "gedachten"];
 let videoTrigger;
 function showRoute(focus = false) {
+  if (location.hash === "#main") return;
   const route = routes.includes(location.hash.slice(1))
     ? location.hash.slice(1)
     : "welkom";
@@ -122,6 +125,7 @@ window.addEventListener("pagehide", () =>
 );
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
+    resetPractice();
     document
       .querySelectorAll("details")
       .forEach((details) => (details.open = false));
