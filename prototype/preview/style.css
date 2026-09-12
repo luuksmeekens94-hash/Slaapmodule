@@ -769,6 +769,11 @@ body:has(dialog[open]) {
   }
 }
 /* Guided thought exercise: scoped to the content below the third video. */
+.thought-intro .h-section {
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.3;
+  margin-bottom: 18px;
+}
 .thought-intro > p:not(.eyebrow) {
   max-width: 66ch;
   font-size: 17px;
@@ -776,17 +781,10 @@ body:has(dialog[open]) {
   color: var(--ink-muted);
 }
 .thought-purpose {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
   margin-top: 22px;
 }
-.thought-purpose > span {
-  font-size: 28px;
-  color: var(--blue);
-}
 .thought-purpose p {
-  max-width: 58ch;
+  max-width: 66ch;
   margin: 0;
   font-size: 16px;
   line-height: 1.7;
